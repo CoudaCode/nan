@@ -3,7 +3,7 @@ import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
 
-function Workspace() {
+function WorkSpace() {
   return (
     <div className="flex h-screen">
       <Sidebar />
@@ -17,4 +17,4 @@ function Workspace() {
   );
 }
 
-export default Workspace;
+export default WorkSpace;
