@@ -1,0 +1,19 @@
+.Sidebar li {
+  position: relative;
+}
+
+.Sidebar li.active {
+  background-color: rgba(31, 41, 55, var(--tw-bg-opacity, 1));
+}
+.Sidebar li.active span {
+  color: white;
+}
+.Sidebar li.active::after {
+  content: "";
+  background: #00d0ff;
+  height: 100%;
+  width: 5px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}

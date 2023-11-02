@@ -1,0 +1,22 @@
+.dashimg {
+    width: 60px;
+    height: 60px;
+  }
+  .dashHead {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  .dashHead h5 {
+    margin-left: 1rem;
+  }
+  
+  .dashHead .btnHead {
+    border: 1px solid #6870e0;
+    color: #6870e0;
+  }
+   
+  .dashHead .btnHead:hover{
+    background-color: #6870e0;
+    color: #fff;
+  }
+  

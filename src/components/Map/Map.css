@@ -1,0 +1,72 @@
+.Map .cadre {
+  border: 1px solid #fff;
+}
+
+.Map h1 {
+  margin-bottom: 60px;
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+/*ligne1*/
+.Map .items-start .Icon {
+  border: 2px solid #6870e0;
+  color: #fff;
+  font-size: 2rem;
+  margin: 20px;
+  border-radius: 100%;
+  padding: 10px;
+}
+.Map .items-start .Icon:hover {
+  color: #6870e0;
+  border: 2px solid #fff;
+}
+/*ligne2*/
+.Map .align-start .Icon {
+  border: 2px solid #6870e0;
+  color: #fff;
+  font-size: 2rem;
+  margin: 20px;
+  border-radius: 100%;
+  padding: 10px;
+}
+.Map .align-start .Icon:hover {
+  color: #6870e0;
+  border: 2px solid #fff;
+}
+.Map .cadre {
+  border: 1px solid #fff;
+}
+
+.Map h1 {
+  margin-bottom: 60px;
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+/*ligne1*/
+.Map .items-start .Icon {
+  border: 2px solid #6870e0;
+  color: #fff;
+  font-size: 2rem;
+  margin: 20px;
+  border-radius: 100%;
+  padding: 10px;
+}
+.Map .items-start .Icon:hover {
+  color: #6870e0;
+  border: 2px solid #fff;
+}
+/*ligne2*/
+.Map .align-start .Icon {
+  border: 2px solid #6870e0;
+  color: #fff;
+  font-size: 2rem;
+  margin: 20px;
+  border-radius: 100%;
+  padding: 10px;
+}
+.Map .align-start .Icon:hover {
+  color: #6870e0;
+  border: 2px solid #fff;
+}

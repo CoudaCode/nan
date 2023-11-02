@@ -1,0 +1,150 @@
+/* 
+.Footer {
+  background-color: #262935;
+  width: 100%;
+  height: auto;
+}
+
+.Footer .footer {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+
+.section1 {
+  width: 40%;
+  margin-top: 20px;
+}
+
+.section1 h1 {
+  font-size: 3rem;
+}
+
+.section1 p {
+  font-size: 20px;
+}
+
+.Footer .BoxCard {
+  width: 60%;
+  display: flex;
+  padding: 30px;
+}
+
+.Footer .card {
+  width: 40%;
+  background-color: #fff;
+  height: 23vh;
+  margin-left: 30px;
+  padding-top: 15px;
+  overflow: hidden;
+}
+
+.Footer .card p {
+  font-size: 1.2rem;
+  font-family: sans-serif;
+  font-style: arial;
+  color: #262935;
+}
+
+.Footer .card p i {
+  margin-right: 40px;
+  color: #6870e0;
+  font-weight: bolder;
+}
+
+.Footer .butonCard {
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+  border-radius: 30px;
+  border: 2px solid #6870e0;
+  background: none;
+  color: #262935;
+}
+
+.Footer .butonCard:hover {
+  background-color: #6870e0;
+  color: white;
+}
+
+.Footer .bas a {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 5px;
+}
+
+.Footer .fa-whatsapp:hover,
+.Footer .fa-youtube:hover,
+.Footer .fa-twitter:hover,
+.Footer .fa-linkedin:hover,
+.Footer .fa-telegram:hover,
+.fa-facebook-f:hover {
+  color: #6870e0;
+}
+
+.footer h5 {
+  margin-bottom: 40px;
+  font-size: 1.4rem;
+  color: #6870e0;
+}
+
+.Footer .rait {
+  width: 100%;
+  height: 30px;
+  color: #fff;
+}
+
+.Footer input {
+  padding: 10px;
+  outline: none;
+  background: none;
+  border: 1px solid #6870e0;
+  color: #fff;
+  border-radius: 10px;
+  margin-right: 3px;
+}
+
+::placeholder {
+  color: rgba(128, 128, 128, 0.611);
+}
+
+@media screen and (min-width: 1024px) {
+  .Footer .footer {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Footer .footer {
+    flex-direction: column;
+  }
+
+  .Footer .section1 {
+    width: 100%;
+  }
+
+  .Footer .BoxCard {
+    width: 100%;
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .Footer .card {
+    width: 55%;
+    margin: auto;
+    height: 13vh;
+  }
+} */
+
+.Footer .Icon {
+    display: flex;
+  }
+  
+  .Footer .Icon a {
+    color: #6870e0;
+  }
+  
+  .Footer span {
+    color: #6870e0;
+  }
+  

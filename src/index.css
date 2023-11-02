@@ -1,0 +1,15 @@
+:root {
+    --ma-couleur-principale: #1E2029;
+    --ma-couleur-bouton: #6870e0;
+    --mon--autre--couleur: #b6b9e5;
+    --ma--couleur--text: #ffff;
+  }
+  *::after, *::before,*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background-color: var(--ma-couleur-principale);
+    color: var(--ma--couleur--text);
+  }

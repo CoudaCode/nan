@@ -1,0 +1,160 @@
+.Entreprise {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Entreprise .ensemble {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    background-color: #ffff;
+    padding-left: 2vw;
+  }
+  
+  .Entreprise .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .Entreprise .input {
+    margin: 1em 0 1em 0;
+    width: 100%;
+    position: relative;
+    padding-top: 15px;
+  }
+  
+  .Entreprise .cadre :focus ~ label,
+  .Entreprise .cadre:valid ~ label {
+    transform: translateY(-100%) scale(0.9);
+    border-radius: 10px;
+    padding: 0.2em;
+    background-color: #6870e0;
+    color: #ffff;
+    outline: none;
+    border: none;
+    margin-bottom: -30px;
+  }
+  
+  .Entreprise .form button {
+    color: #e8e8e8;
+    font-size: 15px;
+    align-self: flex-start;
+    padding: 0.6em;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 50px;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .Entreprise .form button:hover:before {
+    opacity: 1;
+  }
+  
+  .Entreprise .form button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .Entreprise .cadre {
+    color: white;
+    margin-left: 3vw;
+  }
+  
+  .Entreprise .cadre input,
+  .Entreprise .code input {
+    color: white;
+    font-size: 1rem;
+    color: #262935;
+    border: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.339);
+    background: transparent;
+    border-radius: 1px;
+    width: 100%;
+  }
+  
+  .Entreprise .cadre label {
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    bottom: 2vh;
+    color: #262935;
+    padding: 0.7em;
+    margin-left: 0.1em;
+    pointer-events: none;
+    transition: all 0.5s ease;
+  }
+  
+  .Entreprise .cadre button {
+    float: left;
+    width: 15rem;
+    /* margin-left: 80%; */
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #6870e0;
+    margin-top: 3vh;
+    padding: 5px;
+    font-family: sans-serif;
+  }
+  
+  /* Entreprise*/
+  .Entreprise .cannaux ul {
+    width: 50%;
+    position: relative;
+    height: 25vh;
+    display: flex;
+  }
+  
+  .Entreprise .cannaux ul li {
+    list-style: none;
+    margin: auto;
+  }
+  
+  .Entreprise .cannaux img {
+    width: 100%;
+    padding: 10px;
+    padding-left: 50px;
+  }
+  
+  .Entreprise .cannaux ul li a {
+    text-decoration: none;
+    list-style: none;
+    align-items: center;
+  }
+  
+  .Entreprise .lien {
+    background-color: #6870e0;
+    margin: auto;
+  }
+  
+  .Entreprise .choix {
+    background-color: red;
+    /* position: relative;
+    right: 22vw; */
+    margin-top: 20px;
+  }
+  
+  .Entreprise .input button {
+    float: left;
+    margin-left: 80%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #6870e0;
+    margin-top: 3vh;
+    padding: 5px;
+    font-family: sans-serif;
+  }
+  
+  .Entreprise .choix input {
+    position: absolute;
+  }
+  
