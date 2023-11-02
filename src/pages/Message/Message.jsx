@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
-
+import "./Message.css"
 function Message() {
   return (
     <div className="flex h-screen">

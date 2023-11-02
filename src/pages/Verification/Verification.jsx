@@ -2,7 +2,7 @@ import whatsap from "./../../assets/images/whatsapp.jpeg";
 import Mail from "./../../assets/images/Mail.png";
 import sms from "./../../assets/images/sms.png";
 
-import "./verification.css";
+import "./Verification.css";
 function Verification() {
   return (
     <div className="Verification">

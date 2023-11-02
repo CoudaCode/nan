@@ -2,7 +2,7 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
-
+import "./WorkSpace.css"
 function WorkSpace() {
   return (
     <div className="flex h-screen">

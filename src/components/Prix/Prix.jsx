@@ -1,5 +1,5 @@
 import React from 'react'
-
+import "./Prix.css"
 function Prix() {
   return (
     <div>

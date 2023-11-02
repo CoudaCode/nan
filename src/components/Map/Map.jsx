@@ -1,6 +1,6 @@
 import { FaCalendar, FaPhone, FaEnvelope, FaAddressCard } from "react-icons/fa";
 
-import "./map.css"
+import "./Map.css"
 function Map() {
   return (
     <div className="Map container my-12 py-12 mx-auto px-4 md:px-6 lg:px-12 Map">

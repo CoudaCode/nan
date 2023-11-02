@@ -2,7 +2,7 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
-
+import "./Broadcast.css"
 function Broadcast() {
   return (
     <div className="flex h-screen">

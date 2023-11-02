@@ -2,7 +2,7 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
-
+import "./Profile.css"
 function Profile() {
   return (
     <div className="flex h-screen">
