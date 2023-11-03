@@ -7,8 +7,18 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
+import { useState } from "react";
+import {
+  TERipple,
+  TEModal,
+  // TEModalDialog,
+  // TEModalContent,
+  // TEModalBody,
+} from "tw-elements-react";
+
 import { Link } from "react-router-dom";
 function Contact() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="flex h-screen">
       <Sidebar />
@@ -37,14 +47,17 @@ function Contact() {
                   <FaPlus style={{ margin: "8px " }} />
                   contact d’mportation
                 </button>
-                <button
-                  id="btn"
-                  className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                  type="button"
-                >
-                  <FaPlus style={{ margin: "8px " }} />
-                  ajouter le contact
-                </button>
+                <TERipple>
+                  <button
+                    id="btn"
+                    className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 data-modal-toggle=authentication-modal"
+                    type="button"
+                    onClick={() => setShowModal(true)}
+                  >
+                    <FaPlus style={{ margin: "8px " }} />
+                    ajouter le contact
+                  </button>
+                </TERipple>
               </div>
             </div>
 
@@ -72,6 +85,7 @@ function Contact() {
                     </th>
                   </tr>
                 </thead>
+
                 <tbody>
                   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td className="w-4 p-4">
@@ -345,6 +359,16 @@ function Contact() {
                   </li>
                 </ul>
               </nav>
+              <TEModal show={showModal} setShow={setShowModal}>
+                <form />
+                <div type="button" onClick={() => setShowModal(false)}>
+                  X
+                </div>
+                <input type="text" placeholder="sssss" />
+                <input type="text" placeholder="sssss" />
+                <input type="text" placeholder="sssss" />
+                <form />
+              </TEModal>
             </div>
           </div>
         </div>
