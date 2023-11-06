@@ -249,6 +249,7 @@ function Banner() {
           </div>
         </div>
       </div> */}
+      <Link to={"/dashboard"} className="p-2 bg-violet-700 text-center text-white text-3xl">Vers Dashboard</Link>
     </div>
   );
 }
