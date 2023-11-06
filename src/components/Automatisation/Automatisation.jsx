@@ -1,4 +1,3 @@
-import React from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaWhatsapp } from "react-icons/fa";
 import {  BiMicrophone } from "react-icons/bi";
