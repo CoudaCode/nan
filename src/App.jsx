@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
@@ -14,6 +14,8 @@ import WorkSpace from "./pages/WorkSpace/WorkSpace";
 import Contact from "./pages/Contact/Contact";
 import Entreprise from "./pages/Entreprise/Entreprise";
 import Verification from "./pages/Verification/Verification";
+import Validate from "./pages/Validate/Validate";
+import Test from "./pages/Test/Test";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function App() {
@@ -46,6 +48,9 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/verification" element={<Verification />} />
+          <Route path="/validate" element={<Validate />} />
+
+          <Route path="/test" element={<Test />} />
         </Routes>
       </QueryClientProvider>
     </>

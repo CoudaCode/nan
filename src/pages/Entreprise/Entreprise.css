@@ -158,3 +158,9 @@
     position: absolute;
   }
   
+  .exprired{
+    width: 320px;
+    height: 50px;
+    margin: auto;
+    background-color: #6870e0;
+  }
