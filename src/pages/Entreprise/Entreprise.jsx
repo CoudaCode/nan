@@ -50,7 +50,6 @@ function Entreprise() {
     }, 1000);
   }, [])
 
-
   let token = Cookies.get("token");
   let navigate = useNavigate();
   
@@ -67,135 +66,107 @@ function Entreprise() {
     },
     onError: (e) => {
       toast.error(e.response.data.message);
-      // toast.errors(erro)
-      // setErrorMessage(errors.response)
     },
   });
     
-  // const saveUser = async (ref, adress)=> {
-    
-  // }
-
-  // saveUser(code, mail)
 
   let onSubmit = (data) => entreprise(data);
   return (
-    <>
+    
       <div className="Entreprise">
-        <div className="ensemble">
-          <form action="" onSubmit={handleSubmit(onSubmit)}>
-            <div className="form">
-              <div className="input">
-                <p htmlFor="email" style={{ color: "#6870e0" }}>
-                  Complétez vos coordonnées pour commencer.
-                </p>
-              </div>
-              <section className="cadre">
-                <div className="input">
-                  <input
-                    required={true}
-                    autoComplete="off"
-                    type="text"
-                    id="raisonSociale"
-                    {...register("raisonSociale", {
-                      require: true,
-                      minLength: 2,
-                      maxLength: 100,
-                    })}
-                  />
-                  <label htmlFor="raisonSociale" >Raison Social!</label>
-                </div>
-                <div className="input">
-                  <input
-                    required={true}
-                    autoComplete="off"
-                    type="text"
-                    id="domaineDActivite"
-                    {...register("domaineDActivite", {
-                      require: true,
-                      minLength: 2,
-                      maxLength: 50,
-                    })}
-                  />
-                  <label htmlFor="domaineDActivite">Domaine d'activité</label>
-                </div>
-                <div className="input">
-                  <input
-                    required={true}
-                    autoComplete="off"
-                    type="text"
-                    {...register("adresse", {
-                      require: true,
-                      minLength: 2,
-                      maxLength: 50,
-                    })}
-                  />
-                  <label htmlFor="adresse">Adresse</label>
-                </div>
-                {/* <div className="input">
-                <input
-                  required={true}
-                  autoComplete="off"
-                  type="number"
-                  placeholder="+225 --- --- --- -"
-                  style={{ width: "70%" }}
-                  {...register("fullname",{require:true, minLength:2,maxLength:50, })}
-                />
-                <label htmlFor="name">Numéro de téléphone</label>
-              </div> */}
-                <div className="input">
-                  <input
-                    type="text"
-                    id="type"
-                    name="type"
-                    step="0.01"
-                    min="0"
-                    {...register("type", {
-                      require: true,
-                      minLength: 2,
-                      maxLength: 50,
-                    })}
-                  />
-                  <label htmlFor="types">Type d&apos;entreprise</label>
-                </div>
-                <div className="input">
-                  <input
-                    required={true}
-                    autoComplete="off"
-                    type="text"
-                    id="emailInfo"
-                    {...register("emailInfo", {
-                      require: true,
-                      minLength: 2,
-                      maxLength: 50,
-                      pattern: {
-                        value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
-                        message: "svp entrer un mail valide"
-                      },
-                    })}
-                  />
-                  <label htmlFor="emailInfo">Email de l&apos;entreprise</label>
-                </div>
-                <div className="input">
-                  <input
-                    required={true}
-                    autoComplete="off"
-                    type="text"
-                    {...register("passwordEmailInfo", {
-                      require: true,
-                      minLength: 4,
-                      maxLength: 50,
-                    })}
-                  />
-                  <label htmlFor="passwordEmailInfo">Password de votre mail</label>
-                  <button type="submit">Enregister Entreprise</button>
-                </div>
-              </section>
-            </div>
-          </form>
-        </div>
+      <div className="container">
+        <h2 className="heading">Créer votre Entreprise</h2>
+        <form action="" className="form" onSubmit={handleSubmit(onSubmit)}>
+          <input
+            className="form-input"
+            required={true}
+            autoComplete="off"
+            type="text"
+            id="raisonSociale"
+            {...register("raisonSociale", {
+              require: true,
+              minLength: 2,
+              maxLength: 100,
+            })}
+            placeholder="Nom de l'entreprise"
+          />
+
+          <input
+            className="form-input"
+            required={true}
+            autoComplete="off"
+            type="text"
+            id="domaineDActivite"
+            {...register("domaineDActivite", {
+              require: true,
+              minLength: 2,
+              maxLength: 50,
+            })}
+            placeholder="Domaine d'activité de l'entreprise"
+          />
+
+          <input
+            className="form-input"
+            required={true}
+            autoComplete="off"
+            type="text"
+            {...register("adresse", {
+              require: true,
+              minLength: 2,
+              maxLength: 50,
+            })}
+            placeholder="Adresse de l'entreprise"
+          />
+
+          <input
+            className="form-input"
+            type="text"
+            id="type"
+            name="type"
+            step="0.01"
+            min="0"
+            {...register("type", {
+              require: true,
+              minLength: 2,
+              maxLength: 50,
+            })}
+            placeholder="Statut de l'entreprise"
+          />
+
+          <input
+            className="form-input"
+            required={true}
+            autoComplete="off"
+            type="text"
+            id="emailInfo"
+            {...register("emailInfo", {
+              require: true,
+              minLength: 2,
+              maxLength: 50,
+              pattern: {
+                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+                message: "Email invalide"
+              },
+            })}
+            placeholder="Entrez l'email fonctionnel de l'entreprise"
+          />
+
+          <input
+            className="form-input"
+            required={true}
+            autoComplete="off"
+            type="text"
+            {...register("passwordEmailInfo", {
+              require: true,
+              minLength: 4,
+              maxLength: 50,
+            })}
+            placeholder="Entrez le mot de passe servant à créer l'email"
+          />
+          <button className="login-button" type="submit">Soumettre</button>
+        </form>
       </div>
-    </>
+    </div>
   );
 }
 
