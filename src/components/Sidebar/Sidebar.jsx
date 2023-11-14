@@ -1,13 +1,4 @@
 import { useState } from "react";
-import {
-  FiHome,
-  FiSend,
-  FiMessageCircle,
-  FiUser,
-  FiSettings,
-  FiBriefcase,
-  FiLogOut,
-} from "react-icons/fi";
 import "./Sidebar.css";
 import { useLocation, Link } from "react-router-dom";
 function Sidebar() {
@@ -21,42 +12,42 @@ function Sidebar() {
     {
       iconClass: "bx bx-grid-alt",
       text: "Dashboard",
-      to: "/dashboard", // Définissez l'URL ici
+      to: "/dashboard",
     },
     {
-      iconClass: "bx bx-user",
+      iconClass: "bx bxs-contact",
       text: "Contact",
-      to: "/contact", // Définissez l'URL ici
+      to: "/contact",
     },
     {
       iconClass: "bx bx-chat",
       text: "Messages",
-      to: "/message", // Définissez l'URL ici
+      to: "/message",
     },
     {
-      iconClass: "bx bx-pie-chart-alt-2",
+      iconClass: "bx bx-broadcast",
       text: "Broadcast",
-      to: "/broadcast", // Définissez l'URL ici
+      to: "/broadcast",
     },
     {
-      iconClass: "bx bx-folder",
+      iconClass: "bx bx-space-bar",
       text: "Workspace",
-      to: "/workspace", // Définissez l'URL ici
+      to: "/workspace",
     },
     {
-      iconClass: "bx bx-cart-alt",
+      iconClass: "bx bxs-report",
       text: "Reports",
-      to: "/reports", // Définissez l'URL ici
+      to: "/reports",
     },
     {
-      iconClass: "bx bx-heart",
+      iconClass: "bx bx-user",
       text: "Profile",
-      to: "/profile", // Définissez l'URL ici
+      to: "/profile",
     },
     {
       iconClass: "bx bx-log-out",
       text: "Déconnexion",
-      to: "/", // Définissez l'URL ici
+      to: "/",
     },
   ];
   return (
@@ -93,11 +84,13 @@ function Sidebar() {
           <h6 className="font-bold text-gray-500 text-center">Version: 1.0.0.11</h6>
         </div>
       */}
-        <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+        {/* <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}> */}
+        <div className={`sidebar open `}>
           <div className="logo-details">
             <i className="bx bxl-c-plus-plus icon"></i>
-            <div className="logo_name">CodingStella</div>
-            <i className="bx bx-menu" id="btn" onClick={toggleSidebar}></i>
+            <div className="logo_name">NaN-Send</div>
+            {/* <i className="bx bx-menu" id="btn" onClick={toggleSidebar}></i> */}
+            <i className="bx bx-menu" id="btn"></i>
           </div>
           <ul className="nav-list">
             <li>
