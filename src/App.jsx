@@ -16,8 +16,10 @@ import Entreprise from "./pages/Entreprise/Entreprise";
 import Verification from "./pages/Verification/Verification";
 import Validate from "./pages/Validate/Validate";
 import Test from "./pages/Test/Test";
+import Parametres from "./pages/Parametres/Parametres";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import './style.css'
 function App() {
   const client = new QueryClient();
   return (
@@ -49,6 +51,7 @@ function App() {
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/validate" element={<Validate />} />
+          <Route path="/parametres/:id" element={<Parametres />} />
 
           <Route path="/test" element={<Test />} />
         </Routes>

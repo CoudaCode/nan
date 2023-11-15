@@ -17,8 +17,6 @@ function Inscription() {
   
   const { mutate: user } = useMutation({
     mutationFn: async (send) => {
-      console.log("ok", send);
-      console.log(document.querySelectorAll('input:required, button.social-button.google'));
       document.querySelectorAll('input:required').forEach(item=>item.disabled = true);
       // let response = await axios.post(`${url}/api/user/create`, send);
       let response = await axios.post(`${urlLocal}/api/message/verifyEmail`, send);

@@ -25,7 +25,6 @@ function Connexion() {
   const { mutate: loginUser } = useMutation({
     mutationFn: (Mydata) => login(Mydata),
     onSuccess: (succes) => {
-      console.log("demo", succes.data);
       toast.success(succes.data.message);
       Cookie.set("token", succes.data.token, { expires: 3600 * 24 });
       setTimeout(() => {
@@ -34,7 +33,6 @@ function Connexion() {
       }, 3000);
     },
     onError: (e) => {
-      console.log(e.response.data.message);
       toast.error(e.response.data.message);
     },
   });

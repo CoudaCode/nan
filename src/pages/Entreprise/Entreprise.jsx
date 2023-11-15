@@ -16,37 +16,49 @@ function Entreprise() {
   const code = window.location.href.split('?')[1].split('#')[0];
   const mail = window.location.href.split('?')[1].split('#')[1];
   let count = true;
+
   const { register, handleSubmit, watch, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: ""});
   useEffect( ()=>{
     setTimeout(() => {
       if(count){
-        count = false;
-        axios.get(`${urlLocal}/api/validate/getByIdAndCode/${code}/${mail}`)
-        .then(result=>{
-          if(result.data.status){
+        axios.delete(`${urlLocal}/api/validate/deleteExpired`)
+        .then(deleteExpired => {
+          if(deleteExpired.data.status){
             count = false;
-            const {fullname, password, email, nationalite, telephone } = result.data.data;
-            const body = {fullname, password, email, nationalite, telephone };
-            axios.post(`${urlLocal}/api/user/create`, body)
-            .then(sucess=>{
-              if(sucess.data.status){
-                setState(result.data.data._id)
-                Cookies.set("token", sucess.data.token, {
-                  expires: 3600 * 24,
-                  path: ""
-                });
+            axios.get(`${urlLocal}/api/validate/getByIdAndCode/${code}/${mail}`)
+            .then(result=>{
+              if(result.data.status){
+                count = false;
+                const {fullname, password, email, nationalite, telephone, _id  } = result.data.data;
+                const body = {fullname, password, email, nationalite, telephone};
+                axios.post(`${urlLocal}/api/user/create`, body)
+                .then(sucess=>{
+                  if(sucess.data.status){
+                    axios.delete(`${urlLocal}/api/validate/delete/${_id}/${result.data.data.code}`)
+                    .then(succesd => {
+                      if(succesd.data.status){
+                        setState(result.data.data._id)
+                        Cookies.set("token", sucess.data.token, {
+                          expires: 3600 * 24,
+                          path: ""
+                        });
+                      }
+                    })
+                  }
+                })
+              }else{
+                document.querySelector('form').remove();
+                document.querySelector('h2.heading').innerHTML = `L'email de confirmation expiré, veuillez reprendre l'inscription <a href='/inscription' style='border-bottom: 2px solid blue;'> ici </a>`;
+                axios.delete(`${urlLocal}/api/user/destroy/${mail}`)
               }
             })
           }else{
             document.querySelector('form').remove();
-            const newButton = document.createElement('button');
-            newButton.textContent = 'L\'email de confirmation expiré';
-            document.querySelector('div.ensemble').append(newButton);
-            newButton.className ='exprired';
+            document.querySelector('h2.heading').innerHTML = `L'email de confirmation expiré, veuillez reprendre l'inscription <a href='/inscription' style='border-bottom: 2px solid blue;'> ici </a>`;
+            axios.delete(`${urlLocal}/api/user/destroy/${mail}`)
           }
         })
       }
-      
     }, 1000);
   }, [])
 

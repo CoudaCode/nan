@@ -1,93 +1,115 @@
-import { useState } from "react";
-import {
-  FiHome,
-  FiSend,
-  FiMessageCircle,
-  FiUser,
-  FiSettings,
-  FiBriefcase,
-  FiLogOut,
-} from "react-icons/fi";
-import "./Sidebar.css";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 function Sidebar() {
   const path = useLocation().pathname;
-  const [activeItem, setActiveItem] = useState(null);
-  const handleItemClick = (index) => {
-    setActiveItem(index);
-  };
-
-  const menuItems = [
-    {
-      to: "/dashboard",
-      icon: <FiHome />,
-      text: "Dashboard",
-    },
-    {
-      to: "/broadcast",
-      icon: <FiSend />,
-      text: "Broadcast",
-    },
-    {
-      to: "/message",
-      icon: <FiMessageCircle />,
-      text: "Messages",
-    },
-    {
-      to: "/contact",
-      icon: <FiUser />,
-      text: "Contacts",
-    },
-    {
-      to: "/profile",
-      icon: <FiSettings />,
-      text: "Profile",
-    },
-    {
-      to: "/workspace",
-      icon: <FiBriefcase />,
-      text: "Workspace",
-    },
-    {
-      to: "/",
-      icon: <FiLogOut />,
-      text: "Deconnexion",
-    },
-  ];
 
   return (
     <>
-      <div className="Sidebar bg-[#1E2029] sm:w-60 min-h-screen w-14 pt-4 transition-all">
-        <div className="text-center text-white p-4 sm:p-6">
-          <span className="text-violet-800 font-bold text-2xl sm:text-3xl">
-            NaN-
-          </span>
-          <span className="text-violet-800 font-bold text-2xl sm:text-3xl">
-            Send
-          </span>
+      <div className="container">
+        <div className="navigation">
+            <ul className="ul">
+                <li>
+                    <a href="#">
+                        <span className="icon">
+                            <ion-icon name="logo-apple"></ion-icon>
+                        </span>
+                        <span className="title">LOGO</span>
+                    </a>
+                </li>
+                <li className={`${path === "/dashboard" ? "hovered" : ""}`}>
+                    <a href="/dashboard">
+                        <span className="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span className="title">Tableau de Bord</span>
+                    </a>
+                </li>
+                <li className={`${path === "/broadcast" ? "hovered" : ""}`}>
+                    <a href="/broadcast">
+                        <span className="icon">
+                            <ion-icon name="send-outline"></ion-icon>
+                        </span>
+                        <span className="title">Broadcast</span>
+                    </a>
+                </li>
+                <li className={`${path === "/message" ? "hovered" : ""}`}>
+                    <a href="/message">
+                        <span className="icon">
+                            <ion-icon name="chatbubbles-outline"></ion-icon>
+                        </span>
+                        <span className="title">Messages</span>
+                    </a>
+                </li>
+                <li className={`${path === "/contacts" ? "hovered" : ""}`}>
+                    <a href="/contacts">
+                        <span className="icon">
+                            <ion-icon name="person-add-outline"></ion-icon>
+                        </span>
+                        <span className="title">Contacts</span>
+                    </a>
+                </li>
+                <li className={`${path === "/canal" ? "hovered" : ""}`}>
+                    <a href="/canal">
+                        <span className="icon">
+                            <ion-icon name="git-branch-outline"></ion-icon>
+                        </span>
+                        <span className="title">Canaux de difusions</span>
+                    </a>
+                </li>
+                <li className={`${path === "/historiques" ? "hovered" : ""}`}>
+                    <a href="/historiques">
+                        <span className="icon">
+                            <ion-icon name="logo-buffer"></ion-icon>
+                        </span>
+                        <span className="title">Historique de difusions</span>
+                    </a>
+                </li>
+                <li className={`${path === "/groupe" ? "hovered" : ""}`}>
+                    <a href="/groupe">
+                        <span className="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </span>
+                        <span className="title">Groupes de Difusions</span>
+                    </a>
+                </li>
+
+                <li className={`${path === "/Workspace" ? "hovered" : ""}`}>
+                    <a href="/Workspace">
+                        <span className="icon">
+                            <ion-icon name="logo-apple"></ion-icon>
+                        </span>
+                        <span className="title">Workspace</span>
+                    </a>
+                </li>
+                <li className={`${path === "/profile" ? "hovered" : ""}`}>
+                    <a href="/profile">
+                        <span className="icon">
+                            <ion-icon name="person-circle"></ion-icon>
+                        </span>
+                        <span className="title">Profile</span>
+                    </a>
+                </li>
+                <li className={`${path === "/parametres/collaborateur" || path === "/parametres/contact" || path === "/parametres/groupe" || path === "/parametres/message" ? "hovered" : ""}`}>
+                    <a href="/parametres/collaborateur">
+                        <span className="icon">
+                            <ion-icon name="cog-outline"></ion-icon>
+                        </span>
+                        <span className="title">Paramètres</span>
+                    </a>
+                </li>
+                <li className={`${path === "/corbelle" ? "hovered" : ""}`}>
+                    <a href="/corbelle">
+                        <span className="icon">
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </span>
+                        <span className="title">Corbelle</span>
+                    </a>
+                </li> 
+            </ul>
         </div>
-        <ul className="mt-11 bg-white rounded-lg">
-          {menuItems.map((item, index) => (
-            <li
-              key={index}
-              className={`${
-                path === item.to ? "active" : ""
-              } hover:bg-gray-800 cursor-pointer text-gray-800 sm:justify-start px-4 h-12 flex items-center justify-center`}
-              onClick={() => handleItemClick(index)}>
-              {item.icon}
-              <Link to={item.to}>
-                <span className="ml-3 hidden sm:block text-gray-800 font-semibold tracking-wide hover:text-white transition-colors">
-                  {item.text}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="dropdown rounded-4 m-2 mt-20 p-4 bg-white rounded-2xl">
-          <h5 className="text-black font-bold">NAN DIGITAL ACADEMY</h5>
-          <h6 className="font-bold text-gray-500 text-center">Version: 1.0.0.11</h6>
-        </div>
-      </div>
+    </div>
+
+      
     </>
   );
 }
