@@ -8,7 +8,16 @@ function Dashboard() {
       <Sidebar />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Topbar />
-        <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">Dashbord</div>
+        <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">  
+          <div className="flex space-x-4 cardCaracteristiques">
+            <div className="flex-1 cardCaracteristique p-2">
+              <h3>Statistiques des messages</h3>
+            </div>
+            <div className="flex-1 cardCaracteristique p-2">
+              <h3>Teams</h3>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
