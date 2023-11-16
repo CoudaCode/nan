@@ -5,11 +5,14 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-// const url = "https://nan-send-api.onrender.com";
-const urlLocal = "http://localhost:3000";
-
 import "./Inscription.css";
+import UrlFrontEnt from "../../components/ApiUrl/UrlFrontEnt";
+import ApiUrl from "../../components/ApiUrl/ApiUrl";
+
+
+
+
+
 
 function Inscription() {
   let navigate = useNavigate();
@@ -18,19 +21,14 @@ function Inscription() {
   const { mutate: user } = useMutation({
     mutationFn: async (send) => {
       document.querySelectorAll('input:required').forEach(item=>item.disabled = true);
-      // let response = await axios.post(`${url}/api/user/create`, send);
-      let response = await axios.post(`${urlLocal}/api/message/verifyEmail`, send);
+      send.urlfrontend = UrlFrontEnt+'/entreprise';
+      // http://localhost:5173/entreprise?436803#devdjobo@gmail.com
+      let response = await axios.post(`${ApiUrl}/api/message/verifyEmail`, send);
       return response;
     },
     onSuccess: (success) => {
       toast.success(success.data.message);
-      Cookies.set("token", success.data.token, {
-        expires: 3600 * 24,
-        path: "",
-      });
-      setTimeout(() => {
-        navigate("/validate");
-      }, 3050);
+      setTimeout(() => navigate("/validate"), 2000);
     },
     onError: (e) => {
       toast.error(e.response.data.message);

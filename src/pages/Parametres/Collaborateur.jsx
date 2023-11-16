@@ -2,50 +2,47 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-
 import { useMutation } from "@tanstack/react-query";
-// import { useNavigate } from "react-router-dom";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
+import UrlFrontEnt from "../../components/ApiUrl/UrlFrontEnt";
+
 
 function Collaborateur(){
     const { register, handleSubmit, watch, formState: { errors } } = useForm({ fullname: "", email: "", telephone: "", nationalite: "", role: "", password: "", cpassword: ""});
-  
-    let token = Cookies.get("token");
-    // let navigate = useNavigate();
-    const headers = { Authorization: `token ${token}`};
+    let token = Cookies.get("NaN_Sen_Token_Secretly");
     let motPasse = undefined;
     let rapport = undefined;
-    
     const { mutate: user } = useMutation({
       mutationFn: async send => {
         motPasse = send.password;
-        let response = await axios.post(ApiUrl+'/api/agent/create', send, headers);
+        let response = await axios.post(ApiUrl+'/api/agent/create', send, { headers: { Authorization: `token ${token}`} });
         return response;
       },
       onSuccess: success => {
         toast.success(success.data.message);
         const data = success.data.data;
         rapport = document.querySelector('#recentCustomers-collaborateur').querySelector('#rapport');
+        const formCollaborateur = document.getElementById('form-collaborateur');
         rapport.classList.remove('error');
         rapport.classList.add('success');
         rapport.innerHTML = `<div class="message success">${success.data.message}</div>
-                            <div class="data-content"><span class="first">Mme/M : </span><span class="second">${data.fullname}</span></div>
-                            <div class="data-content"><span class="first">E-mail : </span><span class="second">${data.email}</span></div>
-                            <div class="data-content"><span class="first">Téléphone : </span><span class="second">${data.telephone}</span></div>
-                            <div class="data-content"><span class="first">Nationalité : </span><span class="second">${data.nationalite}</span></div>
-                            <div class="data-content"><span class="first">Rôle : </span><span class="second">${data.role[0].toUpperCase()+data.role.slice(1).toLowerCase()}</span></div>
-                            <div class="data-content"><span class="first">Mot de passe : </span><span class="second">${motPasse}</span></div>
-                            <div class="listing-all"><a class="list-link" href="/contacts">Voir la liste</a></div>`;
+        <div class="data-content"><span class="first">Mme/M : </span><span class="second">${data.fullname}</span></div>
+        <div class="data-content"><span class="first">E-mail : </span><span class="second">${data.email}</span></div>
+        <div class="data-content"><span class="first">Téléphone : </span><span class="second">${data.telephone}</span></div>
+        <div class="data-content"><span class="first">Nationalité : </span><span class="second">${data.nationalite}</span></div>
+        <div class="data-content"><span class="first">Rôle : </span><span class="second">${data.role[0].toUpperCase()+data.role.slice(1).toLowerCase()}</span></div>
+        <div class="data-content"><span class="first">Mot de passe : </span><span class="second">${motPasse}</span></div>
+        <div class="listing-all"><a class="list-link" href="${UrlFrontEnt}/collaborateur">Voir la liste</a></div>`;
+        [...formCollaborateur.querySelectorAll('input:required, select:required')].map(item => item.value = '');
       },
       onError: error =>{
         toast.error(error.response.data.message);
         rapport = document.querySelector('#recentCustomers-collaborateur').querySelector('#rapport');
         rapport.classList.remove('success');
         rapport.classList.add('error');
-        rapport.innerHTML = `<div class="message error">${error.data.message}</div>`
+        rapport.innerHTML = `<div class="message error">${error.response.data.message}</div>`;
       }
     });
-  
     let onSubmit = data => user(data);
 
     return(
@@ -55,7 +52,7 @@ function Collaborateur(){
                         <h1>Créer Collaborateur</h1>
                     </div>
                     <div className="content-form">
-                        <form className="forms" onSubmit={handleSubmit(onSubmit)}>
+                        <form className="forms" id="form-collaborateur" onSubmit={handleSubmit(onSubmit)}>
                             <div className="group-input">
                                 <label htmlFor="fullname" className="label-form">Nom et Prénom(s)</label>
                                 <input type="text" className="form-control"  id="fullname" placeholder="Nom et Prénom(s)" {...register("fullname", { require: true, minLength: 2, maxLength: 100 })} required/>
@@ -63,9 +60,7 @@ function Collaborateur(){
 
                             <div className="group-input">
                                 <label htmlFor="email" className="label-form">Adresse E-mail</label>
-                                <input type="email" className="form-control" name="email" id="email" placeholder="Adresse E-mail" required
-                                    {...register("email", { require: true, minLength: 2, maxLength: 50, pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, message: "Email invalide"}})}
-                                />
+                                <input type="email" className="form-control" name="email" id="email" placeholder="Adresse E-mail" required {...register("email", { require: true, minLength: 2, maxLength: 50, pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, message: "Email invalide"}})} />
                             </div>
 
                             <div className="group-input">
