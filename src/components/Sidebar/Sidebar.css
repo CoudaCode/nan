@@ -179,6 +179,13 @@
   transition: all 0.5s ease;
 }
 
-.sidebar li a.active {
+.sidebar li.active a {
   background: #fff;
+  color: #11101d;
+}
+.sidebar li.active a .links_name {
+  color: #11101d;
+}
+.sidebar li.active a i {
+  color: #11101d;
 }
