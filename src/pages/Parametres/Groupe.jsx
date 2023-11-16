@@ -1,4 +1,28 @@
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import ApiUrl from "../../components/ApiUrl/ApiUrl";
+import UrlFrontEnt from "../../components/ApiUrl/UrlFrontEnt";
+import axios from "axios";
+
+
+
 function Groupe(){
+    const {stateContact, setStateContact} = useState([]);
+    let token = Cookies.get("NaN_Sen_Token_Secretly");
+    let recupContacts = [];
+    const headers = { Authorization: `token ${token}`};
+    useEffect(()=>{
+        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`} })
+        .then(allContact => {
+            if(allContact.data.status){
+                recupContacts = allContact.data.data;
+            }
+        })
+    }, []);
+
+
+
+    const FilterContact = ''
 
     
     return(
@@ -12,7 +36,7 @@ function Groupe(){
                         <form className="forms">
                             <div className="group-input">
                                 <label htmlFor="whatsapp" className="label-form">Canal</label>
-                                <select name="whatsapp" id="whatsapp" className="form-select" required>
+                                <select name="whatsapp" id="whatsapp" className="form-select" required onChange={FilterContact}>
                                     <option value="" disabled selected>--- Choisir ---</option>
                                     <option value="email">Groupe Email</option>
                                     <option value="sms">Groupe SMS</option>
