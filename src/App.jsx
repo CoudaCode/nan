@@ -11,6 +11,7 @@ import Inscription from "./pages/Inscription/Inscription";
 import Reports from "./pages/Reports/Reports";
 import WorkSpace from "./pages/WorkSpace/WorkSpace";
 import Contact from "./pages/Contact/Contact";
+import Pagination from "./pages/Contact/pop";
 import Entreprise from "./pages/Entreprise/Entreprise";
 import Verification from "./pages/Verification/Verification";
 import { ToastContainer } from "react-toastify";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/inscription" element={<Inscription />} />
+          <Route path="/pop" element={<Pagination />} />
           <Route path="/connexion" element={<Connexion />} />
           <Route path="/broadcast" element={<Broadcast />} />
           <Route path="/message" element={<Message />} />
