@@ -45,7 +45,6 @@ function Options(){
 
         axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allCollabo => {
-            console.log(allCollabo);
             if(allCollabo.data.status){
                 setStateGroupo(allCollabo.data.data.length)
             }

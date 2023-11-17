@@ -6,56 +6,47 @@ import Cookies from "js-cookie";
 
 function Message(){
     const [state, setState] = useState([[], []]);
-    // const [state, setState] = useState([[], []]);
     let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     useEffect(()=>{
         const radio = document.querySelectorAll('input[type=radio]');
         [...radio].map(item => {
             item.addEventListener('change', (event) => {
-                const groupInputCanal = document.getElementById('group-input-canal');
-                // const selectCanal = groupInputCanal.
-                const groupInputcontact = document.getElementById('group-input-contact');
-                const groupInputgroupe = document.getElementById('group-input-groupe');
+                const groupInputCanal = event.target.closest('form').querySelector('#group-input-canal');
+                const groupInputcontact = event.target.closest('form').querySelector('#group-input-contact');
+                const groupInputgroupe = event.target.closest('form').querySelector('#group-input-groupe');
                 groupInputCanal.style.display = 'block';
-                const groupDifusion = state[0];
-                const contactDifusion = state[1];
-                console.log(groupDifusion.length, contactDifusion.length);
-                console.log(groupDifusion, contactDifusion);
                 if(event.target.value === 'onGroupe'){
+                    groupInputCanal.value = '';
+                    [...groupInputCanal.querySelectorAll('option')].map(item =>{if(!item.value) item.selected = true});
                     groupInputgroupe.style.display = 'block';
                     groupInputcontact.style.display = 'none';
                     groupInputgroupe.querySelector('select').required = true;
+                    groupInputgroupe.querySelector('select').innerHTML = '<option value="" disabled selected>--- Aucun groupe disponible ---</option>';
                     groupInputcontact.querySelector('select').value = '';
                     groupInputcontact.querySelector('select').required = false;
-                    if(groupDifusion.length){
-                        const filterGroupeByCanal = groupDifusion.filter(element => element.canal === groupInputCanal.querySelector('select#canal').value);
-                        if(filterGroupeByCanal.length){
-                            groupInputgroupe.querySelector('select').innerHTML = '<option value="" disabled selected>--- Choisir un ou plusieurs groupes ---</option>';
-                            filterGroupeByCanal.map(myGroupe => groupInputgroupe.querySelector('select').innerHTML += `<option value="${myGroupe._id}-${myGroupe.contact}">${myGroupe.name}</option>`)
-                        }else{
-                            groupInputgroupe.querySelector('select').innerHTML = '<option value="" disabled selected>--- Aucun groupe de difusion disponible our ce canal ---</option>';
-                        }
-                    }
                 }else{
+                    groupInputCanal.value = '';
+                    [...groupInputCanal.querySelectorAll('option')].map(item =>{if(!item.value) item.selected = true});
                     groupInputgroupe.style.display = 'none';
                     groupInputcontact.style.display = 'block';
                     groupInputgroupe.querySelector('select').required = false;
                     groupInputgroupe.querySelector('select').value = '';
                     groupInputcontact.querySelector('select').required = true;
-                    if(contactDifusion.length){
-                        groupInputcontact.querySelector('select').innerHTML = '<option value="" disabled selected>--- Choisir un ou plusieurs contacts ---</option>';
-                        contactDifusion.map(myGroupe => groupInputcontact.querySelector('select').innerHTML += `<option value="${myGroupe._id}-${myGroupe.contact}">${myGroupe.fullname}</option>`)
-                    }
+                    groupInputcontact.querySelector('select').innerHTML = '<option value="" disabled selected>--- Aucun contact disponible ---</option>';
                 }
             })
         });
     });
     useEffect(()=>{
-        let table = [];
+        let table = {};
+        const baliseCanal = document.querySelector("select#canal-message");
+        
+        const baliseContact = document.querySelector("select#select-contact");
+        const baliseGroupe = document.querySelector("select#select-groupe");
         axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`} })
         .then(allGroupe => {
             if(allGroupe.data.status){
-                table[0] = allGroupe.data.data;
+                table.goupeDifusion = allGroupe.data.data;
                 setState(table);
             }
         })
@@ -63,13 +54,28 @@ function Message(){
         axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`} })
         .then(allContact => {
             if(allContact.data.status){
-                table[1] = allContact.data.data;
+                table.contatDifusion = allContact.data.data;
                 setState(table);
             }
         });
 
-        
+        baliseCanal.addEventListener('change', event => {
+            const radio = document.querySelector("input[type='radio']:checked");
+            if(table.goupeDifusion && radio.value === 'onGroupe'){
+                const goupeDifusion = table.goupeDifusion.filter(item => item.canal === event.target.value);
+                baliseGroupe.innerHTML = '';
+                goupeDifusion.map(item => baliseGroupe.innerHTML += `<option value='${item._id}-${item.contact}'>${item.name}</option>`)
+                
+            }else if(table.contatDifusion && radio.value === 'onIndividuel'){
+                baliseContact.innerHTML = '';
+                table.contatDifusion.map(item => {
+                    if(item[event.target.value]) baliseContact.innerHTML += `<option value='${item._id}-${item[event.target.value]}'>${item.fullname}</option>`;
+                })
+            }
+        })
     }, []);
+
+    
 
     return(
         <div className="details" id="details-message">
@@ -88,8 +94,8 @@ function Message(){
                             </div>
                             <div className="group-input" id="group-input-canal">
                                 <label htmlFor="canal" className="label-form">Canal</label>
-                                <select name="canal" id="canal" className="form-select" required >
-                                    <option value="" disabled selected>--- Choisir ---</option>
+                                <select name="canal" id="canal-message" className="form-select" required >
+                                    <option value="" disabled selected>--- Canal de difusion ---</option>
                                     <option value="email">Groupe Email</option>
                                     <option value="sms">Groupe SMS</option>
                                     <option value="whatsapp">Groupe WhatsApp</option>
@@ -98,19 +104,17 @@ function Message(){
 
                             <div className="group-input" id="group-input-groupe">
                                 <label htmlFor="groupe" className="label-form">Groupe de difusion</label>
-                                <select name="groupe" id="groupe" className="form-select" multiple>
+                                <select name="groupe" id="select-groupe" className="form-select" multiple>
                                     <option value="" disabled selected>--- Aucun groupe disponible ---</option>
                                 </select>
                             </div>
 
                             <div className="group-input" id="group-input-contact">
                                 <label htmlFor="contact" className="label-form">Contacts</label>
-                                <select name="contact" id="contact" className="form-select" multiple>
+                                <select name="contact" id="select-contact" className="form-select" multiple>
                                     <option value="" disabled selected>--- Aucun contact disponible ---</option>
                                 </select>
                             </div>
-
-
 
                             <div className="group-input">
                                 <label htmlFor="object" className="label-form">Objet</label>
@@ -142,13 +146,13 @@ function Message(){
                         <h2>Rapport d&apos;ajout</h2>
                     </div>
                     <div className="rapport">
-                        <div className="message">Favorable</div>
+                        {/* <div className="message">Favorable</div>
                         <div className="data-content"><span className="first">Canal : </span><span className="second">WhatsApp</span></div>
                         <div className="data-content"><span className="first">Contacts : </span><span className="second">djobo@gmail.com</span></div>
                         <div className="data-content"><span className="first">Objet : </span><span className="second">Creative Cloud: Please verify your email address</span></div>
                         <div className="data-content"><span className="first">Contenu : </span><span className="second"><h1>You&apos;re nearly there</h1><p>Welcome to Creative Cloud, FRANCOIS. Before we can get started, we need to quickly verify your email address.</p><p>Click the link below and sign in using your new Adobe ID: devdjobo@gmail.com.</p></span></div>
                         <div className="data-content"><span className="first">Pièces Jointes : </span><span className="second">+2001212457858</span></div>
-                        <div className="listing-all"><a className="list-link" href="">Voir la liste</a></div>
+                        <div className="listing-all"><a className="list-link" href="">Voir la liste</a></div> */}
                     </div >
                 </div>
             </div>
