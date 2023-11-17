@@ -1,0 +1,47 @@
+.Profil{
+    display: flex;
+    justify-content: center;
+}
+
+.cardsProfil{
+    height: 60vh;
+    width: 60%;
+    border: 1px solid white;
+    display: flex; 
+    
+}
+
+
+.cardsimage{
+    height: 100%;
+    width: 30%;
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+} 
+
+.cardsIcons{
+    height: 45%;
+    width: 90%;
+    border: 1px solid blue;
+}
+.offLine{
+    height: 50px;
+    width: 120px;
+    border: 1px solid red;
+    border-radius: 1rem;
+}
+
+.pourTexte h2{
+    font-size: 2rem; 
+    display: flex;
+    justify-content: center;
+}
+
+.carrelage{
+    height: 20px;
+    width: 100%;
+    border: 1px solid yellow;
+}
