@@ -7,8 +7,8 @@ import ApiUrl from "../../components/ApiUrl/ApiUrl";
 import UrlFrontEnt from "../../components/ApiUrl/UrlFrontEnt";
 
 function Contact(){
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({ fullname: "", email: "", sms: "", whatsapp: "" });
-    let token = Cookies.get("NaN_Sen_Token_Secretly");
+    const { register, handleSubmit } = useForm({ fullname: "", email: "", sms: "", whatsapp: "" });
+    let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     let motPasse = undefined;
     let rapport = undefined;
     const { mutate: user } = useMutation({

@@ -6,11 +6,8 @@ import Collaborateur from "./Collaborateur";
 import Contact from "./Contact";
 import Groupe from "./Groupe";
 import Message from "./Message";
-import { useEffect, useState } from "react";
 
 function Parametres(){
-
-    const detait = document.querySelector('details');
     return(
         <>
             <Sidebar />

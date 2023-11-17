@@ -1,4 +1,76 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+import ApiUrl from "../../components/ApiUrl/ApiUrl";
+import Cookies from "js-cookie";
+
+
 function Message(){
+    const [state, setState] = useState([[], []]);
+    // const [state, setState] = useState([[], []]);
+    let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
+    useEffect(()=>{
+        const radio = document.querySelectorAll('input[type=radio]');
+        [...radio].map(item => {
+            item.addEventListener('change', (event) => {
+                const groupInputCanal = document.getElementById('group-input-canal');
+                // const selectCanal = groupInputCanal.
+                const groupInputcontact = document.getElementById('group-input-contact');
+                const groupInputgroupe = document.getElementById('group-input-groupe');
+                groupInputCanal.style.display = 'block';
+                const groupDifusion = state[0];
+                const contactDifusion = state[1];
+                console.log(groupDifusion.length, contactDifusion.length);
+                console.log(groupDifusion, contactDifusion);
+                if(event.target.value === 'onGroupe'){
+                    groupInputgroupe.style.display = 'block';
+                    groupInputcontact.style.display = 'none';
+                    groupInputgroupe.querySelector('select').required = true;
+                    groupInputcontact.querySelector('select').value = '';
+                    groupInputcontact.querySelector('select').required = false;
+                    if(groupDifusion.length){
+                        const filterGroupeByCanal = groupDifusion.filter(element => element.canal === groupInputCanal.querySelector('select#canal').value);
+                        if(filterGroupeByCanal.length){
+                            groupInputgroupe.querySelector('select').innerHTML = '<option value="" disabled selected>--- Choisir un ou plusieurs groupes ---</option>';
+                            filterGroupeByCanal.map(myGroupe => groupInputgroupe.querySelector('select').innerHTML += `<option value="${myGroupe._id}-${myGroupe.contact}">${myGroupe.name}</option>`)
+                        }else{
+                            groupInputgroupe.querySelector('select').innerHTML = '<option value="" disabled selected>--- Aucun groupe de difusion disponible our ce canal ---</option>';
+                        }
+                    }
+                }else{
+                    groupInputgroupe.style.display = 'none';
+                    groupInputcontact.style.display = 'block';
+                    groupInputgroupe.querySelector('select').required = false;
+                    groupInputgroupe.querySelector('select').value = '';
+                    groupInputcontact.querySelector('select').required = true;
+                    if(contactDifusion.length){
+                        groupInputcontact.querySelector('select').innerHTML = '<option value="" disabled selected>--- Choisir un ou plusieurs contacts ---</option>';
+                        contactDifusion.map(myGroupe => groupInputcontact.querySelector('select').innerHTML += `<option value="${myGroupe._id}-${myGroupe.contact}">${myGroupe.fullname}</option>`)
+                    }
+                }
+            })
+        });
+    });
+    useEffect(()=>{
+        let table = [];
+        axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`} })
+        .then(allGroupe => {
+            if(allGroupe.data.status){
+                table[0] = allGroupe.data.data;
+                setState(table);
+            }
+        })
+
+        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`} })
+        .then(allContact => {
+            if(allContact.data.status){
+                table[1] = allContact.data.data;
+                setState(table);
+            }
+        });
+
+        
+    }, []);
+
     return(
         <div className="details" id="details-message">
                 <div className="recentOrders">
@@ -8,27 +80,37 @@ function Message(){
                     <div className="content-form">
                         <form className="forms">
                             <div className="group-input">
-                                <label htmlFor="whatsapp" className="label-form">Canal</label>
-                                <select name="whatsapp" id="whatsapp" className="form-select" required>
+                                <label htmlFor="mode" className="label-form">Mode de Transmission</label>
+                                <div className="mode-form">
+                                    <label htmlFor="onGroupe" className="groupe-label" >Message Groupé : <input type="radio" value={'onGroupe'} className="form-radio" name="mode" id="onGroupe" required/></label>
+                                    <label htmlFor="onIndividuel" className="groupe-label" >Individuellement : <input type="radio" value={'onIndividuel'} className="form-radio" name="mode" id="onIndividuel" required/></label>
+                                </div>
+                            </div>
+                            <div className="group-input" id="group-input-canal">
+                                <label htmlFor="canal" className="label-form">Canal</label>
+                                <select name="canal" id="canal" className="form-select" required >
                                     <option value="" disabled selected>--- Choisir ---</option>
-                                    <option value="email">Message</option>
-                                    <option value="sms">SMS</option>
-                                    <option value="whatsapp">WhatsApp</option>
+                                    <option value="email">Groupe Email</option>
+                                    <option value="sms">Groupe SMS</option>
+                                    <option value="whatsapp">Groupe WhatsApp</option>
                                 </select>
                             </div>
 
-                            <div className="group-input">
-                                <label htmlFor="contact" className="label-form">Contacts</label>
-                                <select name="contact" id="contact" className="form-select" multiple required>
-                                    <option value="" disabled selected>--- Aucun contact disponible ---</option>
-                                    <option value="email">Email</option>
-                                    <option value="sms">SMS</option>
-                                    <option value="whatsapp">WhatsApp</option>
-                                    <option value="email">Email</option>
-                                    <option value="sms">SMS</option>
-                                    <option value="whatsapp">WhatsApp</option>
+                            <div className="group-input" id="group-input-groupe">
+                                <label htmlFor="groupe" className="label-form">Groupe de difusion</label>
+                                <select name="groupe" id="groupe" className="form-select" multiple>
+                                    <option value="" disabled selected>--- Aucun groupe disponible ---</option>
                                 </select>
                             </div>
+
+                            <div className="group-input" id="group-input-contact">
+                                <label htmlFor="contact" className="label-form">Contacts</label>
+                                <select name="contact" id="contact" className="form-select" multiple>
+                                    <option value="" disabled selected>--- Aucun contact disponible ---</option>
+                                </select>
+                            </div>
+
+
 
                             <div className="group-input">
                                 <label htmlFor="object" className="label-form">Objet</label>

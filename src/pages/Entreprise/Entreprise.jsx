@@ -9,7 +9,6 @@ import "./Entreprise.css";
 import { useEffect, useState } from "react";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
 
-
 function Entreprise() {
   const [state, setState] = useState(null);
   const code = window.location.href.split('?')[1].split('#')[0];
@@ -34,7 +33,7 @@ function Entreprise() {
           axios.post(ApiUrl+'/api/user/create', body)
           .then(isUser => {
             if(isUser.data.status){
-              Cookies.set('NaN_Sen_Token_Secretly', isUser.data.token, { expires: 1, path: '/'});
+              Cookies.set('NaN_Digit_Sender_Token_Secretly', isUser.data.token, { expires: 1, path: '/'});
             }
           })
         }
@@ -51,13 +50,12 @@ function Entreprise() {
   const { mutate: entreprise } = useMutation({
     mutationFn: async (send) => {
       
-      let response = await axios.post(`${ApiUrl}/api/entreprise/create`, send, { headers: { Authorization: `token ${Cookies.get("NaN_Sen_Token_Secretly")}`} });
+      let response = await axios.post(`${ApiUrl}/api/entreprise/create`, send, { headers: { Authorization: `token ${Cookies.get("NaN_Digit_Sender_Token_Secretly")}`} });
       return response;
     },
     onSuccess: (success) => {
       toast.success(success.data.message);
-      console.log('****22222*******2222222', success.data);
-      Cookies.set('NaN_Sen_Token_Secretly', success.data.token, { expires: 1, path: '/'});
+      Cookies.set('NaN_Digit_Sender_Token_Secretly', success.data.token, { expires: 1, path: '/'});
       setTimeout(() => {
         navigate("/dashboard");
       }, 2000);

@@ -753,4 +753,42 @@ div.card[active='active'] ion-icon{
   color: var(--white);
 }
 
+.mode-form{
+  position: relative;
+  display: flex;
+  width: calc(100% - 190px);
+  left: 190px;
+  top: -25px;
+}
+
+.mode-form .groupe-label{
+  width: 100%;
+  color: var(--blue);
+  font-weight: 500;
+  text-align: center;
+}
+
+.mode-form .groupe-label input[type='radio'].form-radio{
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--black2);
+}
+
+#group-input-canal,
+#group-input-groupe,
+#group-input-contact{
+  display: none;
+}
+
+.visibled{
+  display: block;
+  /* transition: 1.5s; */
+}
+.hidden{
+  display: none;
+  /* transition: 1.5s; */
+}
+
+
+
  

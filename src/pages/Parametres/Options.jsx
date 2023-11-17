@@ -1,7 +1,14 @@
-import { useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import ApiUrl from "../../components/ApiUrl/ApiUrl";
+import Cookies from "js-cookie";
 
 function Options(){
+    let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
+    const [stateCollaborateur, setStateCollaborateur] = useState(0);
+    const [stateContac, setStateContac] = useState(0);
+    const [stateGroupo, setStateGroupo] = useState(0);
     const path = useLocation().pathname;
     const validePath = ['/parametres/collaborateur', '/parametres/contact', '/parametres/groupe', '/parametres/message'];
     if(!validePath.includes(path)) window.location.href = "/parametres/collaborateur";
@@ -19,15 +26,43 @@ function Options(){
                 
             });
         }
-        activation()
+        activation();
+
+        
+        axios.get(ApiUrl+'/api/agent/getAll', { headers: { Authorization: `token ${token}`}})
+        .then(allCollabo => {
+            if(allCollabo.data.status){
+                setStateCollaborateur(allCollabo.data.data.length)
+            }
+        });
+
+        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`}})
+        .then(allCollabo => {
+            if(allCollabo.data.status){
+                setStateContac(allCollabo.data.data.length)
+            }
+        });
+
+        axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
+        .then(allCollabo => {
+            console.log(allCollabo);
+            if(allCollabo.data.status){
+                setStateGroupo(allCollabo.data.data.length)
+            }
+        })
+        
+
+
+
     }, []);
+
 
     return(
         <div className="cardBox">
             <div className="card" id="card-collaborateur" >
                 <a href="/parametres/collaborateur">
                     <div>
-                        <div className="numbers">8230</div>
+                        <div className="numbers">{stateCollaborateur}</div>
                         <div className="cardName">Créer Collaborateurs</div>
                     </div>
                     <div className="iconBx">
@@ -39,7 +74,7 @@ function Options(){
             <div className="card" id="card-contact" >
                 <a href="/parametres/contact">
                 <div>
-                    <div className="numbers">6321</div>
+                    <div className="numbers">{stateContac}</div>
                     <div className="cardName">Créer Contacts</div>
                 </div>
                 <div className="iconBx">
@@ -51,7 +86,7 @@ function Options(){
             <div className="card" id="card-groupe" >
                 <a href="/parametres/groupe">
                 <div>
-                    <div className="numbers">15</div>
+                    <div className="numbers">{stateGroupo}</div>
                     <div className="cardName">Créer Groupes</div>
                 </div>
                 <div className="iconBx">

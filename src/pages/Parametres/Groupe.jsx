@@ -10,10 +10,8 @@ import { useMutation } from "@tanstack/react-query";
 function Groupe(){
     const [state, setState] = useState([])
     let rapport = undefined;
-    let token = Cookies.get("NaN_Sen_Token_Secretly");
-    console.log('AVANT useEffect');
+    let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     useEffect(()=>{
-        console.log('useEffect useEffect');
         axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`} })
         .then(allContact => {
             if(allContact.data.status){
@@ -27,7 +25,6 @@ function Groupe(){
     const FilterContact = (event) =>{
         const selectContacts = event.target.closest('form.forms').querySelector('select#contact');
         let formatHtml = '';
-        console.log('Dom FilterContact', state);
         if(state.length){
             if(event.target.value === 'email'){
                 state.map(item =>{
@@ -55,11 +52,8 @@ function Groupe(){
         },
         onSuccess: success => {
           toast.success(success.data.message);
-          
           const data = success.data.data;
-          console.log(data);
           rapport = document.querySelector('#recentCustomers-groupe').querySelector('#rapport');
-        //   const formContact = document.getElementById('form-groupe');
           rapport.classList.remove('error');
           rapport.classList.add('success');
           rapport.innerHTML = `<div class="message success">${success.data.message}</div>

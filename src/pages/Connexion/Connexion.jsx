@@ -1,36 +1,30 @@
-import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
-import Cookie from "js-cookie";
+import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import "./Connexion.css";
+import ApiUrl from "../../components/ApiUrl/ApiUrl";
+
 function Connexion() {
   const navigate = useNavigate();
   const login = async (data) => {
-    const result = await axios.post(
-      "https://nan-send-api.onrender.com/api/user/login",
-      data
-    );
+    const result = await axios.post( ApiUrl +"/api/auth/login", data );
     return result;
   };
 
-  const { register, handleSubmit } = useForm({
-    email: "",
-    password: "",
-  });
+  const { register, handleSubmit } = useForm({ email: "", password: "" });
 
   const { mutate: loginUser } = useMutation({
     mutationFn: (Mydata) => login(Mydata),
     onSuccess: (succes) => {
       toast.success(succes.data.message);
-      Cookie.set("token", succes.data.token, { expires: 3600 * 24 });
+      Cookies.set('NaN_Digit_Sender_Token_Secretly', succes.data.token, { expires: 1, path: '/'});
       setTimeout(() => {
-        sessionStorage.setItem("token", JSON.stringify(succes.data.id));
         navigate("/dashboard");
-      }, 3000);
+      }, 2000);
     },
     onError: (e) => {
       toast.error(e.response.data.message);
@@ -40,7 +34,7 @@ function Connexion() {
   const onSubmit = (data) => loginUser(data);
   return (
     <>
-      <div className="Connexion">
+      <div className="Inscription">
         <div className="container">
           <div className="heading">Connexion</div>
           <form action="" className="form" onSubmit={handleSubmit(onSubmit)}>
