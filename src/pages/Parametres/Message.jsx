@@ -37,7 +37,7 @@ function Message(){
 
                             <div className="group-input">
                                 <label htmlFor="contenu" className="label-form">Contenu Textuel</label>
-                                <textarea name="contenu" id="contenu" className="form-control" cols="64" rows="10" style={{minHeight: 200+'px', maxHeight:200+'px'}} placeholder="Saisir le contenu" required></textarea>
+                                <textarea name="contenu" id="contenu" className="form-control" cols="64" rows="10" style={{minHeight: 200+'px', maxHeight:200+'px'}} placeholder="Saisir le contenu" required ></textarea>
                             </div>
 
                             

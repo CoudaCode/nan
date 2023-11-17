@@ -7,13 +7,14 @@ import ApiUrl from "../../components/ApiUrl/ApiUrl";
 import UrlFrontEnt from "../../components/ApiUrl/UrlFrontEnt";
 
 function Contact(){
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({ fullname: "", email: "", numeroSms: "", numeroWhatsapp: "" });
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({ fullname: "", email: "", sms: "", whatsapp: "" });
     let token = Cookies.get("NaN_Sen_Token_Secretly");
     let motPasse = undefined;
     let rapport = undefined;
     const { mutate: user } = useMutation({
       mutationFn: async send => {
         motPasse = send.password;
+        [...document.querySelector('form#form-contact').querySelectorAll('input, select, textarea, #reset-contact, #submit-contact')].map(item => item.disabled = true);
         let response = await axios.post(ApiUrl+'/api/contact/create', send, { headers: { Authorization: `token ${token}`} });
         return response;
       },
@@ -21,16 +22,16 @@ function Contact(){
         toast.success(success.data.message);
         const data = success.data.data;
         rapport = document.querySelector('#recentCustomers-contact').querySelector('#rapport');
-        const formContact = document.getElementById('form-contact');
         rapport.classList.remove('error');
         rapport.classList.add('success');
         rapport.innerHTML = `<div class="message success">${success.data.message}</div>
         <div class="data-content"><span class="first">Mme/M : </span><span class="second">${data.fullname}</span></div>
         <div class="data-content"><span class="first">E-mail : </span><span class="second">${data.email}</span></div>
-        <div class="data-content"><span class="first">Téléphone : </span><span class="second">${data.numeroSms}</span></div>
-        <div class="data-content"><span class="first">Nationalité : </span><span class="second">${data.numeroWhatsapp}</span></div>
+        <div class="data-content"><span class="first">Téléphone : </span><span class="second">${data.sms}</span></div>
+        <div class="data-content"><span class="first">Nationalité : </span><span class="second">${data.whatsapp}</span></div>
         <div class="listing-all"><a class="list-link" href="${UrlFrontEnt}/contacts">Voir la liste</a></div>`;
-        [...formContact.querySelectorAll('input:required, select:required')].map(item => item.value = '');
+        [...document.querySelector('form#form-contact').querySelectorAll('input, select, textarea, #reset-contact, #submit-contact')].map(item => item.disabled = false);
+        [...document.querySelector('form#form-contact').querySelectorAll('input, select, textarea')].map(item => item.value = '');
       },
       onError: error =>{
         toast.error(error.response.data.message);
@@ -38,6 +39,7 @@ function Contact(){
         rapport.classList.remove('success');
         rapport.classList.add('error');
         rapport.innerHTML = `<div class="message error">${error.response.data.message}</div>`;
+        [...document.querySelector('form#form-contact').querySelectorAll('input, select, textarea, #reset-contact, #submit-contact')].map(item => item.disabled = false);
       }
     });
     let onSubmit = data => user(data);
@@ -66,9 +68,9 @@ function Contact(){
                             </div>
 
                             <div className="group-input">
-                                <label htmlFor="numeroSms" className="label-form">Adresse téléphonque</label>
-                                <input type="text" className="form-control" name="numeroSms" id="numeroSms" placeholder="Adresse téléphonque" required
-                                    {...register("numeroSms", { require: true, minLength: 10, maxLength: 20, pattern: {
+                                <label htmlFor="sms" className="label-form">Adresse téléphonque</label>
+                                <input type="text" className="form-control" name="sms" id="sms" placeholder="Adresse téléphonque" required
+                                    {...register("sms", { require: true, minLength: 10, maxLength: 20, pattern: {
                                         value: /^\+\d{2,3}\d{7,}$/i,
                                         message: "Veuillez entrer un adresse téléphonique qui contient l'indicatif et qui contient au moins 10 fichres et pas de caractère accentiés et spéciaux.",
                                     } })}
@@ -76,9 +78,9 @@ function Contact(){
                             </div>
 
                             <div className="group-input">
-                                <label htmlFor="numeroWhatsapp" className="label-form">Adresse WhatsApp</label>
-                                <input type="text" className="form-control" name="numeroWhatsapp" id="numeroWhatsapp" placeholder="Adresse WhatsApp" required 
-                                    {...register("numeroWhatsapp", { require: true, minLength: 10, maxLength: 20, pattern: {
+                                <label htmlFor="whatsapp" className="label-form">Adresse WhatsApp</label>
+                                <input type="text" className="form-control" name="whatsapp" id="whatsapp" placeholder="Adresse WhatsApp" required 
+                                    {...register("whatsapp", { require: true, minLength: 10, maxLength: 20, pattern: {
                                         value: /^\+\d{2,3}\d{7,}$/i,
                                         message: "Veuillez entrer un adresse téléphonique qui contient l'indicatif et qui contient au moins 10 fichres et pas de caractère accentiés et spéciaux.",
                                     } })}
@@ -86,8 +88,8 @@ function Contact(){
                             </div>
 
                             <div className="group-action">
-                                <button type="reset"> Annuler</button>
-                                <button type="submit"> Soumettre</button>
+                                <button type="reset" id="reset-contact"> Annuler</button>
+                                <button type="submit" id="submit-contact"> Soumettre</button>
                             </div>
                         </form>
                     </div>

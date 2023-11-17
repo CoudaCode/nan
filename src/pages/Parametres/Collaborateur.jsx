@@ -15,6 +15,7 @@ function Collaborateur(){
     const { mutate: user } = useMutation({
       mutationFn: async send => {
         motPasse = send.password;
+        [...document.querySelector('form#form-collaborateur').querySelectorAll('input, select, textarea, #reset-collaborateur, #submit-collaborateur')].map(item => item.disabled = true);
         let response = await axios.post(ApiUrl+'/api/agent/create', send, { headers: { Authorization: `token ${token}`} });
         return response;
       },
@@ -22,7 +23,6 @@ function Collaborateur(){
         toast.success(success.data.message);
         const data = success.data.data;
         rapport = document.querySelector('#recentCustomers-collaborateur').querySelector('#rapport');
-        const formCollaborateur = document.getElementById('form-collaborateur');
         rapport.classList.remove('error');
         rapport.classList.add('success');
         rapport.innerHTML = `<div class="message success">${success.data.message}</div>
@@ -33,14 +33,17 @@ function Collaborateur(){
         <div class="data-content"><span class="first">Rôle : </span><span class="second">${data.role[0].toUpperCase()+data.role.slice(1).toLowerCase()}</span></div>
         <div class="data-content"><span class="first">Mot de passe : </span><span class="second">${motPasse}</span></div>
         <div class="listing-all"><a class="list-link" href="${UrlFrontEnt}/collaborateur">Voir la liste</a></div>`;
-        [...formCollaborateur.querySelectorAll('input:required, select:required')].map(item => item.value = '');
+        [...document.querySelector('form#form-collaborateur').querySelectorAll('input, select, textarea, #reset-collaborateur, #submit-collaborateur')].map(item => item.disabled = false);
+        [...document.querySelector('form#form-collaborateur').querySelectorAll('input, select, textarea')].map(item => item.value = '');
       },
       onError: error =>{
         toast.error(error.response.data.message);
+        [...document.querySelector('form#form-collaborateur').querySelectorAll('input, select, textarea, #reset-collaborateur, #submit-collaborateur')].map(item => item.disabled = false);
         rapport = document.querySelector('#recentCustomers-collaborateur').querySelector('#rapport');
         rapport.classList.remove('success');
         rapport.classList.add('error');
         rapport.innerHTML = `<div class="message error">${error.response.data.message}</div>`;
+        
       }
     });
     let onSubmit = data => user(data);
@@ -80,7 +83,7 @@ function Collaborateur(){
 
                             <div className="group-input">
                                 <label htmlFor="role" className="label-form">Rôle</label>
-                                <select name="role" id="role" className="form-select" required>
+                                <select name="role" id="role" className="form-select" required {...register("role", { require: true})}>
                                     <option value="" disabled selected>--- Attribué un rôle ---</option>
                                     <option value="manager">Manager</option>
                                     <option value="agent">Agent</option>
@@ -102,8 +105,8 @@ function Collaborateur(){
                             </div>
 
                             <div className="group-action">
-                                <button type="reset"> Annuler</button>
-                                <button type="submit"> Soumettre</button>
+                                <button type="reset" id="reset-collaborateur"> Annuler</button>
+                                <button type="submit" id="submit-collaborateur"> Soumettre</button>
                             </div>
                         </form>
                     </div>
