@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
-import { useForm } from "react-hook-form";
 
 import axios from "axios";
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 
@@ -19,8 +19,6 @@ function Groupe(){
             }
         })
     }, []);
-
-
 
     const FilterContact = (event) =>{
         const selectContacts = event.target.closest('form.forms').querySelector('select#contact');
@@ -51,31 +49,31 @@ function Groupe(){
             return response;
         },
         onSuccess: success => {
-          toast.success(success.data.message);
-          const data = success.data.data;
-          rapport = document.querySelector('#recentCustomers-groupe').querySelector('#rapport');
-          rapport.classList.remove('error');
-          rapport.classList.add('success');
-          rapport.innerHTML = `<div class="message success">${success.data.message}</div>
-          <div class="data-content"><span class="first">Nom du groupe : </span><span class="second">${data.name}</span></div>
-          <div class="data-content"><span class="first">Nombre de contacts : </span><span class="second">${data.contact.length} contact(s)</span></div>
-          <div class="data-content"><span class="first">Canal de difusion : </span><span class="second">${data.canal}</span></div>
-          <div class="data-content"><span class="first">Description : </span><span class="second">${data.description}</span></div>
-          <div class="listing-all"><a class="list-link" href="${window.location.origin}/groupe">Voir la liste</a></div>`;
-          [...document.querySelector('form#form-groupe').querySelectorAll('input, select, textarea, #reset-groupe, #submit-groupe')].map(item => item.disabled = false);
-          [...document.querySelector('form#form-groupe').querySelectorAll('input, select, textarea')].map(item => item.value = '');
+            toast.success(success.data.message);
+            const data = success.data.data;
+            rapport = document.querySelector('#recentCustomers-groupe').querySelector('#rapport');
+            rapport.classList.remove('error');
+            rapport.classList.add('success');
+            rapport.innerHTML = `<div class="message success">${success.data.message}</div>
+            <div class="data-content"><span class="first">Nom du groupe : </span><span class="second">${data.name}</span></div>
+            <div class="data-content"><span class="first">Nombre de contacts : </span><span class="second">${data.contact.length} contact(s)</span></div>
+            <div class="data-content"><span class="first">Canal de difusion : </span><span class="second">${data.canal}</span></div>
+            <div class="data-content"><span class="first">Description : </span><span class="second">${data.description}</span></div>
+            <div class="listing-all"><a class="list-link" href="${window.location.origin}/groupe">Voir la liste</a></div>`;
+            [...document.querySelector('form#form-groupe').querySelectorAll('input, select, textarea, #reset-groupe, #submit-groupe')].map(item => item.disabled = false);
+            [...document.querySelector('form#form-groupe').querySelectorAll('input, select, textarea')].map(item => item.value = '');
         },
         onError: error =>{
-          toast.error(error.response.data.message);
-          [...document.querySelector('form#form-groupe').querySelectorAll('input, select, textarea, #reset-groupe, #submit-groupe')].map(item => item.disabled = false);
-          rapport = document.querySelector('#recentCustomers-groupe').querySelector('#rapport');
-          rapport.classList.remove('success');
-          rapport.classList.add('error');
-          rapport.innerHTML = `<div class="message error">${error.response.data.message}</div>`;
+            toast.error(error.response.data.message);
+            [...document.querySelector('form#form-groupe').querySelectorAll('input, select, textarea, #reset-groupe, #submit-groupe')].map(item => item.disabled = false);
+            rapport = document.querySelector('#recentCustomers-groupe').querySelector('#rapport');
+            rapport.classList.remove('success');
+            rapport.classList.add('error');
+            rapport.innerHTML = `<div class="message error">${error.response.data.message}</div>`;
         }
-      });
+    });
 
-      let onSubmit = data => groupe(data);
+    let onSubmit = data => groupe(data);
 
 
     

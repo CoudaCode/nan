@@ -6,16 +6,15 @@ import Cookies from "js-cookie";
 import axios from "axios";
 
 import "./Entreprise.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
 
 function Entreprise() {
-  const [state, setState] = useState(null);
   const code = window.location.href.split('?')[1].split('#')[0];
   const mail = window.location.href.split('?')[1].split('#')[1];
   let count = true;
   
-  const { register, handleSubmit, watch, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: ""});
+  const { register, handleSubmit, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: ""});
   useEffect(()=>{
     if(count){
       count = false;

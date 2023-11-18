@@ -9,6 +9,7 @@ function Options(){
     const [stateCollaborateur, setStateCollaborateur] = useState(0);
     const [stateContac, setStateContac] = useState(0);
     const [stateGroupo, setStateGroupo] = useState(0);
+    const [stateMessage, setStateMessage] = useState(0);
     const path = useLocation().pathname;
     const validePath = ['/parametres/collaborateur', '/parametres/contact', '/parametres/groupe', '/parametres/message'];
     if(!validePath.includes(path)) window.location.href = "/parametres/collaborateur";
@@ -49,10 +50,13 @@ function Options(){
                 setStateGroupo(allCollabo.data.data.length)
             }
         })
-        
 
-
-
+        axios.get(ApiUrl+'/api/message/getAll', { headers: { Authorization: `token ${token}`}})
+        .then(allCollabo => {
+            if(allCollabo.data.status){
+                setStateMessage(allCollabo.data.data.length)
+            }
+        })
     }, []);
 
 
@@ -97,7 +101,7 @@ function Options(){
             <div className="card" id="card-message" >
                 <a href="/parametres/message">
                 <div>
-                    <div className="numbers">1472</div>
+                    <div className="numbers">{stateMessage}</div>
                     <div className="cardName">Créer Messages</div>
                 </div>
                 <div className="iconBx">
