@@ -1,6 +1,5 @@
-Navbar.css
+/* 
 
-/* main-header start */
 [data-target="#mainMenu"] {
   position: relative;
   z-index: 999;
@@ -121,9 +120,7 @@ Navbar.css
   color: #fff;
 }
 
-/* Mobile view styles (continued) */
 @media (max-width: 991px) {
-  /* Header styles for mobile view (media query) */
   .collapse.in {
     display: block !important;
     padding: 0;
@@ -161,7 +158,6 @@ Navbar.css
     border-radius: 0px;
   }
 
-  /* Navbar toggler icon bars (hamburger menu) */
   .main-header .navbar-toggler .icon-bar {
     background-color: #fff;
     margin: 0 auto 6px;
@@ -217,5 +213,4 @@ Navbar.css
   .main-header .navbar-toggler:focus .icon-bar {
     background-color: #fff;
   }
-  /* Header styles for mobile view (media query) ends */
-}
+} */
