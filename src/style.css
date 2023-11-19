@@ -790,5 +790,31 @@ div.card[active='active'] ion-icon{
 }
 
 
+.paginationBttns{
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top:2rem;
+}
+
+.paginationBttns a{
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  cursor: pointer;
+  /* font-weight: bolder; */
+}
+
+.paginationBttns a:hover, .paginationActive a{
+  background: var(--blue);
+  color: var(--white);
+}
+
+
+
 
  

@@ -20,6 +20,8 @@ import Parametres from "./pages/Parametres/Parametres";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './style.css'
+import Groupe from "./pages/Groupe/Groupe";
+
 function App() {
   const client = new QueryClient();
   return (
@@ -52,6 +54,7 @@ function App() {
           <Route path="/verification" element={<Verification />} />
           <Route path="/validate" element={<Validate />} />
           <Route path="/parametres/:id" element={<Parametres />} />
+          <Route path="/groupe" element={<Groupe />} />
 
           <Route path="/test" element={<Test />} />
         </Routes>

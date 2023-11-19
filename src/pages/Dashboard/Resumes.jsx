@@ -1,7 +1,13 @@
+import ListContact from "./ListContact";
+import ListGroupe from "./ListGroupe";
+import ListMessage from "./ListMessage";
+
+
+
 function Resumes(){
     return(
         <div className="details">
-            <div className="recentOrders">
+            {/* <div className="recentOrders">
                 <div className="cardHeader">
                     <h2>Contacts Recents</h2>
                     <a href="./corporates/contact.html" className="btn">Voir Tout</a>
@@ -93,8 +99,126 @@ function Resumes(){
                         </tr>
                     </tbody>
                 </table>
+            </div> */}
+            <ListContact />
+            <div className="recentCustomers">
+                <div className="cardHeader">
+                    <h2>Difusions Recentes</h2>
+                    <a href="./corporates/historique.html" className="btn">Voir Tout</a>
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    
+                </table>
             </div>
 
+            <ListGroupe />
+            <div className="recentCustomers">
+                <div className="cardHeader">
+                    <h2>Difusions Recentes</h2>
+                    <a href="./corporates/historique.html" className="btn">Voir Tout</a>
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="imgBx"><img src="./assets/font/user.png" alt="Image"/></div>
+                        </td>
+                        <td>
+                            <h4>Koffi Kan <br/> Côte d&apos;Ivoire</h4>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+
+            <ListMessage />
             <div className="recentCustomers">
                 <div className="cardHeader">
                     <h2>Difusions Recentes</h2>

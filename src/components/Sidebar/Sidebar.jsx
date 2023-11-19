@@ -2,7 +2,6 @@ import { useLocation } from "react-router-dom";
 
 function Sidebar() {
   const path = useLocation().pathname;
-
   return (
         <div className="container">
             <div className="navigation">

@@ -2,7 +2,6 @@
 // import "./Topbar.css";
 import user from './user.png'
 const Topbar = () => {
-
         const toggle = () => {
             let navigation = document.querySelector('.navigation');
             let main = document.querySelector('.main');
