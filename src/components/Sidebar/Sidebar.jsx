@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Sidebar.css";
 import { useLocation, Link } from "react-router-dom";
 function Sidebar() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const location = useLocation();
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
