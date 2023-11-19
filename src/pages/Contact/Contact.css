@@ -1,0 +1,28 @@
+.Contact .titre {
+  color: #6870e0;
+  font-size: 1.3rem;
+  font-family: sans-serif;
+}
+
+.Contact button {
+  margin: 30px;
+  background: #6870e0;
+  margin-left: 20px;
+  color: #fff;
+  border: 2px solid #393a5cb1;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  box-shadow: 3px 3px 3px #6870e0;
+}
+
+.Contact #search {
+  border-radius: 17px;
+}
+
+/*Poppup*/
+
+.Contact form {
+  border: 2px solid red;
+  width: 100%;
+  height: 200px;
+}
