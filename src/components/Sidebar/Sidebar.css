@@ -189,3 +189,24 @@
 .sidebar li.active a i {
   color: #11101d;
 }
+
+.card {
+  background-color: #fff;
+  color: #845ec8;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-text {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+

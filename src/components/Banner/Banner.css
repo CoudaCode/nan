@@ -22,7 +22,7 @@
     .Banner .bienvenu1 h2 {
       font-size: 2.2rem;
     }
-    .Banner .bienvenu1 h2 .spanNan {
+    .Banner .bienvenu1  .spanNan {
       color: var(--ma-couleur-bouton);
     }
     .Banner .bienvenu2 {
