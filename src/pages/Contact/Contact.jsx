@@ -1,5 +1,4 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
-import Topbar from "../../components/Topbar/Topbar";
 import "./Contact.css";
 import { useState } from "react";
 import { FaSearch, FaPlus } from "react-icons/fa";
@@ -471,5 +470,4 @@ function Contact() {
     </div>
   );
 }
-
 export default Contact;
