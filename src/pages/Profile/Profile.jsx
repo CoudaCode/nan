@@ -5,6 +5,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import "./Profile.css"
 
 import img from "../../assets/images/img-profile.jpg"
+import poinVert from "../../assets/images/pointVerts.png"
 function Profile() {
   return (
     <div className="flex h-screen">
@@ -25,7 +26,10 @@ function Profile() {
 <img src={img} alt="" />
 </div>
 <div className="profilOffline">
-
+<div className="pointVer">
+  <img src={poinVert} alt="" />
+</div>
+<p>En Ligne</p>
 </div>
 </div>
 <div className="profileTitle">
@@ -58,7 +62,11 @@ function Profile() {
 
 
   </div>
+  <div className="modification">
+    <button className="myButtom">Modifier Profile</button>
+  </div>
 </div>
+
   </div>
 
 </div>

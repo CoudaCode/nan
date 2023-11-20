@@ -47,6 +47,18 @@
     width: 150px;
     border: 1px solid violet;
     border-radius: 15px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profilOffline p{
+    color: black;
+}
+.pointVer img{
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
 }
 
 .proTitre h2{
@@ -60,6 +72,8 @@
     gap: 25px;
 }
 
+
+
 .profilInfos{
     margin-top: 40px;
 }
@@ -68,5 +82,19 @@
     height: 40px;
     color: black;
     border: none;
+}
+
+
+.modification{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.modification button{
+    height: 50px;
+    
+    background-color: var(--ma-couleur-bouton);
+
 }
 
