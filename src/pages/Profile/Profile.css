@@ -1,47 +1,72 @@
-.Profil{
+:root {
+    --ma-couleur-principale: #1E2029;
+    --ma-couleur-bouton: #6870e0;
+    --mon--autre--couleur: #b6b9e5;
+    --ma--couleur--text: #ffff;
+  }
+
+.profile{ 
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardsPofit{
+    height: 70vh;
+    width: 70%;
+    border: 1px solid #fff ;
+    display: flex;
+    border-radius: 15px;
+}
+.profileEspace{
+    height: 70vh;
+    width: 22%;
+    border: 1px solid #fff;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: space-around;
     justify-content: center;
 }
 
-.cardsProfil{
-    height: 60vh;
-    width: 60%;
-    border: 1px solid white;
-    display: flex; 
+
+.profilImage{
+    height: 40%;
+    width: 85%;
     
 }
 
-
-.cardsimage{
+.profilImage img{
     height: 100%;
-    width: 30%;
-    border: 1px solid green;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-} 
-
-.cardsIcons{
-    height: 45%;
-    width: 90%;
-    border: 1px solid blue;
 }
-.offLine{
+
+.profilOffline{
     height: 50px;
-    width: 120px;
-    border: 1px solid red;
-    border-radius: 1rem;
+    width: 150px;
+    border: 1px solid violet;
+    border-radius: 15px;
 }
 
-.pourTexte h2{
-    font-size: 2rem; 
+.proTitre h2{
+    font-size: 2rem;
+    margin-left: 100px;
+}
+.profilDetail{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 25px;
 }
 
-.carrelage{
-    height: 20px;
-    width: 100%;
-    border: 1px solid yellow;
+.profilInfos{
+    margin-top: 40px;
 }
+.profilDetail input{
+    width: 400px;
+    height: 40px;
+    color: black;
+    border: none;
+}
+
