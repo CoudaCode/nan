@@ -301,6 +301,14 @@ body {
   margin-top: 10px;
 }
 
+.details-edite{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  grid-gap: 30px;
+  margin-top: 10px;
+}
+
 .details .recentOrders{
   position: relative;
   display: grid;
@@ -311,7 +319,23 @@ body {
   border-radius: 20px;
 }
 
+.details-edite .recentOrders{
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px var(--black3);
+  border-radius: 20px;
+}
+
 .details .cardHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.details-edite .cardHeader{
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -346,45 +370,59 @@ body {
     border-radius: 6px;
   }
 
-.details table{
+.details table,
+.details-edite table{
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
 }
 
-.details table thead td{
+.details table thead td,
+.details-edite table thead td{
   font-weight: 600;
 }
 
-.details .recentOrders table tr{
+.details .recentOrders table tr,
+.details-edite .recentOrders table tr{
   color: var(--black1);
   border-bottom: 1px solid var(--black4);
 }
 
-.details .recentOrders table tbody tr:hover{
+.details .recentOrders table tbody tr:hover,
+.details-edite .recentOrders table tbody tr:hover{
   background: var(--blue);
   color: var(--white);
 }
 
-.details .recentOrders table tr td{
+.details .recentOrders table tr td,
+.details-edite .recentOrders table tr td{
   padding: 10px;
 }
 
-.details .recentOrders table tr td:last-child{
+.details .recentOrders table tr td:last-child,
+.details-edite .recentOrders table tr td:last-child{
   text-align: end;
 }
 
-.details .recentOrders table tr td:nth-child(3){
+.details .recentOrders table tr td:nth-child(3),
+.details-edite .recentOrders table tr td:nth-child(3){
   text-align: end;
 }
 
-.details .recentOrders table tr td:nth-child(4){
+.details .recentOrders table tr td:nth-child(4),
+.details-edite .recentOrders table tr td:nth-child(4){
   text-align: end;
 }
 
-.details .recentOrders table tr td:nth-child(5){
+.details .recentOrders table tr td:nth-child(5),
+.details-edite .recentOrders table tr td:nth-child(5){
   text-align: end;
 }
+
+
+
+
+
 
 .status.delivered{
   padding: 2px 4px;
@@ -413,7 +451,8 @@ body {
   font-weight: 500;
 }
 
-.details .content-form{
+.details .content-form,
+.details-edite .content-form{
     position: relative;
     top: 0;
     width: 100%;
@@ -421,24 +460,28 @@ body {
     margin-top: 10px;
   }
 
-  .details .content-form form.forms{
+  .details .content-form form.forms,
+  .details-edite .content-form form.forms{
     padding: 10px;
     width: 100%;
   }
 
-  .details .content-form form.forms .group-input{
+  .details .content-form form.forms .group-input,
+  .details-edite .content-form form.forms .group-input{
     /* margin: 1rem; */
     padding: .7rem;
   }
 
-  .details .content-form form.forms .group-input .label-form{
+  .details .content-form form.forms .group-input .label-form,
+  .details-edite .content-form form.forms .group-input .label-form{
     display: inline-block;
     width: 190px;
     color: var(--blue);
     font-weight: 700;
   }
 
-  .details .content-form form.forms .group-input .form-control{
+  .details .content-form form.forms .group-input .form-control,
+  .details-edite .content-form form.forms .group-input .form-control{
     outline: none;
     color: var(--black1);
     width: calc(100% - 190px);
@@ -447,7 +490,8 @@ body {
     border-radius: 10px;
   }
 
-.details .content-form form.forms .group-input .form-select{
+.details .content-form form.forms .group-input .form-select,
+.details-edite .content-form form.forms .group-input .form-select{
     outline: none;
     color: var(--black1);
     width: calc(100% - 190px);
@@ -457,10 +501,11 @@ body {
 }
 
 .details .content-form form.forms .group-input .form-control:focus,
-.details .content-form form.forms .group-input .form-select:focus{
+.details-edite .content-form form.forms .group-input .form-select:focus{
     border: 1px solid var(--black2);
 }
 
+.details .content-form form.forms .group-input textarea.form-control,
 .details .content-form form.forms .group-input textarea.form-control{
     min-width:  calc(100% - 190px);
     max-width: calc(100% - 190px);
@@ -469,31 +514,36 @@ body {
 
 }
 
-.details .content-form form.forms .group-action{
+.details .content-form form.forms .group-action,
+.details-edite .content-form form.forms .group-action{
     text-align: center;
     margin: 10px auto;
 }
 
-.details .content-form form.forms .group-action button{
+.details .content-form form.forms .group-action button,
+.details-edite .content-form form.forms .group-action button{
     font-weight: bolder;
     margin: 0 1rem;
     border-radius: 10px;
     color: var(--white);
 }
 
-.details .content-form form.forms .group-action button[type='reset']{
+.details .content-form form.forms .group-action button[type='reset'],
+.details-edite .content-form form.forms .group-action button[type='reset']{
     background: var(--red);
     padding: .5rem 1rem;
     
 }
 
-.details .content-form form.forms .group-action button[type='submit']{
+.details .content-form form.forms .group-action button[type='submit'],
+.details-edite .content-form form.forms .group-action button[type='submit']{
     background: var(--blue);
     padding: .5rem 1rem;
     
 }
 
-.details .content-form form.forms .group-action button[type='submit']:hover{
+.details .content-form form.forms .group-action button[type='submit']:hover,
+.details-edite .content-form form.forms .group-action button[type='submit']:hover{
     background: var(--white);
     border: 1px solid var(--blue);
     color: var(--blue);
@@ -796,7 +846,8 @@ div.card[active='active'] ion-icon{
   list-style: none;
   display: flex;
   justify-content: center;
-  margin-top:2rem;
+  margin: 0 auto;
+  margin-top:2rem ;
 }
 
 .paginationBttns a{
@@ -814,7 +865,59 @@ div.card[active='active'] ion-icon{
   color: var(--white);
 }
 
+.deleted-succes,
+.deleted-succes:hover{
+  background: var(--error);
+  animation: flash 1s infinite;
+}
 
+@keyframes flash {
+  0%{ background: var(--error)}
+  25%{background: var(--white)}
+  50%{background: var(--error)}
+  75%{background: var(--white)}
+  100%{background: var(--error)}
+}
+
+.action-bttns{
+  display: flex;
+  justify-content: center;
+}
+
+.action-bttns button{
+  padding: 3px;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.action-bttns button:nth-child(1){
+  top: 0;
+  border: 1px solid var(--success);
+  color: var(--success);
+  font-weight: bolder;
+}
+
+.action-bttns button:nth-child(2){
+  top: 0;
+  border: 1px solid var(--error);
+  color: var(--error);
+  font-weight: bolder;
+}
+
+.details .recentOrders table tbody tr:hover .action-bttns button:nth-child(1){
+  background: var(--white);
+  color: var(--success);
+}
+
+.details .recentOrders table tbody tr:hover .action-bttns button:nth-child(2){
+  background: var(--white);
+  color: var(--error);
+}
 
 
  

@@ -11,8 +11,6 @@ function Cards(){
     const [stateMessage, setStateMessage] = useState(0);
 
     const [stateStocke, setStateStocke] = useState(0);
-    const [stateCategorie, setStateCategorie] = useState(0);
-    const [stateArticle, setStateArticle] = useState(0);
 
     useEffect(()=>{
         axios.get(ApiUrl+'/api/agent/getAll', { headers: { Authorization: `token ${token}`}})
@@ -71,18 +69,6 @@ function Cards(){
                     <div>
                         <div className="numbers">{stateMessage}</div>
                         <div className="cardName">Messages Difusions</div>
-                    </div>
-                    <div className="iconBx">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </div>
-                </a>
-            </div>
-
-            <div className="card">
-                <a href="">
-                    <div>
-                        <div className="numbers">undefined</div>
-                        <div className="cardName">Contacts Favoris</div>
                     </div>
                     <div className="iconBx">
                         <ion-icon name="search-outline"></ion-icon>

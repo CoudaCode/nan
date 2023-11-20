@@ -10,6 +10,6 @@
   box-sizing: border-box;
   /* background-color: #282c34; */
   background-color: #ffffff;
-  color: white;
+  color: var(--blue);
   font-family: "Roboto", sans-serif;
 }

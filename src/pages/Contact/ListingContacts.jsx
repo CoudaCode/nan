@@ -7,40 +7,39 @@ import ApiUrl from "../../components/ApiUrl/ApiUrl";
 import Delete from "../Actions/Delete";
 
 
-function ListingMessage(){
-    const [AllMessage, SetAllGroupe] = useState([]);
+
+function ListingContact(){
+    const [AllContacts, SetAllContact] = useState([]);
     let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     useEffect(()=>{
-        axios.get(ApiUrl+'/api/message/getAll', {headers: { Authorization: `token ${token}`}})
-        .then(allGroupe => {
-            if(allGroupe.data.status) SetAllGroupe(allGroupe.data.data);
+        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`}})
+        .then(allContact => {
+            if(allContact.data.status) SetAllContact(allContact.data.data);
         });
     }, []);
 
-    const deletedElement = async event => Delete(event, 'message')
-    
+    const deletedElement = async event => Delete(event, 'contact');
     
     const [pagesNumber, setPagesNumber] = useState(0);
-    const MessagePerPage = 10;
-    const pagesVisited = pagesNumber * MessagePerPage;
-    const displayMessage = AllMessage.sort((a,b)=>a.object.localeCompare(b.object)).slice(pagesVisited, pagesVisited + MessagePerPage).map((item, index) => {
+    const ContactsPerPage = 10;
+    const pagesVisited = pagesNumber * ContactsPerPage;
+    const displayContacts = AllContacts.slice(pagesVisited, pagesVisited + ContactsPerPage).map((item, index) => {
         return(
             <tr key={index}>
-                <td><input type="checkbox" name="" className="input-checkbox" id={index}/></td>
-                <td>{item.object.split(' ').slice(0, 3).join(' ')}...</td>
-                <td>{item.contenu.split(' ').slice(0, 3).join(' ')}...</td>
-                <td>{item.canal}</td>
-                <td>{item.groupe.length ? 'Groupe' : 'Individuel'}</td>
-                <td>{item.piecesJointes.length}</td>
+                <td><input type="checkbox"  name="" className="input-checkbox" id={index}/></td>
+                <td>{item.fullname}</td>
+                <td>{item.email ? item.email : 'Vide'}</td>
+                <td>{item.sms ? item.sms : 'Vide'}</td>
+                <td>{item.whatsapp ? item.whatsapp : 'Vide'}</td>
                 <td className="action-bttns">
-                    <button className="edite" id={item._id}><a href={"/message/edite/"+item._id}><ion-icon name="create-outline"></ion-icon></a></button>
+                    <button className="edite" id={item._id}><a href={"/contact/edite/"+item._id}><ion-icon name="create-outline"></ion-icon></a></button>
                     <button className="delete" id={item._id} onClick={deletedElement}><ion-icon name="trash-outline"></ion-icon></button>
                 </td>
             </tr>
         )
     })
 
-    const pageCount = Math.ceil(AllMessage.length / MessagePerPage);
+    const pageCount = Math.ceil(AllContacts.length / ContactsPerPage);
 
     const changePage = ({selected})=>{
         setPagesNumber(selected);
@@ -50,21 +49,22 @@ function ListingMessage(){
         <div className="details">
             <div className="recentOrders">
                 <div className="cardHeader">
-                    <h1>Messages de Difusions</h1>
+                    <h1>Contacts de Difusion</h1>
                 </div>
                 <table>
                     <thead>
                         <tr>
                             <td><input type="checkbox" className="all" name="all" id="all"/></td>
-                            <td>Sujet</td>
-                            <td>Contenu</td>
-                            <td>Canal</td>
-                            <td>Type</td>
-                            <td>Action</td>
+                            <td>Nom & Prénom(s)</td>
+                            <td>Email</td>
+                            <td>Téléphone</td>
+                            <td>WhatsApp</td>
                         </tr>
                     </thead>
 
-                    <tbody className="tbody"> {displayMessage} </tbody>
+                    <tbody className="tbody">
+                        {displayContacts}
+                    </tbody>
                 </table>
                 <ReactPaginate 
                     previousLabel={'Précedent'}
@@ -77,6 +77,7 @@ function ListingMessage(){
                     disabledClassName={"paginationDisabled"}
                     activeClassName={"paginationActive"}
                 />
+
             </div>
             <div className="recentCustomers">
                 <div className="cardHeader">
@@ -140,4 +141,4 @@ function ListingMessage(){
     )
 }
 
-export default ListingMessage
+export default ListingContact

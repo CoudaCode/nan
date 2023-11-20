@@ -36,12 +36,8 @@ function Entreprise() {
             }
           })
         }
-        console.log(reponse);
       })
     }
-    
-    
-
   }, []);
 
   let navigate = useNavigate();

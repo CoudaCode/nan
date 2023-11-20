@@ -12,7 +12,7 @@ function Parametres(){
         <>
             <Sidebar />
             <div className="main">
-                <Topbar  className='erzz'/>
+                <Topbar />
                 <Options />
                 <Collaborateur/>
                 <Contact />

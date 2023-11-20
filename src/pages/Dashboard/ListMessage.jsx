@@ -16,7 +16,7 @@ function ListMessage(){
     return(
         <div className="recentOrders">
             <div className="cardHeader">
-                <h2>Groupe de Difusion Recents</h2>
+                <h2>Messages de Difusion Recents</h2>
                 <a href="/message" className="btn">Voir Tout</a>
             </div>
             <table>

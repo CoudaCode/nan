@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
+import Delete from "../Actions/Delete";
+
 
 function ListingGroupe(){
     const [AllGroupes, SetAllGroupe] = useState([]);
@@ -14,6 +16,10 @@ function ListingGroupe(){
             if(allGroupe.data.status) SetAllGroupe(allGroupe.data.data);
         });
     }, []);
+
+    
+
+    const deletedElement = async event => Delete(event, 'groupe')
     
     const [pagesNumber, setPagesNumber] = useState(0);
     const groupesPerPage = 10;
@@ -26,7 +32,10 @@ function ListingGroupe(){
                 <td>{item.canal}</td>
                 <td>{item.contact.length} contact(s)</td>
                 <td>{item.description.split(' ').slice(0, 4).join(' ')} </td>
-                <td>{item.user ? item.user.fullname : item.agent.fullname}</td>
+                <td className="action-bttns">
+                    <button className="edite" id={item._id}><a href={"/groupe/edite/"+item._id}><ion-icon name="create-outline"></ion-icon></a></button>
+                    <button className="delete" id={item._id} onClick={deletedElement}><ion-icon name="trash-outline"></ion-icon></button>
+                </td>
             </tr>
         )
     })
@@ -42,7 +51,6 @@ function ListingGroupe(){
             <div className="recentOrders">
                 <div className="cardHeader">
                     <h1>Groupes de Difusion</h1>
-                    <a href="/message" className="btn">Voir Tout</a>
                 </div>
                 <table>
                     <thead>
@@ -52,7 +60,8 @@ function ListingGroupe(){
                             <td>Contenu</td>
                             <td>Canal</td>
                             <td>Type</td>
-                            <td>Rédacteur</td>
+                            <td>Action</td>
+
                         </tr>
                     </thead>
 
@@ -71,7 +80,6 @@ function ListingGroupe(){
                     disabledClassName={"paginationDisabled"}
                     activeClassName={"paginationActive"}
                 />
-
             </div>
             <div className="recentCustomers">
                 <div className="cardHeader">

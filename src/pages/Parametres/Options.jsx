@@ -29,33 +29,24 @@ function Options(){
         }
         activation();
 
-        
         axios.get(ApiUrl+'/api/agent/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allCollabo => {
-            if(allCollabo.data.status){
-                setStateCollaborateur(allCollabo.data.data.length)
-            }
+            if(allCollabo.data.status) setStateCollaborateur(allCollabo.data.data.length);
         });
 
         axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allCollabo => {
-            if(allCollabo.data.status){
-                setStateContac(allCollabo.data.data.length)
-            }
+            if(allCollabo.data.status) setStateContac(allCollabo.data.data.length);
         });
 
         axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allCollabo => {
-            if(allCollabo.data.status){
-                setStateGroupo(allCollabo.data.data.length)
-            }
+            if(allCollabo.data.status) setStateGroupo(allCollabo.data.data.length);
         })
 
         axios.get(ApiUrl+'/api/message/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allCollabo => {
-            if(allCollabo.data.status){
-                setStateMessage(allCollabo.data.data.length)
-            }
+            if(allCollabo.data.status) setStateMessage(allCollabo.data.data.length);
         })
     }, []);
 

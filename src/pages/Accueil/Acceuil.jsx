@@ -1,5 +1,5 @@
 
-import Navbar from "./../../components/Navbar/Navbar";
+// import Navbar from "./../../components/Navbar/Navbar";
 import Banner from "./../../components/Banner/Banner";
 import Prix from "./../../components/Prix/Prix";
 import Footer from "./../../components/Footer/Footer";
@@ -11,7 +11,7 @@ import "./Acceuil.css"
 function Acceuil() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Banner />
       <Prix />
       <SendMessage />

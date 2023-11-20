@@ -45,6 +45,7 @@ function Message(){
             })
         });
     }, []);
+    
     useEffect(()=>{
         let table = {};
         const baliseCanal = document.querySelector("select#canal-message");
