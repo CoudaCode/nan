@@ -44,8 +44,7 @@
 
 .profilOffline{
     height: 50px;
-    width: 150px;
-    border: 1px solid violet;
+    width: 150px;  
     border-radius: 15px;
     background-color: #fff;
     display: flex;
@@ -74,6 +73,7 @@
 
 
 
+
 .profilInfos{
     margin-top: 40px;
 }
@@ -98,3 +98,27 @@
 
 }
 
+@media screen and (max-width: 884px){
+    .cardsPofit{
+        flex-direction: column;
+        width: initial;
+        height: auto;
+    }
+
+    .profilImage{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .profileEspace{
+        width: 100%;
+    }
+
+    .profileTitle{
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+}
