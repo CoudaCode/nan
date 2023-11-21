@@ -98,8 +98,6 @@ function EditeForm(){
         })
     }, []);
 
-
-    console.log('--------------------',state);
     const optionSelects = (params)=>{
         return(
             <>
