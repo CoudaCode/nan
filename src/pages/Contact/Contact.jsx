@@ -1,6 +1,6 @@
-import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import "./Contact.css";
+
 function Contact() {
   return (
     <div className="flex h-screen">
