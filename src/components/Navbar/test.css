@@ -5,9 +5,12 @@ Navbar.css
   position: relative;
   z-index: 999;
 }
+.maNav {
+  padding: 0.3rem;
+  display: flex;
+}
 .scrolled {
   background-color: var(--ma-couleur-bouton);
-  box-shadow: 1px 1px 1px 1px var(--ma--couleur--text);
 }
 .scrolled li .meslinks:hover {
   color: var(--ma--couleur--text) !important;
@@ -26,25 +29,16 @@ Navbar.css
   z-index: -1;
   transition: transform 0.5s ease;
 }
-.scrolled .navbar-nav{
-  padding: 8px ;
-}
 
 .maNav .card-logo {
-  width: 4rem;
-  height: 1rem;
-  border-radius: 1rem;
+  width: 5rem;
+  height: 2rem;
 }
 .maNav .logo .img {
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
   
 }
 .navbar-nav{
-  margin-left: 40rem;
-  display: flex;
-  padding: 8px ;
+  margin-left: 3rem;
 }
 
 .meslinks {
@@ -211,127 +205,4 @@ Navbar.css
     background-color: #fff;
   }
   /* Header styles for mobile view (media query) ends */
-}
-
-
-
-
-
-
-header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  right: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 100px;
-  transition: 0.1s;
-  background-color: var(--ma-couleur-principale);
-}
-
-.logo {   
-  width: 4rem;
-  height: 3.5rem;
-  border-radius: 1rem;
-}
-.logo img {
-  height: 100%;
-  width: 100%;
-  border-radius: 1rem;
-}
-
-.navbar {
-  display: flex;
-  column-gap: 3rem;
-  font-size: 1rem;
-  margin-right: 6rem;
-}
-
-.navbar li {
-  position: relative;
-}
-.navbar a {
-  font-size: .8rem;
-  font-weight: 500;
-  color: white;
-  text-decoration: none;
-}
-
-.navbar a::after {
-  content: "";
-  width: 0;
-  height: 2px;
-  background-color: var(--ma-couleur-bouton);
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  transition: 0.4s all linear;
-}
-
-.navbar a:hover::after {
-  width: 100%;
-}
-.navbar .Acceuil-active::after {
-  width: 100%;
-}
-#menu-icon {
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 1000001;
-  display: none;
-}
-
-#burger {
-  display: none;
-  cursor: pointer;
-  font-size: 2.5rem;
-  color: var(--ma-couleur-bouton);
-  margin-right: 2rem;
-}
-#close {
-  display: none;
-  cursor: pointer;
-  font-size: 2.5rem;
-  color: var(--ma-couleur-bouton);
-  margin-right: 2rem;
-}
-
-@media (max-width: 768px) {
-  #burger {
-    display: block;
-  }
-  .active #burger:before {
-    content: \2715;
-  }
-  .navbar {
-    position: fixed;
-    top: 10%;
-    left: -100%;
-    flex-direction: column;
-    background-color: var(--ma-couleur-bouton);
-    width: 100%;
-    height: 40rem;
-    text-align: center;
-    transition: 0.25s;
-    padding: 5rem;
-  }
-  .navbar ul {
-   margin-top: 5rem;
-  }
-  .navbar li {
-    padding: 2px 0;
-  }
-  .navbar li:hover {
-    background-color: var(--mon--autre--couleur);
-   
-  }
-  .active {
-    left: 0;
-  }
-  .navbar a {
-    font-size: 1.2rem;
-  }
 }
