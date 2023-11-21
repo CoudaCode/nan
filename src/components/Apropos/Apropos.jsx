@@ -6,7 +6,7 @@ import canalDiff1 from "./../../assets/images/canalDiff1.jpg";
 import statistique from "./../../assets/images/statistiq.jpg";
 import msgillimit from "./../../assets/images/msgillimit.jpg";
 import msgGroupe2 from "./../../assets/images/msgGroupé2.jpg";
-import principaleimg from "./../../assets/images/message.jpg";
+
 
 function Apropos() {
     return(
