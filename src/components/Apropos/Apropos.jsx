@@ -31,8 +31,8 @@ function Apropos() {
                     </div>
                     <button>
                     <Link to="/login">Voir plus</Link> 
-                    <div class="arrow-wrapper">
-                        <div class="arrow"></div>
+                    <div className="arrow-wrapper">
+                        <div className="arrow"></div>
                     </div>
                     </button>
                 </div>
@@ -50,8 +50,8 @@ function Apropos() {
                     </div>
                     <button>
                    <Link to="/login">Voir plus</Link> 
-                    <div class="arrow-wrapper">
-                        <div class="arrow"></div>
+                    <div className="arrow-wrapper">
+                        <div className="arrow"></div>
                     </div>
                     </button>
                 </div>
@@ -69,8 +69,8 @@ function Apropos() {
                     </div>
                     <button>
                     <Link to="/login">Voir plus</Link> 
-                    <div class="arrow-wrapper">
-                        <div class="arrow"></div>
+                    <div className="arrow-wrapper">
+                        <div className="arrow"></div>
                     </div>
                     </button>
                 
@@ -89,8 +89,8 @@ function Apropos() {
                     </div>
                     <button>
                     <Link to="/login">Voir plus</Link> 
-                    <div class="arrow-wrapper">
-                        <div class="arrow"></div>
+                    <div className="arrow-wrapper">
+                        <div className="arrow"></div>
                     </div>
                     </button>
                     

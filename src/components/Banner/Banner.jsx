@@ -113,8 +113,6 @@ function Banner() {
           <img src={imagUba} alt="" />
         </div>
       </div>
-      
-      
     </div>
   );
 }

@@ -9,7 +9,7 @@ function Prix() {
     <div className="Prix">
       <h2 className='titre'> * Nos prix ...</h2>
       <div className='container-card'>
-      <div class="card basic">
+      <div className="card basic">
         <div className='title'>
         <p>Basic</p>
         </div>
@@ -35,7 +35,7 @@ function Prix() {
         
       </div>
 
-      <div class="card standard">
+      <div className="card standard">
         <div className='title'>
          <p>Standard</p>
         </div>
@@ -60,7 +60,7 @@ function Prix() {
         
       </div>
 
-      <div class="card premium">
+      <div className="card premium">
         <div className='title'>
           <p>Premium</p>
         </div>

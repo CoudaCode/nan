@@ -1,3 +1,4 @@
+import "./Reports.css";
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 const PopupExample = ({ isOpen, selectedItem, onClose }) => {
@@ -103,6 +104,7 @@ function Reports() {
     setIsOpen(false);
   };
 
+  // >>>>>>> 5024c2acb9558d3635e5d0f8c094f8396c92eca6
   return (
     <div className="flex h-screen">
       <Sidebar />
