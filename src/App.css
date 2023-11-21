@@ -8,7 +8,8 @@
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
-  background-color: #282c34;
-  color: white;
+  /* background-color: #282c34; */
+  background-color: #ffffff;
+  color: var(--blue);
   font-family: "Roboto", sans-serif;
 }

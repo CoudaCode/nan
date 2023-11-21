@@ -5,46 +5,36 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-const url = "https://nan-send-api.onrender.com";
-
 import "./Inscription.css";
+import UrlFrontEnt from "../../components/ApiUrl/UrlFrontEnt";
+import ApiUrl from "../../components/ApiUrl/ApiUrl";
+
+
+
+
+
 
 function Inscription() {
   let navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
-    fullname: "",
-    email: "",
-    telephone: "",
-    nationalite: "",
-    password: "",
-  });
+  const { register, handleSubmit, watch, formState: { errors }} = useForm({ fullname: "", email: "", telephone: "", nationalite: "", password: ""});
+  
   const { mutate: user } = useMutation({
     mutationFn: async (send) => {
-      console.log("ok", send);
-
-      let response = await axios.post(`${url}/api/user/create`, send);
+      document.querySelectorAll('input:required').forEach(item=>item.disabled = true);
+      send.urlfrontend = UrlFrontEnt+'/entreprise';
+      // http://localhost:5173/entreprise?436803#devdjobo@gmail.com
+      let response = await axios.post(`${ApiUrl}/api/message/verifyEmail`, send);
       return response;
     },
     onSuccess: (success) => {
       toast.success(success.data.message);
-      Cookies.set("token", success.data.token, {
-        expires: 3600 * 24,
-        path: "",
-      });
-      setTimeout(() => {
-        navigate("/entreprise");
-      }, 3050);
+      setTimeout(() => navigate("/validate"), 2000);
     },
     onError: (e) => {
       toast.error(e.response.data.message);
       // toast.errors(erro)
-      // setErrorMessage(errors.response)
+      document.querySelectorAll('input:required, button.social-button.google').forEach(item=>item.disabled = false); 
+      setErrorMessage(errors.response);
     },
   });
   let onSubmit = (data) => user(data);
@@ -54,7 +44,7 @@ function Inscription() {
         <div className="heading">Inscription</div>
         <form action="" className="form" onSubmit={handleSubmit(onSubmit)}>
           <input
-            required=""
+            required={true}
             className="input"
             type="text"
             name="fullname"
@@ -67,57 +57,61 @@ function Inscription() {
             placeholder="Votre nom et Prénom"
           />
           <input
-            required=""
+            required={true}
             className="input"
             type="email"
             name="email"
             id="email"
             {...register("email", {
               require: true,
-              minLength: 2,
+              minLength: 5,
               maxLength: 50,
               pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "svp entrer un mail valide",
+                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+                message: "svp entrer un mail valide"
               },
             })}
             placeholder="Adresse Email"
           />
           <input
-            required=""
+            required={true}
             className="input"
-            type="number"
+            type="text"
             name="telephone"
             id="telephone"
             {...register("telephone", {
               require: true,
-              minLength: 2,
-              maxLength: 50,
+              minLength: 10,
+              maxLength: 20,
+              pattern: {
+                value: /^\+\d{2,3}\d{7,}$/i,
+                message: "Veuillez entrer un adresse téléphonique qui contient l'indicatif et qui contient au moins 10 fichres et pas de caractère accentiés et spéciaux.",
+              },
             })}
             placeholder="Téléphone"
           />
           <input
-            required=""
+            required={true}
             className="input"
             type="text"
             name="nationalite"
             id="nationalite"
             {...register("nationalite", {
               require: true,
-              minLength: 2,
+              minLength: 4,
               maxLength: 50,
             })}
             placeholder="Votre nationalité"
           />
           <input
-            required=""
+            required={true}
             className="input"
             type="password"
             name="password"
             id="password"
             {...register("password", {
               require: true,
-              minLength: 2,
+              minLength: 4,
               maxLength: 50,
             })}
             placeholder="Mot de Passe"
@@ -125,7 +119,7 @@ function Inscription() {
           <span className="forgot-password">
             <a href="#">Mot de passe oublié ?</a>
           </span>
-          <input className="login-button" type="submit" value="S'inscrire" />
+          <button className="login-button" type="submit">S&apos;inscrire</button>
         </form>
         <div className="social-account-container">
           <span className="title">Ou connectez-vous avec</span>
