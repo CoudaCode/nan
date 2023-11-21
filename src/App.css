@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
 #root {
   /* max-width: 1280px; */
   margin: 0 auto;
@@ -10,5 +13,7 @@
   box-sizing: border-box;
   background-color: #282c34;
   color: white;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
+
+
