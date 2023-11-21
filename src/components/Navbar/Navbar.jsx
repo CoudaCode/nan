@@ -6,7 +6,7 @@ import logo from "../../assets/images/Nan-Send.png";
 
 function Navbar() {
   const handleScroll = (nav) => {
-    console.log("test", nav.classList);
+    
     return () => {
       if (window.pageYOffset > 0) {
         nav.classList.add("scrolled");
