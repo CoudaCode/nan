@@ -26,6 +26,51 @@ function Profile() {
   </div>
 
   <div className="cardsProie">
+    <div className="profileglobal">
+      
+     <div className="profilImage">
+<img src={img} alt="" />
+<div className="overlay">
+  <div className="profilContente">
+<p>Modifier la photo </p>
+  </div>
+
+</div>
+      </div>
+
+<div className="profilePremier">
+  <div className="profileSepo">
+    <div className="sepa">
+  <label htmlFor="">Nom</label>
+  <input type="text" placeholder="KOUAME"/>
+  </div>
+  <div className="sepa">
+  <label htmlFor="">Prenom</label>
+  <input type="text" placeholder="Franck Olivier"/>
+  </div>
+  </div>
+<br />
+  <div className="profileSepo">
+    <div className="sepa">
+  <label htmlFor="">Téléphone (10 chiffres)</label>
+  <input type="text" placeholder="0789105791"/>
+  </div>
+  <div className="sepa">
+  <label htmlFor="">Pays</label>
+  <input type="text" placeholder="Cote D'ivoire"/>
+  </div>
+  </div>
+
+  <div className="sepaPeofil">
+  <label htmlFor="">E-mail</label>
+  <input type="text" placeholder="kouamefranckolivier45@gmail.com"/>
+  </div>
+</div>
+    </div>
+
+    <div className="profileButton">
+      <button>Mettre a jour</button>
+    </div>
 
   </div>
 </div>
