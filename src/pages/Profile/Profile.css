@@ -5,7 +5,31 @@
     --ma--couleur--text: #ffff;
   }
 
-.profile{ 
+  .cardsPro{
+    height: 60px;
+    width: 80%;
+    border: 1px solid #ffff;
+    background-color: #ffff;
+  }
+  .cardsDiviso{
+    display: flex;
+    align-items: center;
+  }
+  .cardsDiviso p{
+    color: black;
+  }
+.icon{
+    color: var(--ma-couleur-bouton);
+}
+
+.cardsProie{
+    margin-top: 2px;
+    height: 70vh;
+    width: 80%;
+    border: 1px solid #ffff;
+    background-color: #ffff; 
+}
+/*.profile{ 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,4 +145,4 @@
     justify-content: center;
     align-items: center;
     }
-}
+}*/

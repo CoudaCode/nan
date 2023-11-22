@@ -3,6 +3,7 @@ import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 // import Topbar from "../../components/Topbar/Topbar";
 import "./Profile.css"
+import { CgProfile } from "react-icons/cg";
 
 import img from "../../assets/images/img-profile.jpg"
 import poinVert from "../../assets/images/pointVerts.png"
@@ -13,11 +14,26 @@ function Profile() {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/*<Topbar />*/}
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
-        Profile
+        
+
+
+        <div className="profile">
+  <div className="cardsPro">
+    <div className="cardsDiviso">
+    <CgProfile className="icon"/>
+    <p>Mon Profil</p>
+    </div>
+  </div>
+
+  <div className="cardsProie">
+
+  </div>
+</div>
 
 
 
-<div className="profile">
+
+      {/*  <div className="profile">
 
 
   <div className="cardsPofit">
@@ -69,8 +85,7 @@ function Profile() {
 
   </div>
 
-</div>
-
+</div>*/}
 
 
           </div>
