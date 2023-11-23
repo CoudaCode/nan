@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
 
 function Cards(){
     let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
@@ -11,6 +13,7 @@ function Cards(){
     const [stateMessage, setStateMessage] = useState(0);
 
     const [stateStocke, setStateStocke] = useState(0);
+    let navigate = useNavigate();
 
     useEffect(()=>{
         axios.get(ApiUrl+'/api/agent/getAll', { headers: { Authorization: `token ${token}`}})
@@ -18,19 +21,37 @@ function Cards(){
             if(allCollabo.data.status){
                 setStateCollaborateur(allCollabo.data.data.length)
             }
-        });
+        })
+        .catch(error => {
+            if(error.response.data.message.toLowerCase().includes('token')){
+                Cookies.remove("NaN_Digit_Sender_Token_Secretly");
+                navigate('/connexion');
+            }
+        })
 
         axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allContact => {
             if(allContact.data.status){
                 setStateContac(allContact.data.data.length)
             }
-        });
+        })
+        .catch(error => {
+            if(error.response.data.message.toLowerCase().includes('token')){
+                Cookies.remove("NaN_Digit_Sender_Token_Secretly");
+                navigate('/connexion');
+            }
+        })
 
         axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allGroupe => {
             if(allGroupe.data.status){
                 setStateGroupo(allGroupe.data.data.length)
+            }
+        })
+        .catch(error => {
+            if(error.response.data.message.toLowerCase().includes('token')){
+                Cookies.remove("NaN_Digit_Sender_Token_Secretly");
+                navigate('/connexion');
             }
         })
 
@@ -40,12 +61,24 @@ function Cards(){
                 setStateMessage(allMessage.data.data.length)
             }
         })
+        .catch(error => {
+            if(error.response.data.message.toLowerCase().includes('token')){
+                Cookies.remove("NaN_Digit_Sender_Token_Secretly");
+                navigate('/connexion');
+            }
+        })
 
 
         axios.get(ApiUrl+'/api/stocke/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allStocke => {
             if(allStocke.data.status){
                 setStateStocke(allStocke.data.data.length)
+            }
+        })
+        .catch(error => {
+            if(error.response.data.message.toLowerCase().includes('token')){
+                Cookies.remove("NaN_Digit_Sender_Token_Secretly");
+                navigate('/connexion');
             }
         })
     }, [])

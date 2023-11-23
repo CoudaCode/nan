@@ -71,7 +71,7 @@ body {
 }
 
 .navigation ul li:nth-child(1) {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   pointer-events: none;
 }
 
@@ -93,8 +93,8 @@ body {
   position: relative;
   display: block;
   min-width: 60px;
-  height: 60px;
-  line-height: 75px;
+  height: 45px;
+  line-height: 65px;
   text-align: center;
 }
 
@@ -106,7 +106,7 @@ body {
   position: relative;
   display: block;
   padding: 0 10px;
-  height: 60px;
+  height: 50px;
   line-height: 60px;
   text-align: start;
   white-space: nowrap;
@@ -319,10 +319,62 @@ body {
   border-radius: 20px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .details-edite .recentOrders{
   position: relative;
   display: grid;
   min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px var(--black3);
+  border-radius: 20px;
+}
+
+.-info{
+  position: relative;
+  display: grid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.details-edite .recentOrders-info{
+  position: relative;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px var(--black3);
@@ -886,9 +938,9 @@ div.card[active='active'] ion-icon{
 
 .action-bttns button{
   padding: 3px;
-  width: 30px;
-  height: 30px;
-  margin: 8px;
+  width: 25px;
+  height: 25px;
+  margin: 0 8px;
   border-radius: 5px;
   border: 1px solid var(--blue);
   color: var(--blue);

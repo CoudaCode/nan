@@ -47,7 +47,7 @@ function ListingGroupe(){
     }
 
     return(
-        <div className="details">
+        <div className="details-edite">
             <div className="recentOrders">
                 <div className="cardHeader">
                     <h1>Groupes de Difusion</h1>
@@ -56,12 +56,10 @@ function ListingGroupe(){
                     <thead>
                         <tr>
                             <td><input type="checkbox" className="all" name="all" id="all"/></td>
-                            <td>Sujet</td>
-                            <td>Contenu</td>
+                            <td>Nom</td>
                             <td>Canal</td>
-                            <td>Type</td>
-                            <td>Action</td>
-
+                            <td>Contact</td>
+                            <td>Description</td>
                         </tr>
                     </thead>
 
@@ -81,7 +79,7 @@ function ListingGroupe(){
                     activeClassName={"paginationActive"}
                 />
             </div>
-            <div className="recentCustomers">
+            {/* <div className="recentCustomers">
                 <div className="cardHeader">
                     <h2>Favories</h2>
                 </div>
@@ -136,7 +134,7 @@ function ListingGroupe(){
                     </tr>
                     
                 </table>
-            </div>
+            </div> */}
 
 
         </div>

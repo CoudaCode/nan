@@ -1,24 +1,17 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
-import { VerifyCookies } from "../Actions/VerifyCookies";
-import ListingMessage from "./ListingMessage";
+import ListingCollaborateur from "./ListingCollaborateur";
 
-
-
-
-
-
-function Message() {
-  VerifyCookies();
+function Collaborateur() {
   return (
     <>
       <Sidebar />
       <div className="main">
         <Topbar />
-        <ListingMessage />
+        <ListingCollaborateur />
       </div>
     </>
   );
 }
 
-export default Message;
+export default Collaborateur;

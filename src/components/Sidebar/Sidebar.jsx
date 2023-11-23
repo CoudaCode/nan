@@ -30,7 +30,7 @@ function Sidebar() {
                             <span className="title">Broadcast</span>
                         </a>
                     </li>
-                    <li className={`${path.includes("/message") ? "hovered" : ""}`}>
+                    <li className={`${path.includes("/message") && !path.includes("/parametres/message") ? "hovered" : ""}`}>
                         <a href="/message">
                             <span className="icon">
                                 <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -38,7 +38,7 @@ function Sidebar() {
                             <span className="title">Messages</span>
                         </a>
                     </li>
-                    <li className={`${path.includes("/contact") ? "hovered" : ""}`}>
+                    <li className={`${path.includes("/contact") && !path.includes("/parametres/contact") ? "hovered" : ""}`}>
                         <a href="/contact">
                             <span className="icon">
                                 <ion-icon name="person-add-outline"></ion-icon>
@@ -62,7 +62,7 @@ function Sidebar() {
                             <span className="title">Historique de difusions</span>
                         </a>
                     </li>
-                    <li className={`${path.includes("/groupe") ? "hovered" : ""}`}>
+                    <li className={`${path.includes("/groupe") && !path.includes("/parametres/groupe") ? "hovered" : ""}`}>
                         <a href="/groupe">
                             <span className="icon">
                                 <ion-icon name="people-outline"></ion-icon>

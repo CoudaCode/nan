@@ -6,8 +6,11 @@ import Collaborateur from "./Collaborateur";
 import Contact from "./Contact";
 import Groupe from "./Groupe";
 import Message from "./Message";
+import { VerifyCookies } from "../Actions/VerifyCookies";
+
 
 function Parametres(){
+    VerifyCookies();
     return(
         <>
             <Sidebar />

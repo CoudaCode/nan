@@ -23,6 +23,8 @@ import './style.css'
 import Groupe from "./pages/Groupe/Groupe";
 import Edites from "./pages/Edete/Edites";
 import { useLocation } from "react-router-dom";
+import Collaborateur from "./pages/Collaborateur/Collaborateur";
+
   
 
 
@@ -51,6 +53,7 @@ function App() {
           <Route path="/groupe" element={<Groupe />} />
           <Route path={"/"+path.split('/')[1]+"/edite/:id"} element={<Edites />} />
           <Route path="/test" element={<Test />} />
+          <Route path="/collaborateur" element={<Collaborateur />} />
         </Routes>
       </QueryClientProvider>
     </>

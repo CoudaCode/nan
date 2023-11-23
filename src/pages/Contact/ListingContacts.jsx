@@ -46,7 +46,7 @@ function ListingContact(){
     }
 
     return(
-        <div className="details">
+        <div className="details-edite">
             <div className="recentOrders">
                 <div className="cardHeader">
                     <h1>Contacts de Difusion</h1>
@@ -79,7 +79,7 @@ function ListingContact(){
                 />
 
             </div>
-            <div className="recentCustomers">
+            {/* <div className="recentCustomers">
                 <div className="cardHeader">
                     <h2>Favories</h2>
                 </div>
@@ -134,7 +134,7 @@ function ListingContact(){
                     </tr>
                     
                 </table>
-            </div>
+            </div> */}
 
 
         </div>

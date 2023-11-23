@@ -1,0 +1,86 @@
+.title-date div.info{
+    top: 0;
+   padding: 7px;
+   font-weight: 500;
+}
+
+.title-date div.info span.label:nth-child(1){
+    display: inline-block;
+    min-width: 300px;
+    max-width: 500px;
+}
+.title-date div.info span:nth-child(2){
+    font-weight: bolder
+}
+
+.detail-user{
+    padding: 7px;
+    padding-top: 60px;
+}
+
+.detail-user div.info-use{
+    padding: 10px;
+}
+
+.detail-user span{
+    display: inline-block;
+    position: relative;
+}
+
+.detail-user span:nth-child(1){
+    width: 100px;
+}
+
+.detail-user span:nth-child(2){
+    width: 200px;
+    font-weight: bolder;
+}
+
+.detail-user span:nth-child(3){
+    width: 60px;
+}
+
+.detail-user span:nth-child(4){
+    font-weight: bolder;
+}
+
+.-info:nth-child(2){
+    border-radius: 20px;
+    box-shadow: 0 7px 25px var(--black3);
+    text-align: center;
+}
+
+
+.title-date button a{
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    padding:15px;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    background: var(--blue);
+    color: var(--white);
+    border-radius: 10px;
+    margin-top: -3rem;
+}
+
+.-info:hover:nth-child(2) {
+    /* background: var(--blue); */
+    background: linear-gradient(to top right, var(--white), var(--blue));
+    
+}
+
+.-info:hover:nth-child(2) .title-date button a{
+    background: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+}
+
+
+
+
+/* .title-date button a:hover{
+    background: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+} */

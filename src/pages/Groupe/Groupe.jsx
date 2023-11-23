@@ -5,9 +5,12 @@ import ListingGroupe from "./ListingGroupe";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
+import { VerifyCookies } from "../Actions/VerifyCookies";
+
 
 
 function Groupe() {
+  VerifyCookies();
     let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     const [DataListingGroupe, setDataListingGroupe] = useState([]);
     useEffect(()=>{

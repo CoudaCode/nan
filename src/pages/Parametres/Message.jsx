@@ -115,7 +115,6 @@ function Message(){
         onSuccess: success => {
             toast.success(success.data.message);
             const data = success.data.data;
-            console.log(data);
             rapport = document.querySelector('#recentCustomers-message').querySelector('#rapport');
             rapport.classList.remove('error');
             rapport.classList.add('success');
