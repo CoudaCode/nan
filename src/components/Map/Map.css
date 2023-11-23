@@ -1,72 +1,91 @@
 .Map .cadre {
-  border: 1px solid #fff;
+  border: 1px solid var(--ma-couleur-bouton);
+  height: 18rem;
 }
 
-.Map h1 {
+.Map h2 {
   margin-bottom: 60px;
-  color: #fff;
-  font-size: 2.5rem;
+  color: var(--ma--couleur--text);
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 /*ligne1*/
 .Map .items-start .Icon {
-  border: 2px solid #6870e0;
-  color: #fff;
-  font-size: 2rem;
+  border: 2px solid var(--ma-couleur-bouton);
+  color: var(--ma--couleur--text);
+  font-size: 1rem;
   margin: 20px;
   border-radius: 100%;
   padding: 10px;
 }
-.Map .items-start .Icon:hover {
-  color: #6870e0;
-  border: 2px solid #fff;
-}
-/*ligne2*/
-.Map .align-start .Icon {
-  border: 2px solid #6870e0;
-  color: #fff;
-  font-size: 2rem;
-  margin: 20px;
-  border-radius: 100%;
-  padding: 10px;
-}
-.Map .align-start .Icon:hover {
-  color: #6870e0;
-  border: 2px solid #fff;
-}
-.Map .cadre {
-  border: 1px solid #fff;
+.Map .items-start .Icon:hover{
+  color: var(--ma-couleur-bouton);
+  background-color: var(--ma--couleur--text);
+  border: 1px solid var(--ma--couleur--text);
 }
 
-.Map h1 {
-  margin-bottom: 60px;
-  color: #fff;
-  font-size: 2.5rem;
+/*ligne2*/
+.Map .align-start .Icon {
+  border: 2px solid var(--ma-couleur-bouton);
+  color: var(--ma--couleur--text);
+  font-size: 1rem;
+  margin: 20px;
+  border-radius: 100%;
+  padding: 10px;
 }
+.Map .align-start .Icon:hover{
+  color: var(--ma-couleur-bouton);
+  background-color: var(--ma--couleur--text);
+  border: 1px solid var(--ma--couleur--text);
+}
+
 
 /*ligne1*/
+.Map .items-start {
+  margin-top: 2rem;
+}
 .Map .items-start .Icon {
-  border: 2px solid #6870e0;
+  border: 2px solid var(--ma-couleur-bouton);
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 20px;
   border-radius: 100%;
   padding: 10px;
 }
-.Map .items-start .Icon:hover {
-  color: #6870e0;
-  border: 2px solid #fff;
-}
+
 /*ligne2*/
 .Map .align-start .Icon {
-  border: 2px solid #6870e0;
+  border: 2px solid var(--ma-couleur-bouton);
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 20px;
   border-radius: 100%;
   padding: 10px;
 }
-.Map .align-start .Icon:hover {
-  color: #6870e0;
-  border: 2px solid #fff;
+.top{
+  margin-top: 1rem;
 }
+@media (max-width: 1280px){
+  .Map .cadre {
+    height: auto;
+  }
+  .Map .element{
+    margin-top: 1.5rem;
+  }
+}
+@media (max-width: 700px){
+  .Map .map{
+    width: 25rem;
+    margin: auto;
+    margin-bottom: 2rem;
+  }
+  .Map .cadre {
+    width: 25rem;
+    margin: auto;
+  }
+  .Map .element{
+    margin-top: 1.5rem;
+  }
+}
+

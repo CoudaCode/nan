@@ -1,33 +1,51 @@
 .SendMessage {
   width: 100%;
-  background-color: #272935;
-  padding: 4rem;
+  background-color: var(--ma--couleur--text);
+  padding: 4rem ;
+  display: flex;
+}
+.part-left{
+  width: 50%;
+  color: var(--ma-couleur-principale);
+  text-align: center;
+}
+.part-left .title{
+  color: var(--ma-couleur-bouton);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+.part-left .card-body{
+  margin-top: 2rem;
+}
+.part-right{
+  width: 50%;
+}
+.cardImg{
+  height: auto;
+  max-width: 80%;
+  margin: auto;
+}
+.cardImg img{
+  border-radius: 1rem;
 }
 
-.filcardbody {
-  background-color: #272935;
-  color: #fff;
-  border: none;
-}
-.cardFilImg {
-  border: none;
-  background-color: #272935;
-}
-.filcard span {
+.part-left span {
   background-color: #6870e0;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   color: #fff;
+  font-size: 1.5rem;
 }
-.filcard p {
-  font-size: 1.1rem;
+.part-left .fil{
+  margin-top: 2rem;
 }
 .filcard h3 {
   margin-bottom: 2rem;
 }
 .cardFilImg img {
-  width: 100%;
+  width: 70%;
   height: 400px;
-  border-radius: 10px;
+  border-radius: 1rem;
 }
 
 @media (max-width: 1180px) {

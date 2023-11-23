@@ -1,15 +1,41 @@
 :root {
-    --ma-couleur-principale: #1E2029;
-    --ma-couleur-bouton: #6870e0;
-    --mon--autre--couleur: #b6b9e5;
-    --ma--couleur--text: #ffff;
-  }
-  *::after, *::before,*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    background-color: var(--ma-couleur-principale);
-    color: var(--ma--couleur--text);
-  }
+  --ma-couleur-principale: #1e2029;
+  --ma-couleur-bouton: #6870e0;
+  --mon--autre--couleur: #b6b9e5;
+  --ma--couleur--text: #ffff;
+  --titleH2: 2rem;
+  --borderRadiusButton : 25px;
+  --borderRadiusDivCadre : 1rem;
+  --titleH3: 1.5rem;
+
+}
+*::after,
+*::before,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--ma-couleur-principale);
+  color: var(--ma--couleur--text);
+}
+
+/* 
+  Coucou tout le monde j'ai réfléchir a un truc et je veux que vous l'appliquer aussi pour que nous ayons une plateforme avec des éléments uniformes 
+  - Titre utiliser la balise h1 : taille 2rem    
+  
+  - Sous-titre utiliser la balise h2 : taille 2rem 
+  
+  - Sous sous-titre utiliser la balise h3 : taille 1.5rem 
+  
+  - Texte utiliser la balise P: dimension normal de P c'est-à-dire pas de dimension
+  
+  - border-radius des boutons : 25px                                               
+  
+  - Border radius des cadres: 1rem                                                
+  
+  NB: pour définir le titre d'une partie quelque conque utiliser la balise h2 comme par exemple si je veux écrire à propos ...
+
+
+  */
