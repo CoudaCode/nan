@@ -30,12 +30,6 @@ function Profile() {
       
      <div className="profilImage">
 <img src={img} alt="" />
-<div className="overlay">
-  <div className="profilContente">
-<p>Modifier la photo </p>
-  </div>
-
-</div>
       </div>
 
 <div className="profilePremier">

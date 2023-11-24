@@ -4,7 +4,11 @@
     --mon--autre--couleur: #b6b9e5;
     --ma--couleur--text: #ffff;
   }
-
+.profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
   .cardsPro{
     height: 60px;
     width: 80%;
@@ -51,6 +55,14 @@
     height: 100%;
 }
 
+.profilImage img:hover{
+    transform: scale(1.1);
+    background-color: #5e520f;
+}
+
+.profilImage:hover{
+    background-color: #5e520f;
+}
 .profilePremier label{
     color: black;
 }
@@ -84,6 +96,7 @@
     height: 50px;
     width: 150px;
     margin-left: 30px;
+    justify-content: center
 }
 /*.profile{ 
     display: flex;
