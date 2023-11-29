@@ -6,12 +6,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 
 import "./Entreprise.css";
-<<<<<<< HEAD
-import { useEffect } from "react";
-import ApiUrl from "../../components/ApiUrl/ApiUrl";
-=======
 import logo from "../../assets/images/Nan-Send.png";
->>>>>>> c229243d70c18ff91e125a61be000e319648b709
 
 function Entreprise() {
   const code = window.location.href.split('?')[1].split('#')[0];
@@ -67,100 +62,6 @@ function Entreprise() {
 
   let onSubmit = (data) => entreprise(data);
   return (
-<<<<<<< HEAD
-    
-      <div className="Entreprise">
-      <div className="container">
-        <h2 className="heading">Créer votre Entreprise</h2>
-        <form action="" className="form" onSubmit={handleSubmit(onSubmit)}>
-          <input
-            className="form-input"
-            required={true}
-            autoComplete="off"
-            type="text"
-            id="raisonSociale"
-            {...register("raisonSociale", {
-              require: true,
-              minLength: 2,
-              maxLength: 100,
-            })}
-            placeholder="Nom de l'entreprise"
-          />
-
-          <input
-            className="form-input"
-            required={true}
-            autoComplete="off"
-            type="text"
-            id="domaineDActivite"
-            {...register("domaineDActivite", {
-              require: true,
-              minLength: 2,
-              maxLength: 50,
-            })}
-            placeholder="Domaine d'activité de l'entreprise"
-          />
-
-          <input
-            className="form-input"
-            required={true}
-            autoComplete="off"
-            type="text"
-            {...register("adresse", {
-              require: true,
-              minLength: 2,
-              maxLength: 50,
-            })}
-            placeholder="Adresse de l'entreprise"
-          />
-
-          <input
-            className="form-input"
-            type="text"
-            id="type"
-            name="type"
-            step="0.01"
-            min="0"
-            {...register("type", {
-              require: true,
-              minLength: 2,
-              maxLength: 50,
-            })}
-            placeholder="Statut de l'entreprise"
-          />
-
-          <input
-            className="form-input"
-            required={true}
-            autoComplete="off"
-            type="text"
-            id="emailInfo"
-            {...register("emailInfo", {
-              require: true,
-              minLength: 2,
-              maxLength: 50,
-              pattern: {
-                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
-                message: "Email invalide"
-              },
-            })}
-            placeholder="Entrez l'email fonctionnel de l'entreprise"
-          />
-
-          <input
-            className="form-input"
-            required={true}
-            autoComplete="off"
-            type="text"
-            {...register("passwordEmailInfo", {
-              require: true,
-              minLength: 4,
-              maxLength: 50,
-            })}
-            placeholder="Entrez le mot de passe servant à créer l'email"
-          />
-          <button className="login-button" type="submit">Soumettre</button>
-=======
    <div className="Entreprise">
 <section class="bg-gray-100">
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -269,7 +170,6 @@ function Entreprise() {
              Etape suivante
             </button>
           </div>
->>>>>>> c229243d70c18ff91e125a61be000e319648b709
         </form>
       </div>
     </div>

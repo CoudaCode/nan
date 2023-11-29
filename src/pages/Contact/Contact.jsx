@@ -1,14 +1,4 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
-<<<<<<< HEAD
-import Topbar from "../../components/Topbar/Topbar";
-import ListingContacts from "./ListingContacts";
-
-
-
-
-
-function Contacts() {
-=======
 import "./Contact.css";
 import { useState } from "react";
 import { FaSearch, FaPlus } from "react-icons/fa";
@@ -298,21 +288,9 @@ function Contact() {
     setIsModifyModalOpen(false);
     setContactToModify(null);
   };
->>>>>>> c229243d70c18ff91e125a61be000e319648b709
   return (
     <>
       <Sidebar />
-<<<<<<< HEAD
-      <div className="main">
-        <Topbar />
-        <ListingContacts />
-      </div>
-    </>
-  );
-}
-
-export default Contacts;
-=======
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029] Contact">
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -489,8 +467,7 @@ export default Contacts;
         onClose={handleCloseModifyModal}
         contact={contactToModify}
       />
-    </div>
+    </>
   );
 }
 export default Contact;
->>>>>>> c229243d70c18ff91e125a61be000e319648b709

@@ -98,11 +98,6 @@ function EditeForm(){
         })
     }, []);
 
-<<<<<<< HEAD
-
-    console.log('--------------------',state);
-=======
->>>>>>> c229243d70c18ff91e125a61be000e319648b709
     const optionSelects = (params)=>{
         return(
             <>
