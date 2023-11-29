@@ -1,111 +1,93 @@
-import { useLocation } from "react-router-dom";
-
+import { useState } from "react";
+import "./Sidebar.css";
+import { useLocation, Link } from "react-router-dom";
 function Sidebar() {
-  const path = useLocation().pathname;
-  return (
-        <div className="container">
-            <div className="navigation">
-                <ul className="ul">
-                    <li>
-                        <a href="#">
-                            <span className="icon">
-                                <ion-icon name="logo-apple"></ion-icon>
-                            </span>
-                            <span className="title">LOGO</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/dashboard") ? "hovered" : ""}`}>
-                        <a href="/dashboard">
-                            <span className="icon">
-                                <ion-icon name="home-outline"></ion-icon>
-                            </span>
-                            <span className="title">Tableau de Bord</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/broadcast") ? "hovered" : ""}`}>
-                        <a href="/broadcast">
-                            <span className="icon">
-                                <ion-icon name="send-outline"></ion-icon>
-                            </span>
-                            <span className="title">Broadcast</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/message") ? "hovered" : ""}`}>
-                        <a href="/message">
-                            <span className="icon">
-                                <ion-icon name="chatbubbles-outline"></ion-icon>
-                            </span>
-                            <span className="title">Messages</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/contact") ? "hovered" : ""}`}>
-                        <a href="/contact">
-                            <span className="icon">
-                                <ion-icon name="person-add-outline"></ion-icon>
-                            </span>
-                            <span className="title">Contacts</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/canal") ? "hovered" : ""}`}>
-                        <a href="/canal">
-                            <span className="icon">
-                                <ion-icon name="git-branch-outline"></ion-icon>
-                            </span>
-                            <span className="title">Canaux de difusions</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/historiques") ? "hovered" : ""}`}>
-                        <a href="/historiques">
-                            <span className="icon">
-                                <ion-icon name="logo-buffer"></ion-icon>
-                            </span>
-                            <span className="title">Historique de difusions</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/groupe") ? "hovered" : ""}`}>
-                        <a href="/groupe">
-                            <span className="icon">
-                                <ion-icon name="people-outline"></ion-icon>
-                            </span>
-                            <span className="title">Groupes de Difusions</span>
-                        </a>
-                    </li>
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const location = useLocation();
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
-                    <li className={`${path.includes("/Workspace") ? "hovered" : ""}`}>
-                        <a href="/Workspace">
-                            <span className="icon">
-                                <ion-icon name="logo-apple"></ion-icon>
-                            </span>
-                            <span className="title">Workspace</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/profile") ? "hovered" : ""}`}>
-                        <a href="/profile">
-                            <span className="icon">
-                                <ion-icon name="person-circle"></ion-icon>
-                            </span>
-                            <span className="title">Profile</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/parametres/collaborateur") || path.includes("/parametres/contact") || path.includes("/parametres/groupe") || path.includes("/parametres/message") ? "hovered" : ""}`}>
-                        <a href="/parametres/collaborateur">
-                            <span className="icon">
-                                <ion-icon name="cog-outline"></ion-icon>
-                            </span>
-                            <span className="title">Paramètres</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/corbelle") ? "hovered" : ""}`}>
-                        <a href="/corbelle">
-                            <span className="icon">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </span>
-                            <span className="title">Corbelle</span>
-                        </a>
-                    </li> 
-                </ul>
-            </div>
+  const menuItems = [
+    {
+      iconClass: "bx bx-grid-alt",
+      text: "Dashboard",
+      to: "/dashboard",
+    },
+    {
+      iconClass: "bx bxs-contact",
+      text: "Contact",
+      to: "/contact",
+    },
+    {
+      iconClass: "bx bx-chat",
+      text: "Messages",
+      to: "/message",
+    },
+    {
+      iconClass: "bx bx-broadcast",
+      text: "Broadcast",
+      to: "/broadcast",
+    },
+    {
+      iconClass: "bx bx-space-bar",
+      text: "Workspace",
+      to: "/workspace",
+    },
+    {
+      iconClass: "bx bxs-report",
+      text: "Reports",
+      to: "/reports",
+    },
+    {
+      iconClass: "bx bx-user",
+      text: "Profile",
+      to: "/profile",
+    },
+    {
+      iconClass: "bx bx-log-out",
+      text: "Déconnexion",
+      to: "/",
+    },
+  ];
+  return (
+    <>
+      <div className="Sidebar bg-[#1E2029] sm:w-60 min-h-screen w-14 pt-4 transition-all">
+        <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+          <div className="logo-details">
+            <i className="bx bxl-c-plus-plus icon"></i>
+            <div className="logo_name">NaN-Send</div>
+            <i className="bx bx-menu" id="btn" onClick={toggleSidebar}></i>
+          </div>
+          <ul className="nav-list">
+            <li>
+              <i className="bx bx-search"></i>
+              <input type="text" placeholder="Search..." />
+              <span className="tooltip">Search</span>
+            </li>
+
+            {menuItems.map((menuItem, index) => (
+              <li
+                key={index}
+                className={location.pathname === menuItem.to ? "active" : ""}>
+                <Link to={menuItem.to}>
+                  <i className={menuItem.iconClass}></i>
+                  <span className="links_name">{menuItem.text}</span>
+                </Link>
+                <span className="tooltip">{menuItem.text}</span>
+              </li>
+            ))}
+
+            {/* <li className="card">
+              <div className="card-body">
+                <h2 className="card-title">Nan Digital Academy</h2>
+                <p className="card-text">Version 1.0.0</p>
+              </div>
+            </li> */}
+          </ul>
         </div>
+      </div>
+    </>
   );
 }
 
