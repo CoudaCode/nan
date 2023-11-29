@@ -47,7 +47,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/verification" element={<Verification />} />
-          <Route path="/validate" element={<Validate />} />
+          <Route path="/validate/:user/:code" element={<Validate />} />
           
 
         </Routes>

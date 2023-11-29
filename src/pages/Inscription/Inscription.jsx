@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import { ApiUrl, FrontUrl } from "../../outils/URL";
+
 
 import "./Inscription.css";
 
@@ -32,7 +32,7 @@ function Inscription() {
     },
     onSuccess: success => {
       toast.success(success.data.message);
-      setTimeout(() => navigate("/validate"), 2500);
+      setTimeout(() => navigate(`/validate/${success.data.data.email}/${success.data.data.code}`), 2500);
     },
     onError: error => {
       document.querySelectorAll('input:required, button.login-button, button.social-button.google').forEach(item=>item.disabled = false); 

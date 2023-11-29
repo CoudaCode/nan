@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import axios from "axios";
 import "./Entreprise.css";
 import logo from "../../assets/images/Nan-Send.png";
 import { useEffect } from "react";
-import { ApiUrl, FrontUrl } from "../../outils/URL";
+import { ApiUrl } from "../../outils/URL";
+
 
 
 function Entreprise() {
@@ -49,7 +50,7 @@ function Entreprise() {
 
 
   
-  const { register, handleSubmit, watch, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: "" });
+  const { register, handleSubmit, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: "" });
 
   const { mutate: entreprise } = useMutation({
     mutationFn: async (send) => {
