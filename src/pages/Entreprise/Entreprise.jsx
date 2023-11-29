@@ -6,16 +6,12 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import "./Entreprise.css";
 import logo from "../../assets/images/Nan-Send.png";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ApiUrl, FrontUrl } from "../../outils/URL";
 
 
 function Entreprise() {
-  let token = Cookies.get("token");
   let navigate = useNavigate();
-
-
-
 
   const code = window.location.href.split('?')[1].split('#')[0];
   const mail = window.location.href.split('?')[1].split('#')[1];
