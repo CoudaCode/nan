@@ -43,7 +43,7 @@ function Broadcast() {
                 <td>nan</td>
                 <td>couda , diom , nfcdjobo</td>
                 <td>email</td>
-                <td>
+                <td className="action">
                   <button className="edit_field">Modifier</button>
                   <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
                 </td>
@@ -52,54 +52,54 @@ function Broadcast() {
                 <td>codeur</td>
                 <td>konany , mariam , marie</td>
                 <td>sms , whatsapp</td>
-                <td>
+                <td className="action">
                   <button className="edit_field">Modifier</button>
-                  <button className="delete_field">Supprimer</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
                 </td>
               </tr>
               <tr>
                 <td>codeur</td>
                 <td>konany , mariam , marie</td>
                 <td>sms , whatsapp</td>
-                <td>
+                <td className="action">
                   <button className="edit_field">Modifier</button>
-                  <button className="delete_field">Supprimer</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
                 </td>
               </tr>
               <tr>
                 <td>codeur</td>
                 <td>konany , mariam , marie</td>
                 <td>sms , whatsapp</td>
-                <td>
+                <td className="action">
                   <button className="edit_field">Modifier</button>
-                  <button className="delete_field">Supprimer</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
                 </td>
               </tr>
               <tr>
                 <td>codeur</td>
                 <td>konany , mariam , marie</td>
                 <td>sms , whatsapp</td>
-                <td>
+                <td className="action">
                   <button className="edit_field">Modifier</button>
-                  <button className="delete_field">Supprimer</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
                 </td>
               </tr>
               <tr>
                 <td>codeur</td>
                 <td>konany , mariam , marie</td>
                 <td>sms , whatsapp</td>
-                <td>
+                <td className="action">
                   <button className="edit_field">Modifier</button>
-                  <button className="delete_field">Supprimer</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
                 </td>
               </tr>
               <tr>
                 <td>codeur</td>
                 <td>konany , mariam , marie</td>
                 <td>sms , whatsapp</td>
-                <td>
+                <td className="action">
                   <button className="edit_field">Modifier</button>
-                  <button className="delete_field">Supprimer</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
                 </td>
               </tr>
             </table>
