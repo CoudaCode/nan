@@ -17,11 +17,20 @@ function Broadcast() {
     setModalLogOut(modal);
     console.log("fermé");
   };
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="flex h-screen">
-      <Sidebar />
+      <div
+        className={`bg-[#1E2029] ${
+          isSidebarOpen ? "sm:w-60" : "w-14"
+        }  min-h-screen pt-4 transition-all`}>
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      </div>
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/*<Topbar />*/}
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
           <div className="create_diffusion" onClick={toggleModal}>
             <p>+ CREER UNE DIFFUSION</p>
