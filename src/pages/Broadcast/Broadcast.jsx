@@ -21,6 +21,118 @@ function Broadcast() {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+  
+  const tableData = [
+    { team: "nan", members: "couda , diom , nfcdjobo", channel: "email" },
+    {
+      team: "codeur 4",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 3",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 2",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 1",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 8",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 7",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 6",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 5",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 9",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 10",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 11",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 12",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 13",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 14",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 16",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 15",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    {
+      team: "codeur 17",
+      members: "konany , mariam , marie",
+      channel: "sms , whatsapp",
+    },
+    // Add other data objects as needed
+  ];
+  const itemsPerPage = 10; // Number of items to display per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalItems = tableData.length; // Total number of items (replace with the actual total)
+
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const displayedData = tableData.slice(startIndex, endIndex);
 
   return (
     <div className="flex h-screen">
@@ -45,84 +157,81 @@ function Broadcast() {
                   <th>CANAL</th>
                 </tr>
               </thead>
-              <tr>
-                <td>nan</td>
-                <td>couda , diom , nfcdjobo</td>
-                <td>email</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
+              <tbody>
+                {displayedData.map((rowData, index) => (
+                  <tr key={index}>
+                    <td>{rowData.team}</td>
+                    <td>{rowData.members}</td>
+                    <td>{rowData.channel}</td>
+                    <td className="action">
+                      <button className="edit_field">Modifier</button>
+                      <button className="delete_field" onClick={toggleLogOut}>
+                        Supprimer
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
+            <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
+              <ol className="flex justify-center gap-1 text-xs font-medium">
+                <a
+                  onClick={handlePreviousPage}
+                  className={`${
+                    currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                  } inline-block rounded-full border border-indigo-600 p-2 text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500`}>
+                  <span className="sr-only"> Précédent </span>
+                  <svg
+                    className={`h-5 w-5 rtl:rotate-180 ${
+                      currentPage === 1 ? "text-gray-300" : ""
+                    }`}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                </a>
+
+                <li>
+                  <a
+                    href="#"
+                    className="block h-8 w-8 mt-1 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900">
+                    {currentPage}
+                  </a>
+                </li>
+
+                <a
+                  onClick={handleNextPage}
+                  className={`${
+                    currentPage === totalPages
+                      ? "opacity-50 cursor-not-allowed"
+                      : ""
+                  } inline-block rounded-full border border-indigo-600 p-2 text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500`}>
+                  <span className="sr-only"> Suivant </span>
+                  <svg
+                    className={`h-5 w-5 rtl:rotate-180 ${
+                      currentPage === totalPages ? "text-gray-300" : ""
+                    }`}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                </a>
+              </ol>
+            </div>
           </div>
 
           {modalLogOut && (

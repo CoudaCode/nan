@@ -103,13 +103,18 @@ function Reports() {
     setSelectedItem(null);
     setIsOpen(false);
   };
-
-  // >>>>>>> 5024c2acb9558d3635e5d0f8c094f8396c92eca6
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   return (
     <div className="flex h-screen">
-      <div className="Sidebar bg-[#1E2029] sm:w-60 min-h-screen w-14 pt-4 transition-all">
-{/*<Sidebar />*/}
-</div>
+      <div
+        className={`bg-[#1E2029] ${
+          isSidebarOpen ? "sm:w-60" : "w-14"
+        }  min-h-screen pt-4 transition-all`}>
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      </div>
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
           <div className="container mb-9">
@@ -238,7 +243,6 @@ function Reports() {
                 placeholder="Rechercher..."
                 className="p-2 rounded-md bg-white-800 text-black mb-2 outline-none"
               />
-
               <p className="text-center font-extrabold">
                 <button className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
                   Tout Restaurer

@@ -12,58 +12,71 @@ function Dashboard() {
 
   return (
     <div className="flex h-screen">
-      <div className="Sidebar bg-[#1E2029] sm:w-60 min-h-screen w-14 pt-4 transition-all">
-{/*<Sidebar />*/}
-</div>
+      <div
+        className={`bg-[#1E2029] ${
+          isSidebarOpen ? "sm:w-60" : "w-14"
+        }  min-h-screen pt-4 transition-all`}>
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      </div>
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
-          <div className="flex justify-between w-full">
-            <div className="bg-white w-3/12 m-2 text-black">
-              <div className="p-4 bg-teal-500 text-white">
-                <h1>Contacts</h1>
-                <h2 className="my-8">2000</h2>
-                <div className="text-right">
-                  <i className="fa-solid fa-address-card"></i>
+          <div className="w-full p-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-8">
+              <div className="h-52 rounded-lg bg-violet-600">
+                <div className="p-4 bg-violet-600 text-white">
+                  <h1>Contacts</h1>
+                  <h2 className="my-8">2000</h2>
+                  <div className="text-right">
+                    <i className="fa-solid fa-address-card"></i>
+                  </div>
+                </div>
+                <div className="p-2 text-black font-extrabold text-right bg-white">
+                  <Link>
+                    <h1>Voir</h1>
+                  </Link>
                 </div>
               </div>
-              <div className="p-2 text-teal-500 text-right">
-                <Link><h1>Voir</h1></Link>
-              </div>
-            </div>
-            <div className="bg-white w-3/12 m-2 text-black">
-              <div className="p-4">
-                <h1>Teams</h1>
-                <h2 className="my-8">2000</h2>
-                <div className="text-right text-violet-700">
-                  <i class="fa-solid fa-users"></i>
+              <div className="h-52 rounded-lg bg-violet-600">
+                <div className="p-4">
+                  <h1>Teams</h1>
+                  <h2 className="my-8">2000</h2>
+                  <div className="text-right text-violet-700">
+                    <i className="fa-solid fa-users text-white"></i>
+                  </div>
+                </div>
+                <div className="p-2 bg-white text-black font-extrabold text-right">
+                  <Link>
+                    <h1>Voir</h1>
+                  </Link>
                 </div>
               </div>
-              <div className="p-2 bg-violet-700 text-white text-right">
-                <Link><h1>Voir</h1></Link>
-              </div>
-            </div>
-            <div className="bg-white w-3/12 m-2 text-black">
-              <div className="p-4 bg-teal-500 text-white">
-                <h1>Messages envoyés</h1>
-                <h2 className="my-8">2000</h2>
-                <div className="text-right">
-                  <i class="fa-brands fa-facebook-messenger"></i>
+              <div className="h-52 rounded-lg bg-violet-600">
+                <div className="p-4 bg-violet-600 text-white">
+                  <h1>Messages envoyés</h1>
+                  <h2 className="my-8">2000</h2>
+                  <div className="text-right">
+                    <i className="fa-brands fa-facebook-messenger"></i>
+                  </div>
+                </div>
+                <div className="p-2 text-black font-extrabold text-right bg-white">
+                  <Link>
+                    <h1>Voir</h1>
+                  </Link>
                 </div>
               </div>
-              <div className="p-2 text-teal-500 text-right">
-                <Link><h1>Voir</h1></Link>
-              </div>
-            </div>
-            <div className="bg-white w-3/12 m-2 text-black">
-              <div className="p-4">
-                <h1>Messages reçus</h1>
-                <h2 className="my-8">2000</h2>
-                <div className="text-right text-violet-700">
-                  <i class="fa-solid fa-message"></i>
+              <div className="h-52 rounded-lg bg-violet-600">
+                <div className="p-4">
+                  <h1>Messages reçus</h1>
+                  <h2 className="my-8">2000</h2>
+                  <div className="text-right text-violet-700">
+                    <i className="fa-solid fa-message text-white"></i>
+                  </div>
                 </div>
-              </div>
-              <div className="p-2 bg-violet-700 text-white text-right">
-                <Link><h1>Voir</h1></Link>
+                <div className="p-2 bg-white text-black font-extrabold text-right">
+                  <Link>
+                    <h1>Voir</h1>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
