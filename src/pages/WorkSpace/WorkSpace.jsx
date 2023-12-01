@@ -47,59 +47,7 @@ const CreateContactModal = ({ isOpen, onClose }) => {
         </div>
 
         <form action="" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
-          <div>
-            <label htmlFor="fullname" className="sr-only font-medium">
-              Nom et Prenom
-            </label>
-
-            <div className="relative">
-              <input
-                type="text"
-                className="w-full rounded-lg font-extrabold text-black border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Entrez votre Nom et Prenom"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="Email" className="sr-only">
-              Email
-            </label>
-
-            <div className="relative">
-              <input
-                type="email"
-                className="w-full rounded-lg font-extrabold text-black border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter votre email"
-              />
-            </div>
-          </div>
-          <div>
-            <label htmlFor="Sms" className="sr-only">
-              Numero Sms
-            </label>
-
-            <div className="relative">
-              <input
-                type="number"
-                className="w-full rounded-lg font-extrabold text-black border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter Numero sms"
-              />
-            </div>
-          </div>
-          <div>
-            <label htmlFor="Whatsapp" className="sr-only">
-              Numero Whatsapp
-            </label>
-
-            <div className="relative">
-              <input
-                type="number"
-                className="w-full rounded-lg font-extrabold text-black border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter Numero whatsapp"
-              />
-            </div>
-          </div>
+          <p>En cours ....</p>
 
           <div className="mt-4 flex gap-2">
             <button
