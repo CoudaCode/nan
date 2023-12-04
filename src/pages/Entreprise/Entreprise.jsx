@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 const url = "https://nan-send-api.onrender.com";
 import "./Entreprise.css";
+import logo from "../../assets/images/Nan-Send.png";
 
 function Entreprise() {
   let token = Cookies.get("token");
@@ -50,117 +51,124 @@ function Entreprise() {
 
   let onSubmit = (data) => entreprise(data);
   return (
-    <div className="Entreprise">
-      <div className="ensemble">
-        <form action="" onSubmit={handleSubmit(onSubmit)}>
-          <div className="form">
-            <div className="input">
-              <p htmlFor="email" style={{ color: "#6870e0" }}>
-                Complétez vos coordonnées pour commencer.
-              </p>
-            </div>
-            <section className="cadre">
-              <div className="input">
-                <input
-                  required=""
-                  autoComplete="off"
-                  type="text"
-                  id="raisonSociale"
-                  {...register("raisonSociale", {
-                    require: true,
-                    minLength: 2,
-                    maxLength: 50,
-                  })}
-                />
-                <label htmlFor="name">Raison Social!</label>
-              </div>
-              <div className="input">
-                <input
-                  required=""
-                  autoComplete="off"
-                  type="text"
-                  id="domaineDActivite"
-                  {...register("domaineDActivite", {
-                    require: true,
-                    minLength: 2,
-                    maxLength: 50,
-                  })}
-                />
-                <label htmlFor="domaineDActivite">Domaine d'activité</label>
-              </div>
-              <div className="input">
-                <input
-                  required=""
-                  autoComplete="off"
-                  type="text"
-                  {...register("adresse", {
-                    require: true,
-                    minLength: 2,
-                    maxLength: 50,
-                  })}
-                />
-                <label htmlFor="adresse">Adresse</label>
-              </div>
-              {/* <div className="input">
+   <div className="Entreprise">
+<section class="bg-gray-100">
+  <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
+      <div class="lg:col-span-2 lg:py-12 cadreLogo">
+        <p class="max-w-xl text-mg">
+        Libérez la puissance de NaN-<span>Send</span> pour faciliter <br /> vos
+          conversations avec vos clients.
+        </p>
+
+        <div class="mt-8">
+          <a href="" class="text-2xl font-bold text-pink-100">
+            <img src={logo} alt="" />
+          </a>
+
+          <address class="mt-2 not-italic">
+          Copyright <span className="span1">NaN-Send</span> &copy;2023 By <span className="span2">Naniens .</span>
+          </address>
+        </div>
+      </div>
+
+      <div class="rounded-lg  p-8 shadow-lg lg:col-span-3 lg:p-12 form">
+        <form action="" class="space-y-4">
+        <div className="code">
+            <label htmlFor="name" style={{ color: "#6870e0" }}>
+              Créons votre organisation, XXXXXXXXXXXX !
+            </label><br />
+            <input
+              class="w-full rounded-lg  p-3 text-sm"
+              placeholder="***********"
+              type="number"
+              id="compte"
+            />
+          </div>
+          
+            <label class="sr-only" htmlFor="name">Nadddme</label>
+            <input
+              class="w-full rounded-lg border-gray-200 p-3 text-sm"
+              placeholder="Name"
+              type="text"
+              id="name"
+            />
+          
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label class="sr-only" for="site">Site Web</label>
               <input
-                required=""
-                autoComplete="off"
-                type="number"
-                placeholder="+225 --- --- --- -"
-                style={{ width: "70%" }}
-                {...register("fullname",{require:true, minLength:2,maxLength:50, })}
+                class="w-full rounded-lg border-aqua-100 p-3 text-sm"
+                placeholder="Site Web"
+                type="text"
+                id="site"
               />
-              <label htmlFor="name">Numéro de téléphone</label>
-            </div> */}
-              <div className="input">
-                <input
-                  type="text"
-                  id="type"
-                  name="type"
-                  step="0.01"
-                  min="0"
-                  {...register("type", {
-                    require: true,
-                    minLength: 2,
-                    maxLength: 50,
-                  })}
-                />
-                <label htmlFor="types">Type d'entreprise</label>
-              </div>
-              <div className="input">
-                <input
-                  required=""
-                  autoComplete="off"
-                  type="text"
-                  id="emailInfo"
-                  {...register("emailInfo", {
-                    require: true,
-                    minLength: 2,
-                    maxLength: 50,
-                  })}
-                />
-                <label htmlFor="name">Email de l'entreprise</label>
-              </div>
-              <div className="input">
-                <input
-                  required=""
-                  autoComplete="off"
-                  type="text"
-                  {...register("passwordEmailInfo", {
-                    require: true,
-                    minLength: 2,
-                    maxLength: 50,
-                  })}
-                />
-                <label htmlFor="name">Password de votre mail</label>
-                <button type="submit">Enregister Entreprise</button>
-              </div>
-            </section>
+            </div>
+            <div>
+              <label class="sr-only" htmlFor="phone">Phone</label>
+              <input
+                class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                placeholder="Telephone"
+                type="number"
+                id="phone"
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <input
+                class="w-full rounded-lg border-aqua-100 p-3 text-sm"
+                placeholder="Domaine"
+                type="text"
+                id="domaine"
+              />
+            </div>
+            <div>
+              <input
+                class="w-full rounded-lg border-gray-200 p-3 text-sm"
+                placeholder="Industrie"
+                type="text"
+                id="industrie"
+              />
+            </div>
+          </div>
+          <div>
+            <input
+              class="w-full rounded-lg border-gray-200 p-3 text-sm"
+              placeholder="Pays"
+              type="text"
+              id="pays"
+            />
+          </div>
+
+          <div>
+            <input
+              class="w-full rounded-lg border-gray-200 p-3 text-sm"
+              placeholder="Pays"
+              type="text"
+              id="pays"
+            />
+          </div>
+          <div class="mt-4">
+            <button
+              type="submit"
+              class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+            >
+             Etape suivante
+            </button>
           </div>
         </form>
       </div>
     </div>
-  );
+  </div>
+</section>
+
+
+   </div>
+    
+  )
 }
 
 export default Entreprise;
