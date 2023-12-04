@@ -59,6 +59,8 @@ function Profile() {
   <label htmlFor="">E-mail</label>
   <input type="text" placeholder="kouamefranckolivier45@gmail.com"/>
   </div>
+
+  
 </div>
     </div>
 
