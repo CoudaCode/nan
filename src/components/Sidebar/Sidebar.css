@@ -1,4 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 .sidebar .bx-search {
   position: absolute;
   top: 50%;
@@ -190,8 +190,6 @@
   color: #11101d;
 }
 
-
-
 .card {
   background-color: #fff;
   color: #845ec8;
@@ -209,19 +207,6 @@
 .card-text {
   font-size: 0.8rem;
   text-align: center;
-} */
-
-
-/** Style Main*/
-/* .main.active{
-  width: calc(100% - 250px);
 }
-
-.main{
-  background: white;
-  width: calc(100%-75px);
-  border: 1px var(--white);
-} */
-
 
 
