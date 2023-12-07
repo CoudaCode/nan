@@ -8,6 +8,20 @@
   --borderRadiusDivCadre : 1rem;
   --titleH3: 1.5rem;
 
+  --blue: #1e2029;
+  --blueFlue: #1795ce;
+  --white: #fff;
+  --black1: #222;
+  --black2: #999;
+  --black3: rgba(0, 0, 0, 0.08);
+  --black4: rgba(0, 0, 0, 0.1);
+  --red: #f00;
+  --orange: #e9b10a;
+  --green: #8de02c;
+  --success: #03792a;
+  --success2: #03b63f;
+  --error: #fc3e61;
+  --violet: #6870e0;
 }
 *::after,
 *::before,
@@ -15,27 +29,260 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
 }
-body {
+/* body {
   background-color: var(--ma-couleur-principale);
   color: var(--ma--couleur--text);
+} */
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* 
-  Coucou tout le monde j'ai réfléchir a un truc et je veux que vous l'appliquer aussi pour que nous ayons une plateforme avec des éléments uniformes 
-  - Titre utiliser la balise h1 : taille 2rem    
-  
-  - Sous-titre utiliser la balise h2 : taille 2rem 
-  
-  - Sous sous-titre utiliser la balise h3 : taille 1.5rem 
-  
-  - Texte utiliser la balise P: dimension normal de P c'est-à-dire pas de dimension
-  
-  - border-radius des boutons : 25px                                               
-  
-  - Border radius des cadres: 1rem                                                
-  
-  NB: pour définir le titre d'une partie quelque conque utiliser la balise h2 comme par exemple si je veux écrire à propos ...
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
+.sidebar.open {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+}
 
-  */
+.sidebar.open{
+  width: 75px;
+}
+
+.sidebar .bx-search {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background: #1d1b31;
+  color: #fff;
+}
+.sidebar li a:hover {
+  background: #fff;
+}
+.sidebar li a .links_name {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+.sidebar.open .bx-search:hover {
+  background: #1d1b31;
+  color: #fff;
+}
+
+.sidebar.open li a .links_name {
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar .bx-search:hover {
+  background: #fff;
+  color: #11101d;
+}
+
+.sidebar li a {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #11101d;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i {
+  transition: all 0.5s ease;
+  color: #11101d;
+}
+.sidebar li i {
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+
+.sidebar i {
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  line-height: 60px;
+  text-align: center;
+}
+.sidebar li:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar .nav-list {
+  margin-top: 20px;
+  height: 100%;
+}
+.sidebar.open li .tooltip {
+  display: none;
+}
+.sidebar li {
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+.sidebar li .tooltip {
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  padding: 6px 12px;
+  color: #11101d;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 900;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar input {
+  color: white;
+  font-size: 15px;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  width: 50px;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  font-weight: 400;
+  background: #1d1b31;
+}
+
+.sidebar.open input {
+  padding: 0 20px 0 50px;
+  width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+.sidebar .logo-details .logo_name {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background: #11101d;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
+}
+.sidebar.open {
+  width: 250px;
+}
+.sidebar.open .logo-details .icon,
+.Fsidebar.open .logo-details .logo_name {
+  opacity: 1;
+}
+
+.sidebar .logo-details #btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.sidebar .logo-details {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sidebar.open .logo-details #btn {
+  text-align: right;
+}
+
+.sidebar .logo-details .icon {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.sidebar li.active a {
+  background: #fff;
+  color: #11101d;
+}
+.sidebar li.active a .links_name {
+  color: #11101d;
+}
+.sidebar li.active a i {
+  color: #11101d;
+}
+
+.card {
+  background-color: #fff;
+  color: #845ec8;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-text {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/** Style Main*/
+.main.active{
+  position: absolute;
+  width: calc(100% - 250px);
+  left: 250px;
+  min-width: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+
+.main{
+  position: absolute;
+  background: white;
+  width: calc(100%-75px);
+  border: 1px var(--white);
+  
+  left: 75px;
+}

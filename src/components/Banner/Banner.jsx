@@ -20,87 +20,83 @@ import "./Banner.css";
 
 function Banner() {
   const [slidIndex, setSlidIndex] = useState(0);
+  const myImages = [imgslid1, imgslid2, imgslid3, imgslid4, imgslid5, imgslid6, imgslid7];
+  
 
   useEffect(() => {
-    const fonctionSlid = () => {
-      const slid = document.querySelectorAll(".slid");
-      for (let i = 0; i < slid.length; i++) {
-        slid[i].style.display = "none";
-      }
+    const slider = document.querySelector(".slider");
+    const slides = document.querySelectorAll(".slide");
 
-      setSlidIndex((slidIndex) => {
-        let nextIndex = slidIndex + 1;
-        if (nextIndex >= slid.length) {
-          nextIndex = 0;
-        }
-        slid[nextIndex].style.display = "block";
-        return nextIndex;
-      });
-    };
+    let currentIndex = 0;
 
-    const intervalId = setInterval(fonctionSlid, 2000);
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlider();
+    }
 
-    return () => {
-      clearInterval(intervalId);
-    };
+    function updateSlider() {
+      const translateValue = -currentIndex * 100 + "%";
+      slider.style.transform = "translateX(" + translateValue + ")";
+    }
+
+    setInterval(nextSlide, 5000); // Change slide every 3 seconds
+
+
+
   }, []);
+
   return (
     <div className="Banner">
       <div className="article">
         <div className="partieBienvenu">
           <div className="bienvenu1">
-            <h1>
-              Se Retrouver, Echanger et Discuter avec la Principale Plateforme
-              de Messagerie NaN-SEND
-            </h1>
+            <h1> Se Retrouver, Echanger et Discuter avec la Principale Plateforme de Messagerie NaN-SEND </h1>
             <div className="bienvenu2">
-              <h4>
+              <p>
                 Une plateforme de messagerie professionnelle qui unifie la
                 communication client pour les organisations à la pointe de la
                 technologie et prennent en charge via la messagerie instantanée,
                 le chat Web et le courrier électronique.
-              </h4>
+              </p>
             </div>
           </div>
           <div className="btn-part">
-            <button className="bouton1">
-              <Link to="/inscription">S'inscrire</Link>
+            <button className="bouton">
+              <Link to="/inscription">S&apos;inscrire</Link>
             </button>
-            <button className="bouton2">
+            <button className="bouton">
               <Link to="/connexion">Se connecter</Link>
             </button>
           </div>
         </div>
-        <div className="partieSlid">
-          <div className="moncadreslid">
-            <div className="slid">
-              {" "}
-              <img src={imgslid1} alt="" width="100%" height="70%" />
+        {/* <div className="partieSlid"> */}
+        <div className="partieBienvenu">
+          {/* <div className="slider">
+            <div className="moncadreslid">
+              {myImages.map((item, indice) => <div key={indice} className={classImage}> <img src={item} style={{width}}/></div>)}
             </div>
-            <div className="slid">
-              {" "}
-              <img src={imgslid2} alt="" width="100%" height="70%" />
+          </div> */}
+          <div className="slider-container">
+          <div className="slider">
+            {myImages.map((item, indice) => <div key={indice} className={'slide'}> <img src={item}/></div>)}   
+            {/* <div className="slide">
+              <img src="image1.jpg" alt="Image 1"/>
             </div>
-            <div className="slid">
-              {" "}
-              <img src={imgslid3} alt="" width="100%" height="70%" />
+            <div className="slide">
+              <img src="image2.jpg" alt="Image 2"/>
             </div>
-            <div className="slid">
-              {" "}
-              <img src={imgslid7} alt="" width="100%" height="70%" />
-            </div>
-            <div className="slid">
-              {" "}
-              <img src={imgslid5} alt="" width="100%" height="70%" />
-            </div>
-            <div className="slid">
-              {" "}
-              <img src={imgslid6} alt="" width="100%" height="70%" />
-            </div>
+            <div className="slide">
+              <img src="image3.jpg" alt="Image 3"/>
+            </div> */}
           </div>
         </div>
+          
+        </div>
       </div>
+
+      
       <div className="titleCentral">
+      {/* <div className="article"> */}
         <h3>Confiance Par Plusieurs Entreprises</h3>
         <div className="logo-patenaire">
           <img src={imagEcobanck} alt="" />

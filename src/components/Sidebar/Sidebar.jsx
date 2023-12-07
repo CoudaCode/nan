@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Sidebar.css";
+// import "./Sidebar.css";
 import { useLocation, Link } from "react-router-dom";
 function Sidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -7,6 +7,13 @@ function Sidebar() {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  const toggle = () => {
+    let navigation = document.querySelector('.sidebar ');
+    let main = document.querySelector('.main');
+    navigation.classList.toggle('open');
+    main.classList.toggle('active');
+  }
 
   const menuItems = [
     {
@@ -53,11 +60,11 @@ function Sidebar() {
   return (
     <>
       <div className="Sidebar bg-[#1E2029] sm:w-60 min-h-screen w-14 pt-4 transition-all">
-        <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+        <div className={`sidebar open`}>
           <div className="logo-details">
             <i className="bx bxl-c-plus-plus icon"></i>
             <div className="logo_name">NaN-Send</div>
-            <i className="bx bx-menu" id="btn" onClick={toggleSidebar}></i>
+            <i className="bx bx-menu" id="btn" onClick={toggle}></i>
           </div>
           <ul className="nav-list">
             <li>
