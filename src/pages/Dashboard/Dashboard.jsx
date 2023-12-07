@@ -1,28 +1,21 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 // // import Topbar from "../../components/Topbar/Topbar";
-// import "./dashboard.css";
+import "./dashboard.css";
 function Dashboard() {
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  // const toggleSidebar = () => {
-  //   setIsSidebarOpen(!isSidebarOpen);
-  // };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
-    <>
-      {/* <div className="flex h-screen"> */}
+    <div className="flex h-screen">
       <Sidebar />
-      <div className="main active">
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">Dashbord</div>
-        </div>
-        jhhhhjhhghhghghghgghhghg
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">Dashbord</div>
       </div>
-      {/* </div> */}
-
-      
-    </>
+    </div>
   );
 }
 
