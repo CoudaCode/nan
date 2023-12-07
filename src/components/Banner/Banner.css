@@ -1,108 +1,9 @@
 .Banner {
-  position: relative;
   width: 100%;
-  padding-top: 3rem;
-  background-color: var(--blue);
+  padding-top: 8rem;
+  background-color: var(--ma-couleur-principale);
 }
-
-.article{
-  position: relative;
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  margin: 30px auto;
-  border: 1px solid var(--green);
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 700px);
-  justify-content: center;
-  grid-gap: 10px;
-}
-
-.partieBienvenu{
-  width: 700px;
-  height: 500px;
-  padding: 1rem;
-}
-
-.partieBienvenu .bienvenu1{
-  position: relative;
-  width: 100%;
-  color: var(--white);
-  padding: 10px;
-}
-
-.partieBienvenu .bienvenu1 h1{
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.partieBienvenu .bienvenu1 .bienvenu2{
-  line-height: 40px;
-  text-align: justify;
-}
-
-.partieBienvenu .btn-part{
-  position: relative;
-  padding-top: 2rem;
-  display: flex;
-}
-
-.partieBienvenu .btn-part button{
-  color: var(--white);
-  font-size: 1.75rem;
-  padding: .2rem 1rem;
-  box-shadow: 2px 2px 0 1px var(--white);
-  
-}
-
-.partieBienvenu .moncadreslid{
-  position: relative;
-  width: 100%;
-  padding-top: 2rem;
-  border: 1px solid var(--white);
-  overflow: hidden;
-}
-
-.slider-container {
-  position: relative;
-  width: 100%;
-  margin: auto;
-  overflow: hidden;
-  margin-top: 2rem;
-}
-
-.slider-container .slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slider-container .slider .slide {
-  min-width: 100%;
-  box-sizing: border-box;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.15), 0 0 30px rgba(0, 0, 0, 0.1);
-}
-
-.slider-container .slider .slide img {
-  width: 100%;
-  height: 400px;
-  /* box-shadow: 2px 2px 0 1px var(--white); */
-  
-  border-radius: 1rem;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* @media (min-width: 1000px) {
+@media (min-width: 1000px) {
   .Banner .article {
     display: flex;
     width: 100%;
@@ -297,6 +198,7 @@
     height: 50%;
     border-radius: 1rem;
     margin: auto;
+    /* margin-top: 0.3rem; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -455,11 +357,7 @@
   .Banner .cta:active {
     transform: scale(0.95);
   }
-} */
-
-
-
-
+}
 /* @media (max-width: 1200px) {
   .Banner .apropos {
     width: 100%;
@@ -468,14 +366,7 @@
     margin-top: 5rem;
   }
 } */
-
-
-
-
-
-
-
-/* @media (max-width: 1000px) {
+@media (max-width: 1000px) {
   .Banner .article {
     width: 100%;
     height: auto;
@@ -837,4 +728,4 @@
     height: 3rem;
   }
  
-} */
+}
