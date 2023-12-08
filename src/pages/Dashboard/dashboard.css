@@ -1,16 +1,4 @@
 
-.main.open{
-    
-    width: calc(100%-250px);
-    left: 250px;
-    background-color: #f0f8ff;
-    transition: 0.5s;
-}
 
-.main{
-    position: absolute;
-    width: calc(100%-78px);
-    left: 78px;
-    transition: 0.5s;
-}
+
 

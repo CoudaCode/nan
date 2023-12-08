@@ -9,8 +9,6 @@ import logo from "../../assets/images/Nan-Send.png";
 import { useEffect } from "react";
 import { ApiUrl } from "../../outils/URL";
 
-
-
 function Entreprise() {
   let navigate = useNavigate();
 
@@ -44,12 +42,6 @@ function Entreprise() {
     }
   }, []);
 
-  
-  // const { register, handleSubmit } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: ""});
-  
-
-
-  
   const { register, handleSubmit, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: "" });
 
   const { mutate: entreprise } = useMutation({
@@ -82,7 +74,7 @@ function Entreprise() {
 
   let onSubmit = data => entreprise(data);
   return (
-   <div className="Entreprise">
+  <div className="Entreprise">
     <section className="bg-gray-100">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
@@ -169,7 +161,6 @@ function Entreprise() {
                 </div>
               </div>
 
-
               <div>
                 <input className="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Adresse E-mail" type="email" id="email" name="email"
                   {...register("email", {
@@ -190,7 +181,7 @@ function Entreprise() {
         </div>
       </div>
     </section>
-   </div>
+  </div>
     
   )
 }

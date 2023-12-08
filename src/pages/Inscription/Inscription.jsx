@@ -6,7 +6,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { ApiUrl, FrontUrl } from "../../outils/URL";
 
-
 import "./Inscription.css";
 
 function Inscription() {
@@ -97,13 +96,7 @@ function Inscription() {
           />
           {errors.telephone && (<p className="text-red-500 text-sm">{errors.telephone.message}</p>)}
 
-
-          <input
-            required=""
-            className="input"
-            type="text"
-            name="nationalite"
-            id="nationalite"
+          <input required="" className="input" type="text" name="nationalite" id="nationalite"
             {...register("nationalite", {
               require: true,
               minLength: 2,
