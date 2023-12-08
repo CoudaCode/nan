@@ -84,12 +84,9 @@ function WorkSpace() {
 
   return (
     <div className="flex h-screen">
-      <div
-        className={`bg-[#1E2029] ${
-          isSidebarOpen ? "sm:w-60" : "w-14"
-        }  min-h-screen pt-4 transition-all`}>
+      {/* <div className={`bg-[#1E2029] ${ isSidebarOpen ? "sm:w-60" : "w-14" }  min-h-screen pt-4 transition-all`}> */}
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      </div>
+      {/* </div> */}
       <div className="main flex-1 flex flex-col overflow-hidden" id="main">
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
           <p className="text-center font-extrabold mt-4">
