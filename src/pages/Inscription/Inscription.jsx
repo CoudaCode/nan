@@ -6,8 +6,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { ApiUrl, FrontUrl } from "../../outils/URL";
 
-import "./Inscription.css";
-
 function Inscription() {
   let navigate = useNavigate();
   const { register, handleSubmit, watch, formState: { errors } } = useForm({ fullname: "", email: "", telephone: "", nationalite: "", password: "" });
@@ -41,7 +39,7 @@ function Inscription() {
   });
   let onSubmit = data => user(data);
   return (
-    <div className="Inscription">
+    <div className="Connexion">
       <div className="container">
         <div className="heading">Inscription</div>
         <form action="" className="form" onSubmit={handleSubmit(onSubmit)}>
