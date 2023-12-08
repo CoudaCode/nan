@@ -1,4 +1,4 @@
-// import "./App.css";
+import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import Acceuil from "./pages/Accueil/Acceuil";
@@ -48,8 +48,6 @@ function App() {
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/validate/:user/:code" element={<Validate />} />
-          
-
         </Routes>
       </QueryClientProvider>
     </>

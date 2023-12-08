@@ -102,202 +102,10 @@ const ModifyConfirmationModal = ({ isOpen, onClose, contact }) => {
     </div>
   );
 };
-const ImportConfirmationModal = ({ isOpen, onClose }) => {
-  if (!isOpen) {
-    return null;
-  }
 
-  const handleImport = (event) => {
-    // Prevent the default form submission
-    event.preventDefault();
-
-    // Access the file from the input element
-    const file = event.target.files[0];
-
-    // Handle the import logic here
-    // You may want to use FileReader to read the contents of the file
-    // ...
-
-    // Close the modal
-    onClose();
-  };
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* Overlay */}
-      <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
-
-      {/* Modal */}
-      <div className="mx-auto bg-gray-900 max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 rounded-lg shadow-2xl z-10">
-        <h2 className="text-lg font-bold">Importer le contact</h2>
-
-        <p className="mt-2 text-sm text-white">
-          Sélectionnez un fichier CSV à importer.
-        </p>
-
-        <form onSubmit={handleImport} className="">
-          <div className="mt-4 mb-6">
-            <input
-              type="file"
-              accept=".csv"
-              className="border border-gray-300 p-2 rounded-lg"
-            />
-          </div>
-
-          <div className="mt-4 flex gap-2">
-            <button
-              type="submit"
-              className="rounded bg-violet-500  hover:bg-violet-900  px-4 py-2 text-sm font-medium text-white">
-              Importer
-            </button>
-
-            <button
-              type="button"
-              className="rounded bg-red-500 hover:bg-red-900  px-4 py-2 text-sm font-medium text-white"
-              onClick={onClose}>
-              Annuler
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-const CreateContactModal = ({ isOpen, onClose }) => {
-  if (!isOpen) {
-    return null;
-  }
-
-  const [contactData, setContactData] = useState({
-    nom: "",
-    prenom: "",
-    email: "",
-    telephone: "",
-    whatsapp: "",
-  });
-
-  const handleCreateContact = () => {
-    // Handle the create contact logic here
-    // Use the 'contactData' state for the contact details
-    // ...
-
-    // Clear the form and close the modal
-    setContactData({
-      nom: "",
-      prenom: "",
-      email: "",
-      telephone: "",
-      whatsapp: "",
-    });
-
-    onClose();
-  };
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* Overlay */}
-      <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
-
-      {/* Modal */}
-      <div className="mx-auto w-2/4 bg-gray-900 max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 rounded-lg shadow-2xl z-10">
-        <div className="mx-auto max-w-lg text-center">
-          <h1 className="text-2xl text- font-bold text-white sm:text-3xl">
-            Remplissez les champs svp!
-          </h1>
-        </div>
-
-        <form action="" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
-          <div>
-            <label htmlFor="fullname" className="sr-only font-medium">
-              Nom et Prenom
-            </label>
-
-            <div className="relative">
-              <input
-                type="text"
-                className="w-full rounded-lg font-extrabold text-black border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Entrez votre Nom et Prenom"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="Email" className="sr-only">
-              Email
-            </label>
-
-            <div className="relative">
-              <input
-                type="email"
-                className="w-full rounded-lg font-extrabold text-black border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter votre email"
-              />
-            </div>
-          </div>
-          <div>
-            <label htmlFor="Sms" className="sr-only">
-              Numero Sms
-            </label>
-
-            <div className="relative">
-              <input
-                type="number"
-                className="w-full rounded-lg font-extrabold text-black border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter Numero sms"
-              />
-            </div>
-          </div>
-          <div>
-            <label htmlFor="Whatsapp" className="sr-only">
-              Numero Whatsapp
-            </label>
-
-            <div className="relative">
-              <input
-                type="number"
-                className="w-full rounded-lg font-extrabold text-black border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter Numero whatsapp"
-              />
-            </div>
-          </div>
-
-          <div className="mt-4 flex gap-2">
-            <button
-              type="button"
-              className="rounded bg-violet-500  hover:bg-violet-900  px-4 py-2 text-sm font-medium text-white"
-              onClick={handleCreateContact}>
-              Confirmer l'ajout
-            </button>
-
-            <button
-              type="button"
-              className="rounded bg-red-500 hover:bg-red-900  px-4 py-2 text-sm font-medium text-white"
-              onClick={onClose}>
-              Annuler
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
 function Contact() {
-  // Popup pour import et creation de contact
-  const [isImportPopupOpen, setIsImportPopupOpen] = useState(false);
-  const [isCreatePopupOpen, setIsCreatePopupOpen] = useState(false);
-
-  const toggleImportPopup = () => {
-    setIsImportPopupOpen(!isImportPopupOpen);
-  };
-
-  const toggleCreatePopup = () => {
-    setIsCreatePopupOpen(!isCreatePopupOpen);
-  };
-
-  //Pagination du tableau
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
   const [selectedContact, setSelectedContact] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [contactToModify, setContactToModify] = useState(null);
@@ -480,20 +288,10 @@ function Contact() {
     setIsModifyModalOpen(false);
     setContactToModify(null);
   };
-
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
   return (
     <div className="flex h-screen">
-      <div
-        className={`bg-[#1E2029] ${
-          isSidebarOpen ? "sm:w-60" : "w-14"
-        }  min-h-screen pt-4 transition-all`}>
-        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      </div>
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <Sidebar />
+      <div className="main flex-1 flex flex-col overflow-hidden open" id="main">
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029] Contact">
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div className="flex items-center justify-between pb-4">
@@ -512,18 +310,18 @@ function Contact() {
                 <button
                   id="btn"
                   className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                  type="button"
-                  onClick={toggleImportPopup}>
+                  type="button">
                   <FaPlus style={{ margin: "8px " }} />
-                  Importer le contact
+                  contact d’mportation
                 </button>
+
                 <button
                   id="btn"
                   className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 data-modal-toggle=authentication-modal"
                   type="button"
-                  onClick={toggleCreatePopup}>
+                  onClick={() => setShowModal(true)}>
                   <FaPlus style={{ margin: "8px " }} />
-                  Ajouter le contact
+                  ajouter le contact
                 </button>
               </div>
             </div>
@@ -668,16 +466,6 @@ function Contact() {
         isOpen={isModifyModalOpen}
         onClose={handleCloseModifyModal}
         contact={contactToModify}
-      />
-
-      <CreateContactModal
-        isOpen={isCreatePopupOpen}
-        onClose={toggleCreatePopup}
-      />
-
-      <ImportConfirmationModal
-        isOpen={isImportPopupOpen}
-        onClose={toggleImportPopup}
       />
     </div>
   );

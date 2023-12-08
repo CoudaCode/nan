@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
-.sidebar .bx-search {
+.Sidebar .bx-search {
   position: absolute;
   top: 50%;
   left: 0;
@@ -8,10 +8,10 @@
   background: #1d1b31;
   color: #fff;
 }
-.sidebar li a:hover {
+.Sidebar li a:hover {
   background: #fff;
 }
-.sidebar li a .links_name {
+.Sidebar li a .links_name {
   color: #fff;
   font-size: 15px;
   font-weight: 400;
@@ -21,21 +21,21 @@
   pointer-events: none;
   transition: 0.4s;
 }
-.sidebar.open .bx-search:hover {
+.Sidebar.open .bx-search:hover {
   background: #1d1b31;
   color: #fff;
 }
 
-.sidebar.open li a .links_name {
+.Sidebar.open li a .links_name {
   opacity: 1;
   pointer-events: auto;
 }
-.sidebar .bx-search:hover {
+.Sidebar .bx-search:hover {
   background: #fff;
   color: #11101d;
 }
 
-.sidebar li a {
+.Sidebar li a {
   display: flex;
   height: 100%;
   width: 100%;
@@ -45,19 +45,19 @@
   transition: all 0.4s ease;
   background: #11101d;
 }
-.sidebar li a:hover .links_name,
-.sidebar li a:hover i {
+.Sidebar li a:hover .links_name,
+.Sidebar li a:hover i {
   transition: all 0.5s ease;
   color: #11101d;
 }
-.sidebar li i {
+.Sidebar li i {
   height: 50px;
   line-height: 50px;
   font-size: 18px;
   border-radius: 12px;
 }
 
-.sidebar i {
+.Sidebar i {
   color: #fff;
   height: 60px;
   min-width: 50px;
@@ -65,26 +65,26 @@
   line-height: 60px;
   text-align: center;
 }
-.sidebar li:hover .tooltip {
+.Sidebar li:hover .tooltip {
   opacity: 1;
   pointer-events: auto;
   transition: all 0.4s ease;
   top: 50%;
   transform: translateY(-50%);
 }
-.sidebar .nav-list {
+.Sidebar .nav-list {
   margin-top: 20px;
   height: 100%;
 }
-.sidebar.open li .tooltip {
+.Sidebar.open li .tooltip {
   display: none;
 }
-.sidebar li {
+.Sidebar li {
   position: relative;
   margin: 8px 0;
   list-style: none;
 }
-.sidebar li .tooltip {
+.Sidebar li .tooltip {
   position: absolute;
   top: -20px;
   left: calc(100% + 15px);
@@ -100,7 +100,7 @@
   pointer-events: none;
   transition: 0s;
 }
-.sidebar input {
+.Sidebar input {
   color: white;
   font-size: 15px;
   outline: none;
@@ -114,7 +114,7 @@
   background: #1d1b31;
 }
 
-.sidebar.open input {
+.Sidebar.open input {
   padding: 0 20px 0 50px;
   width: 100%;
 }
@@ -125,14 +125,14 @@
   box-sizing: border-box;
   font-family: "Poppins";
 }
-.sidebar .logo-details .logo_name {
+.Sidebar .logo-details .logo_name {
   color: #fff;
   font-size: 20px;
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
 }
-.sidebar {
+.Sidebar {
   position: fixed;
   left: 0;
   top: 0;
@@ -143,15 +143,15 @@
   z-index: 99;
   transition: all 0.5s ease;
 }
-.sidebar.open {
+.Sidebar.open {
   width: 250px;
 }
-.sidebar.open .logo-details .icon,
-.Fsidebar.open .logo-details .logo_name {
+.Sidebar.open .logo-details .icon,
+.FSidebar.open .logo-details .logo_name {
   opacity: 1;
 }
 
-.sidebar .logo-details #btn {
+.Sidebar .logo-details #btn {
   position: absolute;
   top: 50%;
   right: 0;
@@ -164,29 +164,29 @@
   transition: all 0.5s ease;
 }
 
-.sidebar .logo-details {
+.Sidebar .logo-details {
   height: 60px;
   display: flex;
   align-items: center;
   position: relative;
 }
-.sidebar.open .logo-details #btn {
+.Sidebar.open .logo-details #btn {
   text-align: right;
 }
 
-.sidebar .logo-details .icon {
+.Sidebar .logo-details .icon {
   opacity: 0;
   transition: all 0.5s ease;
 }
 
-.sidebar li.active a {
+.Sidebar li.active a {
   background: #fff;
   color: #11101d;
 }
-.sidebar li.active a .links_name {
+.Sidebar li.active a .links_name {
   color: #11101d;
 }
-.sidebar li.active a i {
+.Sidebar li.active a i {
   color: #11101d;
 }
 
@@ -210,3 +210,11 @@
 }
 
 
+
+.main{
+  position: relative;
+  /* display: none; */
+  width: calc(100%-250px);
+  left: 250px;
+  background-color: #f0f8ff;
+}

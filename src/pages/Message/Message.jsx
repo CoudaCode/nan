@@ -15,7 +15,7 @@ function Message() {
         }  min-h-screen pt-4 transition-all`}>
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       </div>
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="main flex-1 flex flex-col overflow-hidden open" id="main">
         {/*<Topbar />*/}
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">Message</div>
       </div>

@@ -90,7 +90,7 @@ function WorkSpace() {
         }  min-h-screen pt-4 transition-all`}>
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       </div>
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="main flex-1 flex flex-col overflow-hidden open" id="main">
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
           <p className="text-center font-extrabold mt-4">
             <button onClick={toggleCreatePopup} className="inline-block rounded bg-indigo-600 hover:bg-indigo-900 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
