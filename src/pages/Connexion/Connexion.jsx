@@ -22,9 +22,9 @@
       onSuccess: (succes) => {
         console.log("demo", succes.data);
         toast.success(succes.data.message);
-        Cookie.set("token", succes.data.token, { expires: 3600 * 24 });
+        Cookie.set("NaN_Digit_Sender_Token_Secretly", succes.data.token, { expires: 3600 * 24 });
         setTimeout(() => {
-          sessionStorage.setItem("token", JSON.stringify(succes.data.id));
+          sessionStorage.setItem("NaN_Digit_Sender_Token_Secretly", JSON.stringify(succes.data.id));
           navigate("/dashboard");
         }, 3000);
       },

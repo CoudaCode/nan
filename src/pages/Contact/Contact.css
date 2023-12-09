@@ -23,7 +23,11 @@
 /*Poppup*/
 
 .Contact form {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 100%;
-  height: 200px;
+  height: auto;
+}
+
+.azert{
+  width: 1000px;
 }

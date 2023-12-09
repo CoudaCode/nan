@@ -264,3 +264,55 @@
   left: 78px;
 }
 
+
+
+/* Conteneur de la pagination */
+.paginationBttns {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+}
+
+/* Bouton précédent désactivé */
+.previous.paginationDisabled {
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Bouton suivant désactivé */
+.next.paginationDisabled {
+  color: #999;
+  cursor: not-allowed;
+}
+
+
+
+/* Styles pour les boutons */
+.paginationBttns li {
+  margin: 0 5px; /* Espacement entre les boutons */
+}
+
+/* Styles généraux pour les liens des boutons */
+.paginationBttns a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  color: #007bff;
+}
+
+/* Bouton actif */
+.paginationActive a {
+  background-color: #22287d;
+  color: white;
+  font-weight: bolder;
+}
+
+/* Styles pour les boutons précédents et suivants */
+.previousBttn,
+.nextBttn {
+  background-color: #fff;
+}
+

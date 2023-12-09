@@ -1,272 +1,281 @@
+import axios from "axios";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import { ApiUrl } from "../../outils/URL";
 import "./Contact.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch, FaPlus } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { IsCookies } from "../../outils/IsCookie";
+import { toast } from "react-toastify";
+import ReactPaginate from "react-paginate";
+import ModifyConfirmationModal from "./ModifyConfirmationModal";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
-const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, contact }) => {
-  if (!isOpen || !contact) {
-    return null;
-  }
 
-  const handleDelete = () => {
-    // Handle the deletion logic here
-    // For example, remove the contact from the list
-    // ...
-    // Close the modal
-    onConfirm();
-  };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
 
-      <div className="rounded-lg bg-white p-8 shadow-2xl z-10">
-        <h2 className="text-lg font-bold">Supprimer le contact</h2>
 
-        <p className="mt-2 text-sm text-gray-500">
-          Êtes-vous sûr de vouloir supprimer ce contact?
-        </p>
 
-        <div className="mt-4 flex gap-2">
-          <button
-            type="button"
-            className="rounded bg-red-500 px-4 py-2 text-sm font-medium text-white"
-            onClick={handleDelete}>
-            Oui
-          </button>
+// const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, contact }) => {
+//   if (!isOpen || !contact) { return null }
 
-          <button
-            type="button"
-            className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
-            onClick={onClose}>
-            Non
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
+//   const handleDelete = () => {
+//     // Handle the deletion logic here
+//     // For example, remove the contact from the list
+//     // ...
+//     // Close the modal
+//     onConfirm();
+//   };
 
-const ModifyConfirmationModal = ({ isOpen, onClose, contact }) => {
-  if (!isOpen || !contact) {
-    return null;
-  }
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center">
+//       <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
 
-  const handleModification = () => {
-    // Handle the modification logic here
-    // For example, update the contact data in the list
-    // ...
-    // Close the modal
-    onClose();
-  };
+//       <div className="rounded-lg bg-white p-8 shadow-2xl z-10">
+//         <h2 className="text-lg font-bold">Supprimer le contact</h2>
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
+//         <p className="mt-2 text-sm text-gray-500">
+//           Êtes-vous sûr de vouloir supprimer ce contact?
+//         </p>
 
-      <div className="rounded-lg bg-white p-8 shadow-2xl z-10">
-        <h2 className="text-lg font-bold">Modifier le contact</h2>
+//         <div className="mt-4 flex gap-2">
+//           <button
+//             type="button"
+//             className="rounded bg-red-500 px-4 py-2 text-sm font-medium text-white"
+//             onClick={handleDelete}>
+//             Oui
+//           </button>
 
-        <form>
-          <label>Nom et Prénom:</label>
-          <input
-            type="text"
-            value={contact.nom}
-            onChange={(e) => {
-              // Handle the change in the contact data
-              // For example, update the contact data in the state
-              // e.g., setContactData({ ...contactData, nom: e.target.value });
-            }}
-            // Add onChange handler to update contact data
-          />
+//           <button
+//             type="button"
+//             className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
+//             onClick={onClose}>
+//             Non
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
-          {/* Add other input fields for email, phone, etc. */}
+// const ModifyConfirmationModal = ({ isOpen, onClose, contact }) => {
+//   if (!isOpen || !contact) {
+//     return null;
+//   }
 
-          <div className="mt-4 flex gap-2">
-            <button
-              type="button"
-              className="rounded bg-green-500 px-4 py-2 text-sm font-medium text-white"
-              onClick={handleModification}>
-              Confirmer la modification
-            </button>
+//   const handleModification = () => {
+//     // Handle the modification logic here
+//     // For example, update the contact data in the list
+//     // ...
+//     // Close the modal
+//     onClose();
+//   };
 
-            <button
-              type="button"
-              className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
-              onClick={onClose}>
-              Annuler
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
+
+//   const initialFormData = {
+//     fullname: contact.fullname,
+//     email: contact.email,
+//     whatsapp: contact.whatsapp,
+//     sms: contact.sms,
+//     hiddenField: contact._id, // Champ invisible
+//   };
+//   const [formData, setFormData] = useState(initialFormData);
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({ ...formData, [name]: value });
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     console.log('Données du formulaire soumises :', formData);
+//     // Ajoutez ici la logique pour traiter les données du formulaire, par exemple, envoyer à un backend
+//   };
+
+  
+
+  
+  
+
+
+
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center">
+//       <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
+
+//       <div className="rounded-lg bg-white p-8 shadow-2xl z-10 w-[40rem]">
+//         <h2 className="text-lg font-bold">Modifier le contact</h2>
+
+//         <form className="max-w-md mx-auto mt-8 p-8 bg-white rounded-lg shadow-md" onSubmit={handleSubmit}>
+//         <h3 className="text-2xl font-semibold mb-6 text-purple-600">Modifier contact</h3>
+//           <label className="block mb-4">
+//             <span className="text-gray-700">Nom et Prénom :</span>
+//             <input
+//               type="text"
+//               name="fullname"
+//               value={formData.fullname}
+//               autoComplete="fullname"
+//               onChange={handleChange}
+//               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-purple-500 text-purple-600"
+//             />
+//           </label>
+
+//           <label className="block mb-4">
+//             <span className="text-gray-700">Email :</span>
+//             <input
+//               type="email"
+//               name="email"
+//               placeholder="Email"
+//               value={formData.email}
+//               autoComplete="email"
+//               onChange={handleChange}
+//               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-purple-500 text-purple-600"
+//             />
+//           </label>
+
+//           <label className="block mb-4">
+//             <span className="text-gray-700">Téléphone :</span>
+//             <input
+//               type="tel"
+//               name="sms"
+//               value={formData.sms}
+//               autoComplete="sms"
+//               onChange={handleChange}
+//               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-purple-500 text-purple-600"
+//             />
+//           </label>
+
+//           <label className="block mb-4">
+//             <span className="text-gray-700">WhatsApp :</span>
+//             <input
+//               type="tel"
+//               name="whatsapp"
+//               value={formData.whatsapp}
+//               autoComplete="whatsapp"
+//               onChange={handleChange}
+//               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-purple-500 text-purple-600"
+//             />
+//           </label>
+
+//           <input type="hidden" name="hiddenField" value={formData.hiddenField} />
+
+//           {/* Add other input fields for email, phone, etc. */}
+
+//           <div className="flex justify-between">
+//             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" > Soumettre </button>
+
+//             <button type="button" onClick={onClose} className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"> Fermer </button>
+            
+//           </div>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// };
 
 function Contact() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const token = IsCookies();
+  const navigate = useNavigate();
+  const [AllContacts, SetAllContact] = useState([]);
+  useEffect(()=>{
+    if(!token){
+      toast.error('Session expirée, veuillez vous connecter !');
+      navigate('/connexion');
+    }
+  }, [])
+  
+
   const [selectedContact, setSelectedContact] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [contactToModify, setContactToModify] = useState(null);
   const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
-  const conatct = [
-    {
-      id: 16,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 1,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 2,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 3,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 4,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 5,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 15,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 14,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 13,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 12,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 6,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 11,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 10,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 9,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 8,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 7,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-  ];
-  const totalPages = Math.ceil(conatct.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = conatct.slice(indexOfFirstItem, indexOfLastItem);
+  
 
-  // Fonction pour aller à la page précédente
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  useEffect(()=>{
+    axios.get(ApiUrl + 'contact/getAll', { headers: { Authorization: `token ${token}`} })
+    .then(success => {
+      SetAllContact(success.data.data)
+    })
+  }, []);
 
-  // Fonction pour aller à la page suivante
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+  const [pagesNumber, setPagesNumber] = useState(0);
+  const ContactsPerPage = 9;
+  const pagesVisited = pagesNumber * ContactsPerPage;
+  const displayContacts = AllContacts.slice(pagesVisited, pagesVisited + ContactsPerPage).map((item, index) => {
+    return(
+      <>
+        <ModifyConfirmationModal contact={item}/>
+      
+      <tr key={item._id}>
+        <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+          {item.fullname}
+        </td>
+        <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+          {item.email}
+        </td>
+        <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+          {item.whatsapp}
+        </td>
+        <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+          {item.sms}
+        </td>
+        <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700">
+          <a
+            onClick={() => handleModify(item._id)}
+            className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+            Modifier
+          </a>
+          <a
+            onClick={() => handleDelete(item._id)}
+            className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+            Supprimer
+          </a>
+        </td>
+      </tr>
+      </>
+    )
+  })
+
+const pageCount = Math.ceil(AllContacts.length / ContactsPerPage);
+const changePage = ({selected})=>{
+  setPagesNumber(selected);
+}
+
+  
+
+
+
+
+
+
+
+  // const totalPages = Math.ceil(conatct.length / itemsPerPage);
+  // const indexOfLastItem = currentPage * itemsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // const currentItems = conatct.slice(indexOfFirstItem, indexOfLastItem);
+
+  // // Fonction pour aller à la page précédente
+  // const handlePreviousPage = () => {
+  //   if (currentPage > 1) {
+  //     setCurrentPage(currentPage - 1);
+  //   }
+  // };
+
+  // // Fonction pour aller à la page suivante
+  // const handleNextPage = () => {
+  //   if (currentPage < totalPages) {
+  //     setCurrentPage(currentPage + 1);
+  //   }
+  // };
 
   const handleDelete = (contactId) => {
-    const contact = conatct.find((c) => c.id === contactId);
+    const contact = AllContacts.find(c => c._id === contactId);
+    alert(contactId)
     setSelectedContact(contact);
     setIsDeleteModalOpen(true);
   };
 
   const handleModify = (contactId) => {
-    const contact = conatct.find((c) => c.id === contactId);
+    const contact = AllContacts.find(c => c._id === contactId);
     setContactToModify(contact);
     setIsModifyModalOpen(true);
   };
@@ -342,19 +351,21 @@ function Contact() {
                           Numéro Whatsapp
                         </th>
                         <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
-                          Langue
+                          SMS
                         </th>
-                        <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+                        {/* <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
                           Pays
-                        </th>
+                        </th> */}
                         <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
                           Actions
                         </th>
                       </tr>
                     </thead>
-
+                    
                     <tbody className="divide-y divide-gray-200">
-                      {currentItems.map((item) => {
+                      { displayContacts }
+
+                      {/* {currentItems.map((item) => {
                         return (
                           <tr key={item.id}>
                             <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
@@ -386,12 +397,29 @@ function Contact() {
                             </td>
                           </tr>
                         );
-                      })}
+                      })} */}
                     </tbody>
                   </table>
+                  
                 </div>
                 <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
-                  <ol className="flex justify-center gap-1 text-xs font-medium">
+                <ol className="flex justify-center gap-1 text-xs font-medium">
+                  <ReactPaginate
+                    previousLabel={'Précedent'}
+                    nextLabel={'Suivant'}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={'paginationBttns'}
+                    previousLinkClassName={'previousBttn'}
+                    nextLinkClassName={"nextBttn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+                  />
+                </ol> 
+                  
+                  
+                  
+                  {/* <ol className="flex justify-center gap-1 text-xs font-medium">
                     <a
                       onClick={handlePreviousPage}
                       className={`${
@@ -447,7 +475,7 @@ function Contact() {
                         />
                       </svg>
                     </a>
-                  </ol>
+                  </ol> */}
                 </div>
               </div>
             </div>
