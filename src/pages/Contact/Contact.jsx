@@ -172,6 +172,7 @@ import DeleteConfirmationModal from "./DeleteConfirmationModal";
 //   );
 // };
 
+
 function Contact() {
   const token = IsCookies();
   const navigate = useNavigate();
@@ -298,7 +299,7 @@ const changePage = ({selected})=>{
     setContactToModify(null);
   };
   return (
-    <div className="flex h-screen">
+    <>
       <Sidebar />
       <div className="main flex-1 flex flex-col overflow-hidden" id="main">
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029] Contact">
@@ -320,7 +321,7 @@ const changePage = ({selected})=>{
                   id="btn"
                   className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                   type="button">
-                  <FaPlus style={{ margin: "8px " }} />
+                  <FaPlus style={{ margin: "8px" }} />
                   contact d’mportation
                 </button>
 
@@ -495,7 +496,7 @@ const changePage = ({selected})=>{
         onClose={handleCloseModifyModal}
         contact={contactToModify}
       />
-    </div>
+    </>
   );
 }
 export default Contact;

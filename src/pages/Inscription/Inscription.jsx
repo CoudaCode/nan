@@ -44,7 +44,7 @@ function Inscription() {
         <div className="heading">Inscription</div>
         <form action="" className="form" onSubmit={handleSubmit(onSubmit)}>
           <input
-            required=""
+            required={true}
             className="input"
             type="text"
             name="fullname"
@@ -61,7 +61,7 @@ function Inscription() {
           {errors.fullname && (<p className="text-red-500 text-sm">{errors.fullname.message}</p>)}
 
           <input
-            required=""
+            required={true}
             className="input"
             type="email"
             name="email"
@@ -78,7 +78,7 @@ function Inscription() {
           {errors.email && (<p className="text-red-500 text-sm">{errors.email.message}</p>)}
 
           <input
-            required=""
+            required={true}
             className="input"
             type="text"
             name="telephone"
@@ -97,7 +97,7 @@ function Inscription() {
           <input required="" className="input" type="text" name="nationalite" id="nationalite"
             {...register("nationalite", {
               require: true,
-              minLength: 2,
+              minLength: 4,
               maxLength: 50,
               validate: {notEmpty: value => !/^\s*$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
             })}
@@ -106,7 +106,7 @@ function Inscription() {
           {errors.nationalite && (<p className="text-red-500 text-sm">{errors.nationalite.message}</p>)}
 
           <input
-            required=""
+            required={true}
             className="input"
             type="password"
             name="password"
@@ -145,7 +145,7 @@ function Inscription() {
           <span className="forgot-password">
             <a href="#">Mot de passe oublié ?</a>
           </span>
-          <input className="login-button" type="submit" value="S'inscrire" />
+          <button className="login-button" type="submit">S&apos;inscrire</button>
         </form>
         <div className="social-account-container">
           <span className="title">Ou connectez-vous avec</span>

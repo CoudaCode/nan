@@ -50,6 +50,7 @@ function Entreprise() {
 
   const { register, handleSubmit, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: "" });
 
+  
   const { mutate: entreprise } = useMutation({
     mutationFn: async (send) => {
       document.querySelectorAll('input:required, button').forEach(item=>item.disabled = true);
@@ -76,6 +77,7 @@ function Entreprise() {
       toast.error(error.response.data.message);
     }
   });
+    
 
   let onSubmit = data => entreprise(data);
   return (

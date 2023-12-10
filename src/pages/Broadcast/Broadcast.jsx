@@ -1,16 +1,204 @@
-
-import React from "react";
+import React , {useEffect , useState} from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 // import Topbar from "../../components/Topbar/Topbar";
 import "./Broadcast.css"
 function Broadcast() {
+
+
+  const [ modal , setModal ] =useState(false)
+	const toggleModal = ()=>{
+		setModal(!modal)
+	}
+
+  const [modalLogOut , setModalLogOut] = useState(false)
+
+    const toggleLogOut = () =>{
+        setModalLogOut(!modal)
+        console.log('ouvert')
+    }
+    const closeToggle = () =>{
+        setModalLogOut(modal)
+        console.log('fermé')
+    }
   return (
     <div className="flex h-screen">
       <Sidebar />
       <div className="main flex-1 flex flex-col overflow-hidden" id="main">
         {/*<Topbar />*/}
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
-          Broadcast
+          <div className="create_diffusion" onClick={toggleModal}>
+            <p>+ CREER UNE DIFFUSION</p>
+          </div>
+
+          <div className="broadcast_table">
+            <table>
+              <thead>
+                <tr>
+                  <th>TEAM</th>
+                  <th>MEMBRES</th>
+                  <th>CANAL</th>
+                </tr>
+              </thead>
+              <tr>
+                <td>nan</td>
+                <td>couda , diom , nfcdjobo</td>
+                <td>email</td>
+                <td className="action">
+                  <button className="edit_field">Modifier</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
+                </td>
+              </tr>
+              <tr>
+                <td>codeur</td>
+                <td>konany , mariam , marie</td>
+                <td>sms , whatsapp</td>
+                <td className="action">
+                  <button className="edit_field">Modifier</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
+                </td>
+              </tr>
+              <tr>
+                <td>codeur</td>
+                <td>konany , mariam , marie</td>
+                <td>sms , whatsapp</td>
+                <td className="action">
+                  <button className="edit_field">Modifier</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
+                </td>
+              </tr>
+              <tr>
+                <td>codeur</td>
+                <td>konany , mariam , marie</td>
+                <td>sms , whatsapp</td>
+                <td className="action">
+                  <button className="edit_field">Modifier</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
+                </td>
+              </tr>
+              <tr>
+                <td>codeur</td>
+                <td>konany , mariam , marie</td>
+                <td>sms , whatsapp</td>
+                <td className="action">
+                  <button className="edit_field">Modifier</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
+                </td>
+              </tr>
+              <tr>
+                <td>codeur</td>
+                <td>konany , mariam , marie</td>
+                <td>sms , whatsapp</td>
+                <td className="action">
+                  <button className="edit_field">Modifier</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
+                </td>
+              </tr>
+              <tr>
+                <td>codeur</td>
+                <td>konany , mariam , marie</td>
+                <td>sms , whatsapp</td>
+                <td className="action">
+                  <button className="edit_field">Modifier</button>
+                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          {modalLogOut && (
+                <div className="overlay">
+                    <div class="notifications-container">
+                <div class="success">
+                  <div class="flex">
+                    <div class="flex-shrink-0">
+                      <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="succes-svg">
+                        <path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+                      </svg>
+                    </div>
+                    <div class="success-prompt-wrap">
+                      <p class="success-prompt-heading">
+                        Cette action va supprimer cette diffusion
+                      </p>
+                      <div class="success-prompt-prompt">
+                        <p>En êtes-vous sûre ?</p>
+                      </div>
+                      <div class="success-button-container">
+                        <button class="success-button-main" type="button" onClick={closeToggle}>
+                          Annuler
+                        </button>
+                        <button class="success-button-secondary" type="button" >
+                          Supprimer
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                </div>
+                
+              
+            )}
+          
+          {modal && (<div className="modal">
+				<div className="overlay" onClick={toggleModal}></div>
+							<div className="container-projet">
+					
+					<div className="modal-content container-projet">
+						<div className="modal__header">
+							<span className="modal__title">Nouvelle diffusion</span><button className="button button--icon" onClick={toggleModal}><svg width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg">
+									<path fill="none" d="M0 0h24v24H0V0z"></path>
+									<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg></button>
+						</div>
+						<div className="modal__body">
+
+            <div className="input">
+								<label className="input__label">Nom de la team</label>
+								<input className="input__field" type="text"/> 
+								<p className="input__description"></p>
+							</div>
+
+              <div className="input">
+								<label className="input__label">Membres de la team</label>
+								<input className="input__field" type="text"/> 
+								<p className="input__description"></p>
+							</div>
+
+              <div className="input">
+								<label className="input__label">Canal/canaux de diffusion</label>
+								<input className="input__field" type="text"/> 
+								<p className="input__description"></p>
+							</div>
+
+
+
+
+
+
+							{/* <div className="input">
+								<label className="input__label">Nom de Projet</label>
+								<input className="input__field" type="text"/> 
+								<p className="input__description">Le titre ne peut contenir que  32 caractères</p>
+							</div>
+							<div className="input">
+												<label className="input__label">Description</label>
+								<textarea className="input__field input__field--textarea" ></textarea>
+									<p className="input__description">Donnez la description la plus claire possible de votre projet.</p>
+							</div>
+
+							<div className="input">
+								<label className="input__label">Fond d'investissement</label>
+								<input className="input__field" type="number"  placeholder='CFA' /> 
+								<p className="input__description">Donnez le  fond nécéssaire au projet</p>
+							</div> */}
+							
+						</div>
+						
+						<div className="modal__footer">
+							<button className="button button--primary close-modal" >Créer la diffusion</button>
+						</div>
+					</div>
+				</div>
+				</div>)}
           
            </div>
       </div>

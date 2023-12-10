@@ -1,14 +1,14 @@
 import {useState} from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
-import "./Message.css"
+// import "./Message.css";
 function Message() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
-    <div className="flex h-screen">
+    <>
       <Sidebar />
       <div className="main flex-1 flex flex-col overflow-hidden" id="main">
        {/* <Topbar />*/} 
@@ -173,7 +173,7 @@ function Message() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
