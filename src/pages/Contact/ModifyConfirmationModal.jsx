@@ -1,23 +1,16 @@
 import { useState } from "react";
 
 
-function ModifyConfirmationModal(props){
-  const isOpen = props.isOpen;
-  const onClose = props.onClose;
-  const contact = props.contact;
+function ModifyConfirmationModal({isOpen, onClose, contact}){
+
   if (!isOpen || !contact) {
     return null;
   }
 
-  // alert(selectedContact)
-
   const handleModification = () => {
-    // Handle the modification logic here
-    // For example, update the contact data in the list
-    // ...
-    // Close the modal
-    onClose();
-  };
+    console.log('02')
+    // onClose();
+  }
 
 
   const initialFormData = {
@@ -36,7 +29,6 @@ function ModifyConfirmationModal(props){
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Données du formulaire soumises :', formData);
-    // Ajoutez ici la logique pour traiter les données du formulaire, par exemple, envoyer à un backend
   };
 
   return (
@@ -44,8 +36,6 @@ function ModifyConfirmationModal(props){
       <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
 
       <div className="rounded-lg bg-white p-8 shadow-2xl z-10 w-[40rem]">
-        <h2 className="text-lg font-bold">Modifier le contact</h2>
-
         <form className="max-w-md mx-auto mt-8 p-8 bg-white rounded-lg shadow-md" onSubmit={handleSubmit}>
         <h3 className="text-2xl font-semibold mb-6 text-purple-600">Modifier contact</h3>
           <label className="block mb-4">
@@ -53,6 +43,7 @@ function ModifyConfirmationModal(props){
             <input
               type="text"
               name="fullname"
+              placeholder="Nom et Prénom"
               value={formData.fullname}
               autoComplete="fullname"
               onChange={handleChange}
@@ -78,6 +69,7 @@ function ModifyConfirmationModal(props){
             <input
               type="tel"
               name="sms"
+              placeholder="Téléphone"
               value={formData.sms}
               autoComplete="sms"
               onChange={handleChange}
@@ -90,6 +82,7 @@ function ModifyConfirmationModal(props){
             <input
               type="tel"
               name="whatsapp"
+              placeholder="WhatsApp"
               value={formData.whatsapp}
               autoComplete="whatsapp"
               onChange={handleChange}
@@ -102,7 +95,7 @@ function ModifyConfirmationModal(props){
           {/* Add other input fields for email, phone, etc. */}
 
           <div className="flex justify-between">
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" > Soumettre </button>
+            <button type="submit" onClick={handleModification} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" > Soumettre </button>
 
             <button type="button" onClick={onClose} className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"> Fermer </button>
             
