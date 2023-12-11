@@ -14,6 +14,7 @@
   border-radius: 20px;
   font-size: 1.1rem;
   box-shadow: 3px 3px 3px #6870e0;
+  cursor: pointer;
 }
 
 .Contact #search {
@@ -26,5 +27,9 @@
   /* border: 2px solid red; */
   width: 100%;
   height: auto;
+}
+
+table tbody tr td a{
+  cursor: pointer;
 }
 

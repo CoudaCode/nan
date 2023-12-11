@@ -23,7 +23,7 @@ function Contact() {
       toast.error('Session expirée, veuillez vous connecter !');
       navigate('/connexion');
     }
-  }, [])
+  }, []);
   
   const [selectedContact, setSelectedContact] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -40,7 +40,7 @@ function Contact() {
   useEffect(()=>{
     axios.get(ApiUrl + 'contact/getAll', { headers: { Authorization: `token ${token}`} })
     .then(success => {
-      SetAllContact(success.data.data)
+      SetAllContact(success.data.data.sort((a, b) => a.fullname.localeCompare(b.fullname)))
     })
   }, []);
 
@@ -50,7 +50,7 @@ function Contact() {
   const displayContacts = AllContacts.slice(pagesVisited, pagesVisited + ContactsPerPage).map( item => {
     return(
       <>
-        <ModifyConfirmationModal contact={item}/>
+        {/* <ModifyConfirmationModal contact={item}/> */}
       
         <tr key={item._id}>
           <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
@@ -230,6 +230,7 @@ function Contact() {
         onClose={handleCloseContact}
         isFormModalOpen={isFormModalOpen}
         contact={openAddForm}
+        statusForm = {handleSaveContact}
       />
 
       <FormImportContact
