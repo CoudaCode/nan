@@ -28,7 +28,8 @@ function FormImportContact({ isOpen, onClose, onConfirm, contact }){
         mutationFn: data => saveContact(data),
         onSuccess: success => {
             toast.success(success.data.message);
-            setTimeout(() => window.location.reload(), 3050);
+            onClose();
+            // setTimeout(() => window.location.reload(), 3050);
         },
         onError: error => {
             document.querySelector('.FormImporteContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = false);

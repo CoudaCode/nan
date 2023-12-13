@@ -5,13 +5,14 @@ import "./Contact.css";
 import { useEffect, useState } from "react";
 import { FaSearch, FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { IsCookies } from "../../outils/IsCookie";
+import { DeleteCookies, IsCookies } from "../../outils/IsCookie";
 import { toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
 import ModifyConfirmationModal from "./ModifyConfirmationModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import FormContactModal from "./FormContactModal";
 import FormImportContact from "./FormImportContact";
+
 
 
 function Contact() {
@@ -42,6 +43,13 @@ function Contact() {
     .then(success => {
       SetAllContact(success.data.data.sort((a, b) => a.fullname.localeCompare(b.fullname)))
     })
+    .catch(error => {
+      if(error.response.data.message === 'Expired token'){
+        DeleteCookies();
+        toast.error('Session expirée, veuillez vous connecter !');
+        navigate('/connexion');
+      }
+    })
   }, []);
 
   const [ pagesNumber, setPagesNumber ] = useState(0);
@@ -52,7 +60,7 @@ function Contact() {
       <>
         {/* <ModifyConfirmationModal contact={item}/> */}
       
-        <tr key={item._id}>
+        <tr id={'ligne-'+item._id} key={item._id}>
           <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
             {item.fullname}
           </td>
@@ -65,7 +73,7 @@ function Contact() {
           <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
             {item.sms}
           </td>
-          <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700">
+          <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700" style={{ justifyContent:'center'}}>
             <a
               onClick={() => handleModify(item._id)}
               className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">

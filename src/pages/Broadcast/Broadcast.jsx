@@ -1,209 +1,257 @@
-import React , {useEffect , useState} from "react";
+import axios from "axios";
 import Sidebar from "../../components/Sidebar/Sidebar";
-// import Topbar from "../../components/Topbar/Topbar";
-import "./Broadcast.css"
+import { ApiUrl } from "../../outils/URL";
+import "./Contact.css";
+import { useEffect, useState } from "react";
+import { FaSearch, FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { DeleteCookies, IsCookies } from "../../outils/IsCookie";
+import { toast } from "react-toastify";
+import ReactPaginate from "react-paginate";
+import ModifyConfirmationModal from "./ModifyConfirmationModal";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import FormBroadcastModal from "./FormBroadcastModal";
+import ModalContact from "./ModalContact";
+
+
+
+
 function Broadcast() {
-
-
-  const [ modal , setModal ] =useState(false)
-	const toggleModal = ()=>{
-		setModal(!modal)
-	}
-
-  const [modalLogOut , setModalLogOut] = useState(false)
-
-    const toggleLogOut = () =>{
-        setModalLogOut(!modal)
-        console.log('ouvert')
+  const token = IsCookies();
+  const navigate = useNavigate();
+  const [AllContacts, SetAllContact] = useState([]);
+  useEffect(()=>{
+    if(!token){
+      toast.error('Session expirée, veuillez vous connecter !');
+      navigate('/connexion');
     }
-    const closeToggle = () =>{
-        setModalLogOut(modal)
-        console.log('fermé')
-    }
+  }, []);
+  
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [contactToModify, setContactToModify] = useState(null);
+  const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
+
+  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+  const [isFormModalClose, setIsFormModalClose] = useState(null);
+
+  const [openAddForm, setIsOpenAddForm] = useState(null);
+
+  const [openImportForm, setIsOpenImportForm] = useState(null);
+  
+  useEffect(()=>{
+    axios.get(ApiUrl + 'groupe/getAll', { headers: { Authorization: `token ${token}`} })
+    .then(success => {
+      SetAllContact(success.data.data.sort((a, b) => a.name.localeCompare(b.name)))
+    })
+    .catch(error => {
+      if(error.response.data.message === 'Expired token'){
+        DeleteCookies();
+        toast.error('Session expirée, veuillez vous connecter !');
+        navigate('/connexion');
+      }
+    })
+  }, []);
+
+  const [ pagesNumber, setPagesNumber ] = useState(0);
+  const ContactsPerPage = 9;
+  const pagesVisited = pagesNumber * ContactsPerPage;
+  const displayContacts = AllContacts.slice(pagesVisited, pagesVisited + ContactsPerPage).map( item => {
+    return(
+      <>
+      
+        <tr id={'ligne-'+item._id} key={item._id}>
+          <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+            {item.name}
+          </td>
+          <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+            <a>
+              {item.contact.length}
+            </a>
+            
+          </td>
+          <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+            {item.canal}
+          </td>
+          <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+            {item.description}
+          </td>
+          <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700" style={{ justifyContent:'center'}}>
+            <a
+              onClick={() => handleModify(item._id)}
+              className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+              Modifier
+            </a>
+            <a
+              onClick={() => handleDelete(item._id)}
+              className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+              Supprimer
+            </a>
+          </td>
+        </tr>
+      </>
+    )
+  })
+
+  const pageCount = Math.ceil(AllContacts.length / ContactsPerPage);
+  const changePage = ({selected})=>{ setPagesNumber(selected); }
+
+  const handleDelete = (contactId) => {
+    const contact = AllContacts.find(c => c._id === contactId);
+    setSelectedContact(contact);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setIsFormModalClose(false);
+    setSelectedContact(null);
+  };
+
+  const handleCloseModifyModal = () => {
+    setIsModifyModalOpen(false);
+    setContactToModify(null);
+  };
+
+  const handleCloseFormModal = () => {
+    setIsDeleteModalOpen(false);
+    setSelectedContact(null);
+  };
+
+
+
+  const handleModify = (contactId) => {
+    const contact = AllContacts.find(c => c._id === contactId);
+    setContactToModify(contact);
+    setIsModifyModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleSaveContact = (e) => {
+    setIsOpenAddForm(true)
+  };
+
+  const handleCloseContact = (e) => {
+    setIsOpenAddForm(false)
+  };
+
+  const handleImportContact = (e) => {
+    setIsOpenImportForm(true)
+  };
+
+  const handleCloseImportContact = (e) => {
+    setIsOpenImportForm(false)
+  };
+
   return (
-    <div className="flex h-screen">
+    <>
       <Sidebar />
       <div className="main flex-1 flex flex-col overflow-hidden" id="main">
-        {/*<Topbar />*/}
-        <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
-          <div className="create_diffusion" onClick={toggleModal}>
-            <p>+ CREER UNE DIFFUSION</p>
-          </div>
-
-          <div className="broadcast_table">
-            <table>
-              <thead>
-                <tr>
-                  <th>TEAM</th>
-                  <th>MEMBRES</th>
-                  <th>CANAL</th>
-                </tr>
-              </thead>
-              <tr>
-                <td>nan</td>
-                <td>couda , diom , nfcdjobo</td>
-                <td>email</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
-                </td>
-              </tr>
-              <tr>
-                <td>codeur</td>
-                <td>konany , mariam , marie</td>
-                <td>sms , whatsapp</td>
-                <td className="action">
-                  <button className="edit_field">Modifier</button>
-                  <button className="delete_field" onClick={toggleLogOut}>Supprimer</button>
-                </td>
-              </tr>
-            </table>
-          </div>
-
-          {modalLogOut && (
-                <div className="overlay">
-                    <div class="notifications-container">
-                <div class="success">
-                  <div class="flex">
-                    <div class="flex-shrink-0">
-                      <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="succes-svg">
-                        <path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-                      </svg>
-                    </div>
-                    <div class="success-prompt-wrap">
-                      <p class="success-prompt-heading">
-                        Cette action va supprimer cette diffusion
-                      </p>
-                      <div class="success-prompt-prompt">
-                        <p>En êtes-vous sûre ?</p>
-                      </div>
-                      <div class="success-button-container">
-                        <button class="success-button-main" type="button" onClick={closeToggle}>
-                          Annuler
-                        </button>
-                        <button class="success-button-secondary" type="button" >
-                          Supprimer
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+        <div className="h-full overflow-y-auto p-4 bg-[#1E2029] Contact">
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="flex items-center justify-between pb-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  id="search"
+                  className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 focus:outline-none  rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="recherche"
+                />
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <FaSearch style={{ color: "#6870e0 " }} />
                 </div>
               </div>
+              <div>
+                <button
+                  id="btn"
+                  className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 data-modal-toggle=authentication-modal"
+                  type="button"
+                  onClick={() => handleSaveContact(true)}>
+                  <FaPlus style={{ margin: "8px " }} />
+                  Créer Liste de Difusion
+                </button>
+              </div>
+            </div>
+
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <div className="rounded-lg border border-gray-200">
+                <div className="overflow-x-auto rounded-t-lg">
+                  <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+                    <thead className="ltr:text-left rtl:text-right">
+                      <tr>
+                        <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+                          GROUPE
+                        </th>
+                        <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+                          NOMBRE DE MEMBRE
+                        </th>
+                        <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+                          CANAL DE DIFUSION
+                        </th>
+                        <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+                          DESCRIPTION
+                        </th>
+                        {/* <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+                          SMS
+                        </th> */}
+                        <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    
+                    <tbody className="divide-y divide-gray-200">
+                      { displayContacts }
+                    </tbody>
+                  </table>
+                  
                 </div>
-                
-              
-            )}
-          
-          {modal && (<div className="modal">
-				<div className="overlay" onClick={toggleModal}></div>
-							<div className="container-projet">
-					
-					<div className="modal-content container-projet">
-						<div className="modal__header">
-							<span className="modal__title">Nouvelle diffusion</span><button className="button button--icon" onClick={toggleModal}><svg width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg">
-									<path fill="none" d="M0 0h24v24H0V0z"></path>
-									<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg></button>
-						</div>
-						<div className="modal__body">
-
-            <div className="input">
-								<label className="input__label">Nom de la team</label>
-								<input className="input__field" type="text"/> 
-								<p className="input__description"></p>
-							</div>
-
-              <div className="input">
-								<label className="input__label">Membres de la team</label>
-								<input className="input__field" type="text"/> 
-								<p className="input__description"></p>
-							</div>
-
-              <div className="input">
-								<label className="input__label">Canal/canaux de diffusion</label>
-								<input className="input__field" type="text"/> 
-								<p className="input__description"></p>
-							</div>
-
-
-
-
-
-
-							{/* <div className="input">
-								<label className="input__label">Nom de Projet</label>
-								<input className="input__field" type="text"/> 
-								<p className="input__description">Le titre ne peut contenir que  32 caractères</p>
-							</div>
-							<div className="input">
-												<label className="input__label">Description</label>
-								<textarea className="input__field input__field--textarea" ></textarea>
-									<p className="input__description">Donnez la description la plus claire possible de votre projet.</p>
-							</div>
-
-							<div className="input">
-								<label className="input__label">Fond d'investissement</label>
-								<input className="input__field" type="number"  placeholder='CFA' /> 
-								<p className="input__description">Donnez le  fond nécéssaire au projet</p>
-							</div> */}
-							
-						</div>
-						
-						<div className="modal__footer">
-							<button className="button button--primary close-modal" >Créer la diffusion</button>
-						</div>
-					</div>
-				</div>
-				</div>)}
-          
-           </div>
+                <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
+                  <ol className="flex justify-center gap-1 text-xs font-medium">
+                    <ReactPaginate
+                      previousLabel={'Précedent'}
+                      nextLabel={'Suivant'}
+                      pageCount={pageCount}
+                      onPageChange={changePage}
+                      containerClassName={'paginationBttns'}
+                      previousLinkClassName={'previousBttn'}
+                      nextLinkClassName={"nextBttn"}
+                      disabledClassName={"paginationDisabled"}
+                      activeClassName={"paginationActive"}
+                    />
+                  </ol> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <FormBroadcastModal
+        isOpen={handleSaveContact}
+        onClose={handleCloseContact}
+        isFormModalOpen={isFormModalOpen}
+        contact={openAddForm}
+        statusForm = {handleSaveContact}
+      />
+
+      
+
+      <DeleteConfirmationModal
+        isOpen={isDeleteModalOpen}
+        onClose={handleCloseDeleteModal}
+        onConfirm={handleConfirmDelete}
+        contact={selectedContact}
+      />
+
+      <ModifyConfirmationModal
+        isOpen={isModifyModalOpen}
+        onClose={handleCloseModifyModal}
+        contact={contactToModify}
+      />
+    </>
   );
 }
-
 export default Broadcast;
