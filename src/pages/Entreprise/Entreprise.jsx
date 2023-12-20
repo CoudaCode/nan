@@ -26,35 +26,41 @@ function Entreprise() {
         if(message === 'location user'){
           toast.error('E-mail expiré !');
           setTimeout(() =>  navigate("/inscription"), 3050);
-        }
-        if(message === 'register entreprise'){
+        }else if(message === 'register entreprise'){
           const {fullname, email, telephone, nationalite, password, } = reponse;
           const body = {fullname, email, telephone, nationalite, password};
           axios.post(ApiUrl+'user/create', body)
           .then(isUser => {
             if(isUser.data.status){
+              console.log('isUser.data.status 1',isUser.data.status);
               toast.success(isUser.data.message);
               Cookies.set('NaN_Digit_Sender_Token_Secretly', isUser.data.token, { expires: 1, path: '/'});
             } 
           })
+          .catch(error => {
+            console.log('error 2', error);
+          })
         }
+      })
+      .catch(error => {
+        console.log('error 1',error);
       })
     }
   }, []);
 
   const { register, handleSubmit, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: "" });
 
+  
   const { mutate: entreprise } = useMutation({
     mutationFn: async (send) => {
-      document.querySelectorAll('input:required, button#submit').forEach(item=>item.disabled = true);
+      document.querySelectorAll('input:required, button').forEach(item=>item.disabled = true);
       if(!Object.values(send).every(item => item.replaceAll(' ', ''))){
         toast.error('Tous les champs sont obligatoires');
-        document.querySelectorAll('input:required, button#submit').forEach(item=>item.disabled = false); 
-      }
-      else{
+        document.querySelectorAll('input:required, button').forEach(item=>item.disabled = false); 
+      }else{
         if(send.password !== send.passwordc){
           toast.error('Les mots de passe de sont pas conforment');
-          document.querySelectorAll('input:required, button#submit').forEach(item=>item.disabled = false);
+          document.querySelectorAll('input:required, button').forEach(item=>item.disabled = false);
         }else{
           let response = await axios.post(ApiUrl+'entreprise/create', send, { headers: { Authorization: `token ${Cookies.get("NaN_Digit_Sender_Token_Secretly")}`} });
           return response;
@@ -67,10 +73,11 @@ function Entreprise() {
       setTimeout(() => navigate("/dashboard"), 3050);
     },
     onError: error => {
+      document.querySelectorAll('input:required, button').forEach(item=>item.disabled = false);
       toast.error(error.response.data.message);
-      document.querySelectorAll('input:required, button#submit').forEach(item=>item.disabled = false);
     }
   });
+    
 
   let onSubmit = data => entreprise(data);
   return (

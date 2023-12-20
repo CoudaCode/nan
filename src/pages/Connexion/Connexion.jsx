@@ -1,12 +1,12 @@
-  import axios from "axios";
-  import { useForm } from "react-hook-form";
-  import { useMutation } from "@tanstack/react-query";
-  import { toast } from "react-toastify";
-  import { FcGoogle } from "react-icons/fc";
-  import Cookie from "js-cookie";
-  import { Link, useNavigate } from "react-router-dom";
-  import "./Connexion.css";
-  import { ApiUrl } from "../../outils/URL";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
+import Cookie from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
+import "./Connexion.css";
+import { ApiUrl } from "../../outils/URL";
 
   function Connexion() {
     const navigate = useNavigate();
@@ -22,9 +22,9 @@
       onSuccess: (succes) => {
         console.log("demo", succes.data);
         toast.success(succes.data.message);
-        Cookie.set("token", succes.data.token, { expires: 3600 * 24 });
+        Cookie.set("NaN_Digit_Sender_Token_Secretly", succes.data.token, { expires: 3600 * 24 });
         setTimeout(() => {
-          sessionStorage.setItem("token", JSON.stringify(succes.data.id));
+          sessionStorage.setItem("NaN_Digit_Sender_Token_Secretly", JSON.stringify(succes.data.id));
           navigate("/dashboard");
         }, 3000);
       },
