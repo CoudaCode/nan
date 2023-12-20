@@ -1,6 +1,6 @@
 // const ApiUrl = "https://nan-send-api.onrender.com/api/";
-const ApiUrl = "http://localhost:3000/api/";
+const ApiUrl = "https://nan-send-api.onrender.com/api/";
 
-const FrontUrl = "http://localhost:5173/";
+const FrontUrl = "https://nan-send.vercel.app/";
 
 export {ApiUrl, FrontUrl};
