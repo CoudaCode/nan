@@ -1,5 +1,5 @@
 
-import "./validate.css";
+import "./Validate.css";
  function Validate() {
   return (
     <div className="Inscription" >
