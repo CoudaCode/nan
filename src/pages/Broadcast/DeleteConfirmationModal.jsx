@@ -11,7 +11,6 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm, contact }){
     const lignTr = document.getElementById(`ligne-${contact._id}`);
     axios.delete(ApiUrl+'contact/delete/'+contact._id, {headers: {Authorization: `token ${token}`}})
     .then(success => {
-      console.log('*************',success);
       toast.success(success.data.message);
       lignTr.classList.add('deleted');
       setTimeout(() => {
@@ -21,7 +20,6 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm, contact }){
 
     })
     .catch(error => {
-      console.log('============', error);
       toast.success(error.response.message);
     })
     onConfirm();
