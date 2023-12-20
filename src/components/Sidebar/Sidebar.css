@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
-.sidebar .bx-search {
+.Sidebar .bx-search {
   position: absolute;
   top: 50%;
   left: 0;
@@ -8,10 +8,10 @@
   background: #1d1b31;
   color: #fff;
 }
-.sidebar li a:hover {
+.Sidebar li a:hover {
   background: #fff;
 }
-.sidebar li a .links_name {
+.Sidebar li a .links_name {
   color: #fff;
   font-size: 15px;
   font-weight: 400;
@@ -21,21 +21,21 @@
   pointer-events: none;
   transition: 0.4s;
 }
-.sidebar.open .bx-search:hover {
+/* .Sidebar .bx-search:hover {
   background: #1d1b31;
   color: #fff;
-}
+} */
 
-.sidebar.open li a .links_name {
+.Sidebar li a .links_name {
   opacity: 1;
   pointer-events: auto;
 }
-.sidebar .bx-search:hover {
+.Sidebar .bx-search:hover {
   background: #fff;
   color: #11101d;
 }
 
-.sidebar li a {
+.Sidebar li a {
   display: flex;
   height: 100%;
   width: 100%;
@@ -45,19 +45,19 @@
   transition: all 0.4s ease;
   background: #11101d;
 }
-.sidebar li a:hover .links_name,
-.sidebar li a:hover i {
+.Sidebar li a:hover .links_name,
+.Sidebar li a:hover i {
   transition: all 0.5s ease;
   color: #11101d;
 }
-.sidebar li i {
+.Sidebar li i {
   height: 50px;
   line-height: 50px;
   font-size: 18px;
   border-radius: 12px;
 }
 
-.sidebar i {
+.Sidebar i {
   color: #fff;
   height: 60px;
   min-width: 50px;
@@ -65,30 +65,30 @@
   line-height: 60px;
   text-align: center;
 }
-.sidebar li:hover .tooltip {
+.Sidebar li:hover .tooltip {
   opacity: 1;
   pointer-events: auto;
   transition: all 0.4s ease;
   top: 50%;
   transform: translateY(-50%);
 }
-.sidebar .nav-list {
+
+.Sidebar .nav-list {
   margin-top: 20px;
   height: 100%;
 }
-.sidebar.open li .tooltip {
+.Sidebar li .tooltip {
   display: none;
 }
-.sidebar li {
+.Sidebar li {
   position: relative;
   margin: 8px 0;
   list-style: none;
 }
-.sidebar li .tooltip {
+.Sidebar li .tooltip {
   position: absolute;
   top: -20px;
   left: calc(100% + 15px);
-  z-index: 3;
   background: #fff;
   padding: 6px 12px;
   color: #11101d;
@@ -100,7 +100,7 @@
   pointer-events: none;
   transition: 0s;
 }
-.sidebar input {
+.Sidebar input {
   color: white;
   font-size: 15px;
   outline: none;
@@ -114,7 +114,7 @@
   background: #1d1b31;
 }
 
-.sidebar.open input {
+.Sidebar input {
   padding: 0 20px 0 50px;
   width: 100%;
 }
@@ -125,33 +125,40 @@
   box-sizing: border-box;
   font-family: "Poppins";
 }
-.sidebar .logo-details .logo_name {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  opacity: 0;
-  transition: all 0.5s ease;
-}
-.sidebar {
+
+
+.Sidebar {
   position: fixed;
   left: 0;
   top: 0;
   height: 100%;
-  width: 78px;
+  width: 250px;
   background: #11101d;
   padding: 6px 14px;
-  z-index: 99;
   transition: all 0.5s ease;
+  overflow: hidden;
 }
-.sidebar.open {
-  width: 250px;
+.Sidebar.open {
+  width: 78px;
 }
-.sidebar.open .logo-details .icon,
-.Fsidebar.open .logo-details .logo_name {
+
+.Sidebar .logo-details i:nth-child(1){
   opacity: 1;
 }
 
-.sidebar .logo-details #btn {
+
+.Sidebar .logo-details .logo_name {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  transition: all 0.5s ease;
+}
+
+.Sidebar.open .logo-details .logo_name{
+  display: none;
+}
+
+.Sidebar .logo-details #btn {
   position: absolute;
   top: 50%;
   right: 0;
@@ -164,30 +171,60 @@
   transition: all 0.5s ease;
 }
 
-.sidebar .logo-details {
+.Sidebar .logo-details {
   height: 60px;
   display: flex;
   align-items: center;
   position: relative;
 }
-.sidebar.open .logo-details #btn {
+.Sidebar .logo-details #btn {
   text-align: right;
+  /* width: 100%; */
 }
 
-.sidebar .logo-details .icon {
+.Sidebar .logo-details .icon {
   opacity: 0;
   transition: all 0.5s ease;
 }
 
-.sidebar li.active a {
-  background: #fff;
+.Sidebar li{
+  width: 100%;
+}
+
+.Sidebar li.active{
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.Sidebar.open ul li a span{
   color: #11101d;
 }
-.sidebar li.active a .links_name {
+
+.Sidebar li a {
+  color: #11101d;
+  width: 100%;
+}
+
+.Sidebar li.active a{
+  background-color: #fff;
+  width: 100%;
+}
+
+.Sidebar li.active a span{
+  color: #11101d;
+  width: 100%;
+}
+
+.Sidebar li.active a i{
   color: #11101d;
 }
-.sidebar li.active a i {
-  color: #11101d;
+
+
+.Sidebar li a .links_name {
+  color: #ffffff;
+}
+.Sidebar li a i {
+  color: #ffffff;
 }
 
 .card {
@@ -196,6 +233,7 @@
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+  width: 100%;
 }
 
 .card-title {
@@ -210,3 +248,101 @@
 }
 
 
+
+.main{
+  position: absolute;
+  width: calc(100% - 250px);
+  height: 100%;
+  left: 250px;
+  transition: 0.5s;
+}
+
+.main.open{
+  position: absolute;
+  
+  width: calc(100% - 78px);
+  left: 78px;
+}
+
+
+
+/* Conteneur de la pagination */
+.paginationBttns {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+}
+
+/* Bouton précédent désactivé */
+.previous.paginationDisabled {
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Bouton suivant désactivé */
+.next.paginationDisabled {
+  color: #999;
+  cursor: not-allowed;
+}
+
+
+
+/* Styles pour les boutons */
+.paginationBttns li {
+  margin: 0 5px; /* Espacement entre les boutons */
+}
+
+/* Styles généraux pour les liens des boutons */
+.paginationBttns a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  color: #007bff;
+}
+
+/* Bouton actif */
+.paginationActive a {
+  background-color: #22287d;
+  color: white;
+  font-weight: bolder;
+}
+
+/* Styles pour les boutons précédents et suivants */
+.previousBttn,
+.nextBttn {
+  background-color: #fff;
+}
+
+
+tr.updated{
+  animation: updatedBackground 3s infinite;
+}
+
+tr.deleted{
+  animation: deletedBackground 3s infinite;
+}
+
+@keyframes updatedBackground {
+  to{
+    background: #ffffff;
+    opacity: 1;
+  }
+  from{
+    background: rgb(34, 255, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes deletedBackground {
+  to{
+    background: #ffffff;
+    opacity: 1;
+  }
+  from{
+    background: rgb(255, 64, 1);
+    opacity: 0;
+  }
+}
