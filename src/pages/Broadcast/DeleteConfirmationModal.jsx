@@ -5,11 +5,13 @@ import Cookie from "js-cookie";
 import { IsCookies } from "../../outils/IsCookie";
 
 function DeleteConfirmationModal({ isOpen, onClose, onConfirm, contact }){
+  
   if (!isOpen || !contact) { return null }
   const token = IsCookies();
   const handleDelete = async () => {
+    console.table(contact)
     const lignTr = document.getElementById(`ligne-${contact._id}`);
-    axios.delete(ApiUrl+'contact/delete/'+contact._id, {headers: {Authorization: `token ${token}`}})
+    axios.delete(ApiUrl+'groupe/delete/'+contact._id, {headers: {Authorization: `token ${token}`}})
     .then(success => {
       toast.success(success.data.message);
       lignTr.classList.add('deleted');
