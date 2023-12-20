@@ -17,13 +17,13 @@ function FormContactModal(props){
 
     const isOpen = props.isOpen;
     const onClose = props.onClose;
-    const onConfirm = props.onConfirm;
+    // const onConfirm = props.onConfirm;
     const contact = props.contact;
-    const statusForm = props.statusForm;
+    // const statusForm = props.statusForm;
     if (!isOpen || !contact) return null;
     const token = IsCookies();
     const saveContact = async (data) => {
-        document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = true);
+        document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = true);
         console.log('************************', data);
         return await axios.post(ApiUrl + 'groupe/create', data, {headers: {Authorization: 'token '+token}});
     } 
@@ -35,7 +35,7 @@ function FormContactModal(props){
             onClose();
         },
         onError: error => {
-            document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = false);
+            document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = false);
             toast.error(error.response.data.message);
         }
     });
@@ -105,6 +105,8 @@ function FormContactModal(props){
                             require: true,
                             validate: {notEmpty: value => /^\S+$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
                         })}
+                        autoComplete="canal"
+                        onChange={handleChange}
                     >
                         <option value="">--- Choisir un canal ---</option>
                         <option value="email"> Via E-mail </option>
@@ -116,10 +118,7 @@ function FormContactModal(props){
                 </label>
                 <ModalContact register={register}/>
 
-                <button type="button" className="bg-indigo-900 text-white  mb-9 rounded hover:bg-indigo-600" id="closeBtn">Confirmer</button>
-                
-
-                
+                <button type="button" className="bg-indigo-500 text-white  mb-9 rounded hover:bg-indigo-419" id="nMember">Aucun membre</button>
 
                 <div className="flex justify-between">
                     <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" > Soumettre </button>

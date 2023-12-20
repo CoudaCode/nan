@@ -11,7 +11,7 @@ import ReactPaginate from "react-paginate";
 import ModifyConfirmationModal from "./ModifyConfirmationModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import FormBroadcastModal from "./FormBroadcastModal";
-import ModalContact from "./ModalContact";
+// import ModalContact from "./ModalContact";
 
 
 
@@ -19,7 +19,7 @@ import ModalContact from "./ModalContact";
 function Broadcast() {
   const token = IsCookies();
   const navigate = useNavigate();
-  const [AllContacts, SetAllContact] = useState([]);
+  const [AllGroupe, SetAllGroupe] = useState([]);
   useEffect(()=>{
     if(!token){
       toast.error('Session expirée, veuillez vous connecter !');
@@ -37,12 +37,12 @@ function Broadcast() {
 
   const [openAddForm, setIsOpenAddForm] = useState(null);
 
-  const [openImportForm, setIsOpenImportForm] = useState(null);
+  // const [openImportForm, setIsOpenImportForm] = useState(null);
   
   useEffect(()=>{
     axios.get(ApiUrl + 'groupe/getAll', { headers: { Authorization: `token ${token}`} })
     .then(success => {
-      SetAllContact(success.data.data.sort((a, b) => a.name.localeCompare(b.name)))
+      SetAllGroupe(success.data.data.sort((a, b) => a.name.localeCompare(b.name)))
     })
     .catch(error => {
       if(error.response.data.message === 'Expired token'){
@@ -54,13 +54,13 @@ function Broadcast() {
   }, []);
 
   const [ pagesNumber, setPagesNumber ] = useState(0);
-  const ContactsPerPage = 9;
-  const pagesVisited = pagesNumber * ContactsPerPage;
-  const displayContacts = AllContacts.slice(pagesVisited, pagesVisited + ContactsPerPage).map( item => {
+  const GroupePerPage = 9;
+  const pagesVisited = pagesNumber * GroupePerPage;
+  const displayGroupe = AllGroupe.slice(pagesVisited, pagesVisited + GroupePerPage).map( item => {
     return(
       <>
       
-        <tr id={'ligne-'+item._id} key={item._id}>
+        <tr id={'ligne-'+item._id} key={item._id} data={item}>
           <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
             {item.name}
           </td>
@@ -93,11 +93,11 @@ function Broadcast() {
     )
   })
 
-  const pageCount = Math.ceil(AllContacts.length / ContactsPerPage);
+  const pageCount = Math.ceil(AllGroupe.length / GroupePerPage);
   const changePage = ({selected})=>{ setPagesNumber(selected); }
 
   const handleDelete = (contactId) => {
-    const contact = AllContacts.find(c => c._id === contactId);
+    const contact = AllGroupe.find(c => c._id === contactId);
     setSelectedContact(contact);
     setIsDeleteModalOpen(true);
   };
@@ -112,15 +112,15 @@ function Broadcast() {
     setContactToModify(null);
   };
 
-  const handleCloseFormModal = () => {
-    setIsDeleteModalOpen(false);
-    setSelectedContact(null);
-  };
+  // const handleCloseFormModal = () => {
+  //   setIsDeleteModalOpen(false);
+  //   setSelectedContact(null);
+  // };
 
 
 
   const handleModify = (contactId) => {
-    const contact = AllContacts.find(c => c._id === contactId);
+    const contact = AllGroupe.find(c => c._id === contactId);
     setContactToModify(contact);
     setIsModifyModalOpen(true);
   };
@@ -129,21 +129,21 @@ function Broadcast() {
     setIsDeleteModalOpen(false);
   };
 
-  const handleSaveContact = (e) => {
+  const handleSaveContact = () => {
     setIsOpenAddForm(true)
   };
 
-  const handleCloseContact = (e) => {
+  const handleCloseContact = () => {
     setIsOpenAddForm(false)
   };
 
-  const handleImportContact = (e) => {
-    setIsOpenImportForm(true)
-  };
+  // const handleImportContact = (e) => {
+  //   setIsOpenImportForm(true)
+  // };
 
-  const handleCloseImportContact = (e) => {
-    setIsOpenImportForm(false)
-  };
+  // const handleCloseImportContact = (e) => {
+  //   setIsOpenImportForm(false)
+  // };
 
   return (
     <>
@@ -203,7 +203,7 @@ function Broadcast() {
                     </thead>
                     
                     <tbody className="divide-y divide-gray-200">
-                      { displayContacts }
+                      { displayGroupe }
                     </tbody>
                   </table>
                   
@@ -249,7 +249,7 @@ function Broadcast() {
       <ModifyConfirmationModal
         isOpen={isModifyModalOpen}
         onClose={handleCloseModifyModal}
-        contact={contactToModify}
+        groupeData={contactToModify}
       />
     </>
   );
