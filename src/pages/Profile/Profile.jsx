@@ -6,7 +6,7 @@ import "./Profile.css"
 import { CgProfile } from "react-icons/cg";
 
 import img from "../../assets/images/img-profile.jpg"
-import poinVert from "../../assets/images/pointVerts.png"
+
 function Profile() {
   return (
     <div className="flex h-screen">
@@ -18,116 +18,53 @@ function Profile() {
 
 
         <div className="profile">
-  <div className="cardsPro">
-    <div className="cardsDiviso">
-    <CgProfile className="icon"/>
-    <p>Mon Profil</p>
-    </div>
-  </div>
-
-  <div className="cardsProie">
-    <div className="profileglobal">
-      
-     <div className="profilImage">
-<img src={img} alt="" />
-      </div>
-
-<div className="profilePremier">
-  <div className="profileSepo">
-    <div className="sepa">
-  <label htmlFor="">Nom</label>
-  <input type="text" placeholder="KOUAME"/>
-  </div>
-  <div className="sepa">
-  <label htmlFor="">Prenom</label>
-  <input type="text" placeholder="Franck Olivier"/>
-  </div>
-  </div>
-<br />
-  <div className="profileSepo">
-    <div className="sepa">
-  <label htmlFor="">Téléphone (10 chiffres)</label>
-  <input type="text" placeholder="0789105791"/>
-  </div>
-  <div className="sepa">
-  <label htmlFor="">Pays</label>
-  <input type="text" placeholder="Cote D'ivoire"/>
-  </div>
-  </div>
-
-  <div className="sepaPeofil">
-  <label htmlFor="">E-mail</label>
-  <input type="text" placeholder="kouamefranckolivier45@gmail.com"/>
-  </div>
-
-  
-</div>
-    </div>
-
-    <div className="profileButton">
-      <button>Mettre a jour</button>
-    </div>
-
-  </div>
+{/*PREMIERE PARTIE*/}
+ <div className="profileBar">
+<div className="profileImage">
+  <img src={img} alt="" />
 </div>
 
-
-
-
-      {/*  <div className="profile">
-
-
-  <div className="cardsPofit">
-<div className="profileEspace">
-<div className="profilImage">
-<img src={img} alt="" />
+<div className="profilName">
+  <h3>Franck Olivier KOUAME</h3>
+  <p>Developpeur Web</p>
 </div>
-<div className="profilOffline">
-<div className="pointVer">
-  <img src={poinVert} alt="" />
+
+<div className="profilButton">
+  <div className="profilPart"></div>
+  <br />
+  <div className="profilPart"></div>
+  <br />
+  <div className="profilPart"></div>
 </div>
-<p>En Ligne</p>
-</div>
-</div>
+ </div>
+
+
+
+ <div className="profileBar2">
+
 <div className="profileTitle">
-  <div className="proTitre">
-  <h2>Informations Utilisateurs</h2>
+  <h1>Information Profil</h1>
+</div>
+
+<div className="profilePourInput">
+  <div className="profilGrandInput">
+    <div className="inputUn">
+    <label htmlFor="">Nom</label>
+    <input type="text" placeholder="KOUAME"/>
+
+    <label htmlFor="">Nom</label>
+    <input type="text" placeholder="KOUAME"/>
   </div>
-  <div className="profilInfos">
-
-    <div className="profilDetail">
-      <h4>Nom:</h4>
-      <input type="text" placeholder="KOUAME"/>
-    </div>
-<br />
-    <div className="profilDetail">
-      <h4>Prenoms:</h4>
-      <input type="text" placeholder="KOUAME KONAN FRANCK OLIVIER"/>
-    </div>
-
-<br />
-    <div className="profilDetail">
-      <h4>Telephone:</h4>
-      <input type="text" placeholder="0789105791"/>
-    </div>
-<br />
-    <div className="profilDetail">
-      <h4>E-mail:</h4>
-      <input type="text" placeholder="kouamefranckolivier45@gmail.com"/>
-    </div>
-
-
-
-  </div>
-  <div className="modification">
-    <button className="myButtom">Modifier Profile</button>
   </div>
 </div>
 
-  </div>
+ </div>
+</div>
 
-</div>*/}
 
+
+
+    
 
           </div>
       </div>
