@@ -30,11 +30,24 @@ function Profile() {
 </div>
 
 <div className="profilButton">
-  <div className="profilPart"></div>
+  <div className="profilPart">
+    <h4>Statuts</h4>
+    <div className="profilStatus"></div>
+  </div>
   <br />
-  <div className="profilPart"></div>
+  <div className="profilPart">
+  <h4>Message</h4>
+  <div className="profilMessage">
+    <p>1</p>
+  </div>
+  </div>
   <br />
-  <div className="profilPart"></div>
+  <div className="profilPart">
+  <h4>Contacts</h4>
+  <div className="profilMessage">
+    <p>1</p>
+  </div>
+  </div>
 </div>
  </div>
 
@@ -98,6 +111,9 @@ function Profile() {
   </div>
 </div>
 
+<div className="profileButton">
+  <button type="submit">Modifiez</button>
+</div>
  </div>
 </div>
 
