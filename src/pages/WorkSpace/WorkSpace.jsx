@@ -54,7 +54,7 @@ const CreateContactModal = ({ isOpen, onClose }) => {
               type="button"
               className="rounded bg-violet-500  hover:bg-violet-900  px-4 py-2 text-sm font-medium text-white"
               onClick={handleCreateContact}>
-              Confirmer l'ajout
+              Confirmer l&apos;ajout
             </button>
 
             <button

@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
@@ -17,15 +16,13 @@ import Verification from "./pages/Verification/Verification";
 import Validate from "./pages/Validate/Validate";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Groupe from "./pages/Groupe/Groupe";
-import Edites from "./pages/Edete/Edites";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
   
 
 
 function App() {
   const client = new QueryClient();
-  const path = useLocation().pathname;
+  // const path = useLocation().pathname;
   return (
     <>
       <QueryClientProvider client={client}>
