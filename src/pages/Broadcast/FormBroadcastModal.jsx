@@ -24,7 +24,6 @@ function FormContactModal(props){
     const token = IsCookies();
     const saveContact = async (data) => {
         document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = true);
-        console.log('************************', data);
         return await axios.post(ApiUrl + 'groupe/create', data, {headers: {Authorization: 'token '+token}});
     } 
     const { register, handleSubmit, formState: { errors } } = useForm({ name: '', description: "", contact: '', canal: "" });

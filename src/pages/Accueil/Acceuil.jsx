@@ -14,7 +14,7 @@ import SectionViolet from "../../components/Section_Violet/Section_Violet";
 function Acceuil() {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <Banner />
       <Apropos/>
       <SendMessage />

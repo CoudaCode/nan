@@ -3,9 +3,102 @@
     --ma-couleur-bouton: #6870e0;
     --mon--autre--couleur: #b6b9e5;
     --ma--couleur--text: #ffff;
+  }
+.profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+  .cardsPro{
+    height: 60px;
+    width: 80%;
+    border: 1px solid #ffff;
+    background-color: #ffff;
+  }
+  .cardsDiviso{
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+  }
+  .cardsDiviso p{
+    color: black;
+  }
+.icon{
+    color: var(--ma-couleur-bouton);
 }
 
-.profile{ 
+.cardsProie{
+    margin-top: 2px;
+    height: 70vh;
+    width: 80%;
+    border: 1px solid #ffff;
+    background-color: #ffff; 
+}
+
+.profileglobal{
+    margin-top: 30px;
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.profilImage{
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+    position: relative;
+}
+
+
+
+.profilImage img{
+    height: 100%;
+}
+
+.profilImage img:hover{
+    transform: scale(1.1);
+    background-color: #5e520f;
+}
+
+.profilImage:hover{
+    background-color: #5e520f;
+}
+.profilePremier label{
+    color: black;
+}
+.profilePremier input{
+    border: 1px solid var(--ma-couleur-bouton);
+    height: 50px;
+    width: 300px;
+    color: #1E2029;
+}
+
+.profileSepo{
+    display: flex;
+    gap: 25px;
+}
+
+.sepa{
+    display: flex;
+    flex-direction: column;
+}
+
+.sepaPeofil{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.sepaPeofil input{
+    width: 100%;
+}
+.profileButton button{
+    background-color: var(--ma-couleur-bouton);
+    height: 50px;
+    width: 150px;
+    margin-left: 30px;
+    justify-content: center
+}
+/*.profile{ 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,8 +137,7 @@
 
 .profilOffline{
     height: 50px;
-    width: 150px;
-    border: 1px solid violet;
+    width: 150px;  
     border-radius: 15px;
     background-color: #fff;
     display: flex;
@@ -74,6 +166,7 @@
 
 
 
+
 .profilInfos{
     margin-top: 40px;
 }
@@ -98,3 +191,27 @@
 
 }
 
+@media screen and (max-width: 884px){
+    .cardsPofit{
+        flex-direction: column;
+        width: initial;
+        height: auto;
+    }
+
+    .profilImage{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .profileEspace{
+        width: 100%;
+    }
+
+    .profileTitle{
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+}*/
