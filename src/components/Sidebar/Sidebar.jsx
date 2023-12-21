@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Sidebar.css";
 import { useLocation, Link } from "react-router-dom";
 function Sidebar() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
   const toggleSidebar = () => {
+    const main = document.getElementById('main');
     setIsSidebarOpen(!isSidebarOpen);
+    main.classList.toggle('open');
   };
+
+  const toggling = event => {
+    const Sidebar = document.getElementById('Sidebar');
+    const main = document.getElementById('main');
+
+    Sidebar.classList.toggle('open');
+    main.classList.toggle('open');
+
+  }
 
   const menuItems = [
     {
@@ -51,9 +62,8 @@ function Sidebar() {
     },
   ];
   return (
-    <>
-      <div className="Sidebar bg-[#1E2029] sm:w-60 min-h-screen w-14 pt-4 transition-all">
-        <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+      <div className={`Sidebar bg-[#1E2029] sm:w-60 min-h-screen w-14 pt-4 transition-all ${isSidebarOpen ? "open" : ""}`} id="Sidebar">
+        {/* <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}> */}
           <div className="logo-details">
             <i className="bx bxl-c-plus-plus icon"></i>
             <div className="logo_name">NaN-Send</div>
@@ -85,9 +95,8 @@ function Sidebar() {
               </div>
             </li> */}
           </ul>
-        </div>
+        {/* </div> */}
       </div>
-    </>
   );
 }
 

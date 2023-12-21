@@ -1,286 +1,106 @@
+import axios from "axios";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import { ApiUrl } from "../../outils/URL";
 import "./Contact.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch, FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { DeleteCookies, IsCookies } from "../../outils/IsCookie";
+import { toast } from "react-toastify";
+import ReactPaginate from "react-paginate";
+import ModifyConfirmationModal from "./ModifyConfirmationModal";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import FormContactModal from "./FormContactModal";
+import FormImportContact from "./FormImportContact";
 
-const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, contact }) => {
-  if (!isOpen || !contact) {
-    return null;
-  }
 
-  const handleDelete = () => {
-    // Handle the deletion logic here
-    // For example, remove the contact from the list
-    // ...
-    // Close the modal
-    onConfirm();
-  };
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
-
-      <div className="rounded-lg bg-white p-8 shadow-2xl z-10">
-        <h2 className="text-lg font-bold">Supprimer le contact</h2>
-
-        <p className="mt-2 text-sm text-gray-500">
-          Êtes-vous sûr de vouloir supprimer ce contact?
-        </p>
-
-        <div className="mt-4 flex gap-2">
-          <button
-            type="button"
-            className="rounded bg-red-500 px-4 py-2 text-sm font-medium text-white"
-            onClick={handleDelete}>
-            Oui
-          </button>
-
-          <button
-            type="button"
-            className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
-            onClick={onClose}>
-            Non
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ModifyConfirmationModal = ({ isOpen, onClose, contact }) => {
-  if (!isOpen || !contact) {
-    return null;
-  }
-
-  const handleModification = () => {
-    // Handle the modification logic here
-    // For example, update the contact data in the list
-    // ...
-    // Close the modal
-    onClose();
-  };
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
-
-      <div className="rounded-lg bg-white p-8 shadow-2xl z-10">
-        <h2 className="text-lg font-bold">Modifier le contact</h2>
-
-        <form>
-          <label>Nom et Prénom:</label>
-          <input
-            type="text"
-            value={contact.nom}
-            onChange={(e) => {
-              // Handle the change in the contact data
-              // For example, update the contact data in the state
-              // e.g., setContactData({ ...contactData, nom: e.target.value });
-            }}
-            // Add onChange handler to update contact data
-          />
-
-          {/* Add other input fields for email, phone, etc. */}
-
-          <div className="mt-4 flex gap-2">
-            <button
-              type="button"
-              className="rounded bg-green-500 px-4 py-2 text-sm font-medium text-white"
-              onClick={handleModification}>
-              Confirmer la modification
-            </button>
-
-            <button
-              type="button"
-              className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
-              onClick={onClose}>
-              Annuler
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
 
 function Contact() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const token = IsCookies();
+  const navigate = useNavigate();
+  const [AllContacts, SetAllContact] = useState([]);
+  useEffect(()=>{
+    if(!token){
+      toast.error('Session expirée, veuillez vous connecter !');
+      navigate('/connexion');
+    }
+  }, []);
+  
   const [selectedContact, setSelectedContact] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [contactToModify, setContactToModify] = useState(null);
   const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
-  const conatct = [
-    {
-      id: 16,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 1,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 2,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 3,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 4,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 5,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 15,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 14,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 13,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 12,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 6,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 11,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 10,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 9,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 8,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-    {
-      id: 7,
-      nom: "couda",
-      email: "couda@gmail.com",
-      pays: "cote d'ivoire",
-      langue: "francais",
-      phone: "225 0747185291",
-    },
-  ];
-  const totalPages = Math.ceil(conatct.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = conatct.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Fonction pour aller à la page précédente
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+  const [isFormModalClose, setIsFormModalClose] = useState(null);
 
-  // Fonction pour aller à la page suivante
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+  const [openAddForm, setIsOpenAddForm] = useState(null);
+
+  const [openImportForm, setIsOpenImportForm] = useState(null);
+  
+  useEffect(()=>{
+    axios.get(ApiUrl + 'contact/getAll', { headers: { Authorization: `token ${token}`} })
+    .then(success => {
+      SetAllContact(success.data.data.sort((a, b) => a.fullname.localeCompare(b.fullname)))
+    })
+    .catch(error => {
+      if(error.response.data.message === 'Expired token'){
+        DeleteCookies();
+        toast.error('Session expirée, veuillez vous connecter !');
+        navigate('/connexion');
+      }
+    })
+  }, []);
+
+  const [ pagesNumber, setPagesNumber ] = useState(0);
+  const ContactsPerPage = 9;
+  const pagesVisited = pagesNumber * ContactsPerPage;
+  const displayContacts = AllContacts.slice(pagesVisited, pagesVisited + ContactsPerPage).map( item => {
+    return(
+      <>
+        {/* <ModifyConfirmationModal contact={item}/> */}
+      
+        <tr id={'ligne-'+item._id} key={item._id}>
+          <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+            {item.fullname}
+          </td>
+          <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+            {item.email}
+          </td>
+          <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+            {item.whatsapp}
+          </td>
+          <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+            {item.sms}
+          </td>
+          <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700" style={{ justifyContent:'center'}}>
+            <a
+              onClick={() => handleModify(item._id)}
+              className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+              Modifier
+            </a>
+            <a
+              onClick={() => handleDelete(item._id)}
+              className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+              Supprimer
+            </a>
+          </td>
+        </tr>
+      </>
+    )
+  })
+
+  const pageCount = Math.ceil(AllContacts.length / ContactsPerPage);
+  const changePage = ({selected})=>{ setPagesNumber(selected); }
 
   const handleDelete = (contactId) => {
-    const contact = conatct.find((c) => c.id === contactId);
+    const contact = AllContacts.find(c => c._id === contactId);
     setSelectedContact(contact);
     setIsDeleteModalOpen(true);
   };
 
-  const handleModify = (contactId) => {
-    const contact = conatct.find((c) => c.id === contactId);
-    setContactToModify(contact);
-    setIsModifyModalOpen(true);
-  };
-
-  const handleConfirmDelete = () => {
-    // Handle the confirmed delete logic here
-    // For example, remove the contact from the list
-    // ...
-    // Close the delete confirmation modal
-    setIsDeleteModalOpen(false);
-  };
-
   const handleCloseDeleteModal = () => {
-    setIsDeleteModalOpen(false);
+    setIsFormModalClose(false);
     setSelectedContact(null);
   };
 
@@ -288,10 +108,44 @@ function Contact() {
     setIsModifyModalOpen(false);
     setContactToModify(null);
   };
+
+  const handleCloseFormModal = () => {
+    setIsDeleteModalOpen(false);
+    setSelectedContact(null);
+  };
+
+
+
+  const handleModify = (contactId) => {
+    const contact = AllContacts.find(c => c._id === contactId);
+    setContactToModify(contact);
+    setIsModifyModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleSaveContact = (e) => {
+    setIsOpenAddForm(true)
+  };
+
+  const handleCloseContact = (e) => {
+    setIsOpenAddForm(false)
+  };
+
+  const handleImportContact = (e) => {
+    setIsOpenImportForm(true)
+  };
+
+  const handleCloseImportContact = (e) => {
+    setIsOpenImportForm(false)
+  };
+
   return (
-    <div className="flex h-screen">
+    <>
       <Sidebar />
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="main flex-1 flex flex-col overflow-hidden" id="main">
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029] Contact">
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div className="flex items-center justify-between pb-4">
@@ -309,9 +163,11 @@ function Contact() {
               <div>
                 <button
                   id="btn"
+                  onClick={() => handleImportContact(true)}
                   className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                   type="button">
-                  <FaPlus style={{ margin: "8px " }} />
+                    
+                  <FaPlus style={{ margin: "8px" }} />
                   contact d’mportation
                 </button>
 
@@ -319,7 +175,7 @@ function Contact() {
                   id="btn"
                   className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 data-modal-toggle=authentication-modal"
                   type="button"
-                  onClick={() => setShowModal(true)}>
+                  onClick={() => handleSaveContact(true)}>
                   <FaPlus style={{ margin: "8px " }} />
                   ajouter le contact
                 </button>
@@ -342,118 +198,55 @@ function Contact() {
                           Numéro Whatsapp
                         </th>
                         <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
-                          Langue
-                        </th>
-                        <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
-                          Pays
+                          SMS
                         </th>
                         <th className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
                           Actions
                         </th>
                       </tr>
                     </thead>
-
+                    
                     <tbody className="divide-y divide-gray-200">
-                      {currentItems.map((item) => {
-                        return (
-                          <tr key={item.id}>
-                            <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
-                              {item.nom}
-                            </td>
-                            <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                              {item.email}
-                            </td>
-                            <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                              {item.phone}
-                            </td>
-                            <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                              {item.pays}
-                            </td>
-                            <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                              {item.langue}
-                            </td>
-                            <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700">
-                              <a
-                                onClick={() => handleModify(item.id)}
-                                className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
-                                Modifier
-                              </a>
-                              <a
-                                onClick={() => handleDelete(item.id)}
-                                className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
-                                Supprimer
-                              </a>
-                            </td>
-                          </tr>
-                        );
-                      })}
+                      { displayContacts }
                     </tbody>
                   </table>
+                  
                 </div>
                 <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
                   <ol className="flex justify-center gap-1 text-xs font-medium">
-                    <a
-                      onClick={handlePreviousPage}
-                      className={`${
-                        currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-                      } inline-block rounded-full border border-indigo-600 p-2 text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500`}>
-                      <span className="sr-only"> Précédent </span>
-                      <svg
-                        className={`h-5 w-5 rtl:rotate-180 ${
-                          currentPage === 1 ? "text-gray-300" : ""
-                        }`}
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </a>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="block h-8 w-8 mt-1 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900">
-                        {currentPage}
-                      </a>
-                    </li>
-
-                    <a
-                      onClick={handleNextPage}
-                      className={`${
-                        currentPage === totalPages
-                          ? "opacity-50 cursor-not-allowed"
-                          : ""
-                      } inline-block rounded-full border border-indigo-600 p-2 text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500`}>
-                      <span className="sr-only"> Suivant </span>
-                      <svg
-                        className={`h-5 w-5 rtl:rotate-180 ${
-                          currentPage === totalPages ? "text-gray-300" : ""
-                        }`}
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </a>
-                  </ol>
+                    <ReactPaginate
+                      previousLabel={'Précedent'}
+                      nextLabel={'Suivant'}
+                      pageCount={pageCount}
+                      onPageChange={changePage}
+                      containerClassName={'paginationBttns'}
+                      previousLinkClassName={'previousBttn'}
+                      nextLinkClassName={"nextBttn"}
+                      disabledClassName={"paginationDisabled"}
+                      activeClassName={"paginationActive"}
+                    />
+                  </ol> 
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <FormContactModal
+        isOpen={handleSaveContact}
+        onClose={handleCloseContact}
+        isFormModalOpen={isFormModalOpen}
+        contact={openAddForm}
+        statusForm = {handleSaveContact}
+      />
+
+      <FormImportContact
+        isOpen={handleImportContact}
+        onClose={handleCloseImportContact}
+        isFormModalOpen={openImportForm}
+        contact={openImportForm}
+      />
 
       <DeleteConfirmationModal
         isOpen={isDeleteModalOpen}
@@ -467,7 +260,7 @@ function Contact() {
         onClose={handleCloseModifyModal}
         contact={contactToModify}
       />
-    </div>
+    </>
   );
 }
 export default Contact;

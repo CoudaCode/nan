@@ -47,14 +47,13 @@ function Profile() {
 </div>
 
 <div className="profilePourInput">
-  <div className="profilGrandInput">
+  .profilGrandI
     <div className="inputUn">
     <label htmlFor="">Nom</label>
     <input type="text" placeholder="KOUAME"/>
 
     <label htmlFor="">Nom</label>
     <input type="text" placeholder="KOUAME"/>
-  </div>
   </div>
 </div>
 
