@@ -13,7 +13,6 @@ function Dashboard() {
     <>
       <Sidebar />
       <div className="main p-4 flex-1 flex flex-col overflow-hidden" id="main">
-        {/*<Topbar />*/}
         <div className=" overflow-y-none p-4  bg-[#1E2029]">Dashboard</div>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-4">
           {/* <!-- Card 1 --> */}
