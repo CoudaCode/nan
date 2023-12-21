@@ -177,7 +177,7 @@ function Broadcast() {
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               <div className="rounded-lg border border-gray-200">
-                <div className="overflow-x-auto rounded-t-lg">
+                <div className="overflow-x-none rounded-t-lg">
                   <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
                     <thead className="ltr:text-left rtl:text-right">
                       <tr>
@@ -208,7 +208,7 @@ function Broadcast() {
                   </table>
                   
                 </div>
-                <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
+                <div className="rounded-b-lg w-full border-t border-gray-200 px-3 py-2">
                   <ol className="flex justify-center gap-1 text-xs font-medium">
                     <ReactPaginate
                       previousLabel={'Précedent'}
@@ -236,8 +236,6 @@ function Broadcast() {
         contact={openAddForm}
         statusForm = {handleSaveContact}
       />
-
-      
 
       <DeleteConfirmationModal
         isOpen={isDeleteModalOpen}
