@@ -47,13 +47,54 @@ function Profile() {
 </div>
 
 <div className="profilePourInput">
-  .profilGrandI
+  <div className="profilGrandInput">
     <div className="inputUn">
     <label htmlFor="">Nom</label>
     <input type="text" placeholder="KOUAME"/>
+    </div>
+    <div className="inputUn">
+    <label htmlFor="">Prenom</label>
+    <input type="text" placeholder="Franck Olivier"/>
+    </div>
+  
+  </div>
+<br />
+  <div className="profilGrandInput">
+    <div className="inputUn">
+    <label htmlFor="">N° Telephone</label>
+    <input type="text" placeholder="KOUAME"/>
+    </div>
+    <div className="inputUn">
+    <label htmlFor="">Email</label>
+    <input type="text" placeholder="kouamefranckolivier45@gmail.com"/>
+    </div>
+  
+  </div>
 
+<br />
+  <div className="profilGrandInput">
+    <div className="inputUn">
+    <label htmlFor="">Pays</label>
+    <input type="text" placeholder="Ivory Coast"/>
+    </div>
+    <div className="inputUn">
+    <label htmlFor="">Ville</label>
+    <input type="text" placeholder="Abidjan"/>
+    </div>
+  
+  </div>
+
+<br />
+  <div className="profilGrandInput">
+    <div className="inputUn">
+    <label htmlFor="">Postcode</label>
+    <input type="text" placeholder="3331"/>
+    </div>
+    <div className="inputUn">
     <label htmlFor="">Nom</label>
     <input type="text" placeholder="KOUAME"/>
+    </div>
+  
   </div>
 </div>
 
