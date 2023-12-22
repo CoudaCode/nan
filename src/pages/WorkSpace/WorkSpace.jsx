@@ -2,6 +2,7 @@ import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 // import Topbar from "../../components/Topbar/Topbar";
 import "./WorkSpace.css";
+import PropTypes from 'prop-types';
 
 const CreateContactModal = ({ isOpen, onClose }) => {
   if (!isOpen) {
@@ -107,5 +108,11 @@ function WorkSpace() {
     </>
   );
 }
+
+// Validation de type des propriétés avec PropTypes
+CreateContactModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default WorkSpace;
