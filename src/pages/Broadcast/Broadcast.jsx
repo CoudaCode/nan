@@ -148,9 +148,9 @@ function Broadcast() {
   return (
     <>
       <Sidebar />
-      <div className="main flex-1 flex flex-col overflow-hidden" id="main">
-        <div className="h-full overflow-y-auto p-4 bg-[#1E2029] Contact">
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
+        <div className=" overflow-y-none p-4   bg-[#1E2029]">Broadcast</div>
+          <div className="relative overflow-x-auto m-4 shadow-md sm:rounded-lg">
             <div className="flex items-center justify-between pb-4">
               <div className="relative">
                 <input
@@ -177,7 +177,7 @@ function Broadcast() {
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               <div className="rounded-lg border border-gray-200">
-                <div className="overflow-x-auto rounded-t-lg">
+                <div className="overflow-x-none rounded-t-lg">
                   <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
                     <thead className="ltr:text-left rtl:text-right">
                       <tr>
@@ -208,7 +208,7 @@ function Broadcast() {
                   </table>
                   
                 </div>
-                <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
+                <div className="rounded-b-lg w-full border-t border-gray-200 px-3 py-2">
                   <ol className="flex justify-center gap-1 text-xs font-medium">
                     <ReactPaginate
                       previousLabel={'Précedent'}
@@ -227,7 +227,7 @@ function Broadcast() {
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
 
       <FormBroadcastModal
         isOpen={handleSaveContact}
@@ -236,8 +236,6 @@ function Broadcast() {
         contact={openAddForm}
         statusForm = {handleSaveContact}
       />
-
-      
 
       <DeleteConfirmationModal
         isOpen={isDeleteModalOpen}
