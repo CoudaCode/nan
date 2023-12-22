@@ -145,8 +145,9 @@ function Contact() {
   return (
     <>
       <Sidebar />
-      <div className="main flex-1 flex flex-col overflow-hidden" id="main">
-        <div className="h-full overflow-y-auto p-4 bg-[#1E2029] Contact">
+      <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
+        <div className=" overflow-y-none p-4  bg-[#1E2029]">Contacts</div>
+        <div className="Contact">
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div className="flex items-center justify-between pb-4">
               <div className="relative">

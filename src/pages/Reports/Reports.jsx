@@ -108,15 +108,10 @@ function Reports() {
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
-    <div className="flex h-screen">
-      <div
-        className={`bg-[#1E2029] ${
-          isSidebarOpen ? "sm:w-60" : "w-14"
-        }  min-h-screen pt-4 transition-all`}>
-        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      </div>
-      <div className="main flex-1 flex flex-col overflow-hidden" id="main">
-        <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
+    <>
+      <Sidebar />
+      <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
+          <div className=" overflow-y-none p-4 bg-[#1E2029]">Rapports</div>
           <div className="container mb-9">
             <h2 className="text-center text-white mb-5 text-2xl font-extrabold">
               Contact Supprimés
@@ -338,8 +333,7 @@ function Reports() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </>
   );
 }
 
