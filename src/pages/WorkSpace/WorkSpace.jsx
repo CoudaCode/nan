@@ -2,6 +2,7 @@ import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 // import Topbar from "../../components/Topbar/Topbar";
 import "./WorkSpace.css";
+import PropTypes from 'prop-types';
 
 const CreateContactModal = ({ isOpen, onClose }) => {
   if (!isOpen) {
@@ -75,7 +76,6 @@ function WorkSpace() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-
   const [isCreatePopupOpen, setIsCreatePopupOpen] = useState(false);
 
   const toggleCreatePopup = () => {
@@ -83,32 +83,37 @@ function WorkSpace() {
   };
 
   return (
-    <div className="flex h-screen">
-      {/* <div className={`bg-[#1E2029] ${ isSidebarOpen ? "sm:w-60" : "w-14" }  min-h-screen pt-4 transition-all`}> */}
-        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      {/* </div> */}
-      <div className="main flex-1 flex flex-col overflow-hidden" id="main">
-        <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
+    <>
+      <Sidebar />
+      <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
+        <div className=" overflow-y-none p-4  bg-[#1E2029]">Workspace</div>
+        <div className="container">
           <p className="text-center font-extrabold mt-4">
-            <button onClick={toggleCreatePopup} className="inline-block rounded bg-indigo-600 hover:bg-indigo-900 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+            <button
+              onClick={toggleCreatePopup}
+              className="inline-block rounded bg-indigo-600 hover:bg-indigo-900 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
               Planifier un diffusion
             </button>
           </p>
 
-          <div className="w-full bg-white m-4 h-80 rounded text-center justify-center items-center">
+          <div className="bg-white m-4 rounded text-center justify-center items-center">
             <span className="text-center text-black">Aucune diffusion</span>
           </div>
-       
-       
+        
           <CreateContactModal
-        isOpen={isCreatePopupOpen}
-        onClose={toggleCreatePopup}
-      />
+            isOpen={isCreatePopupOpen}
+            onClose={toggleCreatePopup}
+          />
         </div>
-       
       </div>
-    </div>
+    </>
   );
 }
+
+// Validation de type des propriétés avec PropTypes
+CreateContactModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default WorkSpace;

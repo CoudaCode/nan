@@ -23,7 +23,8 @@ function Broadcast() {
   return (
     <div className="flex h-screen">
       <Sidebar />
-      <div className="main flex-1 flex flex-col overflow-hidden" id="main">
+      <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
+        <div className="h-full overflow-y-auto p-4 bg-[#1E2029] Contact">
         {/*<Topbar />*/}
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
           <div className="create_diffusion" onClick={toggleModal}>

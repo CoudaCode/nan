@@ -1,17 +1,16 @@
-import {useState} from "react";
+
 import Sidebar from "../../components/Sidebar/Sidebar";
-import Topbar from "../../components/Topbar/Topbar";
-// import "./Message.css";
 function Message() {
   
   return (
     <>
       <Sidebar />
-      <div className="main flex-1 flex flex-col overflow-hidden" id="main">
+      <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
+      <div className=" overflow-y-none p-4   bg-[#1E2029]">Messages</div>
        {/* <Topbar />*/} 
-        <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
+        {/* <div className="h-full overflow-y-auto p-4 bg-[#1E2029]"> */}
 
-          <div className="container flex mx-auto">
+          <div className="container flex mx-auto m-4">
             <div className="w-1/2 px-2" >
                 <div className="w-full flex justify-evenly">
                   <div className="w-1/2">
@@ -169,7 +168,7 @@ function Message() {
              
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 }
