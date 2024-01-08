@@ -1,217 +1,510 @@
 
+import { useState } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { Link } from 'react-router-dom';
-
+import InformationPerso from './InformationPerso';
+import InformationEntreprise from './InformationEntreprise';
+import InformationMessagerie from './InformationMessagerie';
+import InformationSecurite from './Securite';
 
 export default function Profil() {
-  return (
-    <>
-        <Sidebar/>
-        <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
-            <div className=" overflow-y-none p-4  bg-[#1E2029]">
-                <Link to={'/message'}><span>Profile  </span></Link>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 p-3 overflow-Y-auto">
+    const [isAccordionOpenPersonnelInfo, setAccordionOpenPersonnelInfo] = useState(false);
+    const [isAccordionOpenSecurity, setAccordionOpenSecurity] = useState(false);
+    const [isAccordionOpenEntreprise, setAccordionOpenEntreprise] = useState(false);
+    const [isAccordionOpenMessage, setAccordionOpenMessage] = useState(false);
 
-                <div className="scaffold-layout__sidebar" tabIndex="-1">
-                    <div className="sticky top-0 md:sticky md:top-16">
-                        <div className="p-3 overflow-hidden">
+    const [isEditeOpenPersonnelInfo, setEditeOpenPersonnelInfo] = useState(false);
+    const [isEditeOpenSecurity, setEditeOpenSecurity] = useState(false);
+    const [isEditeOpenEntreprise, setEditeOpenEntreprise] = useState(false);
+    const [isEditeOpenMessage, setEditeOpenMessage] = useState(false);
+
+    const toggleEditePersonnelInfo = () => {
+        const iwanttoscrolling = document.querySelector('.iwanttoscrolling');
+        
+        setEditeOpenPersonnelInfo(true);
+        setAccordionOpenPersonnelInfo(true);
+
+        setEditeOpenSecurity(false);
+        setEditeOpenEntreprise(false);
+        setEditeOpenMessage(false);
+
+        setTimeout(() => {
+            iwanttoscrolling.scrollTop = iwanttoscrolling.scrollHeight;
+        }, 50);
+    };
+
+    const toggleEditeSecurity = () => {
+        const iwanttoscrolling = document.querySelector('.iwanttoscrolling');
+        setEditeOpenSecurity(true);
+        setAccordionOpenSecurity(true);
+        // setAccordionOpenPersonnelInfo(false);
+        // setAccordionOpenEntreprise(false);
+        // setAccordionOpenMessage(false);
+
+        setEditeOpenPersonnelInfo(false);
+        setEditeOpenEntreprise(false);
+        setEditeOpenMessage(false);
+        setTimeout(() => {
+            iwanttoscrolling.scrollTop = iwanttoscrolling.scrollHeight;
+        }, 50);
+    };
+
+    const toggleEditeMessagerie = () => {
+        const iwanttoscrolling = document.querySelector('.iwanttoscrolling');
+        setEditeOpenMessage(true);
+        setAccordionOpenMessage(true);
+        // setAccordionOpenSecurity(false);
+        // setAccordionOpenPersonnelInfo(false);
+        // setAccordionOpenEntreprise(false);
+
+        setEditeOpenPersonnelInfo(false);
+        setEditeOpenEntreprise(false);
+        setTimeout(() => {
+            iwanttoscrolling.scrollTop = iwanttoscrolling.scrollHeight;
+        }, 50);
+    };
+
+    const toggleEditeEntreprise = () => {
+        const iwanttoscrolling = document.querySelector('.iwanttoscrolling');
+        setEditeOpenEntreprise(true);
+        setAccordionOpenEntreprise(true);
+
+        // setAccordionOpenMessage(false);
+        // setAccordionOpenSecurity(false);
+        // setAccordionOpenPersonnelInfo(false);
+
+        setEditeOpenPersonnelInfo(false);
+        setEditeOpenMessage(false);
+        setEditeOpenSecurity(false);
+        setTimeout(() => {
+            iwanttoscrolling.scrollTop = iwanttoscrolling.scrollHeight;
+        }, 50);
+    };
+
+
+
+
+    const toggleAccordionPersonnelInfo = () => {
+        setAccordionOpenPersonnelInfo(!isAccordionOpenPersonnelInfo);
+        setAccordionOpenSecurity(false);
+        setAccordionOpenEntreprise(false);
+        setAccordionOpenMessage(false);
+
+        setEditeOpenPersonnelInfo(false);
+        setEditeOpenSecurity(false);
+        setEditeOpenMessage(false);
+        setEditeOpenEntreprise(false);
+    };
+
+    const toggleAccordionSecurity = () => {
+        setAccordionOpenSecurity(!isAccordionOpenSecurity);
+        setAccordionOpenPersonnelInfo(false);
+        setAccordionOpenEntreprise(false);
+        setAccordionOpenMessage(false);
+
+        setEditeOpenPersonnelInfo(false);
+        setEditeOpenSecurity(false);
+        setEditeOpenMessage(false);
+        setEditeOpenEntreprise(false);
+    };
+
+    const toggleAccordionEntreprise = () => {
+        setAccordionOpenEntreprise(!isAccordionOpenEntreprise);
+        setAccordionOpenSecurity(false);
+        setAccordionOpenPersonnelInfo(false);
+        setAccordionOpenMessage(false);
+
+        setEditeOpenPersonnelInfo(false);
+        setEditeOpenSecurity(false);
+        setEditeOpenMessage(false);
+        setEditeOpenEntreprise(false);
+    };
+
+    const toggleAccordionMessage = () => {
+        setAccordionOpenMessage(!isAccordionOpenMessage);
+        setAccordionOpenEntreprise(false);
+        setAccordionOpenSecurity(false);
+        setAccordionOpenPersonnelInfo(false);
+
+        setEditeOpenPersonnelInfo(false);
+        setEditeOpenSecurity(false);
+        setEditeOpenMessage(false);
+        setEditeOpenEntreprise(false);
+    };
+
+
+    return (
+        <>
+            <Sidebar/>
+            <div className="main p-4 flex-1 flex flex-col overflow-y-auto iwanttoscrolling" id="main">
+                <div className="overflow-y-none p-4  bg-[#1E2029]">
+                    <Link to={'/message'}><span>Profile  </span></Link>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 p-3 overflow-Y-auto">
+                    <div className="scaffold-layout__sidebar" tabIndex="-1">
+                        <div className="sticky top-0 md:sticky md:top-16">
+                            <div className="p-3 overflow-hidden">
                             <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
-                                <div style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }} id="ember24" className="bg-cover bg-center h-69">
-                                    {/* <div className="opacity-50 bg-black absolute inset-0"></div> */}
+                                <div
+                                    style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }}
+                                    id="ember24"
+                                    className="bg-cover bg-center h-69"
+                                >
                                     <div className="flex items-center justify-center relative">
-                                        <div className="profile-rail-card__member-bg-image relative">
-                                            <div className="profile-rail-card__premium-overlay absolute inset-0 flex items-center justify-center">
-                                                <span className="w-1/2">
-                                                    <svg role="img" aria-hidden="false" aria-label="PREMIUM" className="hue-web-color-scheme--dark" xmlns="http://www.w3.org/2000/svg" width="64" height="50" viewBox="0 0 64 8" data-supported-dps="64x8" data-test-icon="premium-wordmark-xxxsmall">
-                                                        <svg display="var(--hue-web-svg-display-light)">
-                                                            <image href="https://static.licdn.com/aero-v1/sc/h/1p8rpr21wptehwiew0ivb4nsy" x="0" y="0" width="64" height="8" />
-                                                        </svg>
-                                                        <svg display="var(--hue-web-svg-display-dark)">
-                                                            <image href="https://static.licdn.com/aero-v1/sc/h/7sb67vl48t706tmd6vd4st83x" x="0" y="0" width="64" height="8" />
-                                                        </svg>
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                            <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
-                                                <div className="ivm-image-view-model items-center">
-                                                    <div className="ivm-view-attr__img-wrapper flex justify-center">
-                                                        <img
-                                                            src="https://media.licdn.com/dms/image/D4E35AQGKzd6QV8tQNA/profile-framedphoto-shrink_100_100/0/1691755098172?e=1704844800&amp;v=beta&amp;t=VjTdINtZ6MFZJ7ct-gzh14KHeHfcyhjqwJLt_ZytdXo"
-                                                            alt="Victor Brito"
-                                                            className="w-99 h-99 rounded-full"
-                                                            loading="lazy"
-                                                            width="72"
-                                                            height="72"
-                                                        />
+                                            <div className="profile-rail-card__member-bg-image relative">
+                                                <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
+                                                    <div className="ivm-image-view-model items-center">
+                                                        <div className="ivm-view-attr__img-wrapper flex justify-center">
+                                                            <img
+                                                                src="https://media.licdn.com/dms/image/D4E35AQGKzd6QV8tQNA/profile-framedphoto-shrink_100_100/0/1691755098172?e=1704844800&amp;v=beta&amp;t=VjTdINtZ6MFZJ7ct-gzh14KHeHfcyhjqwJLt_ZytdXo"
+                                                                alt="Victor Brito"
+                                                                className="w-99 h-99 rounded-full"
+                                                                loading="lazy"
+                                                                width="72"
+                                                                height="72"
+                                                            />
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </a>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div className="link-without-hover-visited">
-                                        <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
-                                            <span aria-hidden="true">
-                                                <span dir="ltr"className='text-white'>Victor Brito</span>
-                                            </span>
+                                        <div className="link-without-hover-visited">
+                                            <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                <span aria-hidden="true">
+                                                    <span dir="ltr"className='text-white'>Fullname</span>
+                                                </span>
+                                            </p>
+                                        </div>
+
+                                        <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
+                                            <span aria-hidden="true" className='text-center'>E-mail</span>
                                         </p>
-                                    </div>
+                                        
 
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>Développeur front-end | JavaScript | TypeScript | React</span>
-                                    </p>
+                                        {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
+                                        {isAccordionOpenPersonnelInfo && (
+                                            <div className="link-without-hover-visited m-3">
+                                                <div className="link-without-hover-visited">
+                                                    <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                        <span aria-hidden="true">
+                                                            <span dir="ltr"className='text-white'>Phone</span>
+                                                        </span>
+                                                    </p>
+                                                </div>
 
-                                    <button className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[110px]" aria-label="Suivre" aria-live="polite" type="button">
+                                                <div className="link-without-hover-visited">
+                                                    <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                        <span aria-hidden="true">
+                                                            <span dir="ltr"className='text-white'>City</span>
+                                                        </span>
+                                                    </p>
+                                                </div>
+
+                                                <div className="link-without-hover-visited">
+                                                    <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                        <span aria-hidden="true">
+                                                            <span dir="ltr"className='text-white'>Nationality</span>
+                                                        </span>
+                                                    </p>
+                                                </div>
+
+                                                <button onClick={toggleEditePersonnelInfo} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
+                                                    <i className="bx bxs-edit m-1"></i>
+                                                    <span aria-hidden="true">Modifier</span>
+                                                </button>
+                                            </div>
+                                        )}
+
+                                        {/* Bouton pour basculer l'état de l'accordéon */}
+                                        <button
+                                            onClick={toggleAccordionPersonnelInfo}
+                                            className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px]"
+                                            aria-label="Suivre"
+                                            aria-live="polite"
+                                            type="button"
+                                        >
                                         <i className="bx bxs-show m-1"></i>
-                                        <span aria-hidden="true">Suivre</span>
+                                        <span aria-hidden="true">Voir Plus</span>
                                     </button>
-
-                                    <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline flex justify-center" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
-                                        <div className="single-line-truncate text-16 text-black font-bold mt-2 text-white">
-                                            Voir le profil complet
-                                        </div>
-                                    </a>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="scaffold-layout__sidebar" tabIndex="-1">
-                    <div className="sticky top-0 md:sticky md:top-16">
-                        <div className="p-3 overflow-hidden">
+                    <div className="scaffold-layout__sidebar" tabIndex="-1">
+                        <div className="sticky top-0 md:sticky md:top-16">
+                            <div className="p-3 overflow-hidden">
                             <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
-                                <div style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }} id="ember24" className="bg-cover bg-center h-69">
-                                    {/* <div className="opacity-50 bg-black absolute inset-0"></div> */}
+                                <div
+                                    style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }}
+                                    id="ember24"
+                                    className="bg-cover bg-center h-69"
+                                >
                                     <div className="flex items-center justify-center relative">
                                         <div className="profile-rail-card__member-bg-image relative">
-                                            <div className="profile-rail-card__premium-overlay absolute inset-0 flex items-center justify-center">
-                                                <span className="w-1/2">
-                                                    <svg role="img" aria-hidden="false" aria-label="PREMIUM" className="hue-web-color-scheme--dark" xmlns="http://www.w3.org/2000/svg" width="64" height="8" viewBox="0 0 64 8" data-supported-dps="64x8" data-test-icon="premium-wordmark-xxxsmall">
-                                                        <svg display="var(--hue-web-svg-display-light)">
-                                                            <image href="https://static.licdn.com/aero-v1/sc/h/1p8rpr21wptehwiew0ivb4nsy" x="0" y="0" width="64" height="8" />
-                                                        </svg>
-                                                        <svg display="var(--hue-web-svg-display-dark)">
-                                                            <image href="https://static.licdn.com/aero-v1/sc/h/7sb67vl48t706tmd6vd4st83x" x="0" y="0" width="64" height="8" />
-                                                        </svg>
-                                                    </svg>
-                                                </span>
-                                            </div>
                                             <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
                                                 <div className="ivm-image-view-model items-center">
-                                                    <div className="ivm-view-attr__img-wrapper flex justify-center">
-                                                        <img
-                                                            src="https://media.licdn.com/dms/image/D4E35AQGKzd6QV8tQNA/profile-framedphoto-shrink_100_100/0/1691755098172?e=1704844800&amp;v=beta&amp;t=VjTdINtZ6MFZJ7ct-gzh14KHeHfcyhjqwJLt_ZytdXo"
-                                                            alt="Victor Brito"
-                                                            className="w-99 h-99 rounded-full"
-                                                            loading="lazy"
-                                                            width="72"
-                                                            height="72"
-                                                        />
+                                                    <div className="ivm-view-attr__img-wrapper font-bold text-white flex justify-center">
+                                                        SECURITE
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
 
-                                    <div className="link-without-hover-visited">
-                                        <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
-                                            <span aria-hidden="true">
-                                                <span dir="ltr"className='text-white'>Raison Sociale</span>
-                                            </span>
-                                        </p>
-                                    </div>
-                                    
+                                        <div className="link-without-hover-visited">
+                                            <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                <span aria-hidden="true">
+                                                    <span dir="ltr"className='text-white'>E-mail</span>
+                                                </span>
+                                            </p>
+                                        </div>
 
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>Description Entreprise</span>
-                                    </p>
+                                        {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
+                                        {isAccordionOpenSecurity && (
+                                            <div className="link-without-hover-visited m-3">
+                                                <div className="link-without-hover-visited">
+                                                    <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                        <span aria-hidden="true">
+                                                            <span dir="ltr"className='text-white'>Mot de passe</span>
+                                                        </span>
+                                                    </p>
+                                                </div>
 
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>Pays</span>
-                                    </p>
+                                                <button onClick={toggleEditeSecurity} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px]" aria-label="Modifier" aria-live="polite" type="button">
+                                                    <i className="bx bxs-edit m-1"></i>
+                                                    <span aria-hidden="true">Modifier</span>
+                                                </button>
+                                            </div>
+                                        )}
 
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>Adresse Postale</span>
-                                    </p>
-
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>Adresse Postale</span>
-                                    </p>
-
-                                    <button className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[110px]" aria-label="Suivre" aria-live="polite" type="button">
-                                        <i className="bx bxs-edit m-1"></i>
-                                        <span aria-hidden="true">Modifier</span>
+                                        {/* Bouton pour basculer l'état de l'accordéon */}
+                                        <button
+                                            onClick={toggleAccordionSecurity}
+                                            className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px]"
+                                            aria-label="Suivre"
+                                            aria-live="polite"
+                                            type="button"
+                                        >
+                                        <i className="bx bxs-show m-1"></i>
+                                        <span aria-hidden="true">Voir Plus</span>
                                     </button>
-                                    
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="scaffold-layout__sidebar" tabIndex="-1">
+                        <div className="sticky top-0 md:sticky md:top-16">
+                            <div className="p-3 overflow-hidden">
+                                <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
+                                    <div
+                                        style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }}
+                                        id="ember24"
+                                        className="bg-cover bg-center h-69"
+                                    >
+                                        <div className="flex items-center justify-center relative">
+                                            <div className="profile-rail-card__member-bg-image relative">
+                                                <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
+                                                    <div className="ivm-image-view-model items-center">
+                                                        <div className="ivm-view-attr__img-wrapper flex justify-center">
+                                                            <div className="ivm-view-attr__img-wrapper font-bold text-white flex justify-center"> ENTREPRISE </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                            <div className="link-without-hover-visited">
+                                                <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                    <span aria-hidden="true">
+                                                        <span dir="ltr"className='text-white'>Raison Sociale</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+
+                                            <div className="link-without-hover-visited">
+                                                <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                    <span aria-hidden="true">
+                                                        <span dir="ltr"className='text-white'>Domaine d&apos;activité</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+
+                                            <div className="link-without-hover-visited">
+                                                <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                    <span aria-hidden="true">
+                                                        <span dir="ltr"className='text-white'>Adresse</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            
+
+                                            {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
+                                            {isAccordionOpenEntreprise && (
+                                                <div className="link-without-hover-visited m-3">
+                                                    <div className="link-without-hover-visited">
+                                                        <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                            <span aria-hidden="true">
+                                                                <span dir="ltr"className='text-white'>Adresse Méssagerie via E-mail</span>
+                                                            </span>
+                                                        </p>
+                                                        <div className="flex justify-center text-white">devdjobo@gmail.com</div>
+                                                    </div>
+
+                                                    <div className="link-without-hover-visited">
+                                                        <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                            <span aria-hidden="true">
+                                                                <span dir="ltr"className='text-white'>Adresse Méssagerie via SMS</span>
+                                                            </span>
+                                                        </p>
+                                                        <div className="flex justify-center text-white">+2250575451121411</div>
+                                                    </div>
+
+                                                    <div className="link-without-hover-visited">
+                                                        <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                            <span aria-hidden="true">
+                                                                <span dir="ltr"className='text-white'>Adresse Méssagerie via WhatsApp</span>
+                                                            </span>
+                                                        </p>
+                                                        <div className="flex justify-center text-white">+2250575451121411</div>
+                                                    </div>
+
+                                                    <div className="link-without-hover-visited">
+                                                        <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                            <span aria-hidden="true">
+                                                                <span dir="ltr"className='text-white'>Pays</span>
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    <div className="link-without-hover-visited">
+                                                        <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                            <span aria-hidden="true">
+                                                                <span dir="ltr"className='text-white'>Nationality</span>
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    <button onClick={toggleEditeEntreprise} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px]" aria-label="Modifier" aria-live="polite" type="button">
+                                                        <i className="bx bxs-edit m-1"></i>
+                                                        <span aria-hidden="true">Modifier</span>
+                                                    </button>
+                                                </div>
+                                            )}
+
+                                            {/* Bouton pour basculer l'état de l'accordéon */}
+                                            <button
+                                                onClick={toggleAccordionEntreprise}
+                                                className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px]"
+                                                aria-label="Suivre"
+                                                aria-live="polite"
+                                                type="button"
+                                            >
+                                            <i className="bx bxs-show m-1"></i>
+                                            <span aria-hidden="true">Voir Plus</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="scaffold-layout__sidebar" tabIndex="-1">
+                        <div className="sticky top-0 md:sticky md:top-16">
+                            <div className="p-3 overflow-hidden">
+                                <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
+                                    <div
+                                        style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }}
+                                        id="ember24"
+                                        className="bg-cover bg-center h-69"
+                                    >
+                                        <div className="flex items-center justify-center relative">
+                                            <div className="profile-rail-card__member-bg-image relative">
+                                                <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
+                                                    <div className="ivm-image-view-model items-center">
+                                                        <div className="ivm-view-attr__img-wrapper flex justify-center">
+                                                            <div className="ivm-view-attr__img-wrapper font-bold text-white flex justify-center"> ADRESSES DE MESSAGERIE </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div className="link-without-hover-visited mb-5">
+                                            <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                <span aria-hidden="true" className='text-center'>
+                                                    <span dir="ltr"className='text-white'>Adresse Méssagerie via SMS</span><br/>
+                                                    <span dir="ltr"className='text-white'>+22202125785552</span>
+                                                </span>
+                                            </p>
+                                        </div>
+
+                                            {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
+                                        {isAccordionOpenMessage && (
+                                            <div className="link-without-hover-visited m-3">
+                                                
+                                                <div className="link-without-hover-visited mb-5">
+                                                    <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                        <span aria-hidden="true" className='text-center'>
+                                                            <span dir="ltr"className='text-white'>Adresse Méssagerie via E-mail</span><br/>
+                                                            <span dir="ltr"className='text-white'>devdjobo@gmail.com</span>
+                                                        </span>
+                                                    </p>
+
+                                                    <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                        <span aria-hidden="true" className='text-center'>
+                                                            <span dir="ltr"className='text-white'>Mot de passe</span><br/>
+                                                            <span dir="ltr"className='text-white'>nfcDJ0B0@</span>
+                                                        </span>
+                                                    </p>
+                                                </div>
+
+                                                <div className="link-without-hover-visited">
+                                                    <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                        <span aria-hidden="true" className='text-center'>
+                                                            <span dir="ltr"className='text-white'>Adresse Méssagerie via WhatsApp</span><br/>
+                                                            <span dir="ltr"className='text-white'>+225030323232222</span>
+                                                        </span>
+                                                    </p>
+                                                </div>
+
+                                                <button onClick={toggleEditeMessagerie} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px]" aria-label="Modifier" aria-live="polite" type="button">
+                                                    <i className="bx bxs-edit m-1"></i>
+                                                    <span aria-hidden="true">Modifier</span>
+                                                </button>
+                                            </div>
+                                        )}
+
+                                            {/* Bouton pour basculer l'état de l'accordéon */}
+                                            <button
+                                                onClick={toggleAccordionMessage}
+                                                className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px]"
+                                                aria-label="Suivre"
+                                                aria-live="polite"
+                                                type="button"
+                                            >
+                                            <i className="bx bxs-show m-1"></i>
+                                            <span aria-hidden="true">Voir Plus</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="scaffold-layout__sidebar" tabIndex="-1">
-                    <div className="sticky top-0 md:sticky md:top-16">
-                        <div className="p-3 overflow-hidden">
-                            <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
-                                <div style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }} id="ember24" className="bg-cover bg-center h-69">
-                                    {/* <div className="opacity-50 bg-black absolute inset-0"></div> */}
-                                    <h1 className='flex justify-center'>Titre</h1>
+                {isEditeOpenPersonnelInfo && <InformationPerso />}
 
-                                    <div className="link-without-hover-visited">
-                                        <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
-                                            <span aria-hidden="true">
-                                                <span dir="ltr"className='text-white'>Email de courrier</span>
-                                            </span>
-                                        </p>
-                                    </div>
+                {isEditeOpenSecurity && <InformationSecurite/>}
+                {isEditeOpenMessage && <InformationMessagerie />}
+                {isEditeOpenEntreprise && <InformationEntreprise/>}
 
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>Mot de passe</span>
-                                    </p>
-
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>Email d&apos;authentification</span>
-                                    </p>
-
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>Mot de passe</span>
-                                    </p>
-
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>Adresse de courrier via WhatsApp</span>
-                                    </p>
-
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>+232355258944555</span>
-                                    </p>
-
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>Adresse de courrier via WhatsApp</span>
-                                    </p>
-
-                                    <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                        <span aria-hidden="true" className='text-center'>+232355258944555</span>
-                                    </p>
-
-                                    
-
-
-                                    <button className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[110px]" aria-label="Suivre" aria-live="polite" type="button">
-                                        <i className="bx bxs-edit m-1"></i>
-                                        <span aria-hidden="true">Modifier</span>
-                                    </button>
-
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 
+                
             </div>
-        </div>
-    </>
-  )
+        </>
+    )
 }

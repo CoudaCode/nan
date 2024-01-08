@@ -46,7 +46,6 @@ function App() {
           <Route path="/message/:id/:detail" element={<MessageDetail />} />
 
           <Route path="/profil" element={<Profil />} />
-
         </Routes>
       </QueryClientProvider>
     </>

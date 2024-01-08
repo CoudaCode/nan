@@ -46,7 +46,7 @@ import { ApiUrl } from "../../outils/URL";
                   require: true,
                   minLength: 5,
                   maxLength: 50,
-                  pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, message: "Veuillez entrer un adresse mail valide." },
+                  pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, message: "Veuillez entrer une adresse mail valide." },
                   validate: {notEmpty: value => /^\S+$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
                 })}
                 className="input"
