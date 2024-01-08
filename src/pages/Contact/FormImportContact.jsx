@@ -15,7 +15,7 @@ function FormImportContact({ isOpen, onClose, onConfirm, contact }){
     if (!isOpen || !contact) { return null }
     const handleDelete = () => { onConfirm(); };
 
-    const {fullname, email, sms, whatsapp, _id} = contact;
+    const {fullname, email, sms, whatsapp, id} = contact;
     const token = IsCookies();
     const saveContact = async (data) => {
         const formDatas = new FormData();

@@ -60,7 +60,7 @@ function Broadcast() {
     return(
       <>
       
-        <tr id={'ligne-'+item._id} key={item._id} data={item}>
+        <tr id={'ligne-'+item.id} key={item.id} data={item}>
           <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
             {item.name}
           </td>
@@ -78,12 +78,12 @@ function Broadcast() {
           </td>
           <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700" style={{ justifyContent:'center'}}>
             <a
-              onClick={() => handleModify(item._id)}
+              onClick={() => handleModify(item.id)}
               className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
               Modifier
             </a>
             <a
-              onClick={() => handleDelete(item._id)}
+              onClick={() => handleDelete(item.id)}
               className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
               Supprimer
             </a>
@@ -97,7 +97,7 @@ function Broadcast() {
   const changePage = ({selected})=>{ setPagesNumber(selected); }
 
   const handleDelete = (contactId) => {
-    const contact = AllGroupe.find(c => c._id === contactId);
+    const contact = AllGroupe.find(c => c.id === contactId);
     setSelectedContact(contact);
     setIsDeleteModalOpen(true);
   };
@@ -120,7 +120,7 @@ function Broadcast() {
 
 
   const handleModify = (contactId) => {
-    const contact = AllGroupe.find(c => c._id === contactId);
+    const contact = AllGroupe.find(c => c.id === contactId);
     setContactToModify(contact);
     setIsModifyModalOpen(true);
   };

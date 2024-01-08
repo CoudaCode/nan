@@ -26,15 +26,15 @@ function Groupe(){
         if(state.length){
             if(event.target.value === 'email'){
                 state.map(item =>{
-                    if(item.email) formatHtml += `<option value="${item.email+'-'+item._id}">${item.fullname}</option>`;
+                    if(item.email) formatHtml += `<option value="${item.email+'-'+item.id}">${item.fullname}</option>`;
                 })
             }else if(event.target.value === 'sms'){
                 state.map(item =>{
-                    if(item.sms) formatHtml += `<option value="${item.sms+'-'+item._id}">${item.fullname}</option>`;
+                    if(item.sms) formatHtml += `<option value="${item.sms+'-'+item.id}">${item.fullname}</option>`;
                 })
             }else if(event.target.value === 'whatsapp'){
                 state.map(item =>{
-                    if(item.whatsapp) formatHtml += `<option value="${item.whatsapp+'-'+item._id}">${item.fullname}</option>`;
+                    if(item.whatsapp) formatHtml += `<option value="${item.whatsapp+'-'+item.id}">${item.fullname}</option>`;
                 })
             }
         }

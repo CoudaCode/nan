@@ -17,25 +17,25 @@ function ModifyConfirmationModal(props){
   const groupeData = props.groupeData;
 
   if (!isOpen || !groupeData) return null;
-  const { canal, contact, description, name, _id} = groupeData;
+  const { canal, contact, description, name, id} = groupeData;
   const token = IsCookies();
   
   const saveContact = async (data) => {
     console.log(document.querySelector('.FormSaveContact'))
     document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = true);
     if(!data.contact){
-        data.contact = contact.map(item=>item._id);
+        data.contact = contact.map(item=>item.id);
     }
-    return await axios.put(ApiUrl + 'groupe/update/'+_id, data, {headers: {Authorization: 'token '+token}});
+    return await axios.put(ApiUrl + 'groupe/update/'+id, data, {headers: {Authorization: 'token '+token}});
   }
-//   console.log('********************', contact.map(item=>item._id))
-  const { register, handleSubmit, formState: { errors } } = useForm({ canal, description, name, contact: contact.map(item=>item._id) });
+//   console.log('********************', contact.map(item=>item.id))
+  const { register, handleSubmit, formState: { errors } } = useForm({ canal, description, name, contact: contact.map(item=>item.id) });
   const {mutate: contactUpdate} = useMutation({
       mutationFn: data => saveContact(data),
       onSuccess: success => {
         toast.success(success.data.message);
         onClose();
-        const TrLigne = document.getElementById('ligne-'+_id);
+        const TrLigne = document.getElementById('ligne-'+id);
         TrLigne.classList.toggle('updated');
         setTimeout(() => TrLigne.classList.toggle('updated'), 3000);
       },
@@ -45,7 +45,7 @@ function ModifyConfirmationModal(props){
       }
   });
 
-  const initialFormData = { canal, contact: contact.map(item=>item._id), description, name, hiddenField: _id };
+  const initialFormData = { canal, contact: contact.map(item=>item.id), description, name, hiddenField: id };
   const [formData, setFormData] = useState(initialFormData);
   const handleChange = (e) => {
     const { name, value } = e.target;

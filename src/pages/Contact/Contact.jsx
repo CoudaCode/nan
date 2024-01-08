@@ -60,7 +60,7 @@ function Contact() {
       <>
         {/* <ModifyConfirmationModal contact={item}/> */}
       
-        <tr id={'ligne-'+item._id} key={item._id}>
+        <tr id={'ligne-'+item.id} key={item.id}>
           <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
             {item.fullname}
           </td>
@@ -75,12 +75,12 @@ function Contact() {
           </td>
           <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700" style={{ justifyContent:'center'}}>
             <a
-              onClick={() => handleModify(item._id)}
+              onClick={() => handleModify(item.id)}
               className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
               Modifier
             </a>
             <a
-              onClick={() => handleDelete(item._id)}
+              onClick={() => handleDelete(item.id)}
               className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
               Supprimer
             </a>
@@ -94,7 +94,7 @@ function Contact() {
   const changePage = ({selected})=>{ setPagesNumber(selected); }
 
   const handleDelete = (contactId) => {
-    const contact = AllContacts.find(c => c._id === contactId);
+    const contact = AllContacts.find(c => c.id === contactId);
     setSelectedContact(contact);
     setIsDeleteModalOpen(true);
   };
@@ -117,30 +117,20 @@ function Contact() {
 
 
   const handleModify = (contactId) => {
-    const contact = AllContacts.find(c => c._id === contactId);
+    const contact = AllContacts.find(c => c.id === contactId);
     setContactToModify(contact);
     setIsModifyModalOpen(true);
   };
 
-  const handleConfirmDelete = () => {
-    setIsDeleteModalOpen(false);
-  };
+  const handleConfirmDelete = () => setIsDeleteModalOpen(false);
 
-  const handleSaveContact = (e) => {
-    setIsOpenAddForm(true)
-  };
+  const handleSaveContact = () => setIsOpenAddForm(true);
 
-  const handleCloseContact = (e) => {
-    setIsOpenAddForm(false)
-  };
+  const handleCloseContact = () => setIsOpenAddForm(false);
 
-  const handleImportContact = (e) => {
-    setIsOpenImportForm(true)
-  };
+  const handleImportContact = () => setIsOpenImportForm(true);
 
-  const handleCloseImportContact = (e) => {
-    setIsOpenImportForm(false)
-  };
+  const handleCloseImportContact = () => setIsOpenImportForm(false);
 
   return (
     <>
@@ -177,11 +167,13 @@ function Contact() {
                   className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 data-modal-toggle=authentication-modal"
                   type="button"
                   onClick={() => handleSaveContact(true)}>
-                  <FaPlus style={{ margin: "8px " }} />
+                  <FaPlus style={{ margin: "8px " }} /> 
                   ajouter le contact
                 </button>
               </div>
             </div>
+
+            
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               <div className="rounded-lg border border-gray-200">
