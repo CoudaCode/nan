@@ -53,7 +53,7 @@ function Sidebar() {
     {
       iconClass: "bx bx-user",
       text: "Profile",
-      to: "/profil",
+      to: "/profile",
     },
     {
       iconClass: "bx bx-log-out",
