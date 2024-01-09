@@ -10,8 +10,8 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm, contact }){
   const token = IsCookies();
   const handleDelete = async () => {
     console.table(contact)
-    const lignTr = document.getElementById(`ligne-${contact._id}`);
-    axios.delete(ApiUrl+'groupe/delete/'+contact._id, {headers: {Authorization: `token ${token}`}})
+    const lignTr = document.getElementById(`ligne-${contact.id}`);
+    axios.delete(ApiUrl+'groupe/delete/'+contact.id, {headers: {Authorization: `token ${token}`}})
     .then(success => {
       toast.success(success.data.message);
       lignTr.classList.add('deleted');

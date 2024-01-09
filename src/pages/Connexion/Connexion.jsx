@@ -22,7 +22,7 @@ import { ApiUrl } from "../../outils/URL";
       onSuccess: (succes) => {
         console.log("demo", succes.data);
         toast.success(succes.data.message);
-        Cookie.set("NaN_Digit_Sender_Token_Secretly", succes.data.token, { expires: 3600 * 24 });
+        Cookie.set("NaN_Digit_Sender_Token_Secretly", succes.data.token, { expires: 1 });
         setTimeout(() => {
           sessionStorage.setItem("NaN_Digit_Sender_Token_Secretly", JSON.stringify(succes.data.id));
           navigate("/dashboard");
@@ -36,7 +36,7 @@ import { ApiUrl } from "../../outils/URL";
 
     const onSubmit = (data) => loginUser(data);
     return (
-      <>
+      <> 
         <div className="Connexion">
           <div className="container">
             <div className="heading">Connexion</div>
@@ -46,7 +46,7 @@ import { ApiUrl } from "../../outils/URL";
                   require: true,
                   minLength: 5,
                   maxLength: 50,
-                  pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, message: "Veuillez entrer un adresse mail valide." },
+                  pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, message: "Veuillez entrer une adresse mail valide." },
                   validate: {notEmpty: value => /^\S+$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
                 })}
                 className="input"

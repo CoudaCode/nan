@@ -12,13 +12,13 @@ import { IsCookies } from "../../outils/IsCookie";
 function ModifyConfirmationModal({isOpen, onClose, contact}){
 
   if (!isOpen || !contact) return null;
-  const {fullname, email, sms, whatsapp, _id} = contact;
+  const {fullname, email, sms, whatsapp, id} = contact;
   const token = IsCookies();
   const secondData = null;
   
   const saveContact = async (data) => {
     document.querySelector('.FormEditeContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = true);
-    return await axios.put(ApiUrl + 'contact/update/'+_id, data, {headers: {Authorization: 'token '+token}});
+    return await axios.put(ApiUrl + 'contact/update/'+id, data, {headers: {Authorization: 'token '+token}});
   }
   const { register, handleSubmit, formState: { errors } } = useForm({ fullname, email, sms, whatsapp });
   const {mutate: contactUpdate} = useMutation({
@@ -26,7 +26,7 @@ function ModifyConfirmationModal({isOpen, onClose, contact}){
       onSuccess: success => {
         toast.success(success.data.message);
         onClose();
-        const TrLigne = document.getElementById('ligne-'+_id);
+        const TrLigne = document.getElementById('ligne-'+id);
         TrLigne.classList.toggle('updated');
         setTimeout(() => TrLigne.classList.toggle('updated'), 3000);
       },
@@ -44,7 +44,7 @@ function ModifyConfirmationModal({isOpen, onClose, contact}){
     email: contact.email,
     whatsapp: contact.whatsapp,
     sms: contact.sms,
-    hiddenField: contact._id, // Champ invisible
+    hiddenField: contact.id, // Champ invisible
   };
   const [formData, setFormData] = useState(initialFormData);
   const handleChange = (e) => {
