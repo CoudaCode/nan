@@ -39,13 +39,12 @@ function App() {
           <Route path="/message" element={<Message />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/workspace" element={<WorkSpace />} />
-          <Route path="/profil" element={<Profil />} />
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/validate/:user/:code" element={<Validate />} />
           <Route path="/message/:id/:detail" element={<MessageDetail />} />
 
-          <Route path="/profil" element={<Profil />} />
+          <Route path="/profile" element={<Profil />} />
         </Routes>
       </QueryClientProvider>
     </>
