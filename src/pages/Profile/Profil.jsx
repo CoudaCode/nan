@@ -1,11 +1,15 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { Link } from 'react-router-dom';
 import InformationPerso from './InformationPerso';
 import InformationEntreprise from './InformationEntreprise';
 import InformationMessagerie from './InformationMessagerie';
 import InformationSecurite from './Securite';
+import axios from 'axios';
+import { IsCookies } from '../../outils/IsCookie';
+import { ApiUrl } from '../../outils/URL';
+
 
 export default function Profil() {
     const [isAccordionOpenPersonnelInfo, setAccordionOpenPersonnelInfo] = useState(false);
@@ -17,6 +21,12 @@ export default function Profil() {
     const [isEditeOpenSecurity, setEditeOpenSecurity] = useState(false);
     const [isEditeOpenEntreprise, setEditeOpenEntreprise] = useState(false);
     const [isEditeOpenMessage, setEditeOpenMessage] = useState(false);
+    const [IsMyEntreprise, SetMyEntreprise] = useState({});
+
+    useEffect(()=>{
+        axios.get(`${ApiUrl}entreprise/getById`, {headers: {Authorization: `token ${IsCookies()}`}})
+        .then(success=>SetMyEntreprise(success.data.data))
+    }, []);
 
     const toggleEditePersonnelInfo = () => {
         const iwanttoscrolling = document.querySelector('.iwanttoscrolling');
@@ -37,9 +47,6 @@ export default function Profil() {
         const iwanttoscrolling = document.querySelector('.iwanttoscrolling');
         setEditeOpenSecurity(true);
         setAccordionOpenSecurity(true);
-        // setAccordionOpenPersonnelInfo(false);
-        // setAccordionOpenEntreprise(false);
-        // setAccordionOpenMessage(false);
 
         setEditeOpenPersonnelInfo(false);
         setEditeOpenEntreprise(false);
@@ -53,9 +60,6 @@ export default function Profil() {
         const iwanttoscrolling = document.querySelector('.iwanttoscrolling');
         setEditeOpenMessage(true);
         setAccordionOpenMessage(true);
-        // setAccordionOpenSecurity(false);
-        // setAccordionOpenPersonnelInfo(false);
-        // setAccordionOpenEntreprise(false);
 
         setEditeOpenPersonnelInfo(false);
         setEditeOpenEntreprise(false);
@@ -69,10 +73,6 @@ export default function Profil() {
         setEditeOpenEntreprise(true);
         setAccordionOpenEntreprise(true);
 
-        // setAccordionOpenMessage(false);
-        // setAccordionOpenSecurity(false);
-        // setAccordionOpenPersonnelInfo(false);
-
         setEditeOpenPersonnelInfo(false);
         setEditeOpenMessage(false);
         setEditeOpenSecurity(false);
@@ -82,9 +82,18 @@ export default function Profil() {
     };
 
 
+    const changeContentOrClass = (btn, myState) => {
+        console.log(btn);
+        const i = btn.querySelector('i');
+        const span = btn.querySelector('span');
+        i.className = myState ? 'bx bxs-show m-1' : 'bx bxs-hide m-1';
+        span.textContent = myState ? 'Voir plus' : 'Fermer';
+    }
 
+    const toggleAccordionPersonnelInfo = event => {
 
-    const toggleAccordionPersonnelInfo = () => {
+        changeContentOrClass(event.target.closest('button'), isAccordionOpenPersonnelInfo);
+        
         setAccordionOpenPersonnelInfo(!isAccordionOpenPersonnelInfo);
         setAccordionOpenSecurity(false);
         setAccordionOpenEntreprise(false);
@@ -96,7 +105,10 @@ export default function Profil() {
         setEditeOpenEntreprise(false);
     };
 
-    const toggleAccordionSecurity = () => {
+    const toggleAccordionSecurity = event => {
+
+        changeContentOrClass(event.target.closest('button'), isAccordionOpenSecurity);
+
         setAccordionOpenSecurity(!isAccordionOpenSecurity);
         setAccordionOpenPersonnelInfo(false);
         setAccordionOpenEntreprise(false);
@@ -108,7 +120,10 @@ export default function Profil() {
         setEditeOpenEntreprise(false);
     };
 
-    const toggleAccordionEntreprise = () => {
+    const toggleAccordionEntreprise = event => {
+
+        changeContentOrClass(event.target.closest('button'), isAccordionOpenEntreprise);
+        
         setAccordionOpenEntreprise(!isAccordionOpenEntreprise);
         setAccordionOpenSecurity(false);
         setAccordionOpenPersonnelInfo(false);
@@ -120,7 +135,10 @@ export default function Profil() {
         setEditeOpenEntreprise(false);
     };
 
-    const toggleAccordionMessage = () => {
+    const toggleAccordionMessage = event => {
+
+        changeContentOrClass(event.target.closest('button'), isAccordionOpenMessage);
+
         setAccordionOpenMessage(!isAccordionOpenMessage);
         setAccordionOpenEntreprise(false);
         setAccordionOpenSecurity(false);
@@ -131,6 +149,8 @@ export default function Profil() {
         setEditeOpenMessage(false);
         setEditeOpenEntreprise(false);
     };
+
+    
 
 
     return (
@@ -321,7 +341,7 @@ export default function Profil() {
                                             <div className="link-without-hover-visited">
                                                 <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
                                                     <span aria-hidden="true">
-                                                        <span dir="ltr"className='text-white'>Raison Sociale</span>
+                                                        <span dir="ltr"className='text-white'>{IsMyEntreprise?.raisonSociale}</span>
                                                     </span>
                                                 </p>
                                             </div>
@@ -329,7 +349,7 @@ export default function Profil() {
                                             <div className="link-without-hover-visited">
                                                 <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
                                                     <span aria-hidden="true">
-                                                        <span dir="ltr"className='text-white'>Domaine d&apos;activité</span>
+                                                        <span dir="ltr"className='text-white'>{IsMyEntreprise?.domaineDActivite}</span>
                                                     </span>
                                                 </p>
                                             </div>
@@ -337,7 +357,7 @@ export default function Profil() {
                                             <div className="link-without-hover-visited">
                                                 <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
                                                     <span aria-hidden="true">
-                                                        <span dir="ltr"className='text-white'>Adresse</span>
+                                                        <span dir="ltr"className='text-white'>{IsMyEntreprise?.adresse}</span>
                                                     </span>
                                                 </p>
                                             </div>
@@ -352,7 +372,7 @@ export default function Profil() {
                                                                 <span dir="ltr"className='text-white'>Adresse Méssagerie via E-mail</span>
                                                             </span>
                                                         </p>
-                                                        <div className="flex justify-center text-white">devdjobo@gmail.com</div>
+                                                        <div className="flex justify-center text-white">{IsMyEntreprise?.email}</div>
                                                     </div>
 
                                                     <div className="link-without-hover-visited">
@@ -361,7 +381,7 @@ export default function Profil() {
                                                                 <span dir="ltr"className='text-white'>Adresse Méssagerie via SMS</span>
                                                             </span>
                                                         </p>
-                                                        <div className="flex justify-center text-white">+2250575451121411</div>
+                                                        <div className="flex justify-center text-white">{IsMyEntreprise?.smsAdresse}</div>
                                                     </div>
 
                                                     <div className="link-without-hover-visited">
@@ -370,13 +390,13 @@ export default function Profil() {
                                                                 <span dir="ltr"className='text-white'>Adresse Méssagerie via WhatsApp</span>
                                                             </span>
                                                         </p>
-                                                        <div className="flex justify-center text-white">+2250575451121411</div>
+                                                        <div className="flex justify-center text-white">{IsMyEntreprise?.whatsappAdresse}</div>
                                                     </div>
 
                                                     <div className="link-without-hover-visited">
                                                         <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
                                                             <span aria-hidden="true">
-                                                                <span dir="ltr"className='text-white'>Pays</span>
+                                                                <span dir="ltr"className='text-white'>{IsMyEntreprise?.pays}</span>
                                                             </span>
                                                         </p>
                                                     </div>
@@ -384,7 +404,7 @@ export default function Profil() {
                                                     <div className="link-without-hover-visited">
                                                         <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
                                                             <span aria-hidden="true">
-                                                                <span dir="ltr"className='text-white'>Nationality</span>
+                                                                <span dir="ltr"className='text-white'>{IsMyEntreprise?.type}</span>
                                                             </span>
                                                         </p>
                                                     </div>
@@ -438,7 +458,7 @@ export default function Profil() {
                                             <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
                                                 <span aria-hidden="true" className='text-center'>
                                                     <span dir="ltr"className='text-white'>Adresse Méssagerie via SMS</span><br/>
-                                                    <span dir="ltr"className='text-white'>+22202125785552</span>
+                                                    <span dir="ltr"className='text-gray-400'>{IsMyEntreprise.smsAdresse || 'Aucun'}</span>
                                                 </span>
                                             </p>
                                         </div>
@@ -451,14 +471,14 @@ export default function Profil() {
                                                     <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
                                                         <span aria-hidden="true" className='text-center'>
                                                             <span dir="ltr"className='text-white'>Adresse Méssagerie via E-mail</span><br/>
-                                                            <span dir="ltr"className='text-white'>devdjobo@gmail.com</span>
+                                                            <span dir="ltr"className='text-gray-400'>{IsMyEntreprise.email  || 'Aucun'}</span>
                                                         </span>
                                                     </p>
 
                                                     <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
                                                         <span aria-hidden="true" className='text-center'>
                                                             <span dir="ltr"className='text-white'>Mot de passe</span><br/>
-                                                            <span dir="ltr"className='text-white'>nfcDJ0B0@</span>
+                                                            <span dir="ltr"className='text-gray-400'>{IsMyEntreprise.password || 'Aucun'}</span>
                                                         </span>
                                                     </p>
                                                 </div>
@@ -467,7 +487,7 @@ export default function Profil() {
                                                     <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
                                                         <span aria-hidden="true" className='text-center'>
                                                             <span dir="ltr"className='text-white'>Adresse Méssagerie via WhatsApp</span><br/>
-                                                            <span dir="ltr"className='text-white'>+225030323232222</span>
+                                                            <span dir="ltr"className='text-gray-400'>{IsMyEntreprise?.whatsappAdresse || 'Aucun'}</span>
                                                         </span>
                                                     </p>
                                                 </div>
@@ -500,8 +520,8 @@ export default function Profil() {
                 {isEditeOpenPersonnelInfo && <InformationPerso />}
 
                 {isEditeOpenSecurity && <InformationSecurite/>}
-                {isEditeOpenMessage && <InformationMessagerie />}
-                {isEditeOpenEntreprise && <InformationEntreprise/>}
+                {isEditeOpenMessage && <InformationMessagerie IsEntreprise={IsMyEntreprise}/>}
+                {isEditeOpenEntreprise && <InformationEntreprise IsEntreprise={IsMyEntreprise}/>}
 
                 
             </div>

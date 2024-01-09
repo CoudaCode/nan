@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 import { ApiUrl } from '../../outils/URL';
 import { IsCookies } from '../../outils/IsCookie';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { SendMessageByEmail } from '../../outils/SendMessage';
 
 
@@ -31,7 +31,10 @@ export default function ListingMessage() {
 
     useEffect(()=>{
         axios.get(ApiUrl+'message/getAll', {headers: {Authorization: `token ${IsCookies()}`}})
-        .then(success => SetAllMessage(success.data.data))
+        .then(success => {
+            console.log(success.data);
+            SetAllMessage(success.data.status ? success.data.data : []);
+        })
     }, []);
 
 
