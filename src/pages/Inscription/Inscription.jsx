@@ -8,12 +8,7 @@ import { ApiUrl, FrontUrl } from "../../outils/URL";
 
 function Inscription() {
   let navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
+  const {register,handleSubmit,watch,formState: { errors },} = useForm({
     fullname: "",
     email: "",
     telephone: "",
