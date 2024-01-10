@@ -2,8 +2,7 @@ import { toast } from "react-toastify";
 import { IsCookies } from "../../outils/IsCookie";
 import { ApiUrl } from "../../outils/URL";
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
@@ -13,43 +12,35 @@ import { useForm } from "react-hook-form";
 export default function InformationEntreprise(propos) {
     const IsEntreprise = propos.IsEntreprise;
     const [IsMyEntreprise, SetMyEntreprise] = useState(IsEntreprise);
-    // useEffect(()=>{
-    //     axios.get(`${ApiUrl}entreprise/getById`, {headers: {Authorization: `token ${IsCookies()}`}})
-    //     .then(success=>SetMyEntreprise(success.data.data))
-    // }, []);
-
 
     const handleChange = event => {
         const {name, value} = event.target;
         SetMyEntreprise({...IsMyEntreprise, [name]:value});
     }
 
-    const saveContact = async (data) => {
+    const updateInforEntreprise = async (data) => {
         document.querySelector('.FormUpdateEntreprise').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = true);
         const id = IsMyEntreprise.id;
         delete IsMyEntreprise.id;
         return await axios.put(ApiUrl + 'entreprise/update/'+id, data, {headers: {Authorization: `token ${IsCookies()}`}});
-      }
-    //   console.log('********************', contact.map(item=>item.id))
-    //   const { register, handleSubmit, formState: { errors } } = useForm({ raisonSociale: IsMyEntreprise?.IsMyEntreprise, domaineDActivite: IsMyEntreprise?.domaineDActivite, adresse: IsMyEntreprise?.adresse, type: IsMyEntreprise?.type, pays: IsMyEntreprise?.pays });
+    }
+      
     const { register, handleSubmit, formState: { errors } } = useForm({ ...IsMyEntreprise });
-      const {mutate: contactUpdate} = useMutation({
-          mutationFn: data => saveContact(data),
-          onSuccess: success => {
+    const {mutate: contactUpdate} = useMutation({
+        mutationFn: data => updateInforEntreprise(data),
+        onSuccess: success => {
             toast.success(success.data.message);
             setTimeout(() => {
                 window.location.reload();
             }, 3000);
-          },
-          onError: error => {
+        },
+        onError: error => {
             toast.error(error.response.data.message);
             document.querySelector('.FormUpdateEntreprise').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = false);
-          }
-      });
+        }
+    });
 
-      let onSubmit = data => contactUpdate(data);
-
-
+    let onSubmit = data => contactUpdate(data);
 
     return (
       <div className="bg-gradient-to-b from-gray-800 to-gray-900 border-b border-gray-900/10 p-9">
@@ -69,8 +60,8 @@ export default function InformationEntreprise(propos) {
                                 className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 value={IsMyEntreprise?.raisonSociale}
                                 {...register("raisonSociale", {
-                                require: true, minLength: 2, maxLength: 100,
-                                validate: {notEmpty: value => !/^\s*$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
+                                    require: true, minLength: 2, maxLength: 100,
+                                    validate: {notEmpty: value => !/^\s*$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
                                 })}
                                 autoComplete="raisonSociale"
                                 onChange={handleChange}

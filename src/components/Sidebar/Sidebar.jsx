@@ -10,15 +10,6 @@ function Sidebar() {
     main.classList.toggle('open');
   };
 
-  // const toggling = event => {
-  //   const Sidebar = document.getElementById('Sidebar');
-  //   const main = document.getElementById('main');
-
-  //   Sidebar.classList.toggle('open');
-  //   main.classList.toggle('open');
-
-  // }
-
   const menuItems = [
     {
       iconClass: "bx bx-grid-alt",

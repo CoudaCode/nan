@@ -10,7 +10,6 @@ import axios from 'axios';
 import { IsCookies } from '../../outils/IsCookie';
 import { ApiUrl } from '../../outils/URL';
 
-
 export default function Profil() {
     const [isAccordionOpenPersonnelInfo, setAccordionOpenPersonnelInfo] = useState(false);
     const [isAccordionOpenSecurity, setAccordionOpenSecurity] = useState(false);
@@ -22,6 +21,13 @@ export default function Profil() {
     const [isEditeOpenEntreprise, setEditeOpenEntreprise] = useState(false);
     const [isEditeOpenMessage, setEditeOpenMessage] = useState(false);
     const [IsMyEntreprise, SetMyEntreprise] = useState({});
+    const [IsMyInformations, SetMyInformations] = useState({});
+
+    useEffect(()=>{
+        axios.get(`${ApiUrl}user/getById`, {headers: {Authorization: `token ${IsCookies()}`}})
+        .then(success=>SetMyInformations(success.data.data))
+    }, []);
+
 
     useEffect(()=>{
         axios.get(`${ApiUrl}entreprise/getById`, {headers: {Authorization: `token ${IsCookies()}`}})
@@ -192,23 +198,22 @@ export default function Profil() {
                                         <div className="link-without-hover-visited">
                                             <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
                                                 <span aria-hidden="true">
-                                                    <span dir="ltr"className='text-white'>Fullname</span>
+                                                    <span dir="ltr"className='text-white'>{IsMyInformations?.fullname}</span>
                                                 </span>
                                             </p>
                                         </div>
 
                                         <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                            <span aria-hidden="true" className='text-center'>E-mail</span>
+                                            <span aria-hidden="true" className='text-center'>{IsMyInformations?.email}</span>
                                         </p>
                                         
-
                                         {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
                                         {isAccordionOpenPersonnelInfo && (
                                             <div className="link-without-hover-visited m-3">
                                                 <div className="link-without-hover-visited">
                                                     <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
                                                         <span aria-hidden="true">
-                                                            <span dir="ltr"className='text-white'>Phone</span>
+                                                            <span dir="ltr"className='text-white'>{IsMyInformations?.telephone}</span>
                                                         </span>
                                                     </p>
                                                 </div>
@@ -216,15 +221,7 @@ export default function Profil() {
                                                 <div className="link-without-hover-visited">
                                                     <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
                                                         <span aria-hidden="true">
-                                                            <span dir="ltr"className='text-white'>City</span>
-                                                        </span>
-                                                    </p>
-                                                </div>
-
-                                                <div className="link-without-hover-visited">
-                                                    <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
-                                                        <span aria-hidden="true">
-                                                            <span dir="ltr"className='text-white'>Nationality</span>
+                                                            <span dir="ltr"className='text-white'>{IsMyInformations?.nationalite}</span>
                                                         </span>
                                                     </p>
                                                 </div>
@@ -239,7 +236,7 @@ export default function Profil() {
                                         {/* Bouton pour basculer l'état de l'accordéon */}
                                         <button
                                             onClick={toggleAccordionPersonnelInfo}
-                                            className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px]"
+                                            className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px] mt-2"
                                             aria-label="Suivre"
                                             aria-live="polite"
                                             type="button"
@@ -293,7 +290,7 @@ export default function Profil() {
                                                     </p>
                                                 </div>
 
-                                                <button onClick={toggleEditeSecurity} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px]" aria-label="Modifier" aria-live="polite" type="button">
+                                                <button onClick={toggleEditeSecurity} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
                                                     <i className="bx bxs-edit m-1"></i>
                                                     <span aria-hidden="true">Modifier</span>
                                                 </button>
@@ -303,7 +300,7 @@ export default function Profil() {
                                         {/* Bouton pour basculer l'état de l'accordéon */}
                                         <button
                                             onClick={toggleAccordionSecurity}
-                                            className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px]"
+                                            className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px] mt-2"
                                             aria-label="Suivre"
                                             aria-live="polite"
                                             type="button"
@@ -409,7 +406,7 @@ export default function Profil() {
                                                         </p>
                                                     </div>
 
-                                                    <button onClick={toggleEditeEntreprise} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px]" aria-label="Modifier" aria-live="polite" type="button">
+                                                    <button onClick={toggleEditeEntreprise} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
                                                         <i className="bx bxs-edit m-1"></i>
                                                         <span aria-hidden="true">Modifier</span>
                                                     </button>
@@ -419,7 +416,7 @@ export default function Profil() {
                                             {/* Bouton pour basculer l'état de l'accordéon */}
                                             <button
                                                 onClick={toggleAccordionEntreprise}
-                                                className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px]"
+                                                className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px] mt-2"
                                                 aria-label="Suivre"
                                                 aria-live="polite"
                                                 type="button"
@@ -492,7 +489,7 @@ export default function Profil() {
                                                     </p>
                                                 </div>
 
-                                                <button onClick={toggleEditeMessagerie} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px]" aria-label="Modifier" aria-live="polite" type="button">
+                                                <button onClick={toggleEditeMessagerie} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
                                                     <i className="bx bxs-edit m-1"></i>
                                                     <span aria-hidden="true">Modifier</span>
                                                 </button>
@@ -502,7 +499,7 @@ export default function Profil() {
                                             {/* Bouton pour basculer l'état de l'accordéon */}
                                             <button
                                                 onClick={toggleAccordionMessage}
-                                                className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px]"
+                                                className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px] mt-2"
                                                 aria-label="Suivre"
                                                 aria-live="polite"
                                                 type="button"
@@ -517,9 +514,9 @@ export default function Profil() {
                     </div>
                 </div>
 
-                {isEditeOpenPersonnelInfo && <InformationPerso />}
+                {isEditeOpenPersonnelInfo && <InformationPerso IsMyInformations={IsMyInformations}/>}
 
-                {isEditeOpenSecurity && <InformationSecurite/>}
+                {isEditeOpenSecurity && <InformationSecurite IsMyInformations={IsMyInformations}/>}
                 {isEditeOpenMessage && <InformationMessagerie IsEntreprise={IsMyEntreprise}/>}
                 {isEditeOpenEntreprise && <InformationEntreprise IsEntreprise={IsMyEntreprise}/>}
 
