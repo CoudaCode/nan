@@ -5,6 +5,6 @@ const ApiUrl = "http://localhost:3000/api/";
 // const ApiUrl = "https://nansendmessage.onrender.com/api/";
 
 
-const FrontUrl = "http://localhost:5173/";
+const FrontUrl = "https://nan-send.onrender.com/";
 
 export {ApiUrl, FrontUrl};
