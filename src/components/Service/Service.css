@@ -1,0 +1,109 @@
+.service{
+    width: 100%;
+    height: auto;
+    background-color: var(--ma-couleur-principale);
+    padding: 6rem 2rem;
+}
+.service .title{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.service p{
+    text-align: center;
+    color: var(--ma-couleur-bouton);
+    margin-top: 1rem;
+}
+.service .myGrid{
+    width: 90%;
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    margin: auto;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+.service .myGrid .grid{
+    background-color: #6870e01f;
+    width: 20rem;
+    height: 15rem;
+    border-radius: 1rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.service .myGrid .grid:hover{
+    background-color: var(--ma-couleur-bouton);
+    box-shadow: var(--ma-couleur-bouton) 0px 3px 8px;
+}
+.service-icon{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 2rem;
+    background-color: var(--ma-couleur-bouton);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40%;
+    margin-top: 20px;
+}
+.service-icon .icons{
+    font-size: 1.5rem;
+    color: var(--ma-couleur-principale);
+   text-align: center;
+   
+}
+.service .myGrid .grid h3{
+    text-align: center;
+    font-size: 1rem;
+}
+.service .myGrid .grid p{
+    text-align: center;
+    padding: 20px;
+}
+.service .myGrid .grid:hover .service-icon{
+    border: 2px solid var(--ma--couleur--text);
+}
+.service .myGrid .grid:hover .icons{
+    color: var(--ma--couleur--text);
+}
+.service .myGrid .grid:hover p{
+    color: var(--ma--couleur--text);
+}
+
+@media (max-width:850px){
+    .service .myGrid{
+        width: 100%;
+        gap: 1rem;
+        margin-left: 3rem;
+        /* margin: auto;
+        margin-top: 2rem;
+        flex-wrap: wrap; */
+    }
+    .service .myGrid .grid{
+        background-color: #6870e01f;
+        width: 18rem;
+        height: 18rem;
+    }
+}
+@media (max-width:680px){
+    .service .myGrid{
+        width: 100%;
+        margin-left: 2rem;
+    }
+    .service .myGrid .grid{
+        background-color: #6870e01f;
+        width: 16rem;
+        height: 16rem;
+    }
+}
+@media (max-width:625px){
+    .service .myGrid{
+        width: 100%;
+        gap: 1rem;
+        margin-left: 3.5rem;
+    }
+    .service .myGrid .grid{
+        background-color: #6870e01f;
+        width: 20rem;
+        height: 18rem;
+    }
+}

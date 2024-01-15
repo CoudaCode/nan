@@ -1,6 +1,8 @@
-import { useLocation } from "react-router-dom";
-
+import { useState } from "react";
+import "./Sidebar.css";
+import { useLocation, Link } from "react-router-dom";
 function Sidebar() {
+<<<<<<< HEAD
   const path = useLocation().pathname;
   return (
         <div className="container">
@@ -70,42 +72,94 @@ function Sidebar() {
                             <span className="title">Groupes de Difusions</span>
                         </a>
                     </li>
+=======
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
+  const toggleSidebar = () => {
+    const main = document.getElementById('main');
+    setIsSidebarOpen(!isSidebarOpen);
+    main.classList.toggle('open');
+  };
+>>>>>>> f6c35846d6759913737f734c8f0e9d35f8747963
 
-                    <li className={`${path.includes("/Workspace") ? "hovered" : ""}`}>
-                        <a href="/Workspace">
-                            <span className="icon">
-                                <ion-icon name="logo-apple"></ion-icon>
-                            </span>
-                            <span className="title">Workspace</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/profile") ? "hovered" : ""}`}>
-                        <a href="/profile">
-                            <span className="icon">
-                                <ion-icon name="person-circle"></ion-icon>
-                            </span>
-                            <span className="title">Profile</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/parametres/collaborateur") || path.includes("/parametres/contact") || path.includes("/parametres/groupe") || path.includes("/parametres/message") ? "hovered" : ""}`}>
-                        <a href="/parametres/collaborateur">
-                            <span className="icon">
-                                <ion-icon name="cog-outline"></ion-icon>
-                            </span>
-                            <span className="title">Paramètres</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/corbelle") ? "hovered" : ""}`}>
-                        <a href="/corbelle">
-                            <span className="icon">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </span>
-                            <span className="title">Corbelle</span>
-                        </a>
-                    </li> 
-                </ul>
-            </div>
-        </div>
+  const menuItems = [
+    {
+      iconClass: "bx bx-grid-alt",
+      text: "Dashboard",
+      to: "/dashboard",
+    },
+    {
+      iconClass: "bx bxs-contact",
+      text: "Contact",
+      to: "/contact",
+    },
+    {
+      iconClass: "bx bx-chat",
+      text: "Messages",
+      to: "/message",
+    },
+    {
+      iconClass: "bx bx-broadcast",
+      text: "Broadcast",
+      to: "/broadcast",
+    },
+    {
+      iconClass: "bx bx-space-bar",
+      text: "Workspace",
+      to: "/workspace",
+    },
+    {
+      iconClass: "bx bxs-report",
+      text: "Reports",
+      to: "/reports",
+    },
+    {
+      iconClass: "bx bx-user",
+      text: "Profile",
+      to: "/profile",
+    },
+    {
+      iconClass: "bx bx-log-out",
+      text: "Déconnexion",
+      to: "/",
+    },
+  ];
+  return (
+      <div className={`Sidebar bg-[#1E2029] sm:w-60 min-h-screen w-14 pt-4 transition-all ${isSidebarOpen ? "open" : ""}`} id="Sidebar">
+        {/* <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}> */}
+          <div className="logo-details">
+            <i className="bx bxl-c-plus-plus icon"></i>
+            <div className="logo_name">NaN-Send</div>
+            <i className="bx bx-menu" id="btn" onClick={toggleSidebar}></i>
+          </div>
+          <ul className="nav-list">
+            <li>
+              <i className="bx bx-search"></i>
+              <input type="text" placeholder="Search..." />
+              <span className="tooltip">Search</span>
+            </li>
+
+            {menuItems.map((menuItem, index) => (
+              <li
+                key={index}
+                className={location.pathname.includes(menuItem.to) ? "active" : ""}>
+                <Link to={menuItem.to}>
+                  <i className={menuItem.iconClass}></i>
+                  <span className="links_name">{menuItem.text}</span>
+                </Link>
+                <span className="tooltip">{menuItem.text}</span>
+              </li>
+            ))}
+
+            {/* <li className="card">
+              <div className="card-body">
+                <h2 className="card-title">Nan Digital Academy</h2>
+                <p className="card-text">Version 1.0.0</p>
+              </div>
+            </li> */}
+          </ul>
+        {/* </div> */}
+      </div>
   );
 }
 

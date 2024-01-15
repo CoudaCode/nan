@@ -1,11 +1,10 @@
-// import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import Acceuil from "./pages/Accueil/Acceuil";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Message from "./pages/Message/Message";
-import Profile from "./pages/Profile/Profile";
+// import Profile from "./pages/Profile/Profile";
 import Broadcast from "./pages/Broadcast/Broadcast";
 import Connexion from "./pages/Connexion/Connexion";
 import Inscription from "./pages/Inscription/Inscription";
@@ -15,22 +14,17 @@ import Contact from "./pages/Contact/Contact";
 import Entreprise from "./pages/Entreprise/Entreprise";
 import Verification from "./pages/Verification/Verification";
 import Validate from "./pages/Validate/Validate";
-import Test from "./pages/Test/Test";
-import Parametres from "./pages/Parametres/Parametres";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import './style.css'
-import Groupe from "./pages/Groupe/Groupe";
-import Edites from "./pages/Edete/Edites";
-import { useLocation } from "react-router-dom";
-import Collaborateur from "./pages/Collaborateur/Collaborateur";
-
+import MessageDetail from "./pages/MessageDetail/MessageDetail";
+import Profil from "./pages/Profile/Profil";
+// import { useLocation } from "react-router-dom";
   
 
 
 function App() {
   const client = new QueryClient();
-  const path = useLocation().pathname;
+  // const path = useLocation().pathname;
   return (
     <>
       <QueryClientProvider client={client}>
@@ -45,15 +39,12 @@ function App() {
           <Route path="/message" element={<Message />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/workspace" element={<WorkSpace />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/verification" element={<Verification />} />
-          <Route path="/validate" element={<Validate />} />
-          <Route path="/parametres/:id" element={<Parametres />} />
-          <Route path="/groupe" element={<Groupe />} />
-          <Route path={"/"+path.split('/')[1]+"/edite/:id"} element={<Edites />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="/collaborateur" element={<Collaborateur />} />
+          <Route path="/validate/:user/:code" element={<Validate />} />
+          <Route path="/message/:id/:detail" element={<MessageDetail />} />
+
+          <Route path="/profile" element={<Profil />} />
         </Routes>
       </QueryClientProvider>
     </>

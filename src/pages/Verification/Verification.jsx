@@ -29,23 +29,61 @@ function Verification() {
           </div>
 
           <div className="cannaux">
-            <ul className="lien">
-              <li>
-                <a href="">
-                  <img src={whatsap} alt="" />
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <img src={Mail} alt="" />
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <img src={sms} alt="" />
-                </a>
-              </li>
-            </ul>
+          <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
+            <div>
+              <input
+                class="peer sr-only"
+                id="option1"
+                type="radio"
+                tabindex="-1"
+                name="option"
+              />
+
+              <label
+                for="option1"
+                class="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
+                tabindex="0"
+              >
+                <span class="text-sm"><img src={whatsap} alt="" /></span>
+              </label>
+            </div>
+
+            <div>
+              <input
+                class="peer sr-only"
+                id="option2"
+                type="radio"
+                tabindex="-1"
+                name="option"
+              />
+
+              <label
+                for="option2"
+                class="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
+                tabindex="0"
+              >
+                <span class="text-sm"><img src={Mail} alt="" /></span>
+              </label>
+            </div>
+
+            <div>
+              <input
+                class="peer sr-only"
+                id="option3"
+                type="radio"
+                tabindex="-1"
+                name="option"
+              />
+
+              <label
+                for="option3"
+                class="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
+                tabindex="0"
+              >
+                <span class="text-sm"><img src={sms} alt="" /></span>
+              </label>
+            </div>
+          </div>
           </div>
           <div className="container choix">
             <div>

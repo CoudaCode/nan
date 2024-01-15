@@ -1,0 +1,242 @@
+.apropos {
+  width: 100%;
+  height: 45rem;
+  background-color: var(--mon--autre--couleur);
+  margin-top: 5rem;
+}
+.apropos .apropos-title {
+  color: var(--ma--couleur--text);
+  text-align: center;
+  margin-top: 25px;
+  font-size: 2rem;
+  font-weight: 700;
+  padding-top: 20px;
+}
+.apropos h3 {
+color: var(--ma-couleur-principale);
+text-align: center;
+font-size: 1rem;
+margin-top: 20px;
+font-weight: 600;
+}
+.apropos .ligne-cardre {
+  display: flex;
+  flex-wrap: wrap;
+  width: 85%;
+  margin: auto;
+  height: 26rem;
+  margin-top: 4rem;
+  justify-content: space-between;
+}
+.apropos .ligne-cardre1 {
+  width: 16rem;
+  height: 26rem;
+  text-align: center;
+  background-color: var(--ma--couleur--text);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+.apropos .ligne-cardre1:hover {
+  transform: scale(1.06);
+  box-shadow: var(--ma-couleur-bouton) 0px 20px 50px -20px,
+  var(--ma-couleur-bouton) 0px 30px 30px -20px,
+  var(--ma-couleur-bouton) 0px -2px 6px 0px inset;
+}
+.apropos .ligne-cardre1 .cardre-photo {
+  width: 100%;
+  height: 10rem;
+}
+.apropos .cardre-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+.apropos .ligne-cardre1 .cardre-descrip {
+  width: 90%;
+  height: 11rem;
+  margin: auto;
+}
+.apropos .cardre-descrip h3 {
+  color: var(--ma-couleur-bouton);
+  margin-top: 1rem;
+  text-decoration: underline;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.apropos .cardre-descrip p{
+  margin-top: 5px;
+  color: var(--ma-couleur-principale);
+}
+button {
+--arrow-width: 10px;
+--arrow-stroke: 2px;
+box-sizing: border-box;
+border: 0;
+border-radius: 20px;
+color: var(--ma--couleur--text);
+padding: 4px 10px;
+background: var(--ma-couleur-bouton);
+display: flex;
+transition: 0.2s background;
+align-items: center;
+gap: 0.6em;
+font-weight: bold;
+margin: auto;
+}
+
+button .arrow-wrapper {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+button .arrow {
+margin-top: 1px;
+width: var(--arrow-width);
+background: var(--primary-color);
+height: var(--arrow-stroke);
+position: relative;
+transition: 0.2s;
+}
+
+button .arrow::before {
+content: "";
+box-sizing: border-box;
+position: absolute;
+border: solid var(--ma--couleur--text);
+border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+display: inline-block;
+top: -3px;
+right: 3px;
+transition: 0.2s;
+padding: 3px;
+transform: rotate(-45deg);
+}
+
+button:hover {
+background-color: var(--ma-couleur-principale);
+}
+
+button:hover .arrow {
+background: var(--ma--couleur--text);
+}
+
+button:hover .arrow:before {
+right: 0;
+}
+
+@media (max-width: 1200px){
+.apropos {
+width: 100%;
+height: 68rem;
+background-color: var(--mon--autre--couleur);
+margin-top: 5rem;
+flex-direction: column;
+}
+.apropos .ligne-cardre {
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+width: 85%;
+margin: auto;
+height: 26rem;
+margin-top: 4rem;
+justify-content: space-between;
+}
+}
+
+@media (max-width: 610px) {
+.apropos {
+width: 100%;
+height: 130rem;
+background-color: var(--mon--autre--couleur);
+margin-top: 5rem;
+}
+.apropos .ligne-cardre {
+width: 70%;
+margin: auto;
+height: 22rem;
+margin-top: 4rem;
+}
+.apropos .ligne-cardre1 {
+width: 20rem;
+height: 26rem;
+text-align: center;
+background-color: var(--ma--couleur--text);
+border-radius: 1rem;
+margin-bottom: 1rem;
+}
+
+}
+
+@media (max-width:376px){
+.apropos {
+  width: 100%;
+  height: 112rem;
+  background-color: var(--mon--autre--couleur);
+  margin-top: 5rem;
+}
+.apropos h1 {
+  color: var(--ma-couleur-principale);
+  text-align: center;
+  padding-top: 50px;
+  font-size: 0.8rem;
+}
+.apropos .apropos-title {
+  color: var(--ma-couleur-bouton);
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.5rem;
+}
+.apropos .ligne-cardre {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  margin: auto;
+  height: 22rem;
+  margin-top: 4rem;
+  justify-content: space-between;
+}
+.apropos .ligne-cardre1 {
+  width: 20rem;
+  height: auto;
+  text-align: center;
+  background-color: var(--ma--couleur--text);
+  border-radius: 1rem;
+  box-shadow: var(--ma-couleur-principale) 0px 50px 100px -20px,
+    var(--ma--couleur--text) 0px 30px 60px -30px,
+    var(--ma--couleur--text) 0px -2px 6px 0px inset;
+  margin-bottom: 1rem;
+}
+.apropos .ligne-cardre1:hover {
+  transform: scale(1.1);
+}
+.apropos .ligne-cardre1 .cardre-photo {
+  width: 100%;
+  height: 10rem;
+}
+.apropos .cardre-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+.apropos .ligne-cardre1 .cardre-descrip {
+  width: 90%;
+  height: 9.5rem;
+  margin: auto;
+}
+.apropos .cardre-descrip h3 {
+  color: var(--ma-couleur-bouton);
+  margin-top: 1rem;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+.apropos .cardre-descrip h4 {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+
+}

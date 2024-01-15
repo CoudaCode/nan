@@ -76,14 +76,14 @@ function Message(){
                 const dataContacts = [];
                 goupeDifusion.map(item =>{
                     item.contact.map(el => dataContacts.push(el[event.target.value]));
-                    baliseGroupe.innerHTML += `<option value='${item._id}'>${item.name}</option>`
+                    baliseGroupe.innerHTML += `<option value='${item.id}'>${item.name}</option>`
                 })
                 
             }else if(table.contatDifusion && radio.value === 'onIndividuel'){
                 baliseContact.textContent = '';
                 
                 table.contatDifusion.map(item => {
-                    if(item[event.target.value]) baliseContact.innerHTML += `<option value='${item._id}'>${item.fullname}</option>`;
+                    if(item[event.target.value]) baliseContact.innerHTML += `<option value='${item.id}'>${item.fullname}</option>`;
                 })
             }
         })
