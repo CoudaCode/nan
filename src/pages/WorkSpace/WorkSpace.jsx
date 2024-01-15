@@ -18,10 +18,6 @@ const CreateContactModal = ({ isOpen, onClose }) => {
   });
 
   const handleCreateContact = () => {
-    // Handle the create contact logic here
-    // Use the 'contactData' state for the contact details
-    // ...
-
     // Clear the form and close the modal
     setContactData({
       nom: "",
