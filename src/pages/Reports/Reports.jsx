@@ -103,13 +103,15 @@ function Reports() {
     setSelectedItem(null);
     setIsOpen(false);
   };
-
-  // >>>>>>> 5024c2acb9558d3635e5d0f8c094f8396c92eca6
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   return (
-    <div className="flex h-screen">
+    <>
       <Sidebar />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
+      <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
+          <div className=" overflow-y-none p-4 bg-[#1E2029]">Rapports</div>
           <div className="container mb-9">
             <h2 className="text-center text-white mb-5 text-2xl font-extrabold">
               Contact Supprimés
@@ -236,7 +238,6 @@ function Reports() {
                 placeholder="Rechercher..."
                 className="p-2 rounded-md bg-white-800 text-black mb-2 outline-none"
               />
-
               <p className="text-center font-extrabold">
                 <button className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
                   Tout Restaurer
@@ -332,8 +333,7 @@ function Reports() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </>
   );
 }
 

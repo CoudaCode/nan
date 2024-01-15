@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
 #root {
   /* max-width: 1280px; */
   margin: 0 auto;
@@ -15,5 +12,3 @@
   color: white;
   font-family: 'Quicksand', sans-serif;
 }
-
-

@@ -6,7 +6,7 @@ import canalDiff1 from "./../../assets/images/canalDiff1.jpg";
 import statistique from "./../../assets/images/statistiq.jpg";
 import msgillimit from "./../../assets/images/msgillimit.jpg";
 import msgGroupe2 from "./../../assets/images/msgGroupé2.jpg";
-import principaleimg from "./../../assets/images/message.jpg";
+
 
 function Apropos() {
     return(
@@ -30,7 +30,7 @@ function Apropos() {
                     </p>
                     </div>
                     <button>
-                    <Link to="/login">Voir plus</Link> 
+                    <Link to="/connexion">Voir plus</Link> 
                     <div className="arrow-wrapper">
                         <div className="arrow"></div>
                     </div>
@@ -49,7 +49,7 @@ function Apropos() {
                     </p>
                     </div>
                     <button>
-                   <Link to="/login">Voir plus</Link> 
+                   <Link to="/connexion">Voir plus</Link> 
                     <div className="arrow-wrapper">
                         <div className="arrow"></div>
                     </div>
@@ -68,7 +68,7 @@ function Apropos() {
                     </p>
                     </div>
                     <button>
-                    <Link to="/login">Voir plus</Link> 
+                    <Link to="/connexion">Voir plus</Link> 
                     <div className="arrow-wrapper">
                         <div className="arrow"></div>
                     </div>
@@ -88,7 +88,7 @@ function Apropos() {
                     </p>
                     </div>
                     <button>
-                    <Link to="/login">Voir plus</Link> 
+                    <Link to="/connexion">Voir plus</Link> 
                     <div className="arrow-wrapper">
                         <div className="arrow"></div>
                     </div>
