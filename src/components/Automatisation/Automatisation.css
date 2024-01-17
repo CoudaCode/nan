@@ -1,100 +1,99 @@
 .Automatisation {
-    width: 100%;
-    color: black;
-    background-color: white;
+  width: 100%;
+  color: black;
+  background-color: white;
+}
+.Automatisation .premiere-partie {
+  width: 100%;
+  background-color: var(--ma-couleur-principale);
+}
+.Automatisation .title {
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+}
+
+/* DEUXIEME PARTIE */
+.Automatisation .separe {
+  display: flex;
+  justify-content: space-between;
+}
+.Automatisation .carre {
+  height: 500px;
+  width: 600px;
+}
+.Automatisation .carre img {
+  height: 80%;
+  width: 80%;
+  object-fit: cover;
+  margin: auto;
+  margin-top: 4rem;
+  border-radius: 1rem;
+  border: 2px solid var(--ma-couleur-principale);
+}
+.Automatisation .tire {
+  text-align: center;
+}
+.Automatisation .loi {
+  display: flex;
+  justify-content: center;
+}
+.Automatisation .par {
+  height: 150px;
+  width: 500px;
+}
+.Automatisation .tire h1{
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 2rem;
+}
+.Automatisation .tire span{
+  background-color: var(--ma-couleur-bouton);
+  padding: 1rem;
+  color: var(--ma--couleur--text);
+}
+
+
+@media screen and (max-width: 1012px) {
+  .Automatisation .espace {
+    flex-wrap: wrap;
   }
-  .Automatisation .premiere-partie {
-    width: 100%;
-    background-color: var(--ma-couleur-principale);
+
+  .Automatisation .colore {
+    height: auto;
   }
-  .Automatisation .title {
-    text-align: center;
-    color: white;
-    font-size: 2rem;
-  }
-  
-  /* DEUXIEME PARTIE */
+
   .Automatisation .separe {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
   }
-  .Automatisation .carre {
-    height: 500px;
-    width: 600px;
+
+  .Automatisation .send {
+    height: auto;
   }
-  .Automatisation .carre img {
-    height: 80%;
-    width: 80%;
-    object-fit: cover;
-    margin: auto;
-    margin-top: 4rem;
-    border-radius: 1rem;
-    border: 2px solid var(--ma-couleur-principale);
+}
+@media screen and (max-width: 630px) {
+  .Automatisation .colore {
+    height: auto;
   }
-  .Automatisation .tire {
-    text-align: center;
+}
+@media screen and (max-width: 998px) {
+  .Automatisation .list {
+    flex-wrap: wrap;
+    z-index: auto;
   }
-  .Automatisation .loi {
-    display: flex;
-    justify-content: center;
+  .Automatisation .flax {
+    flex-direction: column;
+    align-items: center;
   }
-  .Automatisation .par {
-    height: 150px;
-    width: 500px;
+  .Automatisation .cool {
+    flex-direction: column;
   }
-  .Automatisation .tire h1{
-    font-size: 2rem;
-    font-weight: 600;
-    margin-top: 2rem;
+}
+
+@media screen and (max-width: 1366px) {
+  .Automatisation .send {
+    height: auto;
   }
-  .Automatisation .tire span{
-    background-color: var(--ma-couleur-bouton);
-    padding: 1rem;
-    color: var(--ma--couleur--text);
-  }
-  
- 
-  @media screen and (max-width: 1012px) {
-    .Automatisation .espace {
-      flex-wrap: wrap;
-    }
-  
-    .Automatisation .colore {
-      height: auto;
-    }
-  
-    .Automatisation .separe {
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-    }
-  
-    .Automatisation .send {
-      height: auto;
-    }
-  }
-  @media screen and (max-width: 630px) {
-    .Automatisation .colore {
-      height: auto;
-    }
-  }
-  @media screen and (max-width: 998px) {
-    .Automatisation .list {
-      flex-wrap: wrap;
-      z-index: auto;
-    }
-    .Automatisation .flax {
-      flex-direction: column;
-      align-items: center;
-    }
-    .Automatisation .cool {
-      flex-direction: column;
-    }
-  }
-  
-  @media screen and (max-width: 1366px) {
-    .Automatisation .send {
-      height: auto;
-    }
-  }
-  
+}

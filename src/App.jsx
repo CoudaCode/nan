@@ -14,25 +14,22 @@ import WorkSpace from "./pages/WorkSpace/WorkSpace";
 import Contact from "./pages/Contact/Contact";
 import Entreprise from "./pages/Entreprise/Entreprise";
 import Verification from "./pages/Verification/Verification";
+import Validate from "./pages/Validate/Validate";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Groupe from "./pages/Groupe/Groupe";
+import Edites from "./pages/Edete/Edites";
+import { useLocation } from "react-router-dom";
+  
+
+
 function App() {
   const client = new QueryClient();
+  const path = useLocation().pathname;
   return (
     <>
       <QueryClientProvider client={client}>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light"/>
         <Routes>
           <Route path="/" element={<Acceuil />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -46,6 +43,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/verification" element={<Verification />} />
+          <Route path="/validate/:user/:code" element={<Validate />} />
         </Routes>
       </QueryClientProvider>
     </>
