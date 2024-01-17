@@ -20,13 +20,13 @@ function Prix() {
             <span className='check'><BsCheckLg/></span><p>premier avantage</p>
           </div>
           <div className='contenu'>
-            <span className='cross'><RxCross2/></span><p>premier deavantage</p>
+            <span className='cross'><RxCross2/></span><p>premier desavantage</p>
           </div>
           <div className='contenu'>
-            <span className='cross'><RxCross2/></span><p>premier deavantage</p>
+            <span className='cross'><RxCross2/></span><p>premier desavantage</p>
           </div>
           <div className='contenu'>
-            <span className='cross'><RxCross2/></span><p>premier deavantage</p>
+            <span className='cross'><RxCross2/></span><p>premier desavantage</p>
           </div>
         </div>
         <div className="trait"></div>  
