@@ -61,7 +61,6 @@ function ContentMessage(){
                     formData.append(key, data[key][cle])
                 }
             }else formData.append(key, data[key]);
-            
         }
         return  axios.post(ApiUrl+'message/create', formData, {headers: {Authorization: `token ${IsCookies()}`}});
     }

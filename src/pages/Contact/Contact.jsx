@@ -31,8 +31,8 @@ function Contact() {
   const [contactToModify, setContactToModify] = useState(null);
   const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
 
-  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
-  const [isFormModalClose, setIsFormModalClose] = useState(null);
+  const [isFormModalOpen, ] = useState(false);
+  const [, setIsFormModalClose] = useState(null);
 
   const [openAddForm, setIsOpenAddForm] = useState(null);
 
@@ -109,10 +109,7 @@ function Contact() {
     setContactToModify(null);
   };
 
-  const handleCloseFormModal = () => {
-    setIsDeleteModalOpen(false);
-    setSelectedContact(null);
-  };
+  
 
 
 
