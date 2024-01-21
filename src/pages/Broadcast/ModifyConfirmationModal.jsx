@@ -1,24 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { ApiUrl } from "../../outils/URL";
-import Cookie from "js-cookie";
 import { IsCookies } from "../../outils/IsCookie";
 import ModalContact from "./ModalContact";
 
+function ModifyConfirmationModal(propos){
+  const isOpen = propos.isOpen;
+  const onClose = propos.onClose;
+  const groupeData = propos.groupeData;
 
-
-function ModifyConfirmationModal(props){
-  const isOpen = props.isOpen;
-  const onClose = props.onClose;
-  const groupeData = props.groupeData;
-
-  if (!isOpen || !groupeData) return null;
   const { canal, contact, description, name, id} = groupeData;
-  const token = IsCookies();
   
   const saveContact = async (data) => {
     console.log(document.querySelector('.FormSaveContact'))
@@ -26,9 +21,9 @@ function ModifyConfirmationModal(props){
     if(!data.contact){
         data.contact = contact.map(item=>item.id);
     }
-    return await axios.put(ApiUrl + 'groupe/update/'+id, data, {headers: {Authorization: 'token '+token}});
-  }
-//   console.log('********************', contact.map(item=>item.id))
+    return await axios.put(ApiUrl + 'groupe/update/'+id, data, {headers: {Authorization: `token ${IsCookies()}`}});
+  };
+  
   const { register, handleSubmit, formState: { errors } } = useForm({ canal, description, name, contact: contact.map(item=>item.id) });
   const {mutate: contactUpdate} = useMutation({
       mutationFn: data => saveContact(data),
@@ -54,12 +49,12 @@ function ModifyConfirmationModal(props){
     const nMember = document.getElementById('nMember');
     const allInputChecked = checkeding.querySelectorAll('input:checked');
     const longue = allInputChecked.length;
-    nMember.innerHTML = (longue ? longue : 'Aucun') + ` membre${(longue>1 ? 's' : '')}`;
+    nMember.innerHTML = (longue ? longue : 'Aucun') + ` membre${(longue > 1 ? 's' : '')}`;
   };
 
   const onSubmit = data => contactUpdate(data);
 
-  
+  if (!isOpen || !groupeData) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -138,6 +133,6 @@ function ModifyConfirmationModal(props){
       
     </div>
   );
-};
+}
 
 export default ModifyConfirmationModal;

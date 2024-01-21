@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { useState, useEffect } from "react";
+import { useRef } from "react";
+import {  useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/images/Nan-Send.png";

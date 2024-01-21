@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./Service.css"
 import { BiTimeFive, BiSearchAlt2 } from 'react-icons/bi';
 import {BsPeople} from 'react-icons/bs'
@@ -23,7 +23,7 @@ function Service() {
                         <span className="icons"><BiTimeFive /></span>
                     </div>
                     <h3>Communication en temps réel</h3>
-                    <p>Permettre aux utilisateurs d'échanger des messages instantanés pour une communication rapide.</p>
+                    <p>Permettre aux utilisateurs d&apos;échanger des messages instantanés pour une communication rapide.</p>
                 </div>
                 <div className="grid">
                     <div className="service-icon">
@@ -37,21 +37,21 @@ function Service() {
                     <span className="icons"><BiSearchAlt2 /></span>
                     </div>
                     <h3>Fonctions de recherche</h3>
-                    <p>Les plateforme de messagerie offrent des outils de recherche pour trouver rapidement d'anciens messages ou des contacts.</p>
+                    <p>Les plateforme de messagerie offrent des outils de recherche pour trouver rapidement d&apos;anciens messages ou des contacts.</p>
                 </div>
                 <div className="grid">
                     <div className="service-icon">
                     <span className="icons"><TiMessages /></span>
                     </div>
                     <h3>Stockage de messages</h3>
-                    <p>La plateforme peut conserver l'historique des messages pour que les utilisateurs puissent consulter d'anciennes conversations.</p>
+                    <p>La plateforme peut conserver l&apos;historique des messages pour que les utilisateurs puissent consulter d&apos;anciennes conversations.</p>
                 </div>
                 <div className="grid">
                     <div className="service-icon">
                     <span className="icons"><GrWaypoint /></span>
                     </div>
                     <h3>Canal de diffusion</h3>
-                    <p>L'utilisateur a la possibilité de choisir le canal par lequel il veut transmettre son message notamment whatsapp, email et sms. </p>
+                    <p>L&apos;utilisateur a la possibilité de choisir le canal par lequel il veut transmettre son message notamment whatsapp, email et sms. </p>
                 </div>
             </div>   
         </div>

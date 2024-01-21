@@ -4,12 +4,11 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import "./WorkSpace.css";
 import PropTypes from 'prop-types';
 
-const CreateContactModal = ({ isOpen, onClose }) => {
-  if (!isOpen) {
-    return null;
-  }
+const CreateContactModal = (propos) => {
+  const isOpen = propos.isOpen;
+  const onClose = propos.onClose
 
-  const [contactData, setContactData] = useState({
+  const [, setContactData] = useState({
     nom: "",
     prenom: "",
     email: "",
@@ -18,10 +17,6 @@ const CreateContactModal = ({ isOpen, onClose }) => {
   });
 
   const handleCreateContact = () => {
-    // Handle the create contact logic here
-    // Use the 'contactData' state for the contact details
-    // ...
-
     // Clear the form and close the modal
     setContactData({
       nom: "",
@@ -33,7 +28,7 @@ const CreateContactModal = ({ isOpen, onClose }) => {
 
     onClose();
   };
-
+  if(!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Overlay */}
@@ -71,10 +66,10 @@ const CreateContactModal = ({ isOpen, onClose }) => {
   );
 };
 function WorkSpace() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen);
+  // };
 
 
   const [isCreatePopupOpen, setIsCreatePopupOpen] = useState(false);

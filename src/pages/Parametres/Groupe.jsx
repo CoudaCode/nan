@@ -1,18 +1,17 @@
-import Cookies from "js-cookie";
+
 import { useEffect, useState } from "react";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
-
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
+import { IsCookies } from "../../outils/IsCookie";
 
 function Groupe(){
     const [state, setState] = useState([])
     let rapport = undefined;
-    let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     useEffect(()=>{
-        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`} })
+        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${IsCookies()}`}})
         .then(allContact => {
             if(allContact.data.status){
                 setState(allContact.data.data);
@@ -45,7 +44,7 @@ function Groupe(){
     const { mutate: groupe } = useMutation({
         mutationFn: async send => {
             [...document.querySelector('form#form-groupe').querySelectorAll('input, select, textarea, #reset-groupe, #submit-groupe')].map(item => item.disabled = true);
-            let response = await axios.post(ApiUrl+'/api/groupe/create', send, { headers: { Authorization: `token ${token}`} });
+            let response = await axios.post(ApiUrl+'/api/groupe/create', send, { headers: { Authorization: `token ${IsCookies()}`} });
             return response;
         },
         onSuccess: success => {

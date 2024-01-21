@@ -5,19 +5,20 @@ import { toast } from "react-toastify";
 import { ApiUrl } from "../../outils/URL";
 import { IsCookies } from "../../outils/IsCookie";
 
-import { useEffect, useState  } from "react";
+import { useState  } from "react";
 
 
 
-function FormContactModal(props){
+function FormContactModal(propos){
     // { isOpen, onClose, onConfirm, contact, statusForm }
-
-    const isOpen = props.isOpen;
-    const onClose = props.onClose;
-    const onConfirm = props.onConfirm;
-    const contact = props.contact;
-    const statusForm = props.statusForm;
-    if (!isOpen || !contact) return null;
+    const initialvalueInput = {fullname: '', email: '', whatsapp: '', sms: ''};
+    const [valueInput, setvalueInput] = useState(initialvalueInput);
+    const isOpen = propos.isOpen;
+    const onClose = propos.onClose;
+    // const onConfirm = propos.onConfirm;
+    const contact = propos.contact;
+    // const statusForm = propos.statusForm;
+    
     const token = IsCookies();
     const saveContact = async (data) => {
         document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = true);
@@ -41,8 +42,8 @@ function FormContactModal(props){
     const onSubmit = (data) => contactRegister(data);
 
     // const handleDelete = () => { onConfirm(); };
-    const initialvalueInput = {fullname: '', email: '', whatsapp: '', sms: ''};
-    const [valueInput, setvalueInput] = useState(initialvalueInput);
+    
+    
     const handleChange = e => {
         const { name, value } = e.target;
         setvalueInput({ ...valueInput, [name]: value });
@@ -51,7 +52,7 @@ function FormContactModal(props){
 
     
   
-
+    if (!isOpen || !contact) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
         <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>

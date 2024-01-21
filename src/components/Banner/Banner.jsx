@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { useEffect, useState } from "react";
 import imagEcobanck from "./../../assets/images/ecobank.jpeg";
 import imagOrange from "./../../assets/images/Orange-Couleur.jpeg";
@@ -12,14 +12,14 @@ import { Link } from "react-router-dom";
 import imgslid1 from "./../../assets/images/slid1.jpg";
 import imgslid2 from "./../../assets/images/slid2.jpg";
 import imgslid3 from "./../../assets/images/slid3.jpg";
-import imgslid4 from "./../../assets/images/slid4.jpg";
+// import imgslid4 from "./../../assets/images/slid4.jpg";
 import imgslid5 from "./../../assets/images/slid5.jpg";
 import imgslid6 from "./../../assets/images/slid6.jpg";
 import imgslid7 from "./../../assets/images/slid7.jpg";
 import "./Banner.css";
 
 function Banner() {
-  const [slidIndex, setSlidIndex] = useState(0);
+  const [, setSlidIndex] = useState(0);
 
   useEffect(() => {
     const fonctionSlid = () => {
@@ -64,7 +64,7 @@ function Banner() {
           </div>
           <div className="btn-part">
             <button className="bouton1">
-              <Link to="/inscription">S'inscrire</Link>
+              <Link to="/inscription">S&apos;inscrire</Link>
             </button>
             <button className="bouton2">
               <Link to="/connexion">Se connecter</Link>

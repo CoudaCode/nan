@@ -13,9 +13,6 @@ import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import FormBroadcastModal from "./FormBroadcastModal";
 // import ModalContact from "./ModalContact";
 
-
-
-
 function Broadcast() {
   const token = IsCookies();
   const navigate = useNavigate();
@@ -32,8 +29,8 @@ function Broadcast() {
   const [contactToModify, setContactToModify] = useState(null);
   const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
 
-  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
-  const [isFormModalClose, setIsFormModalClose] = useState(null);
+  const [isFormModalOpen, ] = useState(false);
+  const [, setIsFormModalClose] = useState(null);
 
   const [openAddForm, setIsOpenAddForm] = useState(null);
 
