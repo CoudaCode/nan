@@ -30,6 +30,7 @@ function Inscription() {
     onSuccess: success => {
       toast.success(success.data.message);
       setTimeout(() => navigate(`/validate/${success.data.data.email}/${success.data.data.code}`), 2500);
+      console.log(success.data.data.email)
     },
     onError: error => {
       document.querySelectorAll('input:required, button.login-button, button.social-button.google').forEach(item=>item.disabled = false); 

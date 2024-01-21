@@ -1,6 +1,13 @@
 import "./Reports.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { IsCookies , DeleteCookies } from "../../outils/IsCookie";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import { ApiUrl } from "../../outils/URL";
+
+
 const PopupExample = ({ isOpen, selectedItem, onClose }) => {
   const [showPopup, setShowPopup] = useState(isOpen);
 
@@ -8,6 +15,8 @@ const PopupExample = ({ isOpen, selectedItem, onClose }) => {
     setShowPopup(!showPopup);
     onClose(); // Appeler la fonction onClose pour réinitialiser l'état dans le composant parent
   };
+
+
 
   return (
     <div
@@ -107,6 +116,55 @@ function Reports() {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+
+ 
+
+  const token = IsCookies()
+  const navigate = useNavigate()
+  const [contactDeleted , setContactDeleted] = useState([])
+  const [teamDeleted , setTeamDeleted] = useState([])
+
+  const recover = (id) =>{
+    console.log("l'id de l'utilisateur " , id)
+    console.log("le token de l'utilisateur",token)
+    axios.put( ApiUrl + 'groupe/recover/' + id , { headers : {Authorization :  `token ${token}`}})
+    .then(success =>{
+      console.log('ce contact à bien été restauré' , success)
+    })
+    .catch(err =>{
+      console.log("une erreur est survenu lors du traitement" ,  err)
+    })
+  }
+  
+
+  useEffect(()=>{
+
+    if(!token){
+      toast.error('Session expiré , veuillez vous reconnecter !')
+      navigate('/connexion')
+    }else{
+      axios.get( ApiUrl + 'contact/getAllDeleted' , { headers : {Authorization :  ` token ${token}`}})
+    .then(success =>{
+      console.log(" la liste de tout les contat supprimés" ,success.data.data)
+      setContactDeleted(success.data.data)
+      console.log(contactDeleted)
+    })
+    .catch(err =>{
+      console.log("une erreur est survenue lors du traitement...",err)
+    })
+
+    axios.get( ApiUrl + 'groupe/getAllDeleted' , { headers : {Authorization : ` token ${token}`}})
+    .then(success=>{
+      console.log("la liste des groupe supprimé" , success.data.data)
+      setTeamDeleted(success.data.data)
+      console.log(teamDeleted)
+    })
+    .catch(err=>{
+      console.log("une erreur s'est produite lors du traitement" , err)
+    })
+    }
+  }, [])
   return (
     <>
       <Sidebar />
@@ -150,20 +208,20 @@ function Reports() {
                   </thead>
 
                   <tbody className="divide-y divide-gray-200">
-                    {contacts.map((item) => (
+                    {contactDeleted.map((item) => (
                       <tr key={item.id}>
                         <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
-                          {item.nom}
+                          {item.fullname}
                         </td>
                         <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
                           {item.email}
                         </td>
                         <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                          {item.phone}
+                          {item.sms}
                         </td>
                         <td className="whitespace-nowrap px-4 py-2 text-center text-gray-700">
                           <button
-                            onClick={() => handleRestore(item)}
+                            onClick={() => recover(item.id)}
                             className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
                             Restaurer
                           </button>
@@ -253,6 +311,9 @@ function Reports() {
                         Nom de la Teams
                       </th>
                       <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
+                        Description
+                      </th>
+                      <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
                         Canal
                       </th>
                       <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
@@ -265,19 +326,22 @@ function Reports() {
                   </thead>
 
                   <tbody className="divide-y divide-gray-200">
-                    {Teams.map((item) => (
+                    {teamDeleted.map((item) => (
                       <tr key={item.id}>
                         <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
-                          {item.nomTeams}
+                          {item.name}
+                        </td>
+                        <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+                          {item.description}
                         </td>
                         <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                          {item.Chanels}
+                          {item.canal}
                         </td>
                         <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                          {item.numberMembers}
+                          {item.contact.length}
                         </td>
                         <td className="whitespace-nowrap px-4 py-2 text-center text-gray-700">
-                          <button className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+                          <button className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500" onClick={()=> recover(item.id)}>
                             Restaurer
                           </button>
                         </td>
