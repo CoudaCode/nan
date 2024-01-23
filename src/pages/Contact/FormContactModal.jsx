@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { ApiUrl } from "../../outils/URL";
-import Cookie from "js-cookie";
 import { IsCookies } from "../../outils/IsCookie";
 
 import { useEffect, useState  } from "react";

@@ -17,42 +17,41 @@ function ModifyConfirmationModal(props){
   const groupeData = props.groupeData;
 
   if (!isOpen || !groupeData) return null;
-  const { canal, contact, description, name, _id} = groupeData;
+  const { canal, contact, description, name, id} = groupeData;
   const token = IsCookies();
   
   const saveContact = async (data) => {
-    document.querySelector('.FormEditeContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = true);
-    return await axios.put(ApiUrl + 'contact/update/'+_id, data, {headers: {Authorization: 'token '+token}});
+    console.log(document.querySelector('.FormSaveContact'))
+    document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = true);
+    if(!data.contact){
+        data.contact = contact.map(item=>item.id);
+    }
+    return await axios.put(ApiUrl + 'groupe/update/'+id, data, {headers: {Authorization: 'token '+token}});
   }
-  const { register, handleSubmit, formState: { errors } } = useForm({ canal, description, name, contact: contact.map(item=>item._id) });
+//   console.log('********************', contact.map(item=>item.id))
+  const { register, handleSubmit, formState: { errors } } = useForm({ canal, description, name, contact: contact.map(item=>item.id) });
   const {mutate: contactUpdate} = useMutation({
       mutationFn: data => saveContact(data),
       onSuccess: success => {
         toast.success(success.data.message);
         onClose();
-        const TrLigne = document.getElementById('ligne-'+_id);
+        const TrLigne = document.getElementById('ligne-'+id);
         TrLigne.classList.toggle('updated');
         setTimeout(() => TrLigne.classList.toggle('updated'), 3000);
       },
       onError: error => {
-        document.querySelector('.FormEditeContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = false);
+        document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = false);
         toast.error(error.response.data.message);
       }
   });
-  
-  
 
-
-  const initialFormData = { canal, contact: contact.map(item=>item._id), description, name, hiddenField: _id };
+  const initialFormData = { canal, contact: contact.map(item=>item.id), description, name, hiddenField: id };
   const [formData, setFormData] = useState(initialFormData);
   const handleChange = (e) => {
-    
     const { name, value } = e.target;
-    console.table({name, value})
     setFormData({ ...formData, [name]: value });
     const checkeding = document.querySelector('.checkeding')
     const nMember = document.getElementById('nMember');
-
     const allInputChecked = checkeding.querySelectorAll('input:checked');
     const longue = allInputChecked.length;
     nMember.innerHTML = (longue ? longue : 'Aucun') + ` membre${(longue>1 ? 's' : '')}`;
@@ -114,14 +113,10 @@ function ModifyConfirmationModal(props){
                         name="canal"
                         value={formData.canal}
                         className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-purple-500 text-purple-600"
-                        {...register("canal", {
-                            require: true,
-                            validate: {notEmpty: value => /^\S+$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
-                        })}
+                        {...register("canal")}
                         autoComplete="canal"
                         onChange={handleChange}
                     >
-                        <option value="">--- Choisir un canal ---</option>
                         <option value="email" selected={canal==='email' ? true : false}> Via E-mail </option>
                         <option value="sms" selected={canal==='sms' ? true : false}> Via SMS </option>
                         <option value="whatsapp" selected={canal==='whatsapp' ? true : false}> Via WhatsApp </option>

@@ -70,7 +70,7 @@ function Inscription() {
               require: true,
               minLength: 5,
               maxLength: 50,
-              pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, message: "Veuillez entrer un adresse mail valide." },
+              pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, message: "Veuillez entrer une adresse mail valide." },
               validate: {notEmpty: value => /^\S+$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
             })}
             placeholder="Adresse Email"
@@ -88,7 +88,7 @@ function Inscription() {
               require: true,
               minLength: 2,
               maxLength: 50,
-              pattern: { value: /^\+\d{2,3}\d{7,}$/i, message: "Veuillez entrer un adresse téléphonique qui contient l'indicatif et qui contient au moins 10 fichres et pas de caractère accentiés et spéciaux." },
+              pattern: { value: /^\+\d{2,3}\d{7,}$/i, message: "Veuillez entrer une adresse téléphonique qui contient l'indicatif et qui contient au moins 8 autres fichres et pas de caractères accentiés et spéciaux." },
               validate: {notEmpty: value => /^\S+$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
             })}
           />

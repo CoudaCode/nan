@@ -9,7 +9,7 @@
   color: #fff;
 }
 .Sidebar li a:hover {
-  background: #fff;
+  background: var(--ma-couleur-bouton);
 }
 .Sidebar li a .links_name {
   color: #fff;
@@ -48,7 +48,7 @@
 .Sidebar li a:hover .links_name,
 .Sidebar li a:hover i {
   transition: all 0.5s ease;
-  color: #11101d;
+  color: var(--ma-couleur-principale);
 }
 .Sidebar li i {
   height: 50px;
@@ -58,7 +58,7 @@
 }
 
 .Sidebar i {
-  color: #fff;
+  color: var(--ma-couleur-bouton);
   height: 60px;
   min-width: 50px;
   font-size: 28px;
@@ -193,7 +193,6 @@
 
 .Sidebar li.active{
   border-radius: 10px;
-  background-color: #fff;
 }
 
 .Sidebar.open ul li a span{
@@ -206,19 +205,18 @@
 }
 
 .Sidebar li.active a{
-  background-color: #fff;
+  background-color: var(--ma--couleur--text);
   width: 100%;
 }
 
 .Sidebar li.active a span{
-  color: #11101d;
+  color: var(--ma-couleur-principale);
   width: 100%;
 }
 
 .Sidebar li.active a i{
-  color: #11101d;
+  color: var(--ma-couleur-principale);
 }
-
 
 .Sidebar li a .links_name {
   color: #ffffff;

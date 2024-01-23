@@ -1,7 +1,9 @@
+import React from "react";
 import { useState } from "react";
-import "./Sidebar.css";
+import "../Sidebar/Sidebar.css";
 import { useLocation, Link } from "react-router-dom";
-function Sidebar() {
+
+function AdminSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
   const toggleSidebar = () => {
@@ -14,38 +16,30 @@ function Sidebar() {
     {
       iconClass: "bx bx-grid-alt",
       text: "Dashboard",
-      to: "/dashboard",
+      // to: "/DashboardAdmin",
     },
     {
       iconClass: "bx bxs-contact",
-      text: "Contact",
-      to: "/contact",
+      text: "Entreprises",
+      to: "/entreprises",
     },
     {
       iconClass: "bx bx-chat",
-      text: "Messages",
-      to: "/message",
+      text: "renouveller un forfait",
+      to: "/forfait",
     },
+    
     {
-      iconClass: "bx bx-broadcast",
-      text: "Broadcast",
-      to: "/broadcast",
-    },
-    {
-      iconClass: "bx bx-space-bar",
-      text: "Workspace",
-      to: "/workspace",
+      iconClass: "bx bxs-report",
+      text: "Confidentialité",
+      to: "/confidentialité",
     },
     {
       iconClass: "bx bxs-report",
-      text: "Reports",
-      to: "/reports",
+      text: "Paramètres",
+      to: "/paramètres",
     },
-    {
-      iconClass: "bx bx-user",
-      text: "Profile",
-      to: "/profile",
-    },
+    
     {
       iconClass: "bx bx-log-out",
       text: "Déconnexion",
@@ -91,4 +85,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default AdminSidebar;

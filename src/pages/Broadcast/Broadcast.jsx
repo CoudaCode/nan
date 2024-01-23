@@ -60,7 +60,7 @@ function Broadcast() {
     return(
       <>
       
-        <tr id={'ligne-'+item._id} key={item._id} data={item}>
+        <tr id={'ligne-'+item.id} key={item.id} data={item}>
           <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
             {item.name}
           </td>
@@ -78,12 +78,12 @@ function Broadcast() {
           </td>
           <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700" style={{ justifyContent:'center'}}>
             <a
-              onClick={() => handleModify(item._id)}
+              onClick={() => handleModify(item.id)}
               className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
               Modifier
             </a>
             <a
-              onClick={() => handleDelete(item._id)}
+              onClick={() => handleDelete(item.id)}
               className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
               Supprimer
             </a>
@@ -97,7 +97,7 @@ function Broadcast() {
   const changePage = ({selected})=>{ setPagesNumber(selected); }
 
   const handleDelete = (contactId) => {
-    const contact = AllGroupe.find(c => c._id === contactId);
+    const contact = AllGroupe.find(c => c.id === contactId);
     setSelectedContact(contact);
     setIsDeleteModalOpen(true);
   };
@@ -120,7 +120,7 @@ function Broadcast() {
 
 
   const handleModify = (contactId) => {
-    const contact = AllGroupe.find(c => c._id === contactId);
+    const contact = AllGroupe.find(c => c.id === contactId);
     setContactToModify(contact);
     setIsModifyModalOpen(true);
   };
@@ -148,9 +148,9 @@ function Broadcast() {
   return (
     <>
       <Sidebar />
-      <div className="main flex-1 flex flex-col overflow-hidden" id="main">
-        <div className="h-full overflow-y-auto p-4 bg-[#1E2029] Contact">
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
+        <div className=" overflow-y-none p-4   bg-[#1E2029]">Broadcast</div>
+          <div className="relative overflow-x-auto m-4 shadow-md sm:rounded-lg">
             <div className="flex items-center justify-between pb-4">
               <div className="relative">
                 <input
@@ -177,7 +177,7 @@ function Broadcast() {
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               <div className="rounded-lg border border-gray-200">
-                <div className="overflow-x-auto rounded-t-lg">
+                <div className="overflow-x-none rounded-t-lg">
                   <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
                     <thead className="ltr:text-left rtl:text-right">
                       <tr>
@@ -208,7 +208,7 @@ function Broadcast() {
                   </table>
                   
                 </div>
-                <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
+                <div className="rounded-b-lg w-full border-t border-gray-200 px-3 py-2">
                   <ol className="flex justify-center gap-1 text-xs font-medium">
                     <ReactPaginate
                       previousLabel={'Précedent'}
@@ -227,7 +227,7 @@ function Broadcast() {
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
 
       <FormBroadcastModal
         isOpen={handleSaveContact}
@@ -236,8 +236,6 @@ function Broadcast() {
         contact={openAddForm}
         statusForm = {handleSaveContact}
       />
-
-      
 
       <DeleteConfirmationModal
         isOpen={isDeleteModalOpen}

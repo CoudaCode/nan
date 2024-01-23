@@ -33,8 +33,8 @@ function ListingGroupe(){
                 <td>{item.contact.length} contact(s)</td>
                 <td>{item.description.split(' ').slice(0, 4).join(' ')} </td>
                 <td className="action-bttns">
-                    <button className="edite" id={item._id}><a href={"/groupe/edite/"+item._id}><ion-icon name="create-outline"></ion-icon></a></button>
-                    <button className="delete" id={item._id} onClick={deletedElement}><ion-icon name="trash-outline"></ion-icon></button>
+                    <button className="edite" id={item.id}><a href={"/groupe/edite/"+item.id}><ion-icon name="create-outline"></ion-icon></a></button>
+                    <button className="delete" id={item.id} onClick={deletedElement}><ion-icon name="trash-outline"></ion-icon></button>
                 </td>
             </tr>
         )
