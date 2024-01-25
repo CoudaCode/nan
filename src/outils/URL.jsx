@@ -4,7 +4,6 @@
 
 const ApiUrl = "https://nansendmessage.onrender.com/api/";
 
-
 const FrontUrl = "http://localhost:5173/";
 
-export {ApiUrl, FrontUrl};
+export { ApiUrl, FrontUrl };

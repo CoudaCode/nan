@@ -13,20 +13,17 @@ import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import FormBroadcastModal from "./FormBroadcastModal";
 // import ModalContact from "./ModalContact";
 
-
-
-
 function Broadcast() {
   const token = IsCookies();
   const navigate = useNavigate();
   const [AllGroupe, SetAllGroupe] = useState([]);
-  useEffect(()=>{
-    if(!token){
-      toast.error('Session expirée, veuillez vous connecter !');
-      navigate('/connexion');
+  useEffect(() => {
+    if (!token) {
+      toast.error("Session expirée, veuillez vous connecter !");
+      navigate("/connexion");
     }
   }, []);
-  
+
   const [selectedContact, setSelectedContact] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [contactToModify, setContactToModify] = useState(null);
@@ -38,37 +35,41 @@ function Broadcast() {
   const [openAddForm, setIsOpenAddForm] = useState(null);
 
   // const [openImportForm, setIsOpenImportForm] = useState(null);
-  
-  useEffect(()=>{
-    axios.get(ApiUrl + 'groupe/getAll', { headers: { Authorization: `token ${token}`} })
-    .then(success => {
-      SetAllGroupe(success.data.data.sort((a, b) => a.name.localeCompare(b.name)))
-    })
-    .catch(error => {
-      if(error.response.data.message === 'Expired token'){
-        DeleteCookies();
-        toast.error('Session expirée, veuillez vous connecter !');
-        navigate('/connexion');
-      }
-    })
+
+  useEffect(() => {
+    axios
+      .get(ApiUrl + "groupe/getAll", {
+        headers: { Authorization: `token ${token}` },
+      })
+      .then((success) => {
+        SetAllGroupe(
+          success.data.data.sort((a, b) => a.name.localeCompare(b.name))
+        );
+      })
+      .catch((error) => {
+        if (error.response.data.message === "Expired token") {
+          DeleteCookies();
+          toast.error("Session expirée, veuillez vous connecter !");
+          navigate("/connexion");
+        }
+      });
   }, []);
 
-  const [ pagesNumber, setPagesNumber ] = useState(0);
+  const [pagesNumber, setPagesNumber] = useState(0);
   const GroupePerPage = 9;
   const pagesVisited = pagesNumber * GroupePerPage;
-  const displayGroupe = AllGroupe.slice(pagesVisited, pagesVisited + GroupePerPage).map( item => {
-    return(
+  const displayGroupe = AllGroupe.slice(
+    pagesVisited,
+    pagesVisited + GroupePerPage
+  ).map((item) => {
+    return (
       <>
-      
-        <tr id={'ligne-'+item._id} key={item._id} data={item}>
+        <tr id={"ligne-" + item._id} key={item._id} data={item}>
           <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
             {item.name}
           </td>
           <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-            <a>
-              {item.contact.length}
-            </a>
-            
+            <a>{item.contact.length}</a>
           </td>
           <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
             {item.canal}
@@ -76,28 +77,35 @@ function Broadcast() {
           <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
             {item.description}
           </td>
-          <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700" style={{ justifyContent:'center'}}>
+          <td
+            className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700"
+            style={{ justifyContent: "center" }}
+          >
             <a
               onClick={() => handleModify(item._id)}
-              className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+              className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500"
+            >
               Modifier
             </a>
             <a
               onClick={() => handleDelete(item._id)}
-              className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+              className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500"
+            >
               Supprimer
             </a>
           </td>
         </tr>
       </>
-    )
-  })
+    );
+  });
 
   const pageCount = Math.ceil(AllGroupe.length / GroupePerPage);
-  const changePage = ({selected})=>{ setPagesNumber(selected); }
+  const changePage = ({ selected }) => {
+    setPagesNumber(selected);
+  };
 
   const handleDelete = (contactId) => {
-    const contact = AllGroupe.find(c => c._id === contactId);
+    const contact = AllGroupe.find((c) => c._id === contactId);
     setSelectedContact(contact);
     setIsDeleteModalOpen(true);
   };
@@ -117,10 +125,8 @@ function Broadcast() {
   //   setSelectedContact(null);
   // };
 
-
-
   const handleModify = (contactId) => {
-    const contact = AllGroupe.find(c => c._id === contactId);
+    const contact = AllGroupe.find((c) => c._id === contactId);
     setContactToModify(contact);
     setIsModifyModalOpen(true);
   };
@@ -130,11 +136,11 @@ function Broadcast() {
   };
 
   const handleSaveContact = () => {
-    setIsOpenAddForm(true)
+    setIsOpenAddForm(true);
   };
 
   const handleCloseContact = () => {
-    setIsOpenAddForm(false)
+    setIsOpenAddForm(false);
   };
 
   // const handleImportContact = (e) => {
@@ -168,7 +174,8 @@ function Broadcast() {
                   id="btn"
                   className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 data-modal-toggle=authentication-modal"
                   type="button"
-                  onClick={() => handleSaveContact(true)}>
+                  onClick={() => handleSaveContact(true)}
+                >
                   <FaPlus style={{ margin: "8px " }} />
                   Créer Liste de Difusion
                 </button>
@@ -201,27 +208,26 @@ function Broadcast() {
                         </th>
                       </tr>
                     </thead>
-                    
+
                     <tbody className="divide-y divide-gray-200">
-                      { displayGroupe }
+                      {displayGroupe}
                     </tbody>
                   </table>
-                  
                 </div>
                 <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
                   <ol className="flex justify-center gap-1 text-xs font-medium">
                     <ReactPaginate
-                      previousLabel={'Précedent'}
-                      nextLabel={'Suivant'}
+                      previousLabel={"Précedent"}
+                      nextLabel={"Suivant"}
                       pageCount={pageCount}
                       onPageChange={changePage}
-                      containerClassName={'paginationBttns'}
-                      previousLinkClassName={'previousBttn'}
+                      containerClassName={"paginationBttns"}
+                      previousLinkClassName={"previousBttn"}
                       nextLinkClassName={"nextBttn"}
                       disabledClassName={"paginationDisabled"}
                       activeClassName={"paginationActive"}
                     />
-                  </ol> 
+                  </ol>
                 </div>
               </div>
             </div>
@@ -234,10 +240,8 @@ function Broadcast() {
         onClose={handleCloseContact}
         isFormModalOpen={isFormModalOpen}
         contact={openAddForm}
-        statusForm = {handleSaveContact}
+        statusForm={handleSaveContact}
       />
-
-      
 
       <DeleteConfirmationModal
         isOpen={isDeleteModalOpen}
