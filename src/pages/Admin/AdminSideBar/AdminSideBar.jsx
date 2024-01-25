@@ -18,8 +18,8 @@ function AdminSideBar() {
     },
     {
       iconClass: "bx bxs-contact",
-      text: "Contact",
-      to: "/contact",
+      text: "Détails",
+      to: "/detail",
     },
     {
       iconClass: "bx bx-log-out",

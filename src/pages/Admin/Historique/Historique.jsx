@@ -52,20 +52,20 @@ function Historique() {
             <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-center ">11:22</td>
             <td className="whitespace-nowrap text-center  px-4 py-2">
               <a
-                href="#"
+                href="/detail"
                 className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
               >
                 Détails
               </a>
               <a
                 href="#"
-                className="inline-block rounded bg-red-600 mx-2 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                className="inline-block rounded bg-red-600 mx-2 px-4 py-2 text-xs font-medium text-white"
               >
                 Supprimer
               </a>
               <a
                 href="#"
-                className="inline-block rounded bg-gray-900 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                className="inline-block rounded bg-gray-900 px-4 py-2 text-xs font-medium text-white"
               >
                 Bloquer
               </a>
@@ -78,20 +78,20 @@ function Historique() {
             <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-center ">12:11</td>
             <td className="whitespace-nowrap text-center  px-4 py-2">
               <a
-                href="#"
+                href="/detail"
                 className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
               >
                 Détails
               </a>
               <a
                 href="#"
-                className="inline-block rounded bg-red-600 mx-2 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                className="inline-block rounded bg-red-600 mx-2 px-4 py-2 text-xs font-medium text-white"
               >
                 Supprimer
               </a>
               <a
                 href="#"
-                className="inline-block rounded bg-gray-900 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                className="inline-block rounded bg-gray-900 px-4 py-2 text-xs font-medium text-white"
               >
                 Bloquer
               </a>
@@ -104,20 +104,20 @@ function Historique() {
             <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-center ">14:14</td>
             <td className="whitespace-nowrap text-center  px-4 py-2">
               <a
-                href="#"
+                href="/detail"
                 className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
               >
                 Détails
               </a>
               <a
                 href="#"
-                className="inline-block rounded bg-red-600 mx-2 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                className="inline-block rounded bg-red-600 mx-2 px-4 py-2 text-xs font-medium text-white"
               >
                 Supprimer
               </a>
               <a
                 href="#"
-                className="inline-block rounded bg-gray-900 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                className="inline-block rounded bg-gray-900 px-4 py-2 text-xs font-medium text-white"
               >
                 Bloquer
               </a>
