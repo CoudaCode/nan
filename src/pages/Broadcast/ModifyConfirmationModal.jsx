@@ -1,66 +1,59 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { ApiUrl } from "../../outils/URL";
-import Cookie from "js-cookie";
 import { IsCookies } from "../../outils/IsCookie";
 import ModalContact from "./ModalContact";
 
+function ModifyConfirmationModal(propos){
+  const isOpen = propos.isOpen;
+  const onClose = propos.onClose;
+  const groupeData = propos.groupeData;
 
-
-function ModifyConfirmationModal(props){
-  const isOpen = props.isOpen;
-  const onClose = props.onClose;
-  const groupeData = props.groupeData;
-
-  if (!isOpen || !groupeData) return null;
-  const { canal, contact, description, name, _id} = groupeData;
-  const token = IsCookies();
+  const { canal, contact, description, name, id} = groupeData;
   
   const saveContact = async (data) => {
-    document.querySelector('.FormEditeContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = true);
-    return await axios.put(ApiUrl + 'contact/update/'+_id, data, {headers: {Authorization: 'token '+token}});
-  }
-  const { register, handleSubmit, formState: { errors } } = useForm({ canal, description, name, contact: contact.map(item=>item._id) });
+    document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = true);
+    if(!data.contact){
+        data.contact = contact.map(item=>item.id);
+    }
+    return await axios.put(ApiUrl + 'groupe/update/'+id, data, {headers: {Authorization: `token ${IsCookies()}`}});
+  };
+  
+  const { register, handleSubmit, formState: { errors } } = useForm({ canal, description, name, contact: contact.map(item=>item.id) });
   const {mutate: contactUpdate} = useMutation({
       mutationFn: data => saveContact(data),
       onSuccess: success => {
         toast.success(success.data.message);
         onClose();
-        const TrLigne = document.getElementById('ligne-'+_id);
+        const TrLigne = document.getElementById('ligne-'+id);
         TrLigne.classList.toggle('updated');
         setTimeout(() => TrLigne.classList.toggle('updated'), 3000);
       },
       onError: error => {
-        document.querySelector('.FormEditeContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = false);
+        document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = false);
         toast.error(error.response.data.message);
       }
   });
-  
-  
 
-
-  const initialFormData = { canal, contact: contact.map(item=>item._id), description, name, hiddenField: _id };
+  const initialFormData = { canal, contact: contact.map(item=>item.id), description, name, hiddenField: id };
   const [formData, setFormData] = useState(initialFormData);
   const handleChange = (e) => {
-    
     const { name, value } = e.target;
-    console.table({name, value})
     setFormData({ ...formData, [name]: value });
     const checkeding = document.querySelector('.checkeding')
     const nMember = document.getElementById('nMember');
-
     const allInputChecked = checkeding.querySelectorAll('input:checked');
     const longue = allInputChecked.length;
-    nMember.innerHTML = (longue ? longue : 'Aucun') + ` membre${(longue>1 ? 's' : '')}`;
+    nMember.innerHTML = (longue ? longue : 'Aucun') + ` membre${(longue > 1 ? 's' : '')}`;
   };
 
   const onSubmit = data => contactUpdate(data);
 
-  
+  if (!isOpen || !groupeData) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -114,14 +107,10 @@ function ModifyConfirmationModal(props){
                         name="canal"
                         value={formData.canal}
                         className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-purple-500 text-purple-600"
-                        {...register("canal", {
-                            require: true,
-                            validate: {notEmpty: value => /^\S+$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
-                        })}
+                        {...register("canal")}
                         autoComplete="canal"
                         onChange={handleChange}
                     >
-                        <option value="">--- Choisir un canal ---</option>
                         <option value="email" selected={canal==='email' ? true : false}> Via E-mail </option>
                         <option value="sms" selected={canal==='sms' ? true : false}> Via SMS </option>
                         <option value="whatsapp" selected={canal==='whatsapp' ? true : false}> Via WhatsApp </option>
@@ -143,6 +132,8 @@ function ModifyConfirmationModal(props){
       
     </div>
   );
-};
+}
 
 export default ModifyConfirmationModal;
+
+

@@ -1,21 +1,22 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
-import Cookies from "js-cookie";
 
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
+import { IsCookies } from "../../outils/IsCookie";
+
 
 
 function Message(){
-    const [state, setState] = useState([[], []]);
+    const [, setState] = useState([[], []]);
     let rapport = undefined;
-    let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     useEffect(()=>{
         const radio = document.querySelectorAll('input[type=radio]');
         [...radio].map(item => {
             item.addEventListener('change', (event) => {
+                
                 const groupInputCanal = event.target.closest('form').querySelector('#group-input-canal');
                 const groupInputcontact = event.target.closest('form').querySelector('#group-input-contact');
                 const groupInputgroupe = event.target.closest('form').querySelector('#group-input-groupe');
@@ -49,10 +50,9 @@ function Message(){
     useEffect(()=>{
         let table = {};
         const baliseCanal = document.querySelector("select#canal-message");
-        
         const baliseContact = document.querySelector("select#select-contact");
         const baliseGroupe = document.querySelector("select#select-groupe");
-        axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`} })
+        axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${IsCookies()}`} })
         .then(allGroupe => {
             if(allGroupe.data.status){
                 table.goupeDifusion = allGroupe.data.data;
@@ -60,7 +60,7 @@ function Message(){
             }
         })
 
-        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`} })
+        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${IsCookies()}`} })
         .then(allContact => {
             if(allContact.data.status){
                 table.contatDifusion = allContact.data.data;
@@ -76,14 +76,13 @@ function Message(){
                 const dataContacts = [];
                 goupeDifusion.map(item =>{
                     item.contact.map(el => dataContacts.push(el[event.target.value]));
-                    baliseGroupe.innerHTML += `<option value='${item._id}'>${item.name}</option>`
+                    baliseGroupe.innerHTML += `<option value='${item.id}'>${item.name}</option>`
                 })
                 
             }else if(table.contatDifusion && radio.value === 'onIndividuel'){
                 baliseContact.textContent = '';
-                
                 table.contatDifusion.map(item => {
-                    if(item[event.target.value]) baliseContact.innerHTML += `<option value='${item._id}'>${item.fullname}</option>`;
+                    if(item[event.target.value]) baliseContact.innerHTML += `<option value='${item.id}'>${item.fullname}</option>`;
                 })
             }
         })
@@ -109,13 +108,13 @@ function Message(){
                 }
             }
 
-            let response = await axios.post(ApiUrl+'/api/message/create', formData, { headers: { Authorization: `token ${token}`} });
+            let response = await axios.post(ApiUrl+'/api/message/create', formData, { headers: { Authorization: `token ${IsCookies()}`} });
             return response;
         },
         onSuccess: success => {
             toast.success(success.data.message);
             const data = success.data.data;
-            console.log(data);
+            console.table(data);
             rapport = document.querySelector('#recentCustomers-message').querySelector('#rapport');
             rapport.classList.remove('error');
             rapport.classList.add('success');

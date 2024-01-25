@@ -1,33 +1,32 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ApiUrl } from "../../outils/URL";
-import Cookie from "js-cookie";
 import { IsCookies } from "../../outils/IsCookie";
 
-function DeleteConfirmationModal({ isOpen, onClose, onConfirm, contact }){
-  if (!isOpen || !contact) { return null }
-  const token = IsCookies();
+function DeleteConfirmationModal(propos){
+
+  const isOpen = propos.isOpen;
+  const onClose = propos.onClose;
+  const contact = propos.contact;
+  const onConfirm = propos.onConfirm;
+  
   const handleDelete = async () => {
-    const lignTr = document.getElementById(`ligne-${contact._id}`);
-    axios.delete(ApiUrl+'contact/delete/'+contact._id, {headers: {Authorization: `token ${token}`}})
+    console.table(contact)
+    const lignTr = document.getElementById(`ligne-${contact.id}`);
+    axios.delete(ApiUrl+'groupe/delete/'+contact.id, {headers: {Authorization: `token ${IsCookies()}`}})
     .then(success => {
-      console.log('*************',success);
       toast.success(success.data.message);
       lignTr.classList.add('deleted');
-      setTimeout(() => {
-        lignTr.remove();
-        // window.location.reload();
-      }, 3000);
+      setTimeout(() => lignTr.remove(), 3000);
 
     })
     .catch(error => {
-      console.log('============', error);
       toast.success(error.response.message);
     })
     onConfirm();
   };
 
-  
+  if (!isOpen || !contact) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">

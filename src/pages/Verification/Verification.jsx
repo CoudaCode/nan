@@ -29,58 +29,58 @@ function Verification() {
           </div>
 
           <div className="cannaux">
-          <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
             <div>
               <input
-                class="peer sr-only"
+                className="peer sr-only"
                 id="option1"
                 type="radio"
-                tabindex="-1"
+                tabIndex="-1"
                 name="option"
               />
 
               <label
-                for="option1"
-                class="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
-                tabindex="0"
+                htmlFor="option1"
+                className="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
+                tabIndex="0"
               >
-                <span class="text-sm"><img src={whatsap} alt="" /></span>
+                <span className="text-sm"><img src={whatsap} alt="" /></span>
               </label>
             </div>
 
             <div>
               <input
-                class="peer sr-only"
+                className="peer sr-only"
                 id="option2"
                 type="radio"
-                tabindex="-1"
+                tabIndex="-1"
                 name="option"
               />
 
               <label
-                for="option2"
-                class="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
-                tabindex="0"
+                htmlFor="option2"
+                className="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
+                tabIndex="0"
               >
-                <span class="text-sm"><img src={Mail} alt="" /></span>
+                <span className="text-sm"><img src={Mail} alt="" /></span>
               </label>
             </div>
 
             <div>
               <input
-                class="peer sr-only"
+                className="peer sr-only"
                 id="option3"
                 type="radio"
-                tabindex="-1"
+                tabIndex="-1"
                 name="option"
               />
 
               <label
-                for="option3"
-                class="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
-                tabindex="0"
+                htmlFor="option3"
+                className="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
+                tabIndex="0"
               >
-                <span class="text-sm"><img src={sms} alt="" /></span>
+                <span className="text-sm"><img src={sms} alt="" /></span>
               </label>
             </div>
           </div>

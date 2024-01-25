@@ -3,29 +3,26 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { ApiUrl } from "../../outils/URL";
-import Cookie from "js-cookie";
 import { IsCookies } from "../../outils/IsCookie";
-import { FaSearch, FaPlus } from "react-icons/fa";
-import { useEffect, useState  } from "react";
+import { useState  } from "react";
 import ModalContact from "./ModalContact";
 
 
 
 
-function FormContactModal(props){
+
+function FormContactModal(propos){
     // { isOpen, onClose, onConfirm, contact, statusForm }
 
-    const isOpen = props.isOpen;
-    const onClose = props.onClose;
-    // const onConfirm = props.onConfirm;
-    const contact = props.contact;
-    // const statusForm = props.statusForm;
-    if (!isOpen || !contact) return null;
-    const token = IsCookies();
+    const isOpen = propos.isOpen;
+    const onClose = propos.onClose;
+    // const onConfirm = propos.onConfirm;
+    const contact = propos.contact;
+    // const statusForm = propos.statusForm;
+    
     const saveContact = async (data) => {
         document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = true);
-        console.log('************************', data);
-        return await axios.post(ApiUrl + 'groupe/create', data, {headers: {Authorization: 'token '+token}});
+        return await axios.post(ApiUrl + 'groupe/create', data, {headers: {Authorization: `token ${IsCookies()}`}});
     } 
     const { register, handleSubmit, formState: { errors } } = useForm({ name: '', description: "", contact: '', canal: "" });
     const {mutate: contactRegister} = useMutation({
@@ -48,6 +45,8 @@ function FormContactModal(props){
         const { name, value } = e.target;
         setvalueInput({ ...valueInput, [name]: value });
     };
+
+    if (!isOpen || !contact) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">

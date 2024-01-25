@@ -1,22 +1,21 @@
-import Cookies from "js-cookie";
+
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
 import UrlFrontEnt from "../../components/ApiUrl/UrlFrontEnt";
+import { IsCookies } from "../../outils/IsCookie";
+
 
 function Contact(){
     const { register, handleSubmit } = useForm({ fullname: "", email: "", sms: "", whatsapp: "" });
-    let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
-    let motPasse = undefined;
     let rapport = undefined;
     const { mutate: user } = useMutation({
       mutationFn: async send => {
         
-        motPasse = send.password;
         [...document.querySelector('form#form-contact').querySelectorAll('input, select, textarea, #reset-contact, #submit-contact')].map(item => item.disabled = true);
-        let response = await axios.post(ApiUrl+'/api/contact/create', send, { headers: { Authorization: `token ${token}`} });
+        let response = await axios.post(ApiUrl+'/api/contact/create', send, { headers: { Authorization: `token ${IsCookies()}`} });
         return response;
       },
       onSuccess: success => {

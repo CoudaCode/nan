@@ -1,9 +1,8 @@
-import React , {useEffect , useState} from "react";
+import {useState} from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 // import Topbar from "../../components/Topbar/Topbar";
 import "./Broadcast.css"
 function Broadcast() {
-
 
   const [ modal , setModal ] =useState(false)
 	const toggleModal = ()=>{
@@ -23,7 +22,8 @@ function Broadcast() {
   return (
     <div className="flex h-screen">
       <Sidebar />
-      <div className="main flex-1 flex flex-col overflow-hidden" id="main">
+      <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
+        <div className="h-full overflow-y-auto p-4 bg-[#1E2029] Contact">
         {/*<Topbar />*/}
         <div className="h-full overflow-y-auto p-4 bg-[#1E2029]">
           <div className="create_diffusion" onClick={toggleModal}>
@@ -107,26 +107,26 @@ function Broadcast() {
 
           {modalLogOut && (
                 <div className="overlay">
-                    <div class="notifications-container">
-                <div class="success">
-                  <div class="flex">
-                    <div class="flex-shrink-0">
-                      <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="succes-svg">
-                        <path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+                    <div className="notifications-container">
+                <div className="success">
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" className="succes-svg">
+                        <path clipRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fillRule="evenodd"></path>
                       </svg>
                     </div>
-                    <div class="success-prompt-wrap">
-                      <p class="success-prompt-heading">
+                    <div className="success-prompt-wrap">
+                      <p className="success-prompt-heading">
                         Cette action va supprimer cette diffusion
                       </p>
-                      <div class="success-prompt-prompt">
+                      <div className="success-prompt-prompt">
                         <p>En êtes-vous sûre ?</p>
                       </div>
-                      <div class="success-button-container">
-                        <button class="success-button-main" type="button" onClick={closeToggle}>
+                      <div className="success-button-container">
+                        <button className="success-button-main" type="button" onClick={closeToggle}>
                           Annuler
                         </button>
-                        <button class="success-button-secondary" type="button" >
+                        <button className="success-button-secondary" type="button" >
                           Supprimer
                         </button>
                       </div>
@@ -202,6 +202,7 @@ function Broadcast() {
           
            </div>
       </div>
+    </div>
     </div>
   );
 }
