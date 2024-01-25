@@ -51,19 +51,6 @@ export default function ListingMessage() {
     const btnDelete = document.getElementById("closeModal-delete" + id);
     target.disabled = true;
     btnDelete.disabled = true;
-    // axios.delete(ApiUrl+`message/delete/${id}`, {headers: {Authorization: `token ${IsCookies()}`}})
-    // .then(response => {
-    //     toast.success(response.data.message);
-    //     setTimeout(() => {
-    //         navigate('/message')
-    //     }, 3000);
-
-    // })
-    // .catch(error => {
-    //     toast.error(error.resonse.data.message);
-    //     target.disabled = false;
-    //     btnDelete.disabled = false;
-    // })
   };
 
   const openModalDel = (event) => {
@@ -102,13 +89,15 @@ export default function ListingMessage() {
             <button
               className="bg-purple-700 hover:bg-purple-905 text-white font-bold p-2 m-2  rounded focus:outline-none focus:shadow-outline"
               id={"openModal-" + message.id}
-              onClick={openModal}>
+              onClick={openModal}
+            >
               Lire
             </button>
 
             <div
               className="fixed inset-0 overflow-y-auto  hidden"
-              id={"modal-" + message.id}>
+              id={"modal-" + message.id}
+            >
               <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
               <div className="flex items-center justify-center min-h-screen">
                 <div className="relative bg-white w-[95%] p-6 rounded shadow-md">
@@ -121,7 +110,8 @@ export default function ListingMessage() {
                   <button
                     className="mt-4 bg-red-600 hover:bg-red-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
                     id={"closeModal-" + message.id}
-                    onClick={closeModal}>
+                    onClick={closeModal}
+                  >
                     Fermer
                   </button>
                 </div>
@@ -141,16 +131,19 @@ export default function ListingMessage() {
                 <button
                   onClick={openModalDel}
                   id={"openModal-send" + message.id}
-                  className="inline-block rounded bg-indigo-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+                  className="inline-block rounded bg-indigo-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500"
+                >
                   Transférer{" "}
                   <i
                     className="bx bxs-send m-1"
-                    id={"openModal-send" + message.id}></i>
+                    id={"openModal-send" + message.id}
+                  ></i>
                   {/* <i className='bx bxs-trash m-1' id={"openModal-send"+message.id}></i> */}
                 </button>
                 <div
                   className="fixed inset-0 overflow-y-auto hidden"
-                  id={"modal-send" + message.id}>
+                  id={"modal-send" + message.id}
+                >
                   <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
                   <div className="flex items-center justify-center min-h-screen">
                     <div className="relative bg-white w-[50%] flex flex-col justify-center items-center text-center p-6 rounded shadow-md">
@@ -164,13 +157,15 @@ export default function ListingMessage() {
                         <button
                           className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
                           id={"confirm-send" + message.id}
-                          onClick={() => SendMessageByEmail(message)}>
+                          onClick={() => SendMessageByEmail(message)}
+                        >
                           Confirmer
                         </button>
                         <button
                           className="bg-red-600 hover:bg-red-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
                           id={"closeModal-send" + message.id}
-                          onClick={closeModalDel}>
+                          onClick={closeModalDel}
+                        >
                           Annuler
                         </button>
                       </div>
@@ -183,26 +178,31 @@ export default function ListingMessage() {
           <td className="whitespace-nowrap px-4 py-2 text-center text-gray-700">
             <button
               onClick={() => navigate(`/message/${message.id}/show`)}
-              className="inline-block rounded bg-indigo-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+              className="inline-block rounded bg-indigo-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500"
+            >
               <i className="bx bxs-show m-1"></i>
             </button>
             <button
               onClick={() => navigate(`/message/${message.id}/edit`)}
-              className="inline-block rounded bg-green-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+              className="inline-block rounded bg-green-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500"
+            >
               <i className="bx bxs-edit m-1"></i>
             </button>
 
             <button
               onClick={openModalDel}
               id={"openModal-delete" + message.id}
-              className="inline-block rounded bg-red-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+              className="inline-block rounded bg-red-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500"
+            >
               <i
                 className="bx bxs-trash m-1"
-                id={"openModal-delete" + message.id}></i>
+                id={"openModal-delete" + message.id}
+              ></i>
             </button>
             <div
               className="fixed inset-0 overflow-y-auto hidden"
-              id={"modal-delete" + message.id}>
+              id={"modal-delete" + message.id}
+            >
               <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
               <div className="flex items-center justify-center min-h-screen">
                 <div className="relative bg-white w-[50%] flex flex-col justify-center items-center text-center p-6 rounded shadow-md">
@@ -216,13 +216,15 @@ export default function ListingMessage() {
                     <button
                       className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
                       id={"confirm-delete" + message.id}
-                      onClick={deleteMessageDel}>
+                      onClick={deleteMessageDel}
+                    >
                       Confirmer
                     </button>
                     <button
                       className="bg-red-600 hover:bg-red-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
                       id={"closeModal-delete" + message.id}
-                      onClick={closeModalDel}>
+                      onClick={closeModalDel}
+                    >
                       Annuler
                     </button>
                   </div>
@@ -267,8 +269,7 @@ export default function ListingMessage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {" "}
-                {displayMessage}{" "}
+                {displayMessage}
               </tbody>
             </table>
           </div>
