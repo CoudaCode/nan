@@ -48,9 +48,8 @@ function Entreprise() {
     }
   }, []);
 
-  const { register, handleSubmit, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: "" });
-
-  
+  // const { register, handleSubmit, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", emailInfo: '', nationalite: "", password: "" });
+  const { register, handleSubmit, formState: { errors } } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", emailInfo: '', pays: '' });
   const { mutate: entreprise } = useMutation({
     mutationFn: async (send) => {
       document.querySelectorAll('input:required, button').forEach(item=>item.disabled = true);
@@ -169,7 +168,7 @@ function Entreprise() {
               </div>
 
               <div>
-                <input className="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Adresse E-mail" type="email" id="email" name="email"
+                <input className="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Adresse E-mail de messagerie" type="email" id="email" name="email"
                   {...register("email", {
                     require: true, minLength: 5, maxLength: 100,
                     pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, message: "Veuillez entrer un adresse mail valide." },

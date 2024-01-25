@@ -1,18 +1,17 @@
-import Cookies from "js-cookie";
+
 import { useEffect, useState } from "react";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
-
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
+import { IsCookies } from "../../outils/IsCookie";
 
 function Groupe(){
     const [state, setState] = useState([])
     let rapport = undefined;
-    let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     useEffect(()=>{
-        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`} })
+        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${IsCookies()}`}})
         .then(allContact => {
             if(allContact.data.status){
                 setState(allContact.data.data);
@@ -26,15 +25,15 @@ function Groupe(){
         if(state.length){
             if(event.target.value === 'email'){
                 state.map(item =>{
-                    if(item.email) formatHtml += `<option value="${item.email+'-'+item._id}">${item.fullname}</option>`;
+                    if(item.email) formatHtml += `<option value="${item.email+'-'+item.id}">${item.fullname}</option>`;
                 })
             }else if(event.target.value === 'sms'){
                 state.map(item =>{
-                    if(item.sms) formatHtml += `<option value="${item.sms+'-'+item._id}">${item.fullname}</option>`;
+                    if(item.sms) formatHtml += `<option value="${item.sms+'-'+item.id}">${item.fullname}</option>`;
                 })
             }else if(event.target.value === 'whatsapp'){
                 state.map(item =>{
-                    if(item.whatsapp) formatHtml += `<option value="${item.whatsapp+'-'+item._id}">${item.fullname}</option>`;
+                    if(item.whatsapp) formatHtml += `<option value="${item.whatsapp+'-'+item.id}">${item.fullname}</option>`;
                 })
             }
         }
@@ -45,7 +44,7 @@ function Groupe(){
     const { mutate: groupe } = useMutation({
         mutationFn: async send => {
             [...document.querySelector('form#form-groupe').querySelectorAll('input, select, textarea, #reset-groupe, #submit-groupe')].map(item => item.disabled = true);
-            let response = await axios.post(ApiUrl+'/api/groupe/create', send, { headers: { Authorization: `token ${token}`} });
+            let response = await axios.post(ApiUrl+'/api/groupe/create', send, { headers: { Authorization: `token ${IsCookies()}`} });
             return response;
         },
         onSuccess: success => {

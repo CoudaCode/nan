@@ -6,12 +6,12 @@ import { IsCookies } from "../../outils/IsCookie";
 // import PropTypes from 'prop-types';
 
 
-const ModalContact = props => {
+const ModalContact = propos => {
     const [AllContacts,SetAllContacts] = useState([]);
     // const [SetUp, SetSetUp] = useState([]);
-    const register = props.register;
-    const contactChecked = props.contactChecked;
-    const handleChange = props.handleChange;
+    const register = propos.register;
+    const contactChecked = propos.contactChecked;
+    const handleChange = propos.handleChange;
     
     useEffect(()=>{
         // let form = document.getElementById('myForm');
@@ -46,13 +46,13 @@ const ModalContact = props => {
         .then(success => {
             const genereInputCheckBox = success.data.data.sort((a, b) => a.fullname.localeCompare(b.fullname)).map(item => {
                 return(
-                    <label className="inline-flex items-center m-2 text-purple-600" key={item._id} htmlFor={'checkbox-'+item._id}>
+                    <label className="inline-flex items-center m-2 text-purple-600" key={item.id} htmlFor={'checkbox-'+item.id}>
                         <input
                             type="checkbox"
                             name="contact"  
-                            // checked={contactChecked && contactChecked.map(contact => contact._id).includes(item._id)}
-                            value={item._id}
-                            id={'checkbox-'+item._id}
+                            // checked={contactChecked && contactChecked.map(contact => contact.id).includes(item.id)}
+                            value={item.id}
+                            id={'checkbox-'+item.id}
                             className="form-checkbox"
                             // onClick={countChecked}
                             {...register("contact")}
@@ -81,7 +81,7 @@ const ModalContact = props => {
     var YouWantToCheckInput = (e) => {
         const checkeding = document.querySelector('.checkeding').querySelectorAll('input');
         console.log(e);
-        [...checkeding].map(item => item.checked = e.map(contact => contact._id).includes(item.id.split('-')[1]))
+        [...checkeding].map(item => item.checked = e.map(contact => contact.id).includes(item.id.split('-')[1]))
     }
 
 

@@ -8,9 +8,9 @@ const Delete = async function(event, model){
     const ligne = event.target.closest('tr');
     ligne.disabled = true;
     const buttonActive = event.target.closest('button');
-    const _id = buttonActive.id;
+    const id = buttonActive.id;
     buttonActive.disabled = true;
-    axios.delete(ApiUrl+'/api/'+model+'/delete/'+_id, { headers: { Authorization: `token ${token}`}})
+    axios.delete(ApiUrl+'/api/'+model+'/delete/'+id, { headers: { Authorization: `token ${token}`}})
     .then(response => {
         ligne.classList.add('deleted-succes')
         if(response.data){

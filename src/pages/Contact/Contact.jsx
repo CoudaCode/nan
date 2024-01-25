@@ -15,31 +15,33 @@ import FormImportContact from "./FormImportContact";
 
 
 
+
 function Contact() {
-  const token = IsCookies();
   const navigate = useNavigate();
   const [AllContacts, SetAllContact] = useState([]);
+  const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
   useEffect(()=>{
-    if(!token){
+    if(!IsCookies()){
       toast.error('Session expirée, veuillez vous connecter !');
       navigate('/connexion');
     }
   }, []);
   
+  
   const [selectedContact, setSelectedContact] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [contactToModify, setContactToModify] = useState(null);
+  const [contactToModify, setContactToModify] = useState({fullname: '', email: '', whatsapp: '', sms: '', hiddenField: ''});
   const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
 
-  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
-  const [isFormModalClose, setIsFormModalClose] = useState(null);
+  const [isFormModalOpen, ] = useState(false);
+  const [, setIsFormModalClose] = useState(null);
 
   const [openAddForm, setIsOpenAddForm] = useState(null);
 
   const [openImportForm, setIsOpenImportForm] = useState(null);
   
   useEffect(()=>{
-    axios.get(ApiUrl + 'contact/getAll', { headers: { Authorization: `token ${token}`} })
+    axios.get(ApiUrl + 'contact/getAll', { headers: { Authorization: `token ${IsCookies()}`} })
     .then(success => {
       SetAllContact(success.data.data.sort((a, b) => a.fullname.localeCompare(b.fullname)))
     })
@@ -60,7 +62,7 @@ function Contact() {
       <>
         {/* <ModifyConfirmationModal contact={item}/> */}
       
-        <tr id={'ligne-'+item._id} key={item._id}>
+        <tr id={'ligne-'+item.id} key={item.id}>
           <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
             {item.fullname}
           </td>
@@ -75,12 +77,12 @@ function Contact() {
           </td>
           <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700" style={{ justifyContent:'center'}}>
             <a
-              onClick={() => handleModify(item._id)}
+              onClick={() => handleModify(item.id)}
               className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
               Modifier
             </a>
             <a
-              onClick={() => handleDelete(item._id)}
+              onClick={() => handleDelete(item.id)}
               className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
               Supprimer
             </a>
@@ -94,7 +96,7 @@ function Contact() {
   const changePage = ({selected})=>{ setPagesNumber(selected); }
 
   const handleDelete = (contactId) => {
-    const contact = AllContacts.find(c => c._id === contactId);
+    const contact = AllContacts.find(c => c.id === contactId);
     setSelectedContact(contact);
     setIsDeleteModalOpen(true);
   };
@@ -109,44 +111,69 @@ function Contact() {
     setContactToModify(null);
   };
 
-  const handleCloseFormModal = () => {
-    setIsDeleteModalOpen(false);
-    setSelectedContact(null);
-  };
+  
 
-
+  // alert()
 
   const handleModify = (contactId) => {
-    const contact = AllContacts.find(c => c._id === contactId);
+    const contact = AllContacts.find(c => c.id == contactId);
+    
+    // useEffect(() => {
+    //   setContactToModify(contact);
+    // }, {})
     setContactToModify(contact);
     setIsModifyModalOpen(true);
+    
   };
 
-  const handleConfirmDelete = () => {
-    setIsDeleteModalOpen(false);
+
+  const handleConfirmDelete = () => setIsDeleteModalOpen(false);
+
+  const handleSaveContact = () => setIsOpenAddForm(true);
+
+  const handleCloseContact = () => setIsOpenAddForm(false);
+
+  const handleImportContact = () => setIsOpenImportForm(true);
+
+  const handleCloseImportContact = () => setIsOpenImportForm(false);
+
+
+  const handleLogout = () => {
+    DeleteCookies();
+    setConfirmationModalOpen(false);
+    setTimeout(() => window.location.reload(), 1500);
   };
 
-  const handleSaveContact = (e) => {
-    setIsOpenAddForm(true)
-  };
-
-  const handleCloseContact = (e) => {
-    setIsOpenAddForm(false)
-  };
-
-  const handleImportContact = (e) => {
-    setIsOpenImportForm(true)
-  };
-
-  const handleCloseImportContact = (e) => {
-    setIsOpenImportForm(false)
-  };
 
   return (
     <>
       <Sidebar />
       <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
-        <div className=" overflow-y-none p-4  bg-[#1E2029]">Contacts</div>
+        <div className="flex justify-between items-center overflow-y-none p-2 bg-[#1E2029]">
+          <div className="flex items-center">
+            Contacts
+          </div>
+          <div>
+            <button onClick={() => setConfirmationModalOpen(true)} className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700">Déconnexion</button>
+          </div>
+          {isConfirmationModalOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center">
+              <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
+
+              <div className="rounded-lg bg-purple-900 p-8 shadow-2xl z-10 w-[40rem]">
+                <p className="text-xl text-center text-color-purple font-semibold mb-4">Êtes-vous sûr de vouloir vous déconnecter ?</p>
+
+                <div className="flex justify-end">
+                  <button onClick={() => setConfirmationModalOpen(false)} className="mr-4 bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-700" > Annuler </button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"> Oui, déconnectez-moi. </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        
+
         <div className="Contact">
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div className="flex items-center justify-between pb-4">
@@ -177,11 +204,13 @@ function Contact() {
                   className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 data-modal-toggle=authentication-modal"
                   type="button"
                   onClick={() => handleSaveContact(true)}>
-                  <FaPlus style={{ margin: "8px " }} />
+                  <FaPlus style={{ margin: "8px " }} /> 
                   ajouter le contact
                 </button>
               </div>
             </div>
+
+            
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               <div className="rounded-lg border border-gray-200">
@@ -256,11 +285,15 @@ function Contact() {
         contact={selectedContact}
       />
 
-      <ModifyConfirmationModal
-        isOpen={isModifyModalOpen}
-        onClose={handleCloseModifyModal}
-        contact={contactToModify}
-      />
+      {
+        contactToModify?.fullname ?
+        <ModifyConfirmationModal
+          isOpen={isModifyModalOpen}
+          onClose={handleCloseModifyModal}
+          contact={contactToModify}
+          
+        /> : ''
+      }
     </>
   );
 }

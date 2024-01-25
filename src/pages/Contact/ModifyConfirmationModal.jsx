@@ -1,61 +1,66 @@
 import { useState } from "react";
-
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { ApiUrl } from "../../outils/URL";
-import Cookie from "js-cookie";
 import { IsCookies } from "../../outils/IsCookie";
 
+function ModifyConfirmationModal(propos){
+  
+  const isOpen = propos.isOpen;
+  const onClose = propos.onClose;
+  const contact = propos.contact;
 
-function ModifyConfirmationModal({isOpen, onClose, contact}){
 
-  if (!isOpen || !contact) return null;
-  const {fullname, email, sms, whatsapp, _id} = contact;
-  const token = IsCookies();
-  const secondData = null;
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      fullname: contact?.fullname,
+      email: contact?.email,
+      sms: contact?.sms,
+      whatsapp: contact?.whatsapp,
+    },
+  });
   
   const saveContact = async (data) => {
     document.querySelector('.FormEditeContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = true);
-    return await axios.put(ApiUrl + 'contact/update/'+_id, data, {headers: {Authorization: 'token '+token}});
+    return await axios.put(ApiUrl + 'contact/update/' + contact.id, data, { headers: { Authorization: `token ${IsCookies()}` } });
   }
-  const { register, handleSubmit, formState: { errors } } = useForm({ fullname, email, sms, whatsapp });
-  const {mutate: contactUpdate} = useMutation({
-      mutationFn: data => saveContact(data),
-      onSuccess: success => {
-        toast.success(success.data.message);
-        onClose();
-        const TrLigne = document.getElementById('ligne-'+_id);
-        TrLigne.classList.toggle('updated');
-        setTimeout(() => TrLigne.classList.toggle('updated'), 3000);
-      },
-      onError: error => {
-        document.querySelector('.FormEditeContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = false);
-        toast.error(error.response.data.message);
-      }
+  const { mutate: contactUpdate } = useMutation({
+    mutationFn: data => saveContact(data),
+    onSuccess: success => {
+      toast.success(success.data.message);
+      onClose();
+      const TrLigne = document.getElementById('ligne-' + contact.id);
+      TrLigne.classList.toggle('updated');
+      setTimeout(() => TrLigne.classList.toggle('updated'), 3000);
+    },
+    onError: error => {
+      document.querySelector('.FormEditeContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = false);
+      toast.error(error.response.data.message);
+    }
   });
+  
   const onSubmit = data => contactUpdate(data);
   
-
-
   const initialFormData = {
-    fullname: contact.fullname,
-    email: contact.email,
-    whatsapp: contact.whatsapp,
-    sms: contact.sms,
-    hiddenField: contact._id, // Champ invisible
+    fullname: contact?.fullname,
+    email: contact?.email,
+    whatsapp: contact?.whatsapp,
+    sms: contact?.sms,
+    hiddenField: contact?.id, // Champ invisible
   };
+
   const [formData, setFormData] = useState(initialFormData);
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    console.log(formData)
     setFormData({ ...formData, [name]: value });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log('Données du formulaire soumises :', formData);
-  // };
+  if (!isOpen || !contact) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -77,7 +82,6 @@ function ModifyConfirmationModal({isOpen, onClose, contact}){
                 minLength: 2,
                 maxLength: 50,
                 validate: {notEmpty: value => !/^\s*$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
-                
               })}
               autoComplete="fullname"
               onChange={handleChange}
@@ -162,6 +166,6 @@ function ModifyConfirmationModal({isOpen, onClose, contact}){
       </div>
     </div>
   );
-};
+}
 
 export default ModifyConfirmationModal;
