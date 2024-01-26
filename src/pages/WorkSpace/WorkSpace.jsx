@@ -93,7 +93,7 @@ function WorkSpace() {
           <div className="bg-white m-4 rounded text-center justify-center items-center">
             <span className="text-center text-black">Aucune diffusion</span>
           </div>
-        
+  
           <CreateContactModal
             isOpen={isCreatePopupOpen}
             onClose={toggleCreatePopup}
