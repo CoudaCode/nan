@@ -104,10 +104,10 @@ function Dashboard() {
   return (
     <>
       <Sidebar />
-      <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
+      <div className="flex flex-col flex-1 p-4 overflow-y-auto main" id="main">
         <div className=" overflow-y-none p-4  bg-[#1E2029]">Dashboard</div>
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 m-4 overflow-Y-auto">
-          <div className="h-52 bg-violet-600 cursor-pointer rounded-md shadow-md transition transform hover:scale-105">
+        <div className="grid grid-cols-1 gap-4 m-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 overflow-Y-auto">
+          <div className="transition transform rounded-md shadow-md cursor-pointer h-52 bg-violet-600 hover:scale-105">
             <div className="p-4">
               <h1>Message</h1>
               <h2 className="my-8">{messages}</h2>
@@ -115,14 +115,14 @@ function Dashboard() {
                 <i className="fa-solid fa-address-card"></i>
               </div>
             </div>
-            <div className="p-2 text-black font-extrabold text-right bg-white">
+            <div className="p-2 font-extrabold text-right text-black bg-white">
               <Link to="/message">
                 <h1>Voir</h1>
               </Link>
             </div>
           </div>
 
-          <div className="h-52 bg-violet-600 cursor-pointer rounded-md shadow-md transition transform hover:scale-105 ">
+          <div className="transition transform rounded-md shadow-md cursor-pointer h-52 bg-violet-600 hover:scale-105 ">
             <div className="p-4">
               <h1>Contacts</h1>
               <h2 className="my-8">{contacts}</h2>
@@ -130,7 +130,7 @@ function Dashboard() {
                 <i className="fa-solid fa-address-card"></i>
               </div>
             </div>
-            <div className="p-2 text-black font-extrabold text-right bg-white">
+            <div className="p-2 font-extrabold text-right text-black bg-white">
               <Link to="/contact">
                 <h1>Voir</h1>
               </Link>
@@ -138,8 +138,8 @@ function Dashboard() {
           </div>
         </div>
         {/* Exemple de graphique en barres */}
-        <div className="my-4 p-4 bg-white rounded-md w-full">
-          <h2 className="text-2xl font-bold mb-4">Exemple de Graphique</h2>
+        <div className="w-full p-4 my-4 bg-white rounded-md">
+          <h2 className="mb-4 text-2xl font-bold">Exemple de Graphique</h2>
           <canvas id="myChart" ref={chartRef} width="400" height="200"></canvas>
         </div>
       </div>
