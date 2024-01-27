@@ -28,7 +28,7 @@ function Dashboard() {
       <Sidebar />
       <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
       <div className="flex justify-between items-center overflow-y-none p-2 bg-[#1E2029]">
-          <div className="flex items-center"> Broadcast </div>
+          <div className="flex items-center"> Dashboard </div>
           <div>
             <button onClick={() => setConfirmationModalOpen(true)} className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700">Déconnexion</button>
           </div>
