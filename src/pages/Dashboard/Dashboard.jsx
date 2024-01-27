@@ -9,9 +9,7 @@ import "./dashboard.css";
 function Dashboard() {
   const [contacts, setContacts] = useState(0);
   const [messages, setMessages] = useState(0);
-
   const token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
-
   const fetchContacts = async () => {
     let response = await fetch(`${ApiUrl}contact/getAll`, {
       headers: {
@@ -41,7 +39,6 @@ function Dashboard() {
     queryKey: ["contact"],
     queryFn: fetchContacts,
   });
-
   const {
     isPending: messagesPending,
     isError: messagesError,
@@ -100,7 +97,6 @@ function Dashboard() {
         {contactsError ? contactsErrorData.message : messagesErrorData.message}
       </div>
     );
-
   return (
     <>
       <Sidebar />
@@ -139,7 +135,7 @@ function Dashboard() {
         </div>
         {/* Exemple de graphique en barres */}
         <div className="w-full p-4 my-4 bg-white rounded-md">
-          <h2 className="mb-4 text-2xl font-bold">Exemple de Graphique</h2>
+          <h2 className="mb-4 text-2xl font-bold">Courbe des message</h2>
           <canvas id="myChart" ref={chartRef} width="400" height="200"></canvas>
         </div>
       </div>
