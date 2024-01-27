@@ -1,3 +1,10 @@
+import React from "react";
+import Sidebar from "../../components/Sidebar/Sidebar";
+// import Topbar from "../../components/Topbar/Topbar";
+import "./Profile.css";
+
+import img from "../../assets/images/img-profile.jpg";
+import poinVert from "../../assets/images/pointVerts.png";
 
 import Sidebar from "../../components/Sidebar/Sidebar";
 import "./Profile.css";
