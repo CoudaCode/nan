@@ -20,7 +20,6 @@ function Profile() {
     <>
       <Sidebar />
       <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
-          {/* <div className=" overflow-y-none p-4  bg-[#1E2029]">Profile</div> */}
           <div className="flex justify-between items-center overflow-y-none p-2 bg-[#1E2029]">
             <div className="flex items-center"> Messages </div>
             <div>

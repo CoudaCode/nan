@@ -95,6 +95,8 @@ function Contact() {
   const pageCount = Math.ceil(AllContacts.length / ContactsPerPage);
   const changePage = ({selected})=>{ setPagesNumber(selected); }
 
+  
+
   const handleDelete = (contactId) => {
     const contact = AllContacts.find(c => c.id === contactId);
     setSelectedContact(contact);
@@ -116,11 +118,7 @@ function Contact() {
   // alert()
 
   const handleModify = (contactId) => {
-    const contact = AllContacts.find(c => c.id == contactId);
-    
-    // useEffect(() => {
-    //   setContactToModify(contact);
-    // }, {})
+    const contact = AllContacts.find(c => c.id === contactId);
     setContactToModify(contact);
     setIsModifyModalOpen(true);
     
@@ -172,8 +170,6 @@ function Contact() {
           )}
         </div>
 
-        
-
         <div className="Contact">
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div className="flex items-center justify-between pb-4">
@@ -196,7 +192,7 @@ function Contact() {
                   type="button">
                     
                   <FaPlus style={{ margin: "8px" }} />
-                  contact d’mportation
+                  contact d&apos;mportation
                 </button>
 
                 <button
@@ -204,13 +200,11 @@ function Contact() {
                   className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 data-modal-toggle=authentication-modal"
                   type="button"
                   onClick={() => handleSaveContact(true)}>
-                  <FaPlus style={{ margin: "8px " }} /> 
+                  <FaPlus style={{ margin: "8px" }} /> 
                   ajouter le contact
                 </button>
               </div>
             </div>
-
-            
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               <div className="rounded-lg border border-gray-200">
@@ -245,8 +239,8 @@ function Contact() {
                 <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
                   <ol className="flex justify-center gap-1 text-xs font-medium">
                     <ReactPaginate
-                      previousLabel={'Précedent'}
-                      nextLabel={'Suivant'}
+                      previousLabel={'<< Précédent'}
+                      nextLabel={'Suivant >>'}
                       pageCount={pageCount}
                       onPageChange={changePage}
                       containerClassName={'paginationBttns'}
@@ -291,7 +285,6 @@ function Contact() {
           isOpen={isModifyModalOpen}
           onClose={handleCloseModifyModal}
           contact={contactToModify}
-          
         /> : ''
       }
     </>

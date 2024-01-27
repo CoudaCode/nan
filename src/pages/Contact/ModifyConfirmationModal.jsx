@@ -21,6 +21,16 @@ function ModifyConfirmationModal(propos){
       whatsapp: contact?.whatsapp,
     },
   });
+
+  const initialFormData = {
+    fullname: contact?.fullname,
+    email: contact?.email,
+    whatsapp: contact?.whatsapp,
+    sms: contact?.sms,
+    hiddenField: contact?.id, // Champ invisible
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
   
   const saveContact = async (data) => {
     document.querySelector('.FormEditeContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = true);
@@ -30,8 +40,16 @@ function ModifyConfirmationModal(propos){
     mutationFn: data => saveContact(data),
     onSuccess: success => {
       toast.success(success.data.message);
+      console.log(success.data)
       onClose();
       const TrLigne = document.getElementById('ligne-' + contact.id);
+      const allCol = TrLigne.querySelectorAll('td');
+      const {fullname, email, whatsapp, sms} = success.data.data;
+      allCol[0].textContent = fullname;
+      allCol[1].textContent = email;
+      allCol[2].textContent = whatsapp;
+      allCol[2].textContent = sms;
+      setFormData({fullname, email, whatsapp, sms})
       TrLigne.classList.toggle('updated');
       setTimeout(() => TrLigne.classList.toggle('updated'), 3000);
     },
@@ -43,15 +61,15 @@ function ModifyConfirmationModal(propos){
   
   const onSubmit = data => contactUpdate(data);
   
-  const initialFormData = {
-    fullname: contact?.fullname,
-    email: contact?.email,
-    whatsapp: contact?.whatsapp,
-    sms: contact?.sms,
-    hiddenField: contact?.id, // Champ invisible
-  };
+  // const initialFormData = {
+  //   fullname: contact?.fullname,
+  //   email: contact?.email,
+  //   whatsapp: contact?.whatsapp,
+  //   sms: contact?.sms,
+  //   hiddenField: contact?.id, // Champ invisible
+  // };
 
-  const [formData, setFormData] = useState(initialFormData);
+  // const [formData, setFormData] = useState(initialFormData);
   
 
   const handleChange = event => {

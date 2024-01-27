@@ -41,9 +41,12 @@ export default function Edite(){
     }, [])
 
     return(
-      <ContentMessage
-        message={message}
-      />
+        <>
+            {
+                message ? <ContentMessage message={message} /> : ''
+            }
+        </>
+      
     )
 
 }
