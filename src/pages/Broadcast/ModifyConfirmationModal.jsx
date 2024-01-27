@@ -16,7 +16,6 @@ function ModifyConfirmationModal(propos){
   const { canal, contact, description, name, id} = groupeData;
   
   const saveContact = async (data) => {
-    console.log(document.querySelector('.FormSaveContact'))
     document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton', 'select').forEach(item => item.disabled = true);
     if(!data.contact){
         data.contact = contact.map(item=>item.id);
@@ -136,3 +135,5 @@ function ModifyConfirmationModal(propos){
 }
 
 export default ModifyConfirmationModal;
+
+

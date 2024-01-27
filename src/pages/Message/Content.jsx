@@ -12,7 +12,8 @@ import { IsCookies } from '../../outils/IsCookie';
 import CategorieDestinataire from './CategorieDestinataire';
 import FormDate from './FormDate';
 
-function ContentMessage(){
+function ContentMessage(propos){
+    const message = propos.message;
 
     const [modalIsOpenCategorie, setModalIsOpenCategorie] = useState(false);
 
@@ -22,7 +23,19 @@ function ContentMessage(){
 
     const [modalIsOpenProgramming, setModalIsOpenProgramming] = useState(false);
 
-    const initialvalueInput = {canal: '', object: '', contenu: '', piecesJointes: '', groupe: '', contact: '', toKnownChecked: '', sendingDate: ''};
+    // const initialvalueInput = {canal: '', object: '', contenu: '', piecesJointes: '', groupe: '', contact: '', toKnownChecked: '', sendingDate: ''};
+    const initialvalueInput = {
+        canal: message ? message.canal : '',
+        object: message ? message.object : '',
+        contenu: message ? message.contenu : '',
+        piecesJointes: '',
+        groupe: message ? message.groupe : '',
+        contact: message ? message.contact : '',
+        toKnownChecked: '',
+        sendingDate: ''
+    };
+
+    console.log(initialvalueInput);
 
     const [valueInput, setvalueInput] = useState(initialvalueInput);
 
@@ -133,6 +146,7 @@ function ContentMessage(){
                             type="text"
                             name="object"
                             placeholder="Objet"
+                            defaultValue={initialvalueInput.object}
                             {...register("object", {
                                 require: true,
                                 minLength: 2,
@@ -151,7 +165,7 @@ function ContentMessage(){
                             className="shadow appearance-none rounded border border-gray-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="contenu"
                             name="contenu"
-                            // required
+                            defaultValue={initialvalueInput.contenu}
                             placeholder="Entrer le message"
                             {...register("contenu", {
                                 require: true,
@@ -168,7 +182,7 @@ function ContentMessage(){
                         className='shadow appearance-none rounded border border-gray-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         id='toKnownChecked' 
                         name='toKnownChecked' 
-                        {...register('toKnownChecked')} 
+                        {...register('toKnownChecked')}
                         value={valueInput.toKnownChecked}
                         hidden
                     />
@@ -185,6 +199,7 @@ function ContentMessage(){
                                         name="canal"
                                         id="sms"
                                         value="sms"
+                                        defaultChecked={initialvalueInput.canal == 'sms'}
                                         className="mr-2 leading-tight"
                                         {...register("canal", {
                                             required: "Veuillez choisir un canal d'envoi.",
@@ -201,6 +216,7 @@ function ContentMessage(){
                                         name="canal"
                                         value="whatsapp"
                                         id="whatsapp"
+                                        defaultChecked={initialvalueInput.canal == 'whatsapp'}
                                         className="mr-2 leading-tight"
                                         {...register("canal", {
                                             required: "Veuillez choisir un canal d'envoi.",
@@ -217,6 +233,8 @@ function ContentMessage(){
                                         name="canal"
                                         value="email"
                                         id="email"
+                                        
+                                        defaultChecked={initialvalueInput.canal == 'email'}
                                         className="mr-2 leading-tight"
                                         {...register("canal", {
                                             required: "Veuillez choisir un canal d'envoi.",

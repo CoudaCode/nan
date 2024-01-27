@@ -7,30 +7,49 @@ import { ApiUrl } from "../../outils/URL";
 import { IsCookies } from "../../outils/IsCookie";
 
 function ModifyConfirmationModal(propos){
+  
   const isOpen = propos.isOpen;
   const onClose = propos.onClose;
   const contact = propos.contact;
 
+
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      fullname: contact?.fullname || "",
-      email: contact?.email || "",
-      sms: contact?.sms || "",
-      whatsapp: contact?.whatsapp || "",
+      fullname: contact?.fullname,
+      email: contact?.email,
+      sms: contact?.sms,
+      whatsapp: contact?.whatsapp,
     },
   });
 
+  const initialFormData = {
+    fullname: contact?.fullname,
+    email: contact?.email,
+    whatsapp: contact?.whatsapp,
+    sms: contact?.sms,
+    hiddenField: contact?.id, // Champ invisible
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+  
   const saveContact = async (data) => {
     document.querySelector('.FormEditeContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = true);
     return await axios.put(ApiUrl + 'contact/update/' + contact.id, data, { headers: { Authorization: `token ${IsCookies()}` } });
   }
-
   const { mutate: contactUpdate } = useMutation({
     mutationFn: data => saveContact(data),
     onSuccess: success => {
       toast.success(success.data.message);
+      console.log(success.data)
       onClose();
       const TrLigne = document.getElementById('ligne-' + contact.id);
+      const allCol = TrLigne.querySelectorAll('td');
+      const {fullname, email, whatsapp, sms} = success.data.data;
+      allCol[0].textContent = fullname;
+      allCol[1].textContent = email;
+      allCol[2].textContent = whatsapp;
+      allCol[2].textContent = sms;
+      setFormData({fullname, email, whatsapp, sms})
       TrLigne.classList.toggle('updated');
       setTimeout(() => TrLigne.classList.toggle('updated'), 3000);
     },
@@ -42,16 +61,20 @@ function ModifyConfirmationModal(propos){
   
   const onSubmit = data => contactUpdate(data);
   
-  const initialFormData = {
-    fullname: contact.fullname,
-    email: contact.email,
-    whatsapp: contact.whatsapp,
-    sms: contact.sms,
-    hiddenField: contact.id, // Champ invisible
-  };
-  const [formData, setFormData] = useState(initialFormData);
+  // const initialFormData = {
+  //   fullname: contact?.fullname,
+  //   email: contact?.email,
+  //   whatsapp: contact?.whatsapp,
+  //   sms: contact?.sms,
+  //   hiddenField: contact?.id, // Champ invisible
+  // };
+
+  // const [formData, setFormData] = useState(initialFormData);
+  
+
   const handleChange = event => {
     const { name, value } = event.target;
+    console.log(formData)
     setFormData({ ...formData, [name]: value });
   };
 

@@ -23,7 +23,13 @@ export function SendMessageByEmail(data, closed){
             })
         })
         .catch(error => console.log(error))
-    } 
+    }else if(canal === 'whatsapp'){
+        alert('whatsapp');
+    }else if(canal === 'sms'){
+        alert('sms');
+    }else{
+        alert('aucn');
+    }
 }
 
 
