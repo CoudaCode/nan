@@ -23,7 +23,7 @@ function Broadcast() {
       navigate('/connexion');
     }
   }, []);
-  
+
   const [selectedContact, setSelectedContact] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [contactToModify, setContactToModify] = useState(null);
@@ -49,7 +49,7 @@ function Broadcast() {
     })
   }, []);
 
-  const [ pagesNumber, setPagesNumber ] = useState(0);
+  const [pagesNumber, setPagesNumber] = useState(0);
   const GroupePerPage = 9;
   const pagesVisited = pagesNumber * GroupePerPage;
   const displayGroupe = AllGroupe.slice(pagesVisited, pagesVisited + GroupePerPage).map( item => {
@@ -87,7 +87,9 @@ function Broadcast() {
   })
 
   const pageCount = Math.ceil(AllGroupe.length / GroupePerPage);
-  const changePage = ({selected})=>{ setPagesNumber(selected); }
+  const changePage = ({ selected }) => {
+    setPagesNumber(selected);
+  };
 
   const handleDelete = contactId => {
     const contact = AllGroupe.find(c => c.id === contactId);
@@ -116,11 +118,11 @@ function Broadcast() {
   };
 
   const handleSaveContact = () => {
-    setIsOpenAddForm(true)
+    setIsOpenAddForm(true);
   };
 
   const handleCloseContact = () => {
-    setIsOpenAddForm(false)
+    setIsOpenAddForm(false);
   };
 
   const handleLogout = () => {
@@ -172,7 +174,8 @@ function Broadcast() {
                   id="btn"
                   className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none  focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 data-modal-toggle=authentication-modal"
                   type="button"
-                  onClick={() => handleSaveContact(true)}>
+                  onClick={() => handleSaveContact(true)}
+                >
                   <FaPlus style={{ margin: "8px " }} />
                   Créer Liste de Difusion
                 </button>
@@ -205,27 +208,26 @@ function Broadcast() {
                         </th>
                       </tr>
                     </thead>
-                    
+
                     <tbody className="divide-y divide-gray-200">
-                      { displayGroupe }
+                      {displayGroupe}
                     </tbody>
                   </table>
-                  
                 </div>
                 <div className="rounded-b-lg w-full border-t border-gray-200 px-3 py-2">
                   <ol className="flex justify-center gap-1 text-xs font-medium">
                     <ReactPaginate
-                      previousLabel={'Précedent'}
-                      nextLabel={'Suivant'}
+                      previousLabel={"Précedent"}
+                      nextLabel={"Suivant"}
                       pageCount={pageCount}
                       onPageChange={changePage}
-                      containerClassName={'paginationBttns'}
-                      previousLinkClassName={'previousBttn'}
+                      containerClassName={"paginationBttns"}
+                      previousLinkClassName={"previousBttn"}
                       nextLinkClassName={"nextBttn"}
                       disabledClassName={"paginationDisabled"}
                       activeClassName={"paginationActive"}
                     />
-                  </ol> 
+                  </ol>
                 </div>
               </div>
             </div>
@@ -237,7 +239,7 @@ function Broadcast() {
         onClose={handleCloseContact}
         isFormModalOpen={isFormModalOpen}
         contact={openAddForm}
-        statusForm = {handleSaveContact}
+        statusForm={handleSaveContact}
       />
 
       <DeleteConfirmationModal
