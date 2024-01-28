@@ -74,7 +74,6 @@ function WorkSpace() {
   //   setIsSidebarOpen(!isSidebarOpen);
   // };
 
-
   const [isCreatePopupOpen, setIsCreatePopupOpen] = useState(false);
 
   const toggleCreatePopup = () => {
@@ -114,7 +113,9 @@ function WorkSpace() {
         </div>
         <div className="container">
           <p className="text-center font-extrabold mt-4">
-            <button onClick={toggleCreatePopup} className="inline-block rounded bg-indigo-600 hover:bg-indigo-900 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+            <button
+              onClick={toggleCreatePopup}
+              className="inline-block rounded bg-indigo-600 hover:bg-indigo-900 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
               Planifier un diffusion
             </button>
           </p>
