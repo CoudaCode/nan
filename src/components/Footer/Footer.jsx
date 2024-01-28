@@ -1,12 +1,12 @@
-import imgLogo from "./../../assets/images/log.png";
+/*import imgLogo from "./../../assets/images/log.png";*/
 import {
   FaCheck,
-  FaFacebook,
-  FaLinkedinIn,
-  FaTelegram,
-  FaTiktok,
-  FaWhatsapp,
-  FaYoutube,
+  /*FaFacebook,*/
+  /*FaLinkedinIn,*/
+  /*FaTelegram,*/
+  /*FaTiktok,*/
+  /*FaWhatsapp,*/
+  /*FaYoutube,*/
 } from "react-icons/fa";
 import "./Footer.css";
 

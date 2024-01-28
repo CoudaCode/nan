@@ -1,13 +1,12 @@
 
 import { useEffect, useState } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { Link } from 'react-router-dom';
 import InformationPerso from './InformationPerso';
 import InformationEntreprise from './InformationEntreprise';
 import InformationMessagerie from './InformationMessagerie';
 import InformationSecurite from './Securite';
 import axios from 'axios';
-import { IsCookies } from '../../outils/IsCookie';
+import {DeleteCookies, IsCookies } from '../../outils/IsCookie';
 import { ApiUrl } from '../../outils/URL';
 
 export default function Profil() {
@@ -22,6 +21,7 @@ export default function Profil() {
     const [isEditeOpenMessage, setEditeOpenMessage] = useState(false);
     const [IsMyEntreprise, SetMyEntreprise] = useState({});
     const [IsMyInformations, SetMyInformations] = useState({});
+    const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
 
     useEffect(()=>{
         axios.get(`${ApiUrl}user/getById`, {headers: {Authorization: `token ${IsCookies()}`}})
@@ -156,6 +156,13 @@ export default function Profil() {
         setEditeOpenEntreprise(false);
     };
 
+
+    const handleLogout = () => {
+        DeleteCookies();
+        setConfirmationModalOpen(false);
+        setTimeout(() => window.location.reload(), 1500);
+      };
+
     
 
 
@@ -163,160 +170,31 @@ export default function Profil() {
         <>
             <Sidebar/>
             <div className="main p-4 flex-1 flex flex-col overflow-y-auto iwanttoscrolling" id="main">
-                <div className="overflow-y-none p-4  bg-[#1E2029]">
-                    <Link to={'/message'}><span>Profile  </span></Link>
+                <div className="flex justify-between items-center overflow-y-none p-2 bg-[#1E2029]">
+                    <div className="flex items-center"> Profile </div>
+                    <div>
+                        <button onClick={() => setConfirmationModalOpen(true)} className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700">Déconnexion</button>
+                    </div>
+                    {isConfirmationModalOpen && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center">
+                            <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
+
+                            <div className="rounded-lg bg-purple-900 p-8 shadow-2xl z-10 w-[40rem]">
+                                <p className="text-xl text-center text-color-purple font-semibold mb-4">Êtes-vous sûr de vouloir vous déconnecter ?</p>
+                                <div className="flex justify-end">
+                                <button onClick={() => setConfirmationModalOpen(false)} className="mr-4 bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-700" > Annuler </button>
+                                <button onClick={handleLogout} className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"> Oui, déconnectez-moi. </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 p-3 overflow-Y-auto">
-                    <div className="scaffold-layout__sidebar" tabIndex="-1">
-                        <div className="sticky top-0 md:sticky md:top-16">
-                            <div className="p-3 overflow-hidden">
-                            <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
-                                <div
-                                    style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }}
-                                    id="ember24"
-                                    className="bg-cover bg-center h-69"
-                                >
-                                    <div className="flex items-center justify-center relative">
-                                            <div className="profile-rail-card__member-bg-image relative">
-                                                <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
-                                                    <div className="ivm-image-view-model items-center">
-                                                        <div className="ivm-view-attr__img-wrapper flex justify-center">
-                                                            <img
-                                                                src="https://media.licdn.com/dms/image/D4E35AQGKzd6QV8tQNA/profile-framedphoto-shrink_100_100/0/1691755098172?e=1704844800&amp;v=beta&amp;t=VjTdINtZ6MFZJ7ct-gzh14KHeHfcyhjqwJLt_ZytdXo"
-                                                                alt="Victor Brito"
-                                                                className="w-99 h-99 rounded-full"
-                                                                loading="lazy"
-                                                                width="72"
-                                                                height="72"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div className="link-without-hover-visited">
-                                            <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
-                                                <span aria-hidden="true">
-                                                    <span dir="ltr"className='text-white'>{IsMyInformations?.fullname}</span>
-                                                </span>
-                                            </p>
-                                        </div>
-
-                                        <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
-                                            <span aria-hidden="true" className='text-center'>{IsMyInformations?.email}</span>
-                                        </p>
-                                        
-                                        {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
-                                        {isAccordionOpenPersonnelInfo && (
-                                            <div className="link-without-hover-visited m-3">
-                                                <div className="link-without-hover-visited">
-                                                    <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
-                                                        <span aria-hidden="true">
-                                                            <span dir="ltr"className='text-white'>{IsMyInformations?.telephone}</span>
-                                                        </span>
-                                                    </p>
-                                                </div>
-
-                                                <div className="link-without-hover-visited">
-                                                    <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
-                                                        <span aria-hidden="true">
-                                                            <span dir="ltr"className='text-white'>{IsMyInformations?.nationalite}</span>
-                                                        </span>
-                                                    </p>
-                                                </div>
-
-                                                <button onClick={toggleEditePersonnelInfo} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
-                                                    <i className="bx bxs-edit m-1"></i>
-                                                    <span aria-hidden="true">Modifier</span>
-                                                </button>
-                                            </div>
-                                        )}
-
-                                        {/* Bouton pour basculer l'état de l'accordéon */}
-                                        <button
-                                            onClick={toggleAccordionPersonnelInfo}
-                                            className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px] mt-2"
-                                            aria-label="Suivre"
-                                            aria-live="polite"
-                                            type="button"
-                                        >
-                                        <i className="bx bxs-show m-1"></i>
-                                        <span aria-hidden="true">Voir Plus</span>
-                                    </button>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="scaffold-layout__sidebar" tabIndex="-1">
-                        <div className="sticky top-0 md:sticky md:top-16">
-                            <div className="p-3 overflow-hidden">
-                            <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
-                                <div
-                                    style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }}
-                                    id="ember24"
-                                    className="bg-cover bg-center h-69"
-                                >
-                                    <div className="flex items-center justify-center relative">
-                                        <div className="profile-rail-card__member-bg-image relative">
-                                            <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
-                                                <div className="ivm-image-view-model items-center">
-                                                    <div className="ivm-view-attr__img-wrapper font-bold text-white flex justify-center">
-                                                        SECURITE
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                        <div className="link-without-hover-visited">
-                                            <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
-                                                <span aria-hidden="true">
-                                                    <span dir="ltr"className='text-white'>E-mail</span>
-                                                </span>
-                                            </p>
-                                        </div>
-
-                                        {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
-                                        {isAccordionOpenSecurity && (
-                                            <div className="link-without-hover-visited m-3">
-                                                <div className="link-without-hover-visited">
-                                                    <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
-                                                        <span aria-hidden="true">
-                                                            <span dir="ltr"className='text-white'>Mot de passe</span>
-                                                        </span>
-                                                    </p>
-                                                </div>
-
-                                                <button onClick={toggleEditeSecurity} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
-                                                    <i className="bx bxs-edit m-1"></i>
-                                                    <span aria-hidden="true">Modifier</span>
-                                                </button>
-                                            </div>
-                                        )}
-
-                                        {/* Bouton pour basculer l'état de l'accordéon */}
-                                        <button
-                                            onClick={toggleAccordionSecurity}
-                                            className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px] mt-2"
-                                            aria-label="Suivre"
-                                            aria-live="polite"
-                                            type="button"
-                                        >
-                                        <i className="bx bxs-show m-1"></i>
-                                        <span aria-hidden="true">Voir Plus</span>
-                                    </button>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="scaffold-layout__sidebar" tabIndex="-1">
-                        <div className="sticky top-0 md:sticky md:top-16">
-                            <div className="p-3 overflow-hidden">
+                
+                
+                    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 p-3 overflow-Y-auto">
+                        <div className="scaffold-layout__sidebar" tabIndex="-1">
+                            <div className="sticky top-0 md:sticky md:top-16">
+                                <div className="p-3 overflow-hidden">
                                 <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
                                     <div
                                         style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }}
@@ -324,76 +202,43 @@ export default function Profil() {
                                         className="bg-cover bg-center h-69"
                                     >
                                         <div className="flex items-center justify-center relative">
-                                            <div className="profile-rail-card__member-bg-image relative">
-                                                <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
-                                                    <div className="ivm-image-view-model items-center">
-                                                        <div className="ivm-view-attr__img-wrapper flex justify-center">
-                                                            <div className="ivm-view-attr__img-wrapper font-bold text-white flex justify-center"> ENTREPRISE </div>
+                                                <div className="profile-rail-card__member-bg-image relative">
+                                                    <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
+                                                        <div className="ivm-image-view-model items-center">
+                                                            <div className="ivm-view-attr__img-wrapper flex justify-center">
+                                                                <img
+                                                                    src="https://media.licdn.com/dms/image/D4E35AQGKzd6QV8tQNA/profile-framedphoto-shrink_100_100/0/1691755098172?e=1704844800&amp;v=beta&amp;t=VjTdINtZ6MFZJ7ct-gzh14KHeHfcyhjqwJLt_ZytdXo"
+                                                                    alt="Victor Brito"
+                                                                    className="w-99 h-99 rounded-full"
+                                                                    loading="lazy"
+                                                                    width="72"
+                                                                    height="72"
+                                                                />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </a>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
 
                                             <div className="link-without-hover-visited">
-                                                <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
                                                     <span aria-hidden="true">
-                                                        <span dir="ltr"className='text-white'>{IsMyEntreprise?.raisonSociale}</span>
+                                                        <span dir="ltr"className='text-white'>{IsMyInformations?.fullname}</span>
                                                     </span>
                                                 </p>
                                             </div>
 
-                                            <div className="link-without-hover-visited">
-                                                <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
-                                                    <span aria-hidden="true">
-                                                        <span dir="ltr"className='text-white'>{IsMyEntreprise?.domaineDActivite}</span>
-                                                    </span>
-                                                </p>
-                                            </div>
-
-                                            <div className="link-without-hover-visited">
-                                                <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
-                                                    <span aria-hidden="true">
-                                                        <span dir="ltr"className='text-white'>{IsMyEntreprise?.adresse}</span>
-                                                    </span>
-                                                </p>
-                                            </div>
+                                            <p className="profile-rail-card__description text-11 text-black--light font-normal mt-1 flex justify-center p-2">
+                                                <span aria-hidden="true" className='text-center'>{IsMyInformations?.email}</span>
+                                            </p>
                                             
-
                                             {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
-                                            {isAccordionOpenEntreprise && (
+                                            {isAccordionOpenPersonnelInfo && (
                                                 <div className="link-without-hover-visited m-3">
                                                     <div className="link-without-hover-visited">
-                                                        <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
-                                                            <span aria-hidden="true">
-                                                                <span dir="ltr"className='text-white'>Adresse Méssagerie via E-mail</span>
-                                                            </span>
-                                                        </p>
-                                                        <div className="flex justify-center text-white">{IsMyEntreprise?.email}</div>
-                                                    </div>
-
-                                                    <div className="link-without-hover-visited">
-                                                        <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
-                                                            <span aria-hidden="true">
-                                                                <span dir="ltr"className='text-white'>Adresse Méssagerie via SMS</span>
-                                                            </span>
-                                                        </p>
-                                                        <div className="flex justify-center text-white">{IsMyEntreprise?.smsAdresse}</div>
-                                                    </div>
-
-                                                    <div className="link-without-hover-visited">
-                                                        <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
-                                                            <span aria-hidden="true">
-                                                                <span dir="ltr"className='text-white'>Adresse Méssagerie via WhatsApp</span>
-                                                            </span>
-                                                        </p>
-                                                        <div className="flex justify-center text-white">{IsMyEntreprise?.whatsappAdresse}</div>
-                                                    </div>
-
-                                                    <div className="link-without-hover-visited">
                                                         <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
                                                             <span aria-hidden="true">
-                                                                <span dir="ltr"className='text-white'>{IsMyEntreprise?.pays}</span>
+                                                                <span dir="ltr"className='text-white'>{IsMyInformations?.telephone}</span>
                                                             </span>
                                                         </p>
                                                     </div>
@@ -401,12 +246,12 @@ export default function Profil() {
                                                     <div className="link-without-hover-visited">
                                                         <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
                                                             <span aria-hidden="true">
-                                                                <span dir="ltr"className='text-white'>{IsMyEntreprise?.type}</span>
+                                                                <span dir="ltr"className='text-white'>{IsMyInformations?.nationalite}</span>
                                                             </span>
                                                         </p>
                                                     </div>
 
-                                                    <button onClick={toggleEditeEntreprise} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
+                                                    <button onClick={toggleEditePersonnelInfo} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
                                                         <i className="bx bxs-edit m-1"></i>
                                                         <span aria-hidden="true">Modifier</span>
                                                     </button>
@@ -415,7 +260,7 @@ export default function Profil() {
 
                                             {/* Bouton pour basculer l'état de l'accordéon */}
                                             <button
-                                                onClick={toggleAccordionEntreprise}
+                                                onClick={toggleAccordionPersonnelInfo}
                                                 className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px] mt-2"
                                                 aria-label="Suivre"
                                                 aria-live="polite"
@@ -426,13 +271,13 @@ export default function Profil() {
                                         </button>
                                     </div>
                                 </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="scaffold-layout__sidebar" tabIndex="-1">
-                        <div className="sticky top-0 md:sticky md:top-16">
-                            <div className="p-3 overflow-hidden">
+                        <div className="scaffold-layout__sidebar" tabIndex="-1">
+                            <div className="sticky top-0 md:sticky md:top-16">
+                                <div className="p-3 overflow-hidden">
                                 <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
                                     <div
                                         style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }}
@@ -443,62 +288,43 @@ export default function Profil() {
                                             <div className="profile-rail-card__member-bg-image relative">
                                                 <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
                                                     <div className="ivm-image-view-model items-center">
-                                                        <div className="ivm-view-attr__img-wrapper flex justify-center">
-                                                            <div className="ivm-view-attr__img-wrapper font-bold text-white flex justify-center"> ADRESSES DE MESSAGERIE </div>
+                                                        <div className="ivm-view-attr__img-wrapper font-bold text-white flex justify-center">
+                                                            SECURITE
                                                         </div>
                                                     </div>
                                                 </a>
                                             </div>
                                         </div>
 
-                                        <div className="link-without-hover-visited mb-5">
-                                            <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
-                                                <span aria-hidden="true" className='text-center'>
-                                                    <span dir="ltr"className='text-white'>Adresse Méssagerie via SMS</span><br/>
-                                                    <span dir="ltr"className='text-gray-400'>{IsMyEntreprise.smsAdresse || 'Aucun'}</span>
-                                                </span>
-                                            </p>
-                                        </div>
+                                            <div className="link-without-hover-visited">
+                                                <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                    <span aria-hidden="true">
+                                                        <span dir="ltr"className='text-white'>E-mail</span>
+                                                    </span>
+                                                </p>
+                                            </div>
 
                                             {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
-                                        {isAccordionOpenMessage && (
-                                            <div className="link-without-hover-visited m-3">
-                                                
-                                                <div className="link-without-hover-visited mb-5">
-                                                    <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
-                                                        <span aria-hidden="true" className='text-center'>
-                                                            <span dir="ltr"className='text-white'>Adresse Méssagerie via E-mail</span><br/>
-                                                            <span dir="ltr"className='text-gray-400'>{IsMyEntreprise.email  || 'Aucun'}</span>
-                                                        </span>
-                                                    </p>
+                                            {isAccordionOpenSecurity && (
+                                                <div className="link-without-hover-visited m-3">
+                                                    <div className="link-without-hover-visited">
+                                                        <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                            <span aria-hidden="true">
+                                                                <span dir="ltr"className='text-white'>Mot de passe</span>
+                                                            </span>
+                                                        </p>
+                                                    </div>
 
-                                                    <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
-                                                        <span aria-hidden="true" className='text-center'>
-                                                            <span dir="ltr"className='text-white'>Mot de passe</span><br/>
-                                                            <span dir="ltr"className='text-gray-400'>{IsMyEntreprise.password || 'Aucun'}</span>
-                                                        </span>
-                                                    </p>
+                                                    <button onClick={toggleEditeSecurity} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
+                                                        <i className="bx bxs-edit m-1"></i>
+                                                        <span aria-hidden="true">Modifier</span>
+                                                    </button>
                                                 </div>
-
-                                                <div className="link-without-hover-visited">
-                                                    <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
-                                                        <span aria-hidden="true" className='text-center'>
-                                                            <span dir="ltr"className='text-white'>Adresse Méssagerie via WhatsApp</span><br/>
-                                                            <span dir="ltr"className='text-gray-400'>{IsMyEntreprise?.whatsappAdresse || 'Aucun'}</span>
-                                                        </span>
-                                                    </p>
-                                                </div>
-
-                                                <button onClick={toggleEditeMessagerie} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
-                                                    <i className="bx bxs-edit m-1"></i>
-                                                    <span aria-hidden="true">Modifier</span>
-                                                </button>
-                                            </div>
-                                        )}
+                                            )}
 
                                             {/* Bouton pour basculer l'état de l'accordéon */}
                                             <button
-                                                onClick={toggleAccordionMessage}
+                                                onClick={toggleAccordionSecurity}
                                                 className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px] mt-2"
                                                 aria-label="Suivre"
                                                 aria-live="polite"
@@ -509,10 +335,209 @@ export default function Profil() {
                                         </button>
                                     </div>
                                 </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="scaffold-layout__sidebar" tabIndex="-1">
+                            <div className="sticky top-0 md:sticky md:top-16">
+                                <div className="p-3 overflow-hidden">
+                                    <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
+                                        <div
+                                            style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }}
+                                            id="ember24"
+                                            className="bg-cover bg-center h-69"
+                                        >
+                                            <div className="flex items-center justify-center relative">
+                                                <div className="profile-rail-card__member-bg-image relative">
+                                                    <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
+                                                        <div className="ivm-image-view-model items-center">
+                                                            <div className="ivm-view-attr__img-wrapper flex justify-center">
+                                                                <div className="ivm-view-attr__img-wrapper font-bold text-white flex justify-center"> ENTREPRISE </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                                <div className="link-without-hover-visited">
+                                                    <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                        <span aria-hidden="true">
+                                                            <span dir="ltr"className='text-white'>{IsMyEntreprise?.raisonSociale}</span>
+                                                        </span>
+                                                    </p>
+                                                </div>
+
+                                                <div className="link-without-hover-visited">
+                                                    <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                        <span aria-hidden="true">
+                                                            <span dir="ltr"className='text-white'>{IsMyEntreprise?.domaineDActivite}</span>
+                                                        </span>
+                                                    </p>
+                                                </div>
+
+                                                <div className="link-without-hover-visited">
+                                                    <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                        <span aria-hidden="true">
+                                                            <span dir="ltr"className='text-white'>{IsMyEntreprise?.adresse}</span>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                
+
+                                                {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
+                                                {isAccordionOpenEntreprise && (
+                                                    <div className="link-without-hover-visited m-3">
+                                                        <div className="link-without-hover-visited">
+                                                            <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                                <span aria-hidden="true">
+                                                                    <span dir="ltr"className='text-white'>Adresse Méssagerie via E-mail</span>
+                                                                </span>
+                                                            </p>
+                                                            <div className="flex justify-center text-white">{IsMyEntreprise?.email}</div>
+                                                        </div>
+
+                                                        <div className="link-without-hover-visited">
+                                                            <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                                <span aria-hidden="true">
+                                                                    <span dir="ltr"className='text-white'>Adresse Méssagerie via SMS</span>
+                                                                </span>
+                                                            </p>
+                                                            <div className="flex justify-center text-white">{IsMyEntreprise?.smsAdresse}</div>
+                                                        </div>
+
+                                                        <div className="link-without-hover-visited">
+                                                            <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                                <span aria-hidden="true">
+                                                                    <span dir="ltr"className='text-white'>Adresse Méssagerie via WhatsApp</span>
+                                                                </span>
+                                                            </p>
+                                                            <div className="flex justify-center text-white">{IsMyEntreprise?.whatsappAdresse}</div>
+                                                        </div>
+
+                                                        <div className="link-without-hover-visited">
+                                                            <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                                <span aria-hidden="true">
+                                                                    <span dir="ltr"className='text-white'>{IsMyEntreprise?.pays}</span>
+                                                                </span>
+                                                            </p>
+                                                        </div>
+
+                                                        <div className="link-without-hover-visited">
+                                                            <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">
+                                                                <span aria-hidden="true">
+                                                                    <span dir="ltr"className='text-white'>{IsMyEntreprise?.type}</span>
+                                                                </span>
+                                                            </p>
+                                                        </div>
+
+                                                        <button onClick={toggleEditeEntreprise} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
+                                                            <i className="bx bxs-edit m-1"></i>
+                                                            <span aria-hidden="true">Modifier</span>
+                                                        </button>
+                                                    </div>
+                                                )}
+
+                                                {/* Bouton pour basculer l'état de l'accordéon */}
+                                                <button
+                                                    onClick={toggleAccordionEntreprise}
+                                                    className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px] mt-2"
+                                                    aria-label="Suivre"
+                                                    aria-live="polite"
+                                                    type="button"
+                                                >
+                                                <i className="bx bxs-show m-1"></i>
+                                                <span aria-hidden="true">Voir Plus</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="scaffold-layout__sidebar" tabIndex="-1">
+                            <div className="sticky top-0 md:sticky md:top-16">
+                                <div className="p-3 overflow-hidden">
+                                    <div className="bg-gradient-to-b from-gray-800 to-gray-900 py-4">
+                                        <div
+                                            style={{ backgroundImage: "url('https://media.licdn.com/dms/image/D4E16AQG0i3xIz5fUcw/profile-displaybackgroundimage-shrink_200_800/0/1693849508493?e=1709769600&amp;v=beta&amp;t=P6EA2gCLn-QlZ68RB-ZnesxIIE69rynkH-SQLXYTSWg&quot')" }}
+                                            id="ember24"
+                                            className="bg-cover bg-center h-69"
+                                        >
+                                            <div className="flex items-center justify-center relative">
+                                                <div className="profile-rail-card__member-bg-image relative">
+                                                    <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
+                                                        <div className="ivm-image-view-model items-center">
+                                                            <div className="ivm-view-attr__img-wrapper flex justify-center">
+                                                                <div className="ivm-view-attr__img-wrapper font-bold text-white flex justify-center"> ADRESSES DE MESSAGERIE </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div className="link-without-hover-visited mb-5">
+                                                <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                    <span aria-hidden="true" className='text-center'>
+                                                        <span dir="ltr"className='text-white'>Adresse Méssagerie via SMS</span><br/>
+                                                        <span dir="ltr"className='text-gray-400'>{IsMyEntreprise.smsAdresse || 'Aucun'}</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+
+                                                {/* Utilisez une condition pour afficher ou masquer le contenu en fonction de l'état de l'accordéon */}
+                                            {isAccordionOpenMessage && (
+                                                <div className="link-without-hover-visited m-3">
+                                                    
+                                                    <div className="link-without-hover-visited mb-5">
+                                                        <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                            <span aria-hidden="true" className='text-center'>
+                                                                <span dir="ltr"className='text-white'>Adresse Méssagerie via E-mail</span><br/>
+                                                                <span dir="ltr"className='text-gray-400'>{IsMyEntreprise.email  || 'Aucun'}</span>
+                                                            </span>
+                                                        </p>
+
+                                                        <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                            <span aria-hidden="true" className='text-center'>
+                                                                <span dir="ltr"className='text-white'>Mot de passe</span><br/>
+                                                                <span dir="ltr"className='text-gray-400'>{IsMyEntreprise.password || 'Aucun'}</span>
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    <div className="link-without-hover-visited">
+                                                        <p className="single-line-truncate text-16 text-black mt-2 flex justify-center profile-rail-card__name">
+                                                            <span aria-hidden="true" className='text-center'>
+                                                                <span dir="ltr"className='text-white'>Adresse Méssagerie via WhatsApp</span><br/>
+                                                                <span dir="ltr"className='text-gray-400'>{IsMyEntreprise?.whatsappAdresse || 'Aucun'}</span>
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    <button onClick={toggleEditeMessagerie} className="follow profile-rail-card__follow-button btn-secondary bg-green-900 text-white hover:text-white w-[130px] mt-2" aria-label="Modifier" aria-live="polite" type="button">
+                                                        <i className="bx bxs-edit m-1"></i>
+                                                        <span aria-hidden="true">Modifier</span>
+                                                    </button>
+                                                </div>
+                                            )}
+
+                                                {/* Bouton pour basculer l'état de l'accordéon */}
+                                                <button
+                                                    onClick={toggleAccordionMessage}
+                                                    className="follow profile-rail-card__follow-button btn-secondary bg-white text-black hover:text-white w-[130px] mt-2"
+                                                    aria-label="Suivre"
+                                                    aria-live="polite"
+                                                    type="button"
+                                                >
+                                                <i className="bx bxs-show m-1"></i>
+                                                <span aria-hidden="true">Voir Plus</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
                 {isEditeOpenPersonnelInfo && <InformationPerso IsMyInformations={IsMyInformations}/>}
 
