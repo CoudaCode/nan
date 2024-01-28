@@ -18,8 +18,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MessageDetail from "./pages/MessageDetail/MessageDetail";
 import Profil from "./pages/Profile/Profil";
-// import { useLocation } from "react-router-dom";
-  
+import "chart.js/auto";
+import NotFound from "./pages/NotFound/NotFound";
 
 
 function App() {
@@ -28,7 +28,18 @@ function App() {
   return (
     <>
       <QueryClientProvider client={client}>
-        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light"/>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <Routes>
           <Route path="/" element={<Acceuil />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -45,6 +56,7 @@ function App() {
           <Route path="/message/:id/:detail" element={<MessageDetail />} />
 
           <Route path="/profile" element={<Profil />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </QueryClientProvider>
     </>

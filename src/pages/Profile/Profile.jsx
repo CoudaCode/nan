@@ -1,10 +1,14 @@
 
 import Sidebar from "../../components/Sidebar/Sidebar";
+// import Topbar from "../../components/Topbar/Topbar";
+import "./Profile.css";
+
+import img from "../../assets/images/img-profile.jpg";
+
 import "./Profile.css";
 import { CgProfile } from "react-icons/cg";
 
 
-import img from "../../assets/images/img-profile.jpg";
 import { DeleteCookies } from "../../outils/IsCookie";
 import {  useState } from "react";
 function Profile() {

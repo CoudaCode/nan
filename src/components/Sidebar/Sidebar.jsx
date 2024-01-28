@@ -7,8 +7,9 @@ function Sidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
   const toggleSidebar = () => {
+    const main = document.getElementById("main");
     setIsSidebarOpen(!isSidebarOpen);
-    document.getElementById('main').classList.toggle('open');
+    main.classList.toggle("open");
   };
 
 
@@ -32,11 +33,6 @@ function Sidebar() {
       iconClass: "bx bx-broadcast",
       text: "Broadcast",
       to: "/broadcast",
-    },
-    {
-      iconClass: "bx bx-space-bar",
-      text: "Workspace",
-      to: "/workspace",
     },
     {
       iconClass: "bx bxs-report",
