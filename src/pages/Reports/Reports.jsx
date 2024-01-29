@@ -1,13 +1,18 @@
 import "./Reports.css";
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import Deconnexion from "../Deconnexion/Deconnexion";
+
 const PopupExample = ({ isOpen, selectedItem, onClose }) => {
+  
   const [showPopup, setShowPopup] = useState(isOpen);
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
     onClose(); // Appeler la fonction onClose pour réinitialiser l'état dans le composant parent
   };
+
+  
 
   return (
     <div
@@ -91,6 +96,7 @@ function Reports() {
       Chanels: "john@example.com",
     },
   ];
+  
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -103,15 +109,16 @@ function Reports() {
     setSelectedItem(null);
     setIsOpen(false);
   };
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  
+  
   return (
     <>
       <Sidebar />
       <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
-          <div className=" overflow-y-none p-4 bg-[#1E2029]">Rapports</div>
+          <div className="flex justify-between items-center overflow-y-none p-2 bg-[#1E2029]">
+            <div className="flex items-center"> Rapports </div>
+            <Deconnexion />
+          </div>
           <div className="container mb-9">
             <h2 className="text-center text-white mb-5 text-2xl font-extrabold">
               Contact Supprimés

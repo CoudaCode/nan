@@ -6,8 +6,10 @@ import InformationEntreprise from './InformationEntreprise';
 import InformationMessagerie from './InformationMessagerie';
 import InformationSecurite from './Securite';
 import axios from 'axios';
-import {DeleteCookies, IsCookies } from '../../outils/IsCookie';
+import { IsCookies } from '../../outils/IsCookie';
 import { ApiUrl } from '../../outils/URL';
+import Deconnexion from '../Deconnexion/Deconnexion';
+
 
 export default function Profil() {
     const [isAccordionOpenPersonnelInfo, setAccordionOpenPersonnelInfo] = useState(false);
@@ -21,7 +23,6 @@ export default function Profil() {
     const [isEditeOpenMessage, setEditeOpenMessage] = useState(false);
     const [IsMyEntreprise, SetMyEntreprise] = useState({});
     const [IsMyInformations, SetMyInformations] = useState({});
-    const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
 
     useEffect(()=>{
         axios.get(`${ApiUrl}user/getById`, {headers: {Authorization: `token ${IsCookies()}`}})
@@ -97,14 +98,11 @@ export default function Profil() {
     }
 
     const toggleAccordionPersonnelInfo = event => {
-
         changeContentOrClass(event.target.closest('button'), isAccordionOpenPersonnelInfo);
-        
         setAccordionOpenPersonnelInfo(!isAccordionOpenPersonnelInfo);
         setAccordionOpenSecurity(false);
         setAccordionOpenEntreprise(false);
         setAccordionOpenMessage(false);
-
         setEditeOpenPersonnelInfo(false);
         setEditeOpenSecurity(false);
         setEditeOpenMessage(false);
@@ -112,14 +110,11 @@ export default function Profil() {
     };
 
     const toggleAccordionSecurity = event => {
-
         changeContentOrClass(event.target.closest('button'), isAccordionOpenSecurity);
-
         setAccordionOpenSecurity(!isAccordionOpenSecurity);
         setAccordionOpenPersonnelInfo(false);
         setAccordionOpenEntreprise(false);
         setAccordionOpenMessage(false);
-
         setEditeOpenPersonnelInfo(false);
         setEditeOpenSecurity(false);
         setEditeOpenMessage(false);
@@ -127,14 +122,11 @@ export default function Profil() {
     };
 
     const toggleAccordionEntreprise = event => {
-
         changeContentOrClass(event.target.closest('button'), isAccordionOpenEntreprise);
-        
         setAccordionOpenEntreprise(!isAccordionOpenEntreprise);
         setAccordionOpenSecurity(false);
         setAccordionOpenPersonnelInfo(false);
         setAccordionOpenMessage(false);
-
         setEditeOpenPersonnelInfo(false);
         setEditeOpenSecurity(false);
         setEditeOpenMessage(false);
@@ -142,29 +134,16 @@ export default function Profil() {
     };
 
     const toggleAccordionMessage = event => {
-
         changeContentOrClass(event.target.closest('button'), isAccordionOpenMessage);
-
         setAccordionOpenMessage(!isAccordionOpenMessage);
         setAccordionOpenEntreprise(false);
         setAccordionOpenSecurity(false);
         setAccordionOpenPersonnelInfo(false);
-
         setEditeOpenPersonnelInfo(false);
         setEditeOpenSecurity(false);
         setEditeOpenMessage(false);
         setEditeOpenEntreprise(false);
     };
-
-
-    const handleLogout = () => {
-        DeleteCookies();
-        setConfirmationModalOpen(false);
-        setTimeout(() => window.location.reload(), 1500);
-      };
-
-    
-
 
     return (
         <>
@@ -172,22 +151,7 @@ export default function Profil() {
             <div className="main p-4 flex-1 flex flex-col overflow-y-auto iwanttoscrolling" id="main">
                 <div className="flex justify-between items-center overflow-y-none p-2 bg-[#1E2029]">
                     <div className="flex items-center"> Profile </div>
-                    <div>
-                        <button onClick={() => setConfirmationModalOpen(true)} className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700">Déconnexion</button>
-                    </div>
-                    {isConfirmationModalOpen && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center">
-                            <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
-
-                            <div className="rounded-lg bg-purple-900 p-8 shadow-2xl z-10 w-[40rem]">
-                                <p className="text-xl text-center text-color-purple font-semibold mb-4">Êtes-vous sûr de vouloir vous déconnecter ?</p>
-                                <div className="flex justify-end">
-                                <button onClick={() => setConfirmationModalOpen(false)} className="mr-4 bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-700" > Annuler </button>
-                                <button onClick={handleLogout} className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"> Oui, déconnectez-moi. </button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                    <Deconnexion />
                 </div>
                 
                 
