@@ -1,4 +1,4 @@
-import React from "react";
+
 import img1 from "./../../assets/images/Message.png";
 import img2 from "./../../assets/images/callCenter.jpeg";
 import imgauto from "../../assets/images/imag_automa.png";
@@ -26,7 +26,7 @@ function Automatisation() {
             <div className="par">
               <p>
                 Un tableau de bord quotidien permettant aux managers de détecter
-                en un coup d'œil les anomalies des conversations ou des agents.
+                en un coup d&apos;œil les anomalies des conversations ou des agents.
                 Identifiez les conversations en attente ou non résolues depuis
                 trop longtemps et surveillez les performances et la charge de
                 travail des agents en temps réel.

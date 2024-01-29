@@ -1,15 +1,16 @@
 import { useState } from "react";
+
 import Sidebar from "../../components/Sidebar/Sidebar";
 // import Topbar from "../../components/Topbar/Topbar";
 import "./WorkSpace.css";
 import PropTypes from 'prop-types';
+import { DeleteCookies } from "../../outils/IsCookie";
 
-const CreateContactModal = ({ isOpen, onClose }) => {
-  if (!isOpen) {
-    return null;
-  }
+const CreateContactModal = (propos) => {
+  const isOpen = propos.isOpen;
+  const onClose = propos.onClose
 
-  const [contactData, setContactData] = useState({
+  const [, setContactData] = useState({
     nom: "",
     prenom: "",
     email: "",
@@ -18,10 +19,6 @@ const CreateContactModal = ({ isOpen, onClose }) => {
   });
 
   const handleCreateContact = () => {
-    // Handle the create contact logic here
-    // Use the 'contactData' state for the contact details
-    // ...
-
     // Clear the form and close the modal
     setContactData({
       nom: "",
@@ -33,7 +30,7 @@ const CreateContactModal = ({ isOpen, onClose }) => {
 
     onClose();
   };
-
+  if(!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Overlay */}
@@ -71,10 +68,11 @@ const CreateContactModal = ({ isOpen, onClose }) => {
   );
 };
 function WorkSpace() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen);
+  // };
 
   const [isCreatePopupOpen, setIsCreatePopupOpen] = useState(false);
 
@@ -82,11 +80,37 @@ function WorkSpace() {
     setIsCreatePopupOpen(!isCreatePopupOpen);
   };
 
+  
+
+ 
+  const handleLogout = () => {
+    DeleteCookies();
+    setConfirmationModalOpen(false);
+    setTimeout(() => window.location.reload(), 1500);
+  };
+
   return (
     <>
       <Sidebar />
       <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
-        <div className=" overflow-y-none p-4  bg-[#1E2029]">Workspace</div>
+        <div className="flex justify-between items-center overflow-y-none p-2 bg-[#1E2029]">
+            <div className="flex items-center"> Workspace </div>
+            <div>
+                <button onClick={() => setConfirmationModalOpen(true)} className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700">Déconnexion</button>
+            </div>
+            {isConfirmationModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center">
+                    <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
+                    <div className="rounded-lg bg-purple-900 p-8 shadow-2xl z-10 w-[40rem]">
+                        <p className="text-xl text-center text-color-purple font-semibold mb-4">Êtes-vous sûr de vouloir vous déconnecter ?</p>
+                        <div className="flex justify-end">
+                        <button onClick={() => setConfirmationModalOpen(false)} className="mr-4 bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-700" > Annuler </button>
+                        <button onClick={handleLogout} className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"> Oui, déconnectez-moi. </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
         <div className="container">
           <p className="text-center font-extrabold mt-4">
             <button
@@ -99,7 +123,7 @@ function WorkSpace() {
           <div className="bg-white m-4 rounded text-center justify-center items-center">
             <span className="text-center text-black">Aucune diffusion</span>
           </div>
-        
+  
           <CreateContactModal
             isOpen={isCreatePopupOpen}
             onClose={toggleCreatePopup}

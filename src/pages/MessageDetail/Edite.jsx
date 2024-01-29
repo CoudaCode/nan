@@ -1,15 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
 import { ApiUrl } from "../../outils/URL";
 import { IsCookies } from "../../outils/IsCookie";
-import { toast } from "react-toastify";
 import ContentMessage from '../Message/Content';
 
 export default function Edite(){
   const [message, SetMessage] = useState({});
-    const [ContactsOrGroupes, SetContactsOrGroupes] = useState([]);
-    const navigate = useNavigate();
+    const [, SetContactsOrGroupes] = useState([]);
     const pathname = window.location.pathname;
     const detailPathname = pathname.split('/');
     useEffect(()=>{
@@ -44,9 +41,12 @@ export default function Edite(){
     }, [])
 
     return(
-      <ContentMessage
-        message={message}
-      />
+        <>
+            {
+                message ? <ContentMessage message={message} /> : ''
+            }
+        </>
+      
     )
 
 }
