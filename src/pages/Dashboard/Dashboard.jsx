@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Topbar from "../../components/Topbar/Topbar";
-import { VerifyCookies } from "../Actions/VerifyCookies";
-import Cards from "./Cards";
-import Resumes from "./Resumes";
-
-
-function Dashboard() {
-  VerifyCookies();
-=======
 
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { Link } from "react-router-dom";
@@ -16,7 +5,6 @@ import "./dashboard.css";
 function Dashboard() {
 
 
->>>>>>> f6c35846d6759913737f734c8f0e9d35f8747963
   return (
     <>
       <Sidebar />

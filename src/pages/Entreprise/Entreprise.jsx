@@ -15,11 +15,6 @@ function Entreprise() {
   const code = window.location.href.split('?')[1].split('#')[0];
   const mail = window.location.href.split('?')[1].split('#')[1];
   let count = true;
-<<<<<<< HEAD
-  
-  const { register, handleSubmit } = useForm({ raisonSociale: "", domaineDActivite: "", adresse: "", type: "", nationalite: "", password: ""});
-=======
->>>>>>> f6c35846d6759913737f734c8f0e9d35f8747963
   useEffect(()=>{
     if(count){
       count = false;

@@ -2,77 +2,6 @@ import { useState } from "react";
 import "./Sidebar.css";
 import { useLocation, Link } from "react-router-dom";
 function Sidebar() {
-<<<<<<< HEAD
-  const path = useLocation().pathname;
-  return (
-        <div className="container">
-            <div className="navigation">
-                <ul className="ul">
-                    <li>
-                        <a href="#">
-                            <span className="icon">
-                                <ion-icon name="logo-apple"></ion-icon>
-                            </span>
-                            <span className="title">LOGO</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/dashboard") ? "hovered" : ""}`}>
-                        <a href="/dashboard">
-                            <span className="icon">
-                                <ion-icon name="home-outline"></ion-icon>
-                            </span>
-                            <span className="title">Tableau de Bord</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/broadcast") ? "hovered" : ""}`}>
-                        <a href="/broadcast">
-                            <span className="icon">
-                                <ion-icon name="send-outline"></ion-icon>
-                            </span>
-                            <span className="title">Broadcast</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/message") && !path.includes("/parametres/message") ? "hovered" : ""}`}>
-                        <a href="/message">
-                            <span className="icon">
-                                <ion-icon name="chatbubbles-outline"></ion-icon>
-                            </span>
-                            <span className="title">Messages</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/contact") && !path.includes("/parametres/contact") ? "hovered" : ""}`}>
-                        <a href="/contact">
-                            <span className="icon">
-                                <ion-icon name="person-add-outline"></ion-icon>
-                            </span>
-                            <span className="title">Contacts</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/canal") ? "hovered" : ""}`}>
-                        <a href="/canal">
-                            <span className="icon">
-                                <ion-icon name="git-branch-outline"></ion-icon>
-                            </span>
-                            <span className="title">Canaux de difusions</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/historiques") ? "hovered" : ""}`}>
-                        <a href="/historiques">
-                            <span className="icon">
-                                <ion-icon name="logo-buffer"></ion-icon>
-                            </span>
-                            <span className="title">Historique de difusions</span>
-                        </a>
-                    </li>
-                    <li className={`${path.includes("/groupe") && !path.includes("/parametres/groupe") ? "hovered" : ""}`}>
-                        <a href="/groupe">
-                            <span className="icon">
-                                <ion-icon name="people-outline"></ion-icon>
-                            </span>
-                            <span className="title">Groupes de Difusions</span>
-                        </a>
-                    </li>
-=======
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
   const toggleSidebar = () => {
@@ -80,7 +9,6 @@ function Sidebar() {
     setIsSidebarOpen(!isSidebarOpen);
     main.classList.toggle('open');
   };
->>>>>>> f6c35846d6759913737f734c8f0e9d35f8747963
 
   const menuItems = [
     {
