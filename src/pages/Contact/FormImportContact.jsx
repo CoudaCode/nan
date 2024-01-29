@@ -1,21 +1,24 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { ApiUrl } from "../../outils/URL";
-import Cookie from "js-cookie";
 import { IsCookies } from "../../outils/IsCookie";
 
 
 
 
-function FormImportContact({ isOpen, onClose, onConfirm, contact }){
-    if (!isOpen || !contact) { return null }
-    const handleDelete = () => { onConfirm(); };
+function FormImportContact(propos){
+    const isOpen = propos.isOpen;
+    const onClose = propos.onClose;
+    const contact = propos.contact;
+    // const onConfirm = propos.onConfirm;
+    
+    // const handleDelete = () => { onConfirm(); };
 
-    const {fullname, email, sms, whatsapp, id} = contact;
+    // const {fullname, email, sms, whatsapp, id} = contact;
     const token = IsCookies();
     const saveContact = async (data) => {
         const formDatas = new FormData();
@@ -40,15 +43,15 @@ function FormImportContact({ isOpen, onClose, onConfirm, contact }){
 
 
 
-    const initialvalueInput = {excelOrCsv: ''};
-    const [valueInput, setvalueInput] = useState(initialvalueInput);
-    const handleChange = e => {
-        const { name, value } = e.target;
-        setvalueInput({ ...valueInput, [name]: value });
-    };
+    // const initialvalueInput = {excelOrCsv: ''};
+    // const [valueInput, setvalueInput] = useState(initialvalueInput);
+    // const handleChange = e => {
+    //     const { name, value } = e.target;
+    //     setvalueInput({ ...valueInput, [name]: value });
+    // };
 
     
-
+    if (!isOpen || !contact) { return null }
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
         <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>

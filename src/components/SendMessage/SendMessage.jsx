@@ -1,5 +1,5 @@
 import "./Sendmessage.css"
-import images from "../../assets/images/whatsapp1.png";
+// import images from "../../assets/images/whatsapp1.png";
 import imgs from "../../assets/images/msgGroupé1.jpg"
 function SendMessage() {
   return (

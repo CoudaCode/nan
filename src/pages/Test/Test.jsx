@@ -146,7 +146,7 @@ passwordConf.addEventListener('input', function() {
 });
 send.addEventListener('click', function(e) {
     e.preventDefault();
-    alert("Bravo!! Vous avez bien rempli la formulaire !");
+    // alert("Bravo!! Vous avez bien rempli la formulaire !");
 })
     }, 500);
     return(
