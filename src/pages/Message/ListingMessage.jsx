@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 import { ApiUrl } from "../../outils/URL";
 import { IsCookies } from "../../outils/IsCookie";
 import { useNavigate } from "react-router-dom";
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { SendMessageByEmail } from "../../outils/SendMessage";
 
 export default function ListingMessage() {
@@ -42,14 +42,53 @@ export default function ListingMessage() {
     setPagesNumber(selected);
   };
 
-  const deleteMessageDel = (event) => {
+  // const deleteMessageDel = (event) => {
+  //   const target = event.target;
+  //   const id = target.id.replace("confirm-delete", "");
+  //   axios.put(ApiUrl+'')
+    
+  //   const btnDelete = document.getElementById("closeModal-delete" + id);
+  //   target.disabled = true;
+  //   btnDelete.disabled = true;
+
+  //   const btnConfirm = document.getElementById('confirm-delete'+id);
+  //   btnConfirm.disabled = true;
+  //   btnDelete.disabled = true;
+  //   axios.delete(ApiUrl+`message/delete/${id}`, {headers: {Authorization: `token ${IsCookies()}`}})
+  //   .then(response => {
+  //       toast.success(response.data.message);
+  //       setTimeout(() => {
+  //           navigate('/message')
+  //       }, 3000);
+        
+  //   })
+  //   .catch(error => {
+  //       toast.error(error.resonse.data.message);
+  //       btnConfirm.disabled = false;
+  //       btnDelete.disabled = false;
+  //   })
+  // };
+
+  const deleteMessageDel = event => {
     const target = event.target;
     const id = target.id.replace("confirm-delete", "");
-    // const btnConfirm = document.getElementById('confirm-delete'+id);
-    const btnDelete = document.getElementById("closeModal-delete" + id);
-    target.disabled = true;
+    const btnConfirm = document.getElementById('confirm-delete'+id);
+    const btnDelete = document.getElementById('closeModal-delete'+id);
+    btnConfirm.disabled = true;
     btnDelete.disabled = true;
-  };
+    axios.delete(ApiUrl+`message/delete/${id}`, {headers: {Authorization: `token ${IsCookies()}`}})
+    .then(response => {
+      toast.success(response.data.message);
+      setTimeout(() => window.location.href = '/message' , 3050);
+    })
+    .catch(error => {
+        toast.error(error.resonse.data.message);
+        btnConfirm.disabled = false;
+        btnDelete.disabled = false;
+    })
+}
+
+
 
   const openModalDel = (event) => {
     const id = event.target.id.split("-")[1];
@@ -133,7 +172,7 @@ export default function ListingMessage() {
                   className={`inline-block rounded bg-${message.canal=='email' ? 'indigo': 'red'}-600 p-2 m-2 text-sm font-medium text-white ${message.canal=='email' ? 'transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500': 'red'}`}
                 >
                   {
-                    message.canal=='email'? (<>Transférer<i className="bx bxs-send m-1" id={"openModal-send" + message.id}></i></>) : 'Cannal non disponible'
+                    message.canal=='email'? (<>Transférer<i className="bx bxs-send m-1" id={"openModal-send" + message.id}></i></>) : 'Canal non disponible'
                   }
                   
                 </button>
@@ -203,13 +242,11 @@ export default function ListingMessage() {
               <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
               <div className="flex items-center justify-center min-h-screen">
                 <div className="relative bg-white w-[50%] flex flex-col justify-center items-center text-center p-6 rounded shadow-md">
-                  <h2 className="text-2xl text-black font-bold mb-4">
+                  <h2 className="text-black font-bold mb-4">
                     Voulez-vous vraiment supprimer ce message ?
                   </h2>
 
                   <div className="flex gap-4">
-                    {" "}
-                    {/* Ajout de la classe flex et gap-4 pour l'espacement entre les boutons */}
                     <button
                       className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
                       id={"confirm-delete" + message.id}

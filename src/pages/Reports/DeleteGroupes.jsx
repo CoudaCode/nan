@@ -9,7 +9,7 @@ export default function DeleteGroupes() {
     const [AllDelete, SetDelete] = useState([]);
     
     useEffect(() => {
-        axios.get(ApiUrl+'contact/getAllDelete', {headers: {Authorization: `token ${IsCookies()}`}})
+        axios.get(ApiUrl+'groupe/getAllDelete', {headers: {Authorization: `token ${IsCookies()}`}})
         .then(success => SetDelete(success.data.data))
     })
 
@@ -20,16 +20,16 @@ export default function DeleteGroupes() {
         return(
             <tr key={item.id}>
                 <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
-                    {item.fullname}
+                    {item.name}
                 </td>
                 <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                    {item.email}
+                    {item.description}
                 </td>
                 <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                    {item.sms}
+                    {item.contact.length}
                 </td>
                 <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                    {item.whatsapp}
+                    {item.canal}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-center text-gray-700">
                     <button id={'restore'+item.id} className="inline-block rounded bg-indigo-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
@@ -54,10 +54,10 @@ export default function DeleteGroupes() {
             <div className="flex justify-between">
                 <h2 className="p-2 rounded-md bg-white-800 text-white text-2xl mb-2 outline-none"> Groupes Supprimés </h2>
                 <p className="text-center font-extrabold m-2">
-                    <button className="inline-block rounded bg-indigo-600 p-2 m-1 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+                    <button className="inline-block rounded bg-indigo-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
                         Tout Restaurer
                     </button>
-                    <button className="inline-block rounded bg-red-500 p-2 m-1 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+                    <button className="inline-block rounded bg-red-500 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
                         Suppression Définitive
                     </button>
                 </p>
@@ -70,13 +70,13 @@ export default function DeleteGroupes() {
                         Nom ou Raison Sociale
                       </th>
                       <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
-                        Email
+                        Description
                       </th>
                       <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
-                        Téléphone
+                        Contact
                       </th>
                       <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
-                        WhatsApp
+                        Canal
                       </th>
                     </tr>
                   </thead>

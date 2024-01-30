@@ -23,13 +23,13 @@ export default function DeleteContacts() {
                     {item.fullname}
                 </td>
                 <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                    {item.email}
+                    {item.email.split('@')[0]+'@...'}
                 </td>
                 <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                    {item.sms}
+                    {item.sms.slice(0, 6)+'...'}
                 </td>
                 <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                    {item.whatsapp}
+                    {item.whatsapp.slice(0, 6)+'...'}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-center text-gray-700">
                     <button id={'restore'+item.id} className="inline-block rounded bg-indigo-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
@@ -55,10 +55,10 @@ export default function DeleteContacts() {
             <div className="flex justify-between">
                 <h2 className="p-2 rounded-md bg-white-800 text-white text-2xl mb-2 outline-none"> Contact Supprimés </h2>
                 <p className="text-center font-extrabold m-2">
-                    <button className="inline-block rounded bg-indigo-600 p-2 m-1 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+                    <button className="inline-block rounded bg-indigo-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
                         Tout Restaurer
                     </button>
-                    <button className="inline-block rounded bg-red-500 p-2 m-1 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+                    <button className="inline-block rounded bg-red-500 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
                         Suppression Définitive
                     </button>
                 </p>

@@ -203,30 +203,30 @@ export default function Show() {
                     </div>
                   </div>
 
-<div className="flex items-center justify-center min-h-screen">
-  <div className="relative bg-white w-[50%] flex flex-col justify-center items-center text-center p-6 rounded shadow-md">
-    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-bold mb-4">
-      Voulez-vous vraiment transférer ce courrier ?
-    </h2>
+                <div className="flex items-center justify-center min-h-screen">
+                    <div className="relative bg-white w-[50%] flex flex-col justify-center items-center text-center p-6 rounded shadow-md">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-bold mb-4">
+                        Voulez-vous vraiment transférer ce courrier ?
+                        </h2>
 
-    <div className="flex gap-4">
-      <button
-        className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
-        id={"confirm-send" + message.id}
-        onClick={(event) => SendMessageByEmail(message, event)}
-      >
-        Confirmer
-      </button>
-      <button
-        className="bg-red-600 hover:bg-red-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
-        id={"closeModal-send" + message.id}
-        onClick={closeModalDel}
-      >
-        Annuler
-      </button>
-    </div>
-  </div>
-</div>
+                        <div className="flex gap-4">
+                        <button
+                            className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
+                            id={"confirm-send" + message.id}
+                            onClick={(event) => SendMessageByEmail(message, event)}
+                        >
+                            Confirmer
+                        </button>
+                        <button
+                            className="bg-red-600 hover:bg-red-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
+                            id={"closeModal-send" + message.id}
+                            onClick={closeModalDel}
+                        >
+                            Annuler
+                        </button>
+                        </div>
+                    </div>
+                </div>
 
                 </div>
                     {/* onClick={() => deleteMessage(detailPathname[detailPathname.length-2])} */}
@@ -235,7 +235,7 @@ export default function Show() {
                         <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
                         <div className="flex items-center justify-center min-h-screen">
                             <div className="relative bg-white w-[50%] flex flex-col justify-center items-center text-center p-6 rounded shadow-md">
-                                <h2 className="text-2xl text-black font-bold mb-4">Voulez-vous vraiment supprimer ce message ?</h2>
+                                <h2 className="text-black font-bold mb-4">Voulez-vous vraiment supprimer ce message ?</h2>
 
                                 <div className="flex gap-4"> {/* Ajout de la classe flex et gap-4 pour l'espacement entre les boutons */}
                                     <button className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline" id={'confirm-delete'+message.id} onClick={() => deleteMessage(detailPathname[detailPathname.length-2])}>
