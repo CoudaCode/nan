@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { ApiUrl } from "../../outils/URL";
 import { IsCookies } from "../../outils/IsCookie";
 import { toast } from "react-toastify";
+import { SendMessageByEmail } from "../../outils/SendMessage";
+
 
 export default function Show() {
     const [message, SetMessage] = useState({});
@@ -75,6 +77,18 @@ export default function Show() {
         modal.classList.add('hidden');
     };
     const [popoverVisible, setPopoverVisible] = useState(false);
+
+    const openModalDel = (event) => {
+        const id = event.target.id.split("-")[1];
+        const modal = document.getElementById("modal-" + id);
+        modal.classList.remove("hidden");
+      };
+
+    const closeModalDel = (event) => {
+        const id = event.target.id.split("-")[1];
+        const modal = document.getElementById("modal-" + id);
+        modal.classList.add("hidden");
+      };
 
     return (
 
@@ -157,7 +171,65 @@ export default function Show() {
                 </div>
                 <div className="m-5 items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-5">
                     <button onClick={() => navigate('/message')} className="bg-blue-700 text-white p-2 m-2 rounded w-[150px]"><i className="bx bx-arrow-back"></i> Retour</button>
-                    <button onClick={() => navigate(`/message/${detailPathname[detailPathname.length-2]}/edit`)} className="bg-green-700 text-white p-2 m-2 rounded w-[150px]"><i className="bx bx-edit"></i> Editer</button>
+                    {/* <button onClick={() => navigate(`/message/${detailPathname[detailPathname.length-2]}/edit`)} className="bg-green-700 text-white p-2 m-2 rounded w-[150px]"><i className="bx bx-edit"></i> Editer</button> */}
+                    <button onClick={openModalDel} id={"openModal-send" + message.id} className="bg-green-700 text-white p-2 m-2 rounded w-[150px]"><i className="bx bxs-send m-1" id={"openModal-send" + message.id}></i> Transférer</button>
+                    <div
+                  className="fixed inset-0 overflow-y-auto hidden"
+                  id={"modal-send" + message.id}
+                >
+                  <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
+                  <div className="flex items-center justify-center min-h-screen">
+                    <div className="relative bg-white w-[50%] flex flex-col justify-center items-center text-center p-6 rounded shadow-md">
+                      <h2 className="text-black font-bold mb-4">
+                        Voulez-vous vraiment transferer ce courrier ?
+                      </h2>
+
+                      <div className="flex gap-4">
+                        {" "}
+                        <button
+                          className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
+                          id={"confirm-send" + message.id}
+                          onClick={(event) => SendMessageByEmail(message, event)}
+                        >
+                          Confirmer
+                        </button>
+                        <button
+                          className="bg-red-600 hover:bg-red-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
+                          id={"closeModal-send" + message.id}
+                          onClick={closeModalDel}
+                        >
+                          Annuler
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+<div className="flex items-center justify-center min-h-screen">
+  <div className="relative bg-white w-[50%] flex flex-col justify-center items-center text-center p-6 rounded shadow-md">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-bold mb-4">
+      Voulez-vous vraiment transférer ce courrier ?
+    </h2>
+
+    <div className="flex gap-4">
+      <button
+        className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
+        id={"confirm-send" + message.id}
+        onClick={(event) => SendMessageByEmail(message, event)}
+      >
+        Confirmer
+      </button>
+      <button
+        className="bg-red-600 hover:bg-red-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
+        id={"closeModal-send" + message.id}
+        onClick={closeModalDel}
+      >
+        Annuler
+      </button>
+    </div>
+  </div>
+</div>
+
+                </div>
                     {/* onClick={() => deleteMessage(detailPathname[detailPathname.length-2])} */}
                     <button onClick={openModal} id={"openModal-delete"+message.id} className="bg-red-700 text-white p-2 m-2 rounded w-[150px]"><i className="bx bx-trash"></i> Supprimer</button>
                     <div className="fixed inset-0 overflow-y-auto hidden" id={'modal-delete'+message.id}>

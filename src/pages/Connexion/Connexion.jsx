@@ -50,7 +50,7 @@ function Connexion() {
         <div className="container">
           <Link to="/">
             <button className="back-button">
-              <FaArrowLeft /> Retour à l'accueil
+              <FaArrowLeft /> Retour à l&apos;accueil
             </button>
           </Link>
           <div className="heading mt-9">Connexion</div>
@@ -107,9 +107,9 @@ function Connexion() {
             )}
 
             <div className="text-red-900 mt-11 text-sm text-center">
-              <div>J'ai pas de compte ? </div>
+              <div>J&apos;ai pas de compte ? </div>
               <span className="forgot-password">
-                <Link to="/inscription">S'inscrire</Link>
+                <Link to="/inscription">S&apos;inscrire</Link>
               </span>
             </div>
             <input

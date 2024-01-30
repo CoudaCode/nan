@@ -128,15 +128,14 @@ export default function ListingMessage() {
               <>
                 <button
                   onClick={openModalDel}
+                  disabled={message.canal=='email'? false : true}
                   id={"openModal-send" + message.id}
-                  className="inline-block rounded bg-indigo-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500"
+                  className={`inline-block rounded bg-${message.canal=='email' ? 'indigo': 'red'}-600 p-2 m-2 text-sm font-medium text-white ${message.canal=='email' ? 'transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500': 'red'}`}
                 >
-                  Transférer{" "}
-                  <i
-                    className="bx bxs-send m-1"
-                    id={"openModal-send" + message.id}
-                  ></i>
-                  {/* <i className='bx bxs-trash m-1' id={"openModal-send"+message.id}></i> */}
+                  {
+                    message.canal=='email'? (<>Transférer<i className="bx bxs-send m-1" id={"openModal-send" + message.id}></i></>) : 'Cannal non disponible'
+                  }
+                  
                 </button>
                 <div
                   className="fixed inset-0 overflow-y-auto hidden"
@@ -145,7 +144,7 @@ export default function ListingMessage() {
                   <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
                   <div className="flex items-center justify-center min-h-screen">
                     <div className="relative bg-white w-[50%] flex flex-col justify-center items-center text-center p-6 rounded shadow-md">
-                      <h2 className="text-2xl text-black font-bold mb-4">
+                      <h2 className="text-black font-bold mb-4">
                         Voulez-vous vraiment transferer ce courrier ?
                       </h2>
 
@@ -168,6 +167,8 @@ export default function ListingMessage() {
                       </div>
                     </div>
                   </div>
+
+
                 </div>
               </>
             )}
@@ -179,12 +180,12 @@ export default function ListingMessage() {
             >
               <i className="bx bxs-show m-1"></i>
             </button>
-            <button
+            {/* <button
               onClick={() => navigate(`/message/${message.id}/edit`)}
               className="inline-block rounded bg-green-600 p-2 m-2 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500"
             >
               <i className="bx bxs-edit m-1"></i>
-            </button>
+            </button> */}
 
             <button
               onClick={openModalDel}
