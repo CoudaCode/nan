@@ -30,9 +30,9 @@ function FormContactModal(propos){
         onSuccess: success => {
             toast.success(success.data.message);
             onClose();
-            // setTimeout(() => {
-            //     window.location.reload();
-            // }, 3050);
+            setTimeout(() => {
+                window.location.reload();
+            }, 3050);
         },
         onError: error => {
             document.querySelector('.FormSaveContact').querySelectorAll('input', 'buttton').forEach(item => item.disabled = false);
@@ -40,9 +40,6 @@ function FormContactModal(propos){
         }
     });
     const onSubmit = (data) => contactRegister(data);
-
-    // const handleDelete = () => { onConfirm(); };
-    
     
     const handleChange = e => {
         const { name, value } = e.target;
@@ -50,8 +47,6 @@ function FormContactModal(propos){
     };
     
 
-    
-  
     if (!isOpen || !contact) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
