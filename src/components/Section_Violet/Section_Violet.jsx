@@ -1,8 +1,8 @@
-import React from "react";
+// import React from "react";
 import "./Section_Violet.css"
 
-import { RxHamburgerMenu } from "react-icons/rx";
-import { FaWhatsapp } from "react-icons/fa";
+// import { RxHamburgerMenu } from "react-icons/rx";
+// import { FaWhatsapp } from "react-icons/fa";
 import {  BiMicrophone } from "react-icons/bi";
 import {
   AiFillStar,

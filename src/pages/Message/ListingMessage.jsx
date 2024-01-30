@@ -30,7 +30,6 @@ export default function ListingMessage() {
         headers: { Authorization: `token ${IsCookies()}` },
       })
       .then((success) => {
-        console.log(success.data);
         SetAllMessage(success.data.status ? success.data.data : []);
       });
   }, []);
@@ -44,7 +43,6 @@ export default function ListingMessage() {
   };
 
   const deleteMessageDel = (event) => {
-    alert();
     const target = event.target;
     const id = target.id.replace("confirm-delete", "");
     // const btnConfirm = document.getElementById('confirm-delete'+id);
@@ -157,7 +155,7 @@ export default function ListingMessage() {
                         <button
                           className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
                           id={"confirm-send" + message.id}
-                          onClick={() => SendMessageByEmail(message)}
+                          onClick={(event) => SendMessageByEmail(message, event)}
                         >
                           Confirmer
                         </button>

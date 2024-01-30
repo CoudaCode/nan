@@ -1,4 +1,4 @@
-import { FaPhone, FaEnvelope, FaAddressCard } from "react-icons/fa";
+import { FaPhone, FaEnvelope,  } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import { IoIosTime } from "react-icons/io";
 
