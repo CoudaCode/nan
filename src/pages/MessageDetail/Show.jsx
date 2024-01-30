@@ -185,7 +185,6 @@ export default function Show() {
                       </h2>
 
                       <div className="flex gap-4">
-                        {" "}
                         <button
                           className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
                           id={"confirm-send" + message.id}
