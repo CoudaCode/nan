@@ -11,17 +11,14 @@ import ReactPaginate from "react-paginate";
 import ModifyConfirmationModal from "./ModifyConfirmationModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import FormBroadcastModal from "./FormBroadcastModal";
-// import ModalContact from "./ModalContact";
-
-
+import Deconnexion from "../Deconnexion/Deconnexion";
 
 
 function Broadcast() {
-  const token = IsCookies();
   const navigate = useNavigate();
   const [AllGroupe, SetAllGroupe] = useState([]);
   useEffect(()=>{
-    if(!token){
+    if(!IsCookies()){
       toast.error('Session expirée, veuillez vous connecter !');
       navigate('/connexion');
     }
@@ -32,15 +29,13 @@ function Broadcast() {
   const [contactToModify, setContactToModify] = useState(null);
   const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
 
-  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
-  const [isFormModalClose, setIsFormModalClose] = useState(null);
+  const [isFormModalOpen, ] = useState(false);
+  const [, setIsFormModalClose] = useState(null);
 
   const [openAddForm, setIsOpenAddForm] = useState(null);
 
-  // const [openImportForm, setIsOpenImportForm] = useState(null);
-  
   useEffect(()=>{
-    axios.get(ApiUrl + 'groupe/getAll', { headers: { Authorization: `token ${token}`} })
+    axios.get(ApiUrl + 'groupe/getAll', { headers: { Authorization: `token ${IsCookies()}`} })
     .then(success => {
       SetAllGroupe(success.data.data.sort((a, b) => a.name.localeCompare(b.name)))
     })
@@ -58,45 +53,42 @@ function Broadcast() {
   const pagesVisited = pagesNumber * GroupePerPage;
   const displayGroupe = AllGroupe.slice(pagesVisited, pagesVisited + GroupePerPage).map( item => {
     return(
-      <>
-      
-        <tr id={'ligne-'+item.id} key={item.id} data={item}>
-          <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
-            {item.name}
-          </td>
-          <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-            <a>
-              {item.contact.length}
-            </a>
-            
-          </td>
-          <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-            {item.canal}
-          </td>
-          <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-            {item.description}
-          </td>
-          <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700" style={{ justifyContent:'center'}}>
-            <a
-              onClick={() => handleModify(item.id)}
-              className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
-              Modifier
-            </a>
-            <a
-              onClick={() => handleDelete(item.id)}
-              className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
-              Supprimer
-            </a>
-          </td>
-        </tr>
-      </>
+      <tr id={'ligne-'+item.id} key={item.id} data={item}>
+        <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
+          {item.name}
+        </td>
+        <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+          <a>
+            {item.contact.length}
+          </a>
+          
+        </td>
+        <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+          {item.canal}
+        </td>
+        <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
+          {item.description}
+        </td>
+        <td className="whitespace-nowrap flex gap-2 text-center px-4 py-2 text-gray-700" style={{ justifyContent:'center'}}>
+          <a
+            onClick={() => handleModify(item.id)}
+            className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+            Modifier
+          </a>
+          <a
+            onClick={() => handleDelete(item.id)}
+            className="inline-block rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
+            Supprimer
+          </a>
+        </td>
+      </tr>
     )
   })
 
   const pageCount = Math.ceil(AllGroupe.length / GroupePerPage);
   const changePage = ({selected})=>{ setPagesNumber(selected); }
 
-  const handleDelete = (contactId) => {
+  const handleDelete = contactId => {
     const contact = AllGroupe.find(c => c.id === contactId);
     setSelectedContact(contact);
     setIsDeleteModalOpen(true);
@@ -111,16 +103,9 @@ function Broadcast() {
     setIsModifyModalOpen(false);
     setContactToModify(null);
   };
-
-  // const handleCloseFormModal = () => {
-  //   setIsDeleteModalOpen(false);
-  //   setSelectedContact(null);
-  // };
-
-
-
+  
   const handleModify = (contactId) => {
-    const contact = AllGroupe.find(c => c.id === contactId);
+    const contact = AllGroupe.find(c => c.id == contactId);
     setContactToModify(contact);
     setIsModifyModalOpen(true);
   };
@@ -137,19 +122,17 @@ function Broadcast() {
     setIsOpenAddForm(false)
   };
 
-  // const handleImportContact = (e) => {
-  //   setIsOpenImportForm(true)
-  // };
-
-  // const handleCloseImportContact = (e) => {
-  //   setIsOpenImportForm(false)
-  // };
+  
 
   return (
     <>
       <Sidebar />
       <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
-        <div className=" overflow-y-none p-4   bg-[#1E2029]">Broadcast</div>
+        <div className="flex justify-between items-center overflow-y-none p-2 bg-[#1E2029]">
+          <div className="flex items-center"> Broadcast </div>
+          <Deconnexion />
+        </div>
+
           <div className="relative overflow-x-auto m-4 shadow-md sm:rounded-lg">
             <div className="flex items-center justify-between pb-4">
               <div className="relative">
@@ -226,8 +209,7 @@ function Broadcast() {
               </div>
             </div>
           </div>
-        </div>
-      {/* </div> */}
+      </div>
 
       <FormBroadcastModal
         isOpen={handleSaveContact}
@@ -243,12 +225,15 @@ function Broadcast() {
         onConfirm={handleConfirmDelete}
         contact={selectedContact}
       />
-
-      <ModifyConfirmationModal
+      {
+        contactToModify ?
+        <ModifyConfirmationModal
         isOpen={isModifyModalOpen}
         onClose={handleCloseModifyModal}
         groupeData={contactToModify}
       />
+      : ''
+      }
     </>
   );
 }

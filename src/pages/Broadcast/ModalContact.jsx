@@ -6,12 +6,12 @@ import { IsCookies } from "../../outils/IsCookie";
 // import PropTypes from 'prop-types';
 
 
-const ModalContact = props => {
+const ModalContact = propos => {
     const [AllContacts,SetAllContacts] = useState([]);
     // const [SetUp, SetSetUp] = useState([]);
-    const register = props.register;
-    const contactChecked = props.contactChecked;
-    const handleChange = props.handleChange;
+    const register = propos.register;
+    const contactChecked = propos.contactChecked;
+    const handleChange = propos.handleChange;
     
     useEffect(()=>{
         // let form = document.getElementById('myForm');

@@ -2,10 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ApiUrl from "../../components/ApiUrl/ApiUrl";
-import Cookies from "js-cookie";
+import { IsCookies } from "../../outils/IsCookie";
+
 
 function Options(){
-    let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     const [stateCollaborateur, setStateCollaborateur] = useState(0);
     const [stateContac, setStateContac] = useState(0);
     const [stateGroupo, setStateGroupo] = useState(0);
@@ -29,22 +29,22 @@ function Options(){
         }
         activation();
 
-        axios.get(ApiUrl+'/api/agent/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'/api/agent/getAll', { headers: { Authorization: `token ${IsCookies()}`}})
         .then(allCollabo => {
             if(allCollabo.data.status) setStateCollaborateur(allCollabo.data.data.length);
         });
 
-        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${IsCookies()}`}})
         .then(allCollabo => {
             if(allCollabo.data.status) setStateContac(allCollabo.data.data.length);
         });
 
-        axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${IsCookies()}`}})
         .then(allCollabo => {
             if(allCollabo.data.status) setStateGroupo(allCollabo.data.data.length);
         })
 
-        axios.get(ApiUrl+'/api/message/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'/api/message/getAll', { headers: { Authorization: `token ${IsCookies()}`}})
         .then(allCollabo => {
             if(allCollabo.data.status) setStateMessage(allCollabo.data.data.length);
         })

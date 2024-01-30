@@ -177,7 +177,6 @@ function Entreprise() {
                 />
                 {errors.email && (<p className="text-red-500 text-sm">{errors.email.message}</p>)}
               </div>
-
               
               <div className="mt-4">
                 <button type="submit" id="submit" className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"> Soumettre </button>

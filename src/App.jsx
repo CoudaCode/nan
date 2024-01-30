@@ -19,8 +19,15 @@ import "react-toastify/dist/ReactToastify.css";
 import MessageDetail from "./pages/MessageDetail/MessageDetail";
 import Profil from "./pages/Profile/Profil";
 import Historique from "./pages/Admin/Historique/Historique";
+
+import "chart.js/auto";
+import NotFound from "./pages/NotFound/NotFound";
+
+import Historique from "./pages/Admin/Historique/Historique";
+import Details from "./pages/Admin/Details/Details";
 // import { useLocation } from "react-router-dom";
   
+
 
 
 function App() {
@@ -29,9 +36,22 @@ function App() {
   return (
     <>
       <QueryClientProvider client={client}>
-        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light"/>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <Routes>
           <Route path="/" element={<Acceuil />} />
+          <Route path="/detail" element={<Details />} />
+          <Route path="/admin/entreprise" element={<Historique />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/inscription" element={<Inscription />} />
@@ -45,7 +65,9 @@ function App() {
           <Route path="/validate/:user/:code" element={<Validate />} />
           <Route path="/message/:id/:detail" element={<MessageDetail />} />
           <Route path="/profile" element={<Profil />} />
+
           <Route path="/admin" element={<Historique />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </QueryClientProvider>
     </>
