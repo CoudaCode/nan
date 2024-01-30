@@ -18,6 +18,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MessageDetail from "./pages/MessageDetail/MessageDetail";
 import Profil from "./pages/Profile/Profil";
+import Historique from "./pages/Admin/Historique/Historique";
 // import { useLocation } from "react-router-dom";
   
 
@@ -43,8 +44,8 @@ function App() {
           <Route path="/verification" element={<Verification />} />
           <Route path="/validate/:user/:code" element={<Validate />} />
           <Route path="/message/:id/:detail" element={<MessageDetail />} />
-
           <Route path="/profile" element={<Profil />} />
+          <Route path="/admin" element={<Historique />} />
         </Routes>
       </QueryClientProvider>
     </>
