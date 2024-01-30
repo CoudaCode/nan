@@ -125,9 +125,8 @@ function Reports() {
           </div>
           <DeleteContacts />
 
-          <DeleteMessages />
-
-<<<<<<< HEAD
+          <DeleteMessages /> 
+          
                       <svg
                         className="h-2 w-2 rtl:rotate-180"
                         xmlns="http://www.w3.org/2000/svg"
@@ -141,8 +140,8 @@ function Reports() {
                           d="M14 5l7 7m0 0l-7 7m7-7H3"
                         />
                       </svg>
-                    </a>
-                  </li>
+                    
+                  
                   <li className="block h-8 w-8 rounded border-blue-600 bg-white text-center leading-8 text-black font-extrabold">
                     1
                   </li>
@@ -164,24 +163,13 @@ function Reports() {
                       </svg>
                     </a>
                   </li>
-                </ol>
+                
               </div>
-            </div>
-          </div>
-      </div>
-=======
+      
           
-
           <DeleteGroupes />
 
           <MessageSending />
-          
-          
-
-
-          
-        </div>
->>>>>>> 158f5fe6e1e0aca1a1a64827438f1ba4f26f911f
       </>
   );
 }
