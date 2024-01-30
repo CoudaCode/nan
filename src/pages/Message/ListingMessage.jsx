@@ -151,7 +151,6 @@ export default function ListingMessage() {
 
                       <div className="flex gap-4">
                         {" "}
-                        {/* Ajout de la classe flex et gap-4 pour l'espacement entre les boutons */}
                         <button
                           className="bg-blue-600 hover:bg-blue-900 text-white font-bold p-2 m-2 rounded focus:outline-none focus:shadow-outline"
                           id={"confirm-send" + message.id}

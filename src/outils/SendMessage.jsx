@@ -14,7 +14,7 @@ export function SendMessageByEmail(data, closed){
     if(canal == 'email'){
         if(contact && contact.length) addresse = contact.map(item => item[canal]);
         else if(groupe && groupe.length) addresse = groupe.flatMap(item => item.contact).map(item => item[canal]);
-        const body = {canal, object, contenu, contact: addresse};
+        const body = {canal, object, contenu, contact: addresse, id: data.id};
         axios.post(ApiUrl+'message/email', body, {headers: {Authorization: `token ${IsCookies()}`}})
         .then(response => {
             toast.success(response.data.message);

@@ -74,6 +74,7 @@ export default function Show() {
         const modal = document.getElementById('modal-'+id);
         modal.classList.add('hidden');
     };
+    const [popoverVisible, setPopoverVisible] = useState(false);
 
     return (
 
@@ -128,7 +129,23 @@ export default function Show() {
                         } 
                     </p>
                     <p className="mb-2 text-gray-700"><strong>Canal:</strong> { message.canal||'Chargement en cours...' }</p>
-                    <p className="mb-2 text-gray-700"><strong>Nombre de Pièces Jointes:</strong> { message.piecesJointes ? message.piecesJointes.length : 'Chargement en cours...' }</p>
+                    <p className="relative inline-block mb-2 text-gray-700">
+                        <strong>Nombre de Pièces Jointes:</strong>
+                        <strong className="bg-red-500 p-1 text-white cursor-pointer" onClick={() => setPopoverVisible(!popoverVisible)}>{ message.piecesJointes ? message.piecesJointes.length +'Pièce(s)' : 'Chargement en cours...' }</strong>
+                        
+                    </p>
+                    {
+                            message.piecesJointes && (
+                            <div className={`${popoverVisible ? 'block' : 'hidden'} bg-white border rounded-lg shadow-lg p-2 text-black right-0 mt-2`}>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+                                    {message.piecesJointes.map((piece, index) => (
+                                        <div key={index} className="p-1">
+                                            <img src={piece.path} alt={`Piece jointe ${index + 1}`} className="w-full h-auto rounded-lg"/>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     {/* <p className="mb-2 text-gray-700"><strong>Date d&apos;envoi:</strong> { message?.sendDate }</p> */}
                     {message.sendingDate ? <p className="mb-2 text-gray-700"><strong>Date d&apos;envoi:</strong>  ${message.sendingDate} </p> : ''}
                     <p className="mb-2 text-gray-700 break-all"><strong>Objet:</strong> { message.object || 'Chargement en cours...' } </p>
