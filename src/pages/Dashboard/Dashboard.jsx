@@ -5,7 +5,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import { ApiUrl } from "../../outils/URL";
 import "./dashboard.css";
 import { toast } from "react-toastify";
-import { IsCookies, DeleteCookies } from "../../outils/IsCookie";
+import { IsCookies } from "../../outils/IsCookie";
 import { Line, Bar, Doughnut, Pie, Radar, PolarArea } from 'react-chartjs-2';
 import Deconnexion from "../Deconnexion/Deconnexion";
 

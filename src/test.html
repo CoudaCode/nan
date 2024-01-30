@@ -1,36 +1,48 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>iPhone Camera Style</title>
-  <style>
-    .camera-box {
-  width: 50px;
-  height: 50px;
-  background-color: #f4f4f4;
-  border-radius: 50%;
-  position: relative;
-  box-shadow: 6px 5px 12px 1px var(--violet);
-}
-
-.lens {
-  width: 70%;
-  height: 70%;
-  background-color: #333;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-  </style>
+  <title>Text to Image</title>
 </head>
 <body>
+  <div id="text-container">
+    <p>Votre texte ici</p>
+  </div>
+  <button onclick="convertToImage()">Convertir en image</button>
+  <script>
+    function convertToImage() {
+      // Sélectionnez l'élément contenant le texte
+      var textContainer = document.getElementById('text-container');
 
-<div class="camera-box">
-    <div class="lens"></div>
-</div>
+      // Créez un canvas
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
 
+      // Définissez les dimensions du canvas (en fonction du texte)
+      canvas.width = 100+'px';
+      canvas.height = 100+'px';
+
+      // Dessinez le texte sur le canvas
+      context.font = '16px Arial';
+      context.fillStyle = 'black';
+      context.fillText(textContainer.textContent, 10, 20);
+
+      // Ajoutez des bordures arrondies au canvas
+      context.lineWidth = 5;
+      context.strokeStyle = 'blue';
+      context.strokeRect(0, 0, canvas.width, canvas.height);
+
+      // Convertissez le canvas en une image
+      var imageDataURL = canvas.toDataURL('image/png');
+
+      // Créez un élément d'image pour afficher l'image générée
+      var imageElement = new Image();
+      imageElement.src = imageDataURL;
+
+      // Ajoutez l'élément d'image à votre document ou effectuez toute autre action nécessaire
+      document.body.appendChild(imageElement);
+    }
+  </script>
 </body>
 </html>

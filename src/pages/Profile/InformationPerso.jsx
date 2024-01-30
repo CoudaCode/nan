@@ -43,7 +43,6 @@ export default function InformationPerso(propos) {
     return (
         <div className="bg-gradient-to-b from-gray-800 to-gray-900 border-b border-gray-900/10 p-9">
             <h2 className="text-base font-semibold leading-7 text-white">Informations Personnelles</h2>
-            <p className="mt-1 text-sm  text-gray-600">Use a permanent address where you can receive mail.</p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="FormUpdateEntreprise">
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 p-3 overflow-Y-auto">
@@ -75,7 +74,8 @@ export default function InformationPerso(propos) {
                                 name="email"
                                 id="email"
                                 value={IsMyEntreprise?.email}
-                                className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                disabled
+                                className="block w-full rounded-md border-0 p-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 {...register("email", {
                                     require: true, minLength: 2, maxLength: 100,
                                     pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, message: "Veuillez entrer une adresse mail valide." },

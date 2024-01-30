@@ -8,19 +8,7 @@ import { ApiUrl, FrontUrl } from "../../outils/URL";
 import { FaArrowLeft } from "react-icons/fa";
 function Inscription() {
   let navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
-    fullname: "",
-    email: "",
-    telephone: "",
-    nationalite: "",
-    password: "",
-  });
-
+  const { register, handleSubmit, watch, formState: { errors } } = useForm({ fullname: "", email: "", telephone: "", nationalite: "", password: "" });
   const { mutate: user } = useMutation({
     mutationFn: async (send) => {
       document
@@ -75,7 +63,7 @@ function Inscription() {
       <div className="container">
         <Link to="/">
           <button className="back-button">
-            <FaArrowLeft /> Retour à l'accueil
+            <FaArrowLeft /> Retour à l&apos;accueil
           </button>
         </Link>
         <div className="heading mt-9">Inscription</div>
@@ -228,7 +216,7 @@ function Inscription() {
           )}
 
           <div className="text-red-900 mt-4 text-sm text-center">
-            <div>J'ai déja un compte</div>
+            <div>J&apos;ai déja un compte</div>
             <span className="forgot-password">
               <Link to="/connexion">Se connecter</Link>
             </span>

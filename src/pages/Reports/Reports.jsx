@@ -2,8 +2,14 @@ import "./Reports.css";
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Deconnexion from "../Deconnexion/Deconnexion";
+import DeleteContacts from "./DeleteContacts";
+import DeleteGroupes from "./DeleteGroupes";
+import DeleteMessages from "./DeleteMessages";
+import MessageSending from "./MessageSending";
+
 
 const PopupExample = ({ isOpen, selectedItem, onClose }) => {
+ 
   
   const [showPopup, setShowPopup] = useState(isOpen);
 
@@ -119,226 +125,20 @@ function Reports() {
             <div className="flex items-center"> Rapports </div>
             <Deconnexion />
           </div>
-          <div className="container mb-9">
-            <h2 className="text-center text-white mb-5 text-2xl font-extrabold">
-              Contact Supprimés
-            </h2>
-            <div className="flex justify-between">
-              <input
-                type="text"
-                placeholder="Rechercher..."
-                className="p-2 rounded-md bg-white-800 text-black mb-2 outline-none"
-              />
+          <DeleteContacts />
 
-              <p className="text-center font-extrabold">
-                <button className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
-                  Tout Restaurer
-                </button>
-              </p>
-            </div>
-            <div className="rounded-lg border border-gray-200">
-              <div className="overflow-x-auto rounded-t-lg">
-                <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-                  <thead className="divide-y">
-                    <tr>
-                      <th className="whitespace-nowrap break-words px-4 py-2 font-extrabold text-gray-900">
-                        Nom et Prenom
-                      </th>
-                      <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
-                        email
-                      </th>
-                      <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
-                        Phone
-                      </th>
-                      <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
+          <DeleteMessages />
 
-                  <tbody className="divide-y divide-gray-200">
-                    {contacts.map((item) => (
-                      <tr key={item.id}>
-                        <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
-                          {item.nom}
-                        </td>
-                        <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                          {item.email}
-                        </td>
-                        <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                          {item.phone}
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-2 text-center text-gray-700">
-                          <button
-                            onClick={() => handleRestore(item)}
-                            className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
-                            Restaurer
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+          
 
-              <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
-                <ol className="flex justify-center gap-1 text-xs font-medium">
-                  <li>
-                    <a className="inline-block rounded-full border border-violet-600 bg-violet-600 p-3 text-white hover:bg-transparent hover:text-violet-600 focus:outline-none focus:ring active:text-violet-500">
-                      <span className="sr-only"> Download </span>
+          <DeleteGroupes />
 
-                      <svg
-                        className="h-2 w-2 rtl:rotate-180"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                  <li className="block h-8 w-8 rounded border-blue-600 bg-white text-center leading-8 text-black font-extrabold">
-                    1
-                  </li>
-                  <li>
-                    <a className="inline-block rounded-full border border-violet-600 p-3 text-violet-600 hover:bg-violet-600 hover:text-white focus:outline-none focus:ring active:bg-violet-500">
-                      <span className="sr-only"> Download </span>
-                      <svg
-                        className="h-2 w-2 rtl:rotate-180"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
+          <MessageSending />
+          
+          
 
-            {isOpen && (
-              <PopupExample
-                isOpen={isOpen}
-                selectedItem={selectedItem}
-                onClose={handleClosePopup}
-              />
-            )}
-          </div>
-          <div className="container mb-9">
-            <h2 className="text-center text-white mb-5 text-2xl font-extrabold">
-              Teams Supprimés
-            </h2>
-            <div className="flex justify-between">
-              <input
-                type="text"
-                placeholder="Rechercher..."
-                className="p-2 rounded-md bg-white-800 text-black mb-2 outline-none"
-              />
-              <p className="text-center font-extrabold">
-                <button className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
-                  Tout Restaurer
-                </button>
-              </p>
-            </div>
-            <div className="rounded-lg border border-gray-200">
-              <div className="overflow-x-auto rounded-t-lg">
-                <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-                  <thead className="divide-y">
-                    <tr>
-                      <th className="whitespace-nowrap break-words px-4 py-2 font-extrabold text-gray-900">
-                        Nom de la Teams
-                      </th>
-                      <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
-                        Canal
-                      </th>
-                      <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
-                        Membres
-                      </th>
-                      <th className="whitespace-nowrap px-4 py-2 font-extrabold text-gray-900">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
 
-                  <tbody className="divide-y divide-gray-200">
-                    {Teams.map((item) => (
-                      <tr key={item.id}>
-                        <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
-                          {item.nomTeams}
-                        </td>
-                        <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                          {item.Chanels}
-                        </td>
-                        <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                          {item.numberMembers}
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-2 text-center text-gray-700">
-                          <button className="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500">
-                            Restaurer
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className="rounded-b-lg border-t border-gray-200 px-4 py-2">
-                <ol className="flex justify-center gap-1 text-xs font-medium">
-                  <li>
-                    <a className="inline-block rounded-full border border-violet-600 bg-violet-600 p-3 text-white hover:bg-transparent hover:text-violet-600 focus:outline-none focus:ring active:text-violet-500">
-                      <span className="sr-only"> Download </span>
-
-                      <svg
-                        className="h-2 w-2 rtl:rotate-180"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                  <li className="block h-8 w-8 rounded border-blue-600 bg-white text-center leading-8 text-black font-extrabold">
-                    1
-                  </li>
-                  <li>
-                    <a className="inline-block rounded-full border border-violet-600 p-3 text-violet-600 hover:bg-violet-600 hover:text-white focus:outline-none focus:ring active:bg-violet-500">
-                      <span className="sr-only"> Download </span>
-                      <svg
-                        className="h-2 w-2 rtl:rotate-180"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </>
   );

@@ -9,9 +9,11 @@ import axios from 'axios';
 import { IsCookies } from '../../outils/IsCookie';
 import { ApiUrl } from '../../outils/URL';
 import Deconnexion from '../Deconnexion/Deconnexion';
-
+import { convertToImage } from '../../outils/convertToImage';
+import { useNavigate } from 'react-router';
 
 export default function Profil() {
+    
     const [isAccordionOpenPersonnelInfo, setAccordionOpenPersonnelInfo] = useState(false);
     const [isAccordionOpenSecurity, setAccordionOpenSecurity] = useState(false);
     const [isAccordionOpenEntreprise, setAccordionOpenEntreprise] = useState(false);
@@ -24,9 +26,20 @@ export default function Profil() {
     const [IsMyEntreprise, SetMyEntreprise] = useState({});
     const [IsMyInformations, SetMyInformations] = useState({});
 
+    const navigate = useNavigate();
+    
     useEffect(()=>{
         axios.get(`${ApiUrl}user/getById`, {headers: {Authorization: `token ${IsCookies()}`}})
-        .then(success=>SetMyInformations(success.data.data))
+        .then(success=>{
+            const myName = success.data.data.fullname.split(' ');
+            const myCanvasImage = document.getElementById('myCanvasImage');
+            const chaine = myName.length > 1 ? myName[0][0].toUpperCase()+myName[1][0].toUpperCase(): myName[0][0].toUpperCase();
+            console.log('chaine', chaine);
+            convertToImage(chaine, myCanvasImage);
+
+            SetMyInformations(success.data.data);
+
+        })
     }, []);
 
 
@@ -34,6 +47,10 @@ export default function Profil() {
         axios.get(`${ApiUrl}entreprise/getById`, {headers: {Authorization: `token ${IsCookies()}`}})
         .then(success=>SetMyEntreprise(success.data.data))
     }, []);
+
+    if(!IsCookies()){
+        return navigate('/connexion')
+    }
 
     const toggleEditePersonnelInfo = () => {
         const iwanttoscrolling = document.querySelector('.iwanttoscrolling');
@@ -165,24 +182,18 @@ export default function Profil() {
                                         id="ember24"
                                         className="bg-cover bg-center h-69"
                                     >
+
                                         <div className="flex items-center justify-center relative">
-                                                <div className="profile-rail-card__member-bg-image relative">
-                                                    <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" href="https://www.linkedin.com/in/victor-brito-69040a191?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC0Wx0wBHq3mUosLJRSDvLr03ew1r_V4B_4" data-test-app-aware-link="">
-                                                        <div className="ivm-image-view-model items-center">
-                                                            <div className="ivm-view-attr__img-wrapper flex justify-center">
-                                                                <img
-                                                                    src="https://media.licdn.com/dms/image/D4E35AQGKzd6QV8tQNA/profile-framedphoto-shrink_100_100/0/1691755098172?e=1704844800&amp;v=beta&amp;t=VjTdINtZ6MFZJ7ct-gzh14KHeHfcyhjqwJLt_ZytdXo"
-                                                                    alt="Victor Brito"
-                                                                    className="w-99 h-99 rounded-full"
-                                                                    loading="lazy"
-                                                                    width="72"
-                                                                    height="72"
-                                                                />
-                                                            </div>
+                                            <div className="profile-rail-card__member-bg-image relative">
+                                                <a className="app-aware-link profile-rail-card__profile-link text-16 text-black font-bold hover:no-underline relative z-10" data-test-app-aware-link="">
+                                                    <div className="ivm-image-view-model items-center">
+                                                        <div className="ivm-view-attr__img-wrapper flex justify-center" id='myCanvasImage'>
+                                                            
                                                         </div>
-                                                    </a>
-                                                </div>
+                                                    </div>
+                                                </a>
                                             </div>
+                                        </div>
 
                                             <div className="link-without-hover-visited">
                                                 <p className="single-line-truncate text-16 text-black font-bold mt-2 flex justify-center profile-rail-card__name">

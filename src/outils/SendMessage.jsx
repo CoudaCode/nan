@@ -5,9 +5,11 @@ import { toast } from "react-toastify";
 
 
 export function SendMessageByEmail(data, closed){
+    
     const id = closed.target.id.replace('confirm-send', '');
     const IsMustClosed = document.getElementById(closed.target.id.replace('confirm-send', 'modal-send'));
     const { canal, contact, groupe, contenu, object } = data;
+    console.log('*************',id)
     let addresse = [];
     if(canal == 'email'){
         if(contact && contact.length) addresse = contact.map(item => item[canal]);
