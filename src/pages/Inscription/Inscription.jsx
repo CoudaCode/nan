@@ -40,13 +40,8 @@ function Inscription() {
     onSuccess: (success) => {
       console.log(success);
       toast.success(success.data.message);
-      setTimeout(
-        () =>
-          navigate(
-            `/validate/${success.data.data.email}/${success.data.data.code}`
-          ),
-        2500
-      );
+      setTimeout(() => navigate(`/validate/${success.data.data.email}/${success.data.data.code}`), 2500);
+      console.log(success.data.data.email)
     },
     onError: (error) => {
       document
