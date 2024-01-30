@@ -91,7 +91,7 @@ export default function Show() {
                         {
                             message.contact && message.contact.length ?
                             <div className="inline-block">
-                                <button  className="bg-blue-700 text-white p-2 m-2 rounded w-[110px]" id={'openModal-'+message.id} onClick={openModal}><i className="bx bxs-show m-1"></i> {message.contact.length} Voir</button>
+                                <button  className="bg-blue-700 text-white rounded " id={'openModal-'+message.id} onClick={openModal}><i className="bx bxs-show"></i> {message.contact.length} Voir</button>
                                 <div className="fixed inset-0 overflow-y-auto  hidden" id={'modal-'+message.id}>
                                     <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
                                     <div className="flex items-center justify-center min-h-screen">
@@ -129,13 +129,21 @@ export default function Show() {
                         } 
                     </p>
                     <p className="mb-2 text-gray-700"><strong>Canal:</strong> { message.canal||'Chargement en cours...' }</p>
-                    <p className="relative inline-block mb-2 text-gray-700">
+                    <p className="inline-block mb-2 text-gray-700">
                         <strong>Nombre de Pièces Jointes:</strong>
-                        <strong className="bg-red-500 p-1 text-white cursor-pointer" onClick={() => setPopoverVisible(!popoverVisible)}>{ message.piecesJointes ? message.piecesJointes.length +'Pièce(s)' : 'Chargement en cours...' }</strong>
+                        <strong className="bg-red-500 p-1 text-white cursor-pointer rounded" onClick={() => setPopoverVisible(!popoverVisible)}><i className="bx bxs-show m-1"></i>{ message.piecesJointes ? message.piecesJointes.length +'Pièce(s)' : 'Chargement en cours...' }</strong>
                         
                     </p>
+                    
+                    {/* <p className="mb-2 text-gray-700"><strong>Date d&apos;envoi:</strong> { message?.sendDate }</p> */}
+                    {message.sendingDate ? <p className="mb-2 text-gray-700"><strong>Date d&apos;envoi:</strong>  ${message.sendingDate} </p> : ''}
+                    <p className="mb-2 text-gray-700 break-all"><strong>Objet:</strong> { message.object || 'Chargement en cours...' } </p>
+                    <p className="text-gray-700 text-justify break-all"><strong>Contenu: </strong>
+                        { message.contenu || 'Chargement en cours...' }
+                    </p>
+
                     {
-                            message.piecesJointes && (
+                        message.piecesJointes && (
                             <div className={`${popoverVisible ? 'block' : 'hidden'} bg-white border rounded-lg shadow-lg p-2 text-black right-0 mt-2`}>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                                     {message.piecesJointes.map((piece, index) => (
@@ -145,13 +153,7 @@ export default function Show() {
                                     ))}
                                 </div>
                             </div>
-                        )}
-                    {/* <p className="mb-2 text-gray-700"><strong>Date d&apos;envoi:</strong> { message?.sendDate }</p> */}
-                    {message.sendingDate ? <p className="mb-2 text-gray-700"><strong>Date d&apos;envoi:</strong>  ${message.sendingDate} </p> : ''}
-                    <p className="mb-2 text-gray-700 break-all"><strong>Objet:</strong> { message.object || 'Chargement en cours...' } </p>
-                    <p className="text-gray-700 text-justify break-all"><strong>Contenu: </strong>
-                        { message.contenu || 'Chargement en cours...' }
-                    </p>
+                    )}
                 </div>
                 <div className="m-5 items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-5">
                     <button onClick={() => navigate('/message')} className="bg-blue-700 text-white p-2 m-2 rounded w-[150px]"><i className="bx bx-arrow-back"></i> Retour</button>
