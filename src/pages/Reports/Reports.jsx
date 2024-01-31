@@ -143,7 +143,7 @@ function Reports() {
       navigate("/connexion");
     } else {
       axios
-        .get(ApiUrl + "contact/getAllDeleted", {
+        .get(ApiUrl + "contact/getAllDelete", {
           headers: { Authorization: ` token ${token}` },
         })
         .then((success) => {
