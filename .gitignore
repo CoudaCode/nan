@@ -26,4 +26,4 @@ dist-ssr
 .prettierrc
 
 
-index.html
+# index.html
