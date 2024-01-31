@@ -1,14 +1,14 @@
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AdminSideBar from "../AdminSideBar/AdminSideBar";
 
 // import "./dashboard.css";
-import { useEffect, useState } from "react";
-import { IsCookies, DeleteCookies } from "../../../outils/IsCookie";
+import { useEffect } from "react";
+import { IsCookies } from "../../../outils/IsCookie";
 import { toast } from "react-toastify";
 
 function Historique() {
-  const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
+  // const [, setConfirmationModalOpen] = useState(false);
   const navigate = useNavigate();
   useEffect(()=>{
     if(!IsCookies()){
@@ -17,11 +17,11 @@ function Historique() {
     }
   }, []);
 
-  const handleLogout = () => {
-    DeleteCookies();
-    setConfirmationModalOpen(false);
-    setTimeout(() => window.location.reload(), 1500);
-  };
+  // const handleLogout = () => {
+  //   DeleteCookies();
+  //   setConfirmationModalOpen(false);
+  //   setTimeout(() => window.location.reload(), 1500);
+  // };
 
   return (
     <>
@@ -127,23 +127,23 @@ function Historique() {
       </table>
     </div>
 
-<ol class="flex justify-center gap-1 mt-3 text-xs font-medium">
+<ol className="flex justify-center gap-1 mt-3 text-xs font-medium">
   <li>
     <a
       href="#"
-      class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+      className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
     >
-      <span class="sr-only">Prev Page</span>
+      <span className="sr-only">Prev Page</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-3 w-3"
+        className="h-3 w-3"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
         <path
-          fill-rule="evenodd"
+          fillRule="evenodd"
           d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-          clip-rule="evenodd"
+          clipRule="evenodd"
         />
       </svg>
     </a>
@@ -152,7 +152,7 @@ function Historique() {
   <li>
     <a
       href="#"
-      class="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
+      className="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
     >
       1
     </a>
@@ -161,19 +161,19 @@ function Historique() {
   <li>
     <a
       href="#"
-      class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+      className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
     >
-      <span class="sr-only">Next Page</span>
+      <span className="sr-only">Next Page</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-3 w-3"
+        className="h-3 w-3"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
         <path
-          fill-rule="evenodd"
+          fillRule="evenodd"
           d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-          clip-rule="evenodd"
+          clipRule="evenodd"
         />
       </svg>
     </a>

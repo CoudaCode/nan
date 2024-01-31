@@ -19,8 +19,8 @@ function Dashboard() {
   const [groupe, setGroupe] = useState(0);
 
   const [contactDelete, setContactDelete] = useState(0);
-  const [messageDelete, setMessageDelete] = useState(0);
-  const [groupeDelete, setGroupeDelete] = useState(0);
+  const [, setMessageDelete] = useState(0);
+  const [, setGroupeDelete] = useState(0);
 
 
   useEffect(() => {
