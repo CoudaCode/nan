@@ -7,6 +7,6 @@
 
 const ApiUrl = "https://nansendmessage.onrender.com/api/";
 
-const FrontUrl = "https://newnansend.onrender.com/";
+const FrontUrl = "https://viewnansend.onrender.com/";
 
 export {ApiUrl, FrontUrl};
