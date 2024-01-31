@@ -10,7 +10,18 @@ import "./Acceuil.css"
 import Apropos from "../../components/Apropos/Apropos";
 import Service from "../../components/Service/Service";
 import SectionViolet from "../../components/Section_Violet/Section_Violet";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { IsCookies } from "../../outils/IsCookie";
+
 function Acceuil() {
+  let navigate = useNavigate();
+  useEffect(()=>{
+    if(IsCookies()){
+        navigate('/dashboard');
+    }
+  }, 
+  []);
   return (
     <>
       <Navbar />

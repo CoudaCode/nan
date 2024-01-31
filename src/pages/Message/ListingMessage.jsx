@@ -42,33 +42,6 @@ export default function ListingMessage() {
     setPagesNumber(selected);
   };
 
-  // const deleteMessageDel = (event) => {
-  //   const target = event.target;
-  //   const id = target.id.replace("confirm-delete", "");
-  //   axios.put(ApiUrl+'')
-    
-  //   const btnDelete = document.getElementById("closeModal-delete" + id);
-  //   target.disabled = true;
-  //   btnDelete.disabled = true;
-
-  //   const btnConfirm = document.getElementById('confirm-delete'+id);
-  //   btnConfirm.disabled = true;
-  //   btnDelete.disabled = true;
-  //   axios.delete(ApiUrl+`message/delete/${id}`, {headers: {Authorization: `token ${IsCookies()}`}})
-  //   .then(response => {
-  //       toast.success(response.data.message);
-  //       setTimeout(() => {
-  //           navigate('/message')
-  //       }, 3000);
-        
-  //   })
-  //   .catch(error => {
-  //       toast.error(error.resonse.data.message);
-  //       btnConfirm.disabled = false;
-  //       btnDelete.disabled = false;
-  //   })
-  // };
-
   const deleteMessageDel = event => {
     const target = event.target;
     const id = target.id.replace("confirm-delete", "");

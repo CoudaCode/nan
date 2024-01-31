@@ -40,7 +40,6 @@ function ModifyConfirmationModal(propos){
     mutationFn: data => saveContact(data),
     onSuccess: success => {
       toast.success(success.data.message);
-      console.log(success.data)
       onClose();
       const TrLigne = document.getElementById('ligne-' + contact.id);
       const allCol = TrLigne.querySelectorAll('td');
@@ -74,7 +73,6 @@ function ModifyConfirmationModal(propos){
 
   const handleChange = event => {
     const { name, value } = event.target;
-    console.log(formData)
     setFormData({ ...formData, [name]: value });
   };
 

@@ -13,11 +13,9 @@ function Broadcast() {
 
     const toggleLogOut = () =>{
         setModalLogOut(!modal)
-        console.log('ouvert')
     }
     const closeToggle = () =>{
         setModalLogOut(modal)
-        console.log('fermé')
     }
   return (
     <div className="flex h-screen">

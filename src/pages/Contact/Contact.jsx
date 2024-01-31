@@ -19,8 +19,9 @@ import Deconnexion from "../Deconnexion/Deconnexion";
 
 
 function Contact() {
-  const navigate = useNavigate();
+  
   const [AllContacts, SetAllContact] = useState([]);
+  const navigate = useNavigate();
   useEffect(()=>{
     if(!IsCookies()){
       toast.error('Session expirée, veuillez vous connecter !');
@@ -61,8 +62,6 @@ function Contact() {
   const displayContacts = AllContacts.slice(pagesVisited, pagesVisited + ContactsPerPage).map( item => {
     return(
       <>
-        {/* <ModifyConfirmationModal contact={item}/> */}
-      
         <tr id={'ligne-'+item.id} key={item.id}>
           <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
             {item.fullname}

@@ -6,8 +6,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ApiUrl, FrontUrl } from "../../outils/URL";
 import { FaArrowLeft } from "react-icons/fa";
+import { IsCookies } from "../../outils/IsCookie";
+import { useEffect } from "react";
+
 function Inscription() {
   let navigate = useNavigate();
+  useEffect(()=>{
+    if(IsCookies()){
+        navigate('/dashboard');
+    }
+    }, 
+  []);
   const { register, handleSubmit, watch, formState: { errors } } = useForm({ fullname: "", email: "", telephone: "", nationalite: "", password: "" });
   const { mutate: user } = useMutation({
     mutationFn: async (send) => {
@@ -30,7 +39,6 @@ function Inscription() {
             )
             .forEach((item) => (item.disabled = false));
         } else {
-          console.log(send);
           send.urlfrontend = FrontUrl + "entreprise/";
           let response = await axios.post(ApiUrl + "message/verifyEmail", send);
           return response;
@@ -38,7 +46,6 @@ function Inscription() {
       }
     },
     onSuccess: (success) => {
-      console.log(success);
       toast.success(success.data.message);
       setTimeout(
         () =>

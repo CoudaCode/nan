@@ -71,8 +71,8 @@ const ModalContact = propos => {
 
 
         })
-        .catch(error => {
-            console.log(error.response);
+        .catch(() => {
+            console.log();
         });
 
         
@@ -80,7 +80,6 @@ const ModalContact = propos => {
 
     var YouWantToCheckInput = (e) => {
         const checkeding = document.querySelector('.checkeding').querySelectorAll('input');
-        console.log(e);
         [...checkeding].map(item => item.checked = e.map(contact => contact.id).includes(item.id.split('-')[1]))
     }
 

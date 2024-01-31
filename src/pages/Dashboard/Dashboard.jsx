@@ -8,11 +8,63 @@ import { toast } from "react-toastify";
 import { IsCookies } from "../../outils/IsCookie";
 import { Line, Bar, Doughnut, Pie, Radar, PolarArea } from 'react-chartjs-2';
 import Deconnexion from "../Deconnexion/Deconnexion";
+import axios from "axios";
+
 
 
 function Dashboard() {
   const [contacts, setContacts] = useState(0);
   const [messages, setMessages] = useState(0);
+  const [messagesSending, setMessageSending] = useState(0);
+  const [groupe, setGroupe] = useState(0);
+
+  const [contactDelete, setContactDelete] = useState(0);
+  const [messageDelete, setMessageDelete] = useState(0);
+  const [groupeDelete, setGroupeDelete] = useState(0);
+
+
+  useEffect(() => {
+    axios.get(ApiUrl+'message/getAllSending', {headers: {Authorization: `token ${IsCookies()}`}})
+    .then(success => setMessageSending(success.data.data.length))
+  });
+
+  useEffect(() => {
+    axios.get(ApiUrl+'contact/getAll', {headers: {Authorization: `token ${IsCookies()}`}})
+    .then(success => setContacts(success.data.data.length))
+  });
+
+  useEffect(() => {
+    axios.get(ApiUrl+'message/getAll', {headers: {Authorization: `token ${IsCookies()}`}})
+    .then(success => setMessages(success.data.data.length))
+  });
+
+  useEffect(() => {
+    axios.get(ApiUrl+'groupe/getAll', {headers: {Authorization: `token ${IsCookies()}`}})
+    .then(success => setGroupe(success.data.data.length))
+  });
+
+
+
+  useEffect(() => {
+    axios.get(ApiUrl+'groupe/getAllDelete', {headers: {Authorization: `token ${IsCookies()}`}})
+    .then(success => setGroupeDelete(success.data.data.length))
+  })
+
+  useEffect(() => {
+    axios.get(ApiUrl+'message/getAllDelete', {headers: {Authorization: `token ${IsCookies()}`}})
+    .then(success => setMessageDelete(success.data.data.length))
+  });
+
+  useEffect(() => {
+    axios.get(ApiUrl+'contact/getAllDelete', {headers: {Authorization: `token ${IsCookies()}`}})
+    .then(success => setContactDelete(success.data.data.length))
+  })
+
+
+
+
+
+
 
   const fetchContacts = async () => {
     let response = await fetch(`${ApiUrl}contact/getAll`, {
@@ -88,43 +140,43 @@ function Dashboard() {
     );
 
   const dataMessage = {
-    labels: ['Envoyé', 'En cours', 'Echoué', 'Supprimé'],
+    labels: ['Contacts', 'Messages', 'Groupe'],
     datasets: [
       {
-        label: 'Statistiques de Messagérie',
-        data: [12, 19, 3, 5],
-        backgroundColor: ['rgba(175,192,192,0.2)', 'rgba(255,99,132,0.2)', 'rgba(255,205,86,0.2)', 'rgba(54,162,235,0.2)'],
-        borderColor: ['rgba(175,192,192,1)', 'rgba(255,99,132,1)', 'rgba(255,205,86,1)', 'rgba(54,162,235,1)'],
+        label: 'Statistiques',
+        data: [contacts, messages, groupe],
+        backgroundColor: ['rgba(175,192,192,0.2)', 'rgba(255,99,132,0.2)', 'rgba(255,205,86,0.2)', /*'rgba(54,162,235,0.2)'*/],
+        borderColor: ['rgba(175,192,192,1)', 'rgba(255,99,132,1)', 'rgba(255,205,86,1)', /*'rgba(54,162,235,1)'*/],
         borderWidth: 1,
       },
     ],
   };
 
   const dataContact = {
-    labels: ['Email', 'SMS', 'WhatsApp'],
+    labels: ['Actif', 'Supprimer'],
     datasets: [
       {
         label: 'Statistiques de Contact',
-        data: [12, 19, 9],
-        backgroundColor: ['rgba(75,192,122,0.2)', 'rgba(255,199,132,0.2)', 'rgba(255,25,186,0.2)'],
-        borderColor: ['rgba(75,192,122,0.2)', 'rgba(255,199,132,0.2)', 'rgba(255,25,186,0.2)'],
+        data: [contacts, contactDelete],
+        backgroundColor: ['rgba(75,192,122,0.2)', 'rgba(255,199,132,0.2)'],
+        borderColor: ['rgba(75,192,122,0.2)', 'rgba(255,199,132,0.2)'],
         borderWidth: 1,
       },
     ],
   };
 
-  const dataEntreprise = {
-    labels: ['Envoyé', 'En cours', 'Echoué', 'Supprimé'],
-    datasets: [
-      {
-        label: 'Statistiques de Messagérie',
-        data: [12, 19, 3, 5],
-        backgroundColor: ['rgba(175,192,192,0.2)', 'rgba(255,99,132,0.2)', 'rgba(255,205,86,0.2)', 'rgba(54,162,235,0.2)'],
-        borderColor: ['rgba(175,192,192,1)', 'rgba(255,99,132,1)', 'rgba(255,205,86,1)', 'rgba(54,162,235,1)'],
-        borderWidth: 1,
-      },
-    ],
-  };
+  // const dataEntreprise = {
+  //   labels: ['Envoyé', 'En cours', 'Echoué', 'Supprimé'],
+  //   datasets: [
+  //     {
+  //       label: 'Statistiques de Messagérie',
+  //       data: [12, 19, 3, 5],
+  //       backgroundColor: ['rgba(175,192,192,0.2)', 'rgba(255,99,132,0.2)', 'rgba(255,205,86,0.2)', 'rgba(54,162,235,0.2)'],
+  //       borderColor: ['rgba(175,192,192,1)', 'rgba(255,99,132,1)', 'rgba(255,205,86,1)', 'rgba(54,162,235,1)'],
+  //       borderWidth: 1,
+  //     },
+  //   ],
+  // };
 
   const options = {
     scales: {
@@ -139,13 +191,7 @@ function Dashboard() {
   const chartContainerStyle = "transition transform rounded-md shadow-md cursor-pointer bg-white";
 const chartStyle = "w-full h-64";
 
-const LineChartExample = () => (
-  <div className={chartContainerStyle}>
-    <div className={chartStyle}>
-      <Line data={dataMessage} options={options} />
-    </div>
-  </div>
-);
+
 
 const BarChartExample = () => (
   <div className={chartContainerStyle}>
@@ -155,10 +201,18 @@ const BarChartExample = () => (
   </div>
 );
 
+const LineChartExample = () => (
+  <div className={chartContainerStyle}>
+    <div className={chartStyle}>
+      <Line data={dataContact} options={options} />
+    </div>
+  </div>
+);
+
 const DoughnutChartExample = () => (
   <div className={chartContainerStyle}>
     <div className={chartStyle}>
-      <Doughnut data={dataMessage} options={options} />
+      <Doughnut data={dataContact} options={options} />
     </div>
   </div>
 );
@@ -200,8 +254,8 @@ const PolarAreaChartExample = () => (
         <div className="grid grid-cols-1 gap-4 m-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 overflow-Y-auto">
           <div className="transition transform rounded-md shadow-md cursor-pointer h-52 bg-violet-600 hover:scale-105">
             <div className="p-4">
-              <h1>Message</h1>
-              <h2 className="my-8">{messages}</h2>
+              <h1 className="text-[20px]">Messages</h1>
+              <h2 className="my-8 text-[20px] font-bold">{messages}</h2>
               <div className="text-right">
                 <i className="fa-solid fa-address-card"></i>
               </div>
@@ -215,14 +269,44 @@ const PolarAreaChartExample = () => (
 
           <div className="transition transform rounded-md shadow-md cursor-pointer h-52 bg-violet-600 hover:scale-105">
             <div className="p-4">
-              <h1>Contacts</h1>
-              <h2 className="my-8">{contacts}</h2>
+              <h1 className="text-[20px]">Contacts</h1>
+              <h2 className="my-8 text-[20px] font-bold">{contacts}</h2>
               <div className="text-right">
                 <i className="fa-solid fa-address-card"></i>
               </div>
             </div>
             <div className="p-2 font-extrabold text-right text-black bg-white">
               <Link to="/contact">
+                <h1>Voir</h1>
+              </Link>
+            </div>
+          </div>
+
+          <div className="transition transform rounded-md shadow-md cursor-pointer h-52 bg-violet-600 hover:scale-105">
+            <div className="p-4">
+              <h1 className="text-[20px]">Messages Diffusés</h1>
+              <h2 className="my-8 text-[20px] font-bold">{messagesSending}</h2>
+              <div className="text-right">
+                <i className="fa-solid fa-comments"></i>
+              </div>
+            </div>
+            <div className="p-2 font-extrabold text-right text-black bg-white">
+              <Link to="/reports">
+                <h1>Voir</h1>
+              </Link>
+            </div>
+          </div>
+
+          <div className="transition transform rounded-md shadow-md cursor-pointer h-52 bg-violet-600 hover:scale-105">
+            <div className="p-4">
+              <h1 className="text-[20px]">Groupes de Diffusion</h1>
+              <h2 className="my-8 text-[20px] font-bold">{groupe}</h2>
+              <div className="text-right">
+                <i className="fa-solid fa-comments"></i>
+              </div>
+            </div>
+            <div className="p-2 font-extrabold text-right text-black bg-white">
+              <Link to="/broadcast">
                 <h1>Voir</h1>
               </Link>
             </div>

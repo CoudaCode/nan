@@ -11,6 +11,8 @@ import { ApiUrl } from '../../outils/URL';
 import Deconnexion from '../Deconnexion/Deconnexion';
 import { convertToImage } from '../../outils/convertToImage';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+
 
 export default function Profil() {
     
@@ -27,6 +29,13 @@ export default function Profil() {
     const [IsMyInformations, SetMyInformations] = useState({});
 
     const navigate = useNavigate();
+        useEffect(()=>{
+            if(!IsCookies()){
+            toast.error('Session expirée, veuillez vous connecter !');
+            navigate('/connexion');
+            }
+        }, 
+    []);
     
     useEffect(()=>{
         axios.get(`${ApiUrl}user/getById`, {headers: {Authorization: `token ${IsCookies()}`}})
@@ -34,7 +43,6 @@ export default function Profil() {
             const myName = success.data.data.fullname.split(' ');
             const myCanvasImage = document.getElementById('myCanvasImage');
             const chaine = myName.length > 1 ? myName[0][0].toUpperCase()+myName[1][0].toUpperCase(): myName[0][0].toUpperCase();
-            console.log('chaine', chaine);
             convertToImage(chaine, myCanvasImage);
 
             SetMyInformations(success.data.data);
@@ -107,7 +115,6 @@ export default function Profil() {
 
 
     const changeContentOrClass = (btn, myState) => {
-        console.log(btn);
         const i = btn.querySelector('i');
         const span = btn.querySelector('span');
         i.className = myState ? 'bx bxs-show m-1' : 'bx bxs-hide m-1';

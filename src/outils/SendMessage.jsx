@@ -22,7 +22,7 @@ export function SendMessageByEmail(data, closed){
                 window.location.href('/message')
             })
         })
-        .catch(error => console.log(error))
+        .catch(() => console.log())
     }else if(canal === 'whatsapp'){
         // alert('whatsapp');
     }else if(canal === 'sms'){

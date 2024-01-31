@@ -8,8 +8,18 @@ import { toast } from "react-toastify";
 import { ApiUrl } from "../../outils/URL";
 import "./Connexion.css";
 import { FaArrowLeft } from "react-icons/fa";
+import { useEffect } from "react";
+import { IsCookies } from "../../outils/IsCookie";
+
 function Connexion() {
   const navigate = useNavigate();
+  useEffect(()=>{
+    if(IsCookies()){
+        navigate('/dashboard');
+    }
+    }, 
+  []);
+
   const login = async (data) => {
     const result = await axios.post(ApiUrl + "auth/login", data);
     return result;
@@ -24,7 +34,6 @@ function Connexion() {
   const { mutate: loginUser } = useMutation({
     mutationFn: (Mydata) => login(Mydata),
     onSuccess: (succes) => {
-      console.log("demo", succes.data);
       toast.success(succes.data.message);
       Cookie.set("NaN_Digit_Sender_Token_Secretly", succes.data.token, {
         expires: 1,
@@ -38,7 +47,6 @@ function Connexion() {
       }, 3000);
     },
     onError: (e) => {
-      console.log(e.response.data.message);
       toast.error(e.response.data.message);
     },
   });

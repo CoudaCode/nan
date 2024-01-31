@@ -13,6 +13,14 @@ export default function Show() {
     const navigate = useNavigate();
     const pathname = window.location.pathname;
     const detailPathname = pathname.split('/');
+
+    useEffect(()=>{
+            if(!IsCookies()){
+                navigate('/connexion');
+            }
+        }, 
+    []);
+
     useEffect(()=>{
         axios.get(ApiUrl+`message/getById/${detailPathname[detailPathname.length-2]}`, {headers: {Authorization: `token ${IsCookies()}`}})
         .then(response => {

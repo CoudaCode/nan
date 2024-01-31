@@ -32,18 +32,17 @@ function Entreprise() {
           axios.post(ApiUrl+'user/create', body)
           .then(isUser => {
             if(isUser.data.status){
-              console.log('isUser.data.status 1',isUser.data.status);
               toast.success(isUser.data.message);
               Cookies.set('NaN_Digit_Sender_Token_Secretly', isUser.data.token, { expires: 1, path: '/'});
             } 
           })
-          .catch(error => {
-            console.log('error 2', error);
+          .catch(() => {
+            console.log();
           })
         }
       })
-      .catch(error => {
-        console.log('error 1',error);
+      .catch(() => {
+        console.log();
       })
     }
   }, []);
