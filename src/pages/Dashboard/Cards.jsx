@@ -13,28 +13,28 @@ function Cards(){
     const [stateStocke, setStateStocke] = useState(0);
 
     useEffect(()=>{
-        axios.get(ApiUrl+'/api/agent/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'api/agent/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allCollabo => {
             if(allCollabo.data.status){
                 setStateCollaborateur(allCollabo.data.data.length)
             }
         });
 
-        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'api/contact/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allContact => {
             if(allContact.data.status){
                 setStateContac(allContact.data.data.length)
             }
         });
 
-        axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allGroupe => {
             if(allGroupe.data.status){
                 setStateGroupo(allGroupe.data.data.length)
             }
         })
 
-        axios.get(ApiUrl+'/api/message/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'api/message/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allMessage => {
             if(allMessage.data.status){
                 setStateMessage(allMessage.data.data.length)
@@ -42,7 +42,7 @@ function Cards(){
         })
 
 
-        axios.get(ApiUrl+'/api/stocke/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'api/stocke/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allStocke => {
             if(allStocke.data.status){
                 setStateStocke(allStocke.data.data.length)

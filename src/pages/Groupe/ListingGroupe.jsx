@@ -11,7 +11,7 @@ function ListingGroupe(){
     const [AllGroupes, SetAllGroupe] = useState([]);
     let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     useEffect(()=>{
-        axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allGroupe => {
             if(allGroupe.data.status) SetAllGroupe(allGroupe.data.data);
         });

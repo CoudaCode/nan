@@ -32,7 +32,10 @@ function Historique() {
           console.log(success.data.data)
           SetDelete(success.data.data)
         })
-    })
+        .catch(()=>{
+          // 
+        })
+    }, [])
 
     
     const ContactsPerPage = 9;

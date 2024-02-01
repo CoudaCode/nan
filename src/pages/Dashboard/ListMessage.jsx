@@ -8,7 +8,7 @@ function ListMessage() {
   const [DataMessage, setDataMessage] = useState([]);
   useEffect(() => {
     axios
-      .get(ApiUrl + "/api/message/getAll", {
+      .get(ApiUrl + "api/message/getAll", {
         headers: { Authorization: `token ${token}` },
       })
       .then((allMessage) => {

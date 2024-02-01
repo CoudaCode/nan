@@ -9,7 +9,7 @@ import Broadcast from "./pages/Broadcast/Broadcast";
 import Connexion from "./pages/Connexion/Connexion";
 import Inscription from "./pages/Inscription/Inscription";
 import Reports from "./pages/Reports/Reports";
-import WorkSpace from "./pages/WorkSpace/WorkSpace";
+// import WorkSpace from "./pages/WorkSpace/WorkSpace";
 import Contact from "./pages/Contact/Contact";
 import Entreprise from "./pages/Entreprise/Entreprise";
 import Verification from "./pages/Verification/Verification";
@@ -59,7 +59,7 @@ function App() {
           <Route path="/broadcast" element={<Broadcast />} />
           <Route path="/message" element={<Message />} />
           <Route path="/reports" element={<Reports />} />
-          <Route path="/workspace" element={<WorkSpace />} />
+          {/* <Route path="/workspace" element={<WorkSpace />} /> */}
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/validate/:user/:code" element={<Validate />} />

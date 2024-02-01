@@ -26,45 +26,39 @@ function Dashboard() {
   useEffect(() => {
     axios.get(ApiUrl+'message/getAllSending', {headers: {Authorization: `token ${IsCookies()}`}})
     .then(success => setMessageSending(success.data.data.length))
-  });
+  }, []);
 
   useEffect(() => {
     axios.get(ApiUrl+'contact/getAll', {headers: {Authorization: `token ${IsCookies()}`}})
     .then(success => setContacts(success.data.data.length))
-  });
+  },  []);
 
   useEffect(() => {
     axios.get(ApiUrl+'message/getAll', {headers: {Authorization: `token ${IsCookies()}`}})
     .then(success => setMessages(success.data.data.length))
-  });
+  }, []);
 
   useEffect(() => {
     axios.get(ApiUrl+'groupe/getAll', {headers: {Authorization: `token ${IsCookies()}`}})
     .then(success => setGroupe(success.data.data.length))
-  });
+  }, []);
 
 
 
   useEffect(() => {
     axios.get(ApiUrl+'groupe/getAllDelete', {headers: {Authorization: `token ${IsCookies()}`}})
     .then(success => setGroupeDelete(success.data.data.length))
-  })
+  }, [])
 
   useEffect(() => {
     axios.get(ApiUrl+'message/getAllDelete', {headers: {Authorization: `token ${IsCookies()}`}})
     .then(success => setMessageDelete(success.data.data.length))
-  });
+  }, []);
 
   useEffect(() => {
     axios.get(ApiUrl+'contact/getAllDelete', {headers: {Authorization: `token ${IsCookies()}`}})
     .then(success => setContactDelete(success.data.data.length))
-  })
-
-
-
-
-
-
+  }, [])
 
   const fetchContacts = async () => {
     let response = await fetch(`${ApiUrl}contact/getAll`, {
@@ -165,18 +159,6 @@ function Dashboard() {
     ],
   };
 
-  // const dataEntreprise = {
-  //   labels: ['Envoyé', 'En cours', 'Echoué', 'Supprimé'],
-  //   datasets: [
-  //     {
-  //       label: 'Statistiques de Messagérie',
-  //       data: [12, 19, 3, 5],
-  //       backgroundColor: ['rgba(175,192,192,0.2)', 'rgba(255,99,132,0.2)', 'rgba(255,205,86,0.2)', 'rgba(54,162,235,0.2)'],
-  //       borderColor: ['rgba(175,192,192,1)', 'rgba(255,99,132,1)', 'rgba(255,205,86,1)', 'rgba(54,162,235,1)'],
-  //       borderWidth: 1,
-  //     },
-  //   ],
-  // };
 
   const options = {
     scales: {

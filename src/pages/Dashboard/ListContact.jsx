@@ -7,7 +7,7 @@ function ListContact(){
     let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     const [DataContact, setDataContact] = useState([]);
     useEffect(()=>{
-        axios.get(ApiUrl+'/api/contact/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'api/contact/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allCollabo => {
             if(allCollabo.data.status) setDataContact(allCollabo.data.data);
         });

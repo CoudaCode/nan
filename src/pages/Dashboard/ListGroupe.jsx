@@ -9,7 +9,7 @@ function ListGroupe(){
     let token = Cookies.get("NaN_Digit_Sender_Token_Secretly");
     const [DataGroupe, setDataGroupe] = useState([]);
     useEffect(()=>{
-        axios.get(ApiUrl+'/api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
+        axios.get(ApiUrl+'api/groupe/getAll', { headers: { Authorization: `token ${token}`}})
         .then(allGroupe => {
             if(allGroupe.data.status) setDataGroupe(allGroupe.data.data);
         });

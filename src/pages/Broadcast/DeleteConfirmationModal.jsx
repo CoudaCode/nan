@@ -18,7 +18,6 @@ function DeleteConfirmationModal(propos){
       toast.success(success.data.message);
       lignTr.classList.add('deleted');
       setTimeout(() => lignTr.remove(), 3000);
-
     })
     .catch(error => {
       toast.success(error.response.message);

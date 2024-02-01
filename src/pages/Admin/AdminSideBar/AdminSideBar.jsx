@@ -17,11 +17,11 @@ function AdminSideBar() {
   // function(){return `/admin/${_.deburr(this.text).toLocaleLowerCase('en-US')}`},
 
   const menuItems = [
-    {
-      iconClass: "bx bx-grid-alt",
-      text: "Dashboard",
-      to: function(){return generatePath(this.text)}
-    },
+    // {
+    //   iconClass: "bx bx-grid-alt",
+    //   text: "Dashboard",
+    //   to: function(){return generatePath(this.text)}
+    // },
     {
       iconClass: "bx bxs-contact",
       text: "Entreprises",

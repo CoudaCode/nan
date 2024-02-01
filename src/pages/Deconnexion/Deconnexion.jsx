@@ -5,9 +5,9 @@ import { DeleteCookies } from "../../outils/IsCookie";
 export default function Deconnexion() {
     const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
     const handleLogout = () => {
-    DeleteCookies();
-    setConfirmationModalOpen(false);
-    setTimeout(() => window.location.reload(), 1500);
+        DeleteCookies();
+        setConfirmationModalOpen(false);
+        setTimeout(() => window.location.reload(), 1500);
     };
     return (
         <>

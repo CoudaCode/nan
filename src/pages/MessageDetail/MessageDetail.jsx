@@ -6,12 +6,6 @@ import Edite from "./Edite";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
-
-
-
-
-
-
 export default function MessageDetail() {
   const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -24,8 +18,6 @@ export default function MessageDetail() {
     toast.error('e')
     setTimeout(() => navigate('/connexion'), 1000);
   }
-
-  
 
   const handleLogout = () => {
     DeleteCookies();

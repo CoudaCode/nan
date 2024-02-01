@@ -14,11 +14,7 @@ function FormImportContact(propos){
     const isOpen = propos.isOpen;
     const onClose = propos.onClose;
     const contact = propos.contact;
-    // const onConfirm = propos.onConfirm;
     
-    // const handleDelete = () => { onConfirm(); };
-
-    // const {fullname, email, sms, whatsapp, id} = contact;
     const token = IsCookies();
     const saveContact = async (data) => {
         const formDatas = new FormData();
@@ -40,15 +36,6 @@ function FormImportContact(propos){
         }
     });
     const onSubmit = (data) => ConverseAdressFille(data);
-
-
-
-    // const initialvalueInput = {excelOrCsv: ''};
-    // const [valueInput, setvalueInput] = useState(initialvalueInput);
-    // const handleChange = e => {
-    //     const { name, value } = e.target;
-    //     setvalueInput({ ...valueInput, [name]: value });
-    // };
 
     
     if (!isOpen || !contact) { return null }
