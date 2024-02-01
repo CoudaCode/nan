@@ -26,7 +26,7 @@ function Details() {
       <AdminSideBar />
         <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
             <div className="flex justify-between items-center overflow-y-none p-2 bg-[#1E2029]">
-                <div className="flex items-center"> <Link to={'/admin/entreprises'}><span className="text-gray-400 hover:text-white"> Détail </span></Link>&nbsp; &gt;&nbsp; <span>Détail</span> </div>
+                <div className="flex items-center"> <Link to={'/admin/entreprises'}><span className="text-gray-400 hover:text-white"> Entreprise </span></Link>&nbsp; &gt;&nbsp; <span>Détail</span> </div>
                 
                 <Deconnexion />
             </div>
