@@ -34,19 +34,10 @@ function AdminSideBar() {
     },
     {
       iconClass: "bx bxs-contact",
-      text: "Détails",
+      text: "Corbelles",
       to: function(){return generatePath(this.text)}
     },
-    {
-      iconClass: "bx bxs-contact",
-      text: "Détails",
-      to: function(){return generatePath(this.text)}
-    },
-    {
-      iconClass: "bx bxs-contact",
-      text: "Détails",
-      to: function(){return generatePath(this.text)}
-    },
+    
     
   ];
 

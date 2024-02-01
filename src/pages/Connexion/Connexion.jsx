@@ -46,7 +46,7 @@ function Connexion() {
         if(succes.data.entite){
           navigate("/dashboard");
         }else{
-          navigate("/admin/dashboard");
+          navigate("/admin/entreprise");
         }
         
       }, 3000);

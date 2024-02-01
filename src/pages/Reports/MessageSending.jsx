@@ -1,5 +1,5 @@
 import axios from "axios"
-import ReactPaginate from "react-paginate"
+import ReactPaginate from "react-paginate";
 import { IsCookies } from "../../outils/IsCookie"
 import { ApiUrl } from "../../outils/URL"
 import { useEffect, useState } from "react"
