@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -60,60 +60,21 @@ function Dashboard() {
     .then(success => setContactDelete(success.data.data.length))
   }, [])
 
-  const fetchContacts = async () => {
-    let response = await fetch(`${ApiUrl}contact/getAll`, {
-      headers: {
-        Authorization: `Bearer ${IsCookies()}`,
-      },
-    });
-    let data = await response.json();
-      return data;
-    };
-
-  const fetchMessages = async () => {
-    let response = await fetch(`${ApiUrl}message/getAll`, {
-      headers: {
-        Authorization: `Bearer ${IsCookies()}`,
-      },
-    });
-    let data = await response.json();
-    return data;
-  };
-
-  const {
-    isPending: contactsPending,
-    isError: contactsError,
-    data: contactsData,
-    error: contactsErrorData,
-  } = useQuery({
-    queryKey: ["contact"],
-    queryFn: fetchContacts,
-  });
-
-  const {
-    isPending: messagesPending,
-    isError: messagesError,
-    data: messagesData,
-    error: messagesErrorData,
-  } = useQuery({
-    queryKey: ["message"],
-    queryFn: fetchMessages,
-  });
-
-  // const chartRef = useRef(null);
 
   useEffect(() => {
-    if (contactsData && contactsData.total && contacts === 0) {
-      setContacts(contactsData.total);
-    }
-  }, [contactsData, contacts]);
+    axios.get(ApiUrl+'contact/getAll', {headers: {Authorization: `token ${IsCookies()}`}})
+    // .then(success => setContactDelete(success.data.data.length))
+  }, [])
 
   useEffect(() => {
-    if (messagesData && messagesData.total && messages === 0) {
-      setMessages(messagesData.total);
-    }
-  }, [messagesData, messages]);
+    axios.get(ApiUrl+'message/getAll', {headers: {Authorization: `token ${IsCookies()}`}})
+    // .then(success => setContactDelete(success.data.data.length))
+  }, [])
 
+  useEffect(() => {
+    axios.get(ApiUrl+'contact/getAll', {headers: {Authorization: `token ${IsCookies()}`}})
+    .then(success => setContacts(success.data.data.length))
+  }, [contacts]);
 
   const navigate = useNavigate();
   useEffect(()=>{
@@ -123,15 +84,6 @@ function Dashboard() {
     }
   }, [navigate]);
 
-  if (contactsPending || messagesPending) return <div>Chargement...</div>;
-
-  if (contactsError || messagesError)
-    return (
-      <div>
-        Erreur lors du chargement des données:
-        {contactsError ? contactsErrorData.message : messagesErrorData.message}
-      </div>
-    );
 
   const dataMessage = {
     labels: ['Contacts', 'Messages', 'Groupe'],

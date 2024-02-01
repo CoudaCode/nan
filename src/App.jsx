@@ -62,7 +62,8 @@ function App() {
           {/* <Route path="/workspace" element={<WorkSpace />} /> */}
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/verification" element={<Verification />} />
-          <Route path="/validate/:user/:code" element={<Validate />} />
+          {/* <Route path="/validate/:user/:code" element={<Validate />} /> */}
+          <Route path="/validate" element={<Validate />} />
           <Route path="/message/:id/:detail" element={<MessageDetail />} />
 
           <Route path="/profile" element={<Profil />} />

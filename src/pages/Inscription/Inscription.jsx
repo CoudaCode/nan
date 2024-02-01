@@ -20,24 +20,18 @@ function Inscription() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm({ fullname: "", email: "", telephone: "", nationalite: "", password: "" });
   const { mutate: user } = useMutation({
     mutationFn: async (send) => {
-      document
-        .querySelectorAll("input:required")
-        .forEach((item) => (item.disabled = true));
+      document.querySelectorAll("input, button").forEach((item) => (item.disabled = true));
       if (!Object.values(send).every((item) => item.replaceAll(" ", ""))) {
         toast.error("Tous les champs sont obligatoires");
         document
           .querySelectorAll(
-            "input:required, button.login-button, button.social-button.google"
+            "input, button"
           )
           .forEach((item) => (item.disabled = false));
       } else {
         if (send.password !== send.passwordc) {
           toast.error("Les mots de passe de sont pas conforment");
-          document
-            .querySelectorAll(
-              "input:required, button.login-button, button.social-button.google"
-            )
-            .forEach((item) => (item.disabled = false));
+          document.querySelectorAll("input, button").forEach((item) => (item.disabled = false));
         } else {
           send.urlfrontend = FrontUrl + "entreprise/";
           let response = await axios.post(ApiUrl + "message/verifyEmail", send);
@@ -49,19 +43,14 @@ function Inscription() {
       toast.success(success.data.message);
       setTimeout(
         () =>{
-          console.log(success.data.data)
-          navigate(`/validate/${success.data.data.email}/${success.data.data.code}`)
+          navigate(`/validate`)
         },
           
         2500
       );
     },
     onError: (error) => {
-      document
-        .querySelectorAll(
-          "input:required, button.login-button, button.social-button.google"
-        )
-        .forEach((item) => (item.disabled = false));
+      document.querySelectorAll("input, button").forEach((item) => (item.disabled = false));
       toast.error(error.response.data.message);
     },
   });
