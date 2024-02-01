@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./AdminSideBar.css";
+import { DeleteCookies } from "../../../outils/IsCookie";
 import { useLocation, Link } from "react-router-dom";
 import logo from "../../../assets/images/Nan-Send.png";
 import _ from "lodash";
@@ -14,39 +15,29 @@ function AdminSideBar() {
   };
 
   const generatePath = (text) => `/admin/${_.deburr(text).toLocaleLowerCase('en-US')}`;
+  const handleLogout = () => {
+    DeleteCookies();
+    setTimeout(() => window.location.reload(), 1500);
+    };
   // function(){return `/admin/${_.deburr(this.text).toLocaleLowerCase('en-US')}`},
 
   const menuItems = [
-    {
-      iconClass: "bx bx-grid-alt",
-      text: "Dashboard",
-      to: function(){return generatePath(this.text)}
-    },
-    {
-      iconClass: "bx bxs-contact",
-      text: "Entreprises",
-      to: function(){return generatePath(this.text)}
-    },
+    // {
+    //   iconClass: "bx bx-grid-alt",
+    //   text: "Dashboard",
+    //   to: function(){return generatePath(this.text)}
+    // },
     {
       iconClass: "bx bxs-contact",
-      text: "Contacts",
+      text: "Entreprise",
       to: function(){return generatePath(this.text)}
     },
-    {
-      iconClass: "bx bxs-contact",
-      text: "Détails",
-      to: function(){return generatePath(this.text)}
-    },
-    {
-      iconClass: "bx bxs-contact",
-      text: "Détails",
-      to: function(){return generatePath(this.text)}
-    },
-    {
-      iconClass: "bx bxs-contact",
-      text: "Détails",
-      to: function(){return generatePath(this.text)}
-    },
+    // {
+    //   iconClass: "bx bxs-",
+    //   text: "Déconnexion",
+    //   to: function(){return generatePath(this.text)},
+      
+    // },
     
   ];
 
@@ -76,13 +67,13 @@ function AdminSideBar() {
                 <span className="tooltip">{menuItem.text}</span>
               </li>
             ))}
+            
 
-            {/* <li className="card">
-              <div className="card-body">
-                <h2 className="card-title">Nan Digital Academy</h2>
-                <p className="card-text">Version 1.0.0</p>
+            <li className="card">
+              <div className="card-body" onClick={()=>{handleLogout()}}>
+                <h2 className="card-title">Deconnexion</h2>
               </div>
-            </li> */}
+            </li>
           </ul>
         {/* </div> */}
       </div>

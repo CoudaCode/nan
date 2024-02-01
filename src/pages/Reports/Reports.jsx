@@ -122,28 +122,14 @@ function Reports() {
   const [contactDeleted, setContactDeleted] = useState([]);
   const [teamDeleted, setTeamDeleted] = useState([]);
 
-  const recover = (id) => {
-    console.log("l'id de l'utilisateur ", id);
-    console.log("le token de l'utilisateur", token);
-    axios
-      .put(ApiUrl + "groupe/recover/" + id, {
-        headers: { Authorization: `token ${token}` },
-      })
-      .then((success) => {
-        console.log("ce contact à bien été restauré", success);
-      })
-      .catch((err) => {
-        console.log("une erreur est survenu lors du traitement", err);
-      });
-  };
+  
 
   useEffect(() => {
     if (!token) {
       toast.error("Session expiré , veuillez vous reconnecter !");
       navigate("/connexion");
     } else {
-      axios
-        .get(ApiUrl + "contact/getAllDelete", {
+      axios.get(ApiUrl + "contact/getAllDelete", {
           headers: { Authorization: ` token ${token}` },
         })
         .then((success) => {
@@ -158,8 +144,7 @@ function Reports() {
           console.log("une erreur est survenue lors du traitement...", err);
         });
 
-      axios
-        .get(ApiUrl + "groupe/getAllDeleted", {
+      axios.get(ApiUrl + "groupe/getAllDeleted", {
           headers: { Authorization: ` token ${token}` },
         })
         .then((success) => {
@@ -172,6 +157,18 @@ function Reports() {
         });
     }
   }, []);
+
+  const recover = (id) => {
+    axios.put(ApiUrl + `contact/recover/${id}`, {
+        headers: { Authorization: ` token  ${token}` },
+      })
+      .then((success) => {
+        console.log("ce contact à bien été restauré", success);
+      })
+      .catch((err) => {
+        console.log("une erreur est survenu lors du traitement", err);
+      });
+  };
   return (
     <>
       <Sidebar />

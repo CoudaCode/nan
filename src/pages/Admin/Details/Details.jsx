@@ -1,19 +1,37 @@
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate , useParams} from "react-router-dom";
 import AdminSideBar from "../AdminSideBar/AdminSideBar";
+import axios from "axios"
 
 // import "./dashboard.css";
 import { useEffect, useState } from "react";
 import { IsCookies, DeleteCookies } from "../../../outils/IsCookie";
 import { toast } from "react-toastify";
+import { ApiUrl } from "../../../outils/URL";
 
 function Details() {
   const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
+  const [entreprise , setEntreprise] = useState({})
+  console.log(entreprise)
   const navigate = useNavigate();
+  const { id } = useParams()
+  const token = IsCookies()
+  console.log(id)
   useEffect(()=>{
-    if(!IsCookies()){
+    if(!token){
       toast.error('Session expirée, veuillez vous connecter !');
       navigate('/connexion');
+    }else{
+      axios.get(ApiUrl + `entreprise/getById/${id}` , {
+        headers : { Authorization : `token ${token}`}
+      })
+      .then(success =>{
+        console.log("les informations de l'entreprise..." , success.data.data)
+        setEntreprise(success.data.data)
+      })
+      .catch(err =>{
+        console.log("impossible de charger les informations de l'entreprise !" , err)
+      })
     }
   }, []);
 
@@ -32,7 +50,7 @@ function Details() {
             </div>
             <div class="mt-3 text-end">
             <a
-                href="#"
+                href="/admin/entreprise"
                 className="inline-block rounded bg-gray-100 text-slate-600 hover:text-white px-4 py-2 text-xs font-medium hover:bg-indigo-700"
               >
                 Retour
@@ -58,12 +76,14 @@ function Details() {
                 </a>
             </div>            */}
             <div class="mt-20 text-center border-b pb-12">          
-                <h1 class="text-4xl font-medium text-gray-700">Jessica Jones</h1>
-                <h2 class="text-2xl font-light text-gray-700 mt-3">Jessica.jones@gmail.com</h2>
-                <h4 class="text-2xl font-light text-gray-700 mt-3">+2250702030105</h4>
-                <p class="font-light text-gray-600 mt-3">Créateur de compte</p>
-                <p class="mt-8 font-light text-gray-600">Type d'entreprise : <span class="font-medium text-gray-800 mt-3">Privé</span></p>
-                <p class="mt-2 font-light text-gray-600">Cannaux de diffusion : </p>
+                <h1 class="text-4xl font-medium text-gray-700">{entreprise.raisonSociale} , {entreprise.pays}</h1>
+                <h2 class="text-2xl font-light text-gray-700 mt-3">{entreprise.adresse}</h2>
+                <h4 class="text-2xl font-light text-gray-700 mt-3">  </h4>
+                <h1 class="font-light text-gray-600 mt-8">E-mail Créateur de compte</h1>
+                <h2 class="text-2xl font-light text-gray-700 mt-3">{entreprise.email}</h2>
+                <h4 class="text-2xl font-light text-gray-700 mt-3">{entreprise.smsAdresse}</h4>
+                <p class="mt-8 font-light text-gray-600">Type d'entreprise : <span class="font-medium text-gray-800 mt-3">{entreprise.type}</span></p>
+                <p class="mt-2 font-light text-gray-600">Cannaux de diffusion : WhatsApp , E-mail , SMS</p>
             </div>
             <div class="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
                 <div> 
