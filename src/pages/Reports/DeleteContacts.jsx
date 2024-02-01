@@ -16,7 +16,7 @@ export default function DeleteContacts() {
     const [ pagesNumber, setPagesNumber ] = useState(0);
     const ContactsPerPage = 9;
     const pagesVisited = pagesNumber * ContactsPerPage;
-    const displayContact = AllDelete.slice(pagesVisited, pagesVisited + ContactsPerPage).map((item) => {
+    const displayContact =AllDelete.length? AllDelete.slice(pagesVisited, pagesVisited + ContactsPerPage).map((item) => {
         return(
             <tr key={item.id}>
                 <td className="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900">
@@ -41,7 +41,7 @@ export default function DeleteContacts() {
                 </td>
             </tr>
         )
-    });
+    }): <></>;
 
     const countPage = Math.ceil(AllDelete.length / ContactsPerPage);
 

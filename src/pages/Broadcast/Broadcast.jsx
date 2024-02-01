@@ -46,7 +46,7 @@ function Broadcast() {
         navigate('/connexion');
       }
     })
-  }, []);
+  }, [navigate]);
 
   const [ pagesNumber, setPagesNumber ] = useState(0);
   const GroupePerPage = 9;

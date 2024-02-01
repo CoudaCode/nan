@@ -41,7 +41,7 @@ export default function ListingContacts(propos) {
 
             SetContacts(mipping);
         })
-    }, []);
+    }, [register, handleChange]);
 
     const isOpen = propos.isOpen;
     const onClose = propos.onClose;

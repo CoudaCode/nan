@@ -19,7 +19,7 @@ export default function Show() {
                 navigate('/connexion');
             }
         }, 
-    []);
+    [navigate]);
 
     useEffect(()=>{
         axios.get(ApiUrl+`message/getById/${detailPathname[detailPathname.length-2]}`, {headers: {Authorization: `token ${IsCookies()}`}})

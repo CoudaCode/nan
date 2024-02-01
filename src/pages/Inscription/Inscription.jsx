@@ -16,7 +16,7 @@ function Inscription() {
         navigate('/dashboard');
     }
     }, 
-  []);
+  [navigate]);
   const { register, handleSubmit, watch, formState: { errors } } = useForm({ fullname: "", email: "", telephone: "", nationalite: "", password: "" });
   const { mutate: user } = useMutation({
     mutationFn: async (send) => {

@@ -54,7 +54,7 @@ function Contact() {
         navigate('/connexion');
       }
     })
-  }, []);
+  }, [navigate]);
 
   const [ pagesNumber, setPagesNumber ] = useState(0);
   const ContactsPerPage = 9;

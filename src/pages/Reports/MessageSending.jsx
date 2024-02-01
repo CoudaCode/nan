@@ -11,7 +11,7 @@ export default function MessageSending() {
     useEffect(() => {
         axios.get(ApiUrl+'message/getAllSending', {headers: {Authorization: `token ${IsCookies()}`}})
         .then(success => SetDelete(success.data.data))
-    })
+    }, [])
 
     const [ pagesNumber, setPagesNumber ] = useState(0);
     const ContactsPerPage = 9;
@@ -29,7 +29,7 @@ export default function MessageSending() {
                     {item.contenu.slice(0, 20)+'...'}
                 </td>
                 <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">
-                    {item.piecesJointes.length | 'Aucun' }
+                    {item.piecesJointeslength | 'Aucun' }
                 </td>
 
                 <td className="whitespace-nowrap text-center px-4 py-2 text-gray-700">

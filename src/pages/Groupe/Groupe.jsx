@@ -15,7 +15,7 @@ function Groupe() {
         .then(allGroupe => {
             if(allGroupe.data.status) setDataListingGroupe(allGroupe.data.data);
         });
-    }, []);
+    }, [token]);
   return (
     <>
       <Sidebar />

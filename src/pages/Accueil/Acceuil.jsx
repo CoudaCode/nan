@@ -21,7 +21,7 @@ function Acceuil() {
         navigate('/dashboard');
     }
   }, 
-  []);
+  [navigate]);
   return (
     <>
       <Navbar />

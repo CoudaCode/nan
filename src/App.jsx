@@ -17,7 +17,7 @@ import Validate from "./pages/Validate/Validate";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MessageDetail from "./pages/MessageDetail/MessageDetail";
-import Profil from "./pages/Profiles/Profil";
+import Profil from "./pages/Profile/Profil";
 
 import "chart.js/auto";
 import NotFound from "./pages/NotFound/NotFound";

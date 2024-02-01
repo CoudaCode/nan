@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 
 
-export default function Profil() {
+export default function Profil(){
     
     const [isAccordionOpenPersonnelInfo, setAccordionOpenPersonnelInfo] = useState(false);
     const [isAccordionOpenSecurity, setAccordionOpenSecurity] = useState(false);
