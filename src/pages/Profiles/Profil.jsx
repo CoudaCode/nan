@@ -34,7 +34,7 @@ export default function Profil() {
                 toast.error('Session expirée, veuillez vous connecter !');
                 navigate('/connexion');
             }
-        }, []
+        }, [navigate]
     );
     
     useEffect(()=>{

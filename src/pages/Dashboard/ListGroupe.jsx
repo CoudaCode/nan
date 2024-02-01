@@ -13,7 +13,7 @@ function ListGroupe(){
         .then(allGroupe => {
             if(allGroupe.data.status) setDataGroupe(allGroupe.data.data);
         });
-    }, [])
+    }, [token])
 
 
 

@@ -17,7 +17,7 @@ function Reports() {
       toast.error('Session expirée, veuillez vous connecter !');
       navigate('/connexion');
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <>

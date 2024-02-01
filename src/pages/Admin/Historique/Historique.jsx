@@ -24,7 +24,7 @@ function Historique() {
       toast.error('Session expirée, veuillez vous connecter !');
       navigate('/connexion');
     }
-  }, []);
+  }, [navigate]);
     
     useEffect(() => {
         axios.get(ApiUrl+'entreprise/getAll', {headers: {Authorization: `token ${IsCookies()}`}})

@@ -15,7 +15,7 @@ function ListingGroupe(){
         .then(allGroupe => {
             if(allGroupe.data.status) SetAllGroupe(allGroupe.data.data);
         });
-    }, []);
+    }, [token]);
 
     
 

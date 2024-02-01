@@ -121,7 +121,7 @@ function Dashboard() {
       toast.error('Session expirée, veuillez vous connecter !');
       navigate('/connexion');
     }
-  }, []);
+  }, [navigate]);
 
   if (contactsPending || messagesPending) return <div>Chargement...</div>;
 

@@ -11,7 +11,7 @@ function ListContact(){
         .then(allCollabo => {
             if(allCollabo.data.status) setDataContact(allCollabo.data.data);
         });
-    }, [])
+    }, [token])
 
     return(
         <div className="recentOrders">

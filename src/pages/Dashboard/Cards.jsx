@@ -48,7 +48,7 @@ function Cards(){
                 setStateStocke(allStocke.data.data.length)
             }
         })
-    }, [])
+    }, [token])
 
     return(
         <div className="cardBox">
