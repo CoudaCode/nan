@@ -29,13 +29,13 @@ export default function Profil() {
     const [IsMyInformations, SetMyInformations] = useState({});
 
     const navigate = useNavigate();
-        useEffect(()=>{
+    useEffect(()=>{
             if(!IsCookies()){
-            toast.error('Session expirée, veuillez vous connecter !');
-            navigate('/connexion');
+                toast.error('Session expirée, veuillez vous connecter !');
+                navigate('/connexion');
             }
-        }, 
-    []);
+        }, []
+    );
     
     useEffect(()=>{
         axios.get(`${ApiUrl}user/getById`, {headers: {Authorization: `token ${IsCookies()}`}})
@@ -44,7 +44,6 @@ export default function Profil() {
             const myCanvasImage = document.getElementById('myCanvasImage');
             const chaine = myName.length > 1 ? myName[0][0].toUpperCase()+myName[1][0].toUpperCase(): myName[0][0].toUpperCase();
             convertToImage(chaine, myCanvasImage);
-
             SetMyInformations(success.data.data);
 
         })
