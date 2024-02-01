@@ -34,7 +34,12 @@ function Connexion() {
           "NaN_Digit_Sender_Token_Secretly",
           JSON.stringify(succes.data.id)
         );
-        navigate("/dashboard");
+        // navigate("/dashboard");
+        if(succes.data.entite){
+           navigate("/dashboard");
+        }else{
+          navigate('/admin/entreprise')
+        }
       }, 3000);
     },
     onError: (e) => {

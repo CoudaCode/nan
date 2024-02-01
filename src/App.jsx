@@ -49,7 +49,7 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<Acceuil />} />
-          <Route path="/detail" element={<Details />} />
+          <Route path="/detail/:id" element={<Details />} />
           <Route path="/admin/entreprise" element={<Historique />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/contact" element={<Contact />} />
