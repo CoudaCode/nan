@@ -38,7 +38,7 @@ export function SendMessageByEmail(data, closed){
 
 
 export function SendMessageBySms(){
-// 
+// dzrm kppk oxit tytl
 }
 
 
