@@ -93,7 +93,7 @@ function ModifyConfirmationModal(propos){
                             require: true,
                             minLength: 5,
                             maxLength: 150,
-                            validate: {notEmpty: value => /^\S+$/.test(value) || "Ce champ ne peut pas être vide ou contenir uniquement des espaces."}
+                            
                         })}
                         autoComplete="description"
                         onChange={handleChange}
