@@ -60,7 +60,7 @@ function ModifyConfirmationModal(propos){
       <div className="bg-gray-800 bg-opacity-75 absolute inset-0"></div>
       <div className="rounded-lg bg-white p-8 shadow-2xl z-10 w-[40rem]">
             <form className="FormSaveContact max-w-md mx-auto mt-8 p-8 bg-white rounded-lg shadow-md" onSubmit={handleSubmit(onSubmit)}>
-                <h3 className="text-2xl font-semibold mb-6 text-purple-600">Ajouter un liste de diffusion</h3>
+                <h3 className="text-2xl font-semibold mb-6 text-purple-600">Ajouter une liste de diffusion</h3>
                 <label className="block mb-4">
                     <span className="text-gray-700">Nom du groupe : </span>
                     <input
