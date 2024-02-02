@@ -1,7 +1,9 @@
-import axios from "axios";
+// import axios from "axios";
+
 import { IsCookies } from "./IsCookie";
 import { ApiUrl } from "./URL";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export function SendMessageByEmail(data, closed){
 
@@ -13,7 +15,7 @@ export function SendMessageByEmail(data, closed){
         if(contact && contact.length) addresse = contact.map(item => item[canal]);
         else if(groupe && groupe.length) addresse = groupe.flatMap(item => item.contact).map(item => item[canal]);
         const body = {canal, object, contenu, contact: addresse, id: data.id};
-        axios.post(ApiUrl+'message/email', body, {headers: {Authorization: `token ${IsCookies()}`}})
+        axios.post(ApiUrl+'message/createEmail', body, {headers: {Authorization: `token ${IsCookies()}`}})
         .then(response => {
             toast.success(response.data.message);
             IsMustClosed.classList.add('hidden');
