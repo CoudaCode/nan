@@ -24,6 +24,9 @@ import NotFound from "./pages/NotFound/NotFound";
 
 import Historique from "./pages/Admin/Historique/Historique";
 import Details from "./pages/Admin/Details/Details";
+
+import Contacts from "./pages/Admin/Contacts/Contacts.jsx";
+import Corbelles from "./pages/Admin/Corbelles/Corbelles.jsx";
 // import { useLocation } from "react-router-dom";
   
 
@@ -35,23 +38,18 @@ function App() {
   return (
     <>
       <QueryClientProvider client={client}>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light"/>
         <Routes>
           <Route path="/" element={<Acceuil />} />
           <Route path="/detail" element={<Details />} />
           <Route path="/admin/entreprises" element={<Historique />} />
           <Route path="/admin/entreprises/:id" element={<Details />} />
+
+          <Route path="/admin/contacts" element={<Contacts />} />
+          <Route path="/admin/contacts/:id" element={<Contacts />} />
+
+          <Route path="/admin/corbelles" element={<Corbelles />} />
+
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/inscription" element={<Inscription />} />
@@ -59,10 +57,8 @@ function App() {
           <Route path="/broadcast" element={<Broadcast />} />
           <Route path="/message" element={<Message />} />
           <Route path="/reports" element={<Reports />} />
-          {/* <Route path="/workspace" element={<WorkSpace />} /> */}
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/verification" element={<Verification />} />
-          {/* <Route path="/validate/:user/:code" element={<Validate />} /> */}
           <Route path="/validate" element={<Validate />} />
           <Route path="/message/:id/:detail" element={<MessageDetail />} />
 

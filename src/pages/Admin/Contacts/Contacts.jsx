@@ -1,21 +1,16 @@
 
-import {  Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AdminSideBar from "../AdminSideBar/AdminSideBar";
 
 
 // import "./dashboard.css";
-import { useEffect, useState,  } from "react";
+import { useEffect,  } from "react";
 import { IsCookies,  } from "../../../outils/IsCookie";
 import { toast } from "react-toastify";
 import Deconnexion from "../../Deconnexion/Deconnexion";
-import axios from "axios";
-import { ApiUrl } from "../../../outils/URL";
 
 
-function Details() {
-    const [Entreprise, SetEntreprise] = useState({});
-    const [AllContacts, SetAllContacts] = useState([]);
-    const InfoPathname = window.location.pathname.split('/')
+function Contacts() {
   const navigate = useNavigate();
   useEffect(()=>{
     if(!IsCookies()){
@@ -24,33 +19,14 @@ function Details() {
     }
   }, [navigate]);
 
-  useEffect(()=>{
-    axios.get(ApiUrl+'entreprise/getById2/'+InfoPathname[InfoPathname.length-1], {headers: {Authorization: `token ${IsCookies()}`}})
-    .then(success =>{
-        if(success.data.data){
-            SetEntreprise(success.data.data)
-            axios.get(ApiUrl+'contact/getContactByEntreprise/'+success.data.data.id, {headers: {Authorization: `token ${IsCookies()}`}})
-            .then(succ => {
-                console.log('.......................', succ.data.data);
-                SetAllContacts(succ.data.data)
-            })
-        }
-        
-    })
-  }, []);
-
-//   console.log('***************************', AllContacts);
-
-
-
   
-//   getContactByEntreprise
+
   return (
     <>
       <AdminSideBar />
         <div className="main p-4 flex-1 flex flex-col overflow-y-auto" id="main">
             <div className="flex justify-between items-center overflow-y-none p-2 bg-[#1E2029]">
-                <div className="flex items-center"> <Link to={'/admin/entreprises'}><span className="text-gray-400 hover:text-white"> Entreprise </span></Link>&nbsp; &gt;&nbsp; <span>Détail</span> </div>
+                <div className="flex items-center">  Contacts  </div>
                 
                 <Deconnexion />
             </div>
@@ -76,13 +52,12 @@ function Details() {
                     </a>
                 </div> */}
                 <div className="mt-20 text-center border-b pb-12">          
-                    <h1 className="text-4xl font-medium text-gray-700">{Entreprise?.raisonSociale}</h1>
-                    <h2 className="text-2xl font-light text-gray-700 mt-3">{Entreprise?.email}</h2>
-                    <h4 className="text-2xl font-light text-gray-700 mt-3">{Entreprise?.smsAdresse}</h4>
-                    <p className="font-light text-gray-600 mt-3">{Entreprise?.adresse}</p>
-                    <p className="font-light text-gray-600 mt-3">{Entreprise?.pays}</p>
-                    <p className="mt-8 font-light text-gray-600">Type d&apos;entreprise : <span className="font-medium text-gray-800 mt-3">{Entreprise?.type}</span></p>
-                    <p className="mt-8 font-light text-gray-600">Domaine d&apos;activité : <span className="font-medium text-gray-800 mt-3">{Entreprise?.domaineDActivite}</span></p>
+                    <h1 className="text-4xl font-medium text-gray-700">Jessica Jones</h1>
+                    <h2 className="text-2xl font-light text-gray-700 mt-3">Jessica.jones@gmail.com</h2>
+                    <h4 className="text-2xl font-light text-gray-700 mt-3">+2250702030105</h4>
+                    <p className="font-light text-gray-600 mt-3">Créateur de compte</p>
+                    <p className="mt-8 font-light text-gray-600">Type d&apos;entreprise : <span className="font-medium text-gray-800 mt-3">Privé</span></p>
+                    <p className="mt-2 font-light text-gray-600">Cannaux de diffusion : </p>
                 </div>
                 <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
                     <div> 
@@ -90,7 +65,7 @@ function Details() {
                         <p className="text-gray-400">Groupes</p>
                     </div>
                     <div>
-                        <p className="font-bold text-gray-700 text-xl">{AllContacts.length}</p>
+                        <p className="font-bold text-gray-700 text-xl">10</p>
                         <p className="text-gray-400">Contacts</p>     
                     </div>
                     <div>
@@ -108,4 +83,4 @@ function Details() {
   );
 }
 
-export default Details;
+export default Contacts;

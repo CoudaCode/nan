@@ -39,14 +39,10 @@ function Connexion() {
         expires: 1,
       });
       setTimeout(() => {
-        sessionStorage.setItem(
-          "NaN_Digit_Sender_Token_Secretly",
-          JSON.stringify(succes.data.id)
-        );
         if(succes.data.entite){
           navigate("/dashboard");
         }else{
-          navigate("/admin/entreprise");
+          navigate("/admin/entreprises");
         }
         
       }, 3000);
